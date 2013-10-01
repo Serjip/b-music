@@ -18,6 +18,7 @@
 		D21CEA1217FAFA0A00F5AF42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE9F117FAFA0900F5AF42 /* Cocoa.framework */; };
 		D21CEA1A17FAFA0A00F5AF42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21CEA1817FAFA0A00F5AF42 /* InfoPlist.strings */; };
 		D21CEA1C17FAFA0A00F5AF42 /* b_musicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA1B17FAFA0A00F5AF42 /* b_musicTests.m */; };
+		D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2617FAFAFE00F5AF42 /* AppController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		D21CEA1717FAFA0A00F5AF42 /* b-musicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "b-musicTests-Info.plist"; sourceTree = "<group>"; };
 		D21CEA1917FAFA0A00F5AF42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D21CEA1B17FAFA0A00F5AF42 /* b_musicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = b_musicTests.m; sourceTree = "<group>"; };
+		D21CEA2517FAFAFE00F5AF42 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		D21CEA2617FAFAFE00F5AF42 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
 				D21CEA0917FAFA0900F5AF42 /* Images.xcassets */,
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
+				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
+				D21CEA2617FAFAFE00F5AF42 /* AppController.m */,
 			);
 			path = "b-music";
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
+				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
