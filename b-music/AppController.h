@@ -10,4 +10,10 @@
 #import "SheetWindowController.h"
 @interface AppController : NSObject<SheetDelegate>
 @property SheetWindowController * sheet;
+
+@property (weak) IBOutlet NSView *Controls0;
+@property (weak) IBOutlet NSView *Controls1;
+
+-(IBAction)logout:(id)sender;
+
 @end

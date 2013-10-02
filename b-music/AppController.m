@@ -10,7 +10,7 @@
 
 @implementation AppController
 -(void)awakeFromNib{
-    [self activateSeet];
+    [self.Controls0 addSubview:self.Controls1];
 }
 
 -(void)activateSeet{
@@ -23,6 +23,12 @@
           contextInfo:nil];
 }
 -(void)cancelSheet{
-    
+    NSLog(@"DELEGATION METHOD");
+    [NSApp endSheet:self.sheet.window];
+    [self.sheet.window close];
+    self.sheet.window =nil;
+}
+-(IBAction)logout:(id)sender{
+    [self activateSeet];
 }
 @end
