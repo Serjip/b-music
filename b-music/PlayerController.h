@@ -7,7 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreMedia/CoreMedia.h>
+
+@protocol PlayerDelegate <NSObject>
+-(NSString*)nextTrack;
+-(void)bufferingTrack:(double)seconds;
+-(void)durationTrack:(double)duration;
+@end
 
 @interface PlayerController : NSObject
+
+@property (weak) id <PlayerDelegate> delegate;
+
+@property float volume;
+@property BOOL repeat;
+
+@property (strong) AVPlayer *player;
+@property (strong) AVPlayerItem *playerItem;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation AppController
 -(void)awakeFromNib{
-    [self.Controls0 addSubview:self.Controls1];
+    [self.Controls0 addSubview:self.Controls2];
 }
 
 -(void)activateSeet{
@@ -28,7 +28,61 @@
     [self.sheet.window close];
     self.sheet.window =nil;
 }
--(IBAction)logout:(id)sender{
+
+-(IBAction)play:(id)sender{ NSLog(@"Play");
+    
+}
+-(IBAction)next:(id)sender{ NSLog(@"Next");
+    
+}
+-(IBAction)previous:(id)sender{ NSLog(@"Previous");
+    
+}
+-(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
+    
+}
+-(IBAction)increaseVolume:(id)sender{ NSLog(@"IncreaseVolume");
+    
+}
+-(IBAction)mute:(id)sender{NSLog(@"Mute");
+    
+}
+-(IBAction)shuffle:(id)sender{NSLog(@"Shuffle");
+    
+}
+-(IBAction)repeat:(id)sender{NSLog(@"Repeat");
+    
+}
+-(IBAction)alwaysOnTop:(id)sender{NSLog(@"Always On top");
+    
+}
+-(IBAction)visitWebsite:(id)sender{ NSLog(@"visitwebsite");
+    
+}
+-(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
+
+}
+-(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
+    
+}
+-(IBAction)volume:(id)sender{NSLog(@"Volume");
+    
+}
+-(IBAction)runtime:(id)sender{NSLog(@"Runtime");
+    
+}
+-(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
+    [self.Controls2 removeFromSuperview];
+    [self.Controls0 addSubview:self.Controls3];
+}
+-(IBAction)hideSearch:(id)sender{NSLog(@"HideSearch");
+    [self.Controls3 removeFromSuperview];
+    [self.Controls0 addSubview:self.Controls2];
+}
+-(IBAction)search:(id)sender{NSLog(@"Search");
+    
+}
+-(IBAction)logout:(id)sender{ NSLog(@"Logout");
     [self activateSeet];
 }
 @end
