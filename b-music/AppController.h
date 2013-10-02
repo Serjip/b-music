@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface AppController : NSObject
-
+#import "SheetWindowController.h"
+@interface AppController : NSObject<SheetDelegate>
+@property SheetWindowController * sheet;
 @end

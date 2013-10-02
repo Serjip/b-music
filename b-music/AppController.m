@@ -9,5 +9,20 @@
 #import "AppController.h"
 
 @implementation AppController
+-(void)awakeFromNib{
+    [self activateSeet];
+}
 
+-(void)activateSeet{
+    self.sheet=[[SheetWindowController alloc] initWithWindowNibName:@"SheetWindowController"];
+    [self.sheet setDelegate:self];
+    [NSApp beginSheet:self.sheet.window
+       modalForWindow:[[NSApp delegate]window]
+        modalDelegate:self
+       didEndSelector:nil
+          contextInfo:nil];
+}
+-(void)cancelSheet{
+    
+}
 @end
