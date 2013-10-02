@@ -228,7 +228,7 @@ CA
                             <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="96" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="96" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO" customClass="TableView">
                                     <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -266,7 +266,7 @@ CA
                                                         <outlet property="textField" destination="rtH-2f-ep2" id="3sb-mv-Xtg"/>
                                                     </connections>
                                                 </tableCellView>
-                                                <customView id="S89-kI-VRL">
+                                                <customView id="S89-kI-VRL" customClass="TableRowView">
                                                     <rect key="frame" x="1" y="53" width="402" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </customView>
@@ -474,10 +474,10 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="381" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl">
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
                     <rect key="frame" x="48" y="8" width="313" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ"/>
+                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
                     <connections>
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
                         <binding destination="DoF-XC-WxK" name="maxValue" keyPath="self.duration" id="H8W-oX-UES">

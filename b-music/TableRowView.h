@@ -1,5 +1,5 @@
 //
-//  RuntimeSlider.h
+//  TableRowView.h
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface RuntimeSlider : NSSlider
--(void)setBuffering:(double)buffering;
--(void)setProgress:(double)progress;
+@interface TableRowView : NSTableRowView
+
 @end

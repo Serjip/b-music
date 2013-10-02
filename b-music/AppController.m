@@ -13,13 +13,16 @@
     
     self.S=[[Settings alloc] init];
     NSLog(@"%@",self.S);
+    if (!self.S.settings.token) {
+        [self activateSeet];
+    }
     
     [self.Controls0 addSubview:self.Controls2];
     [self.BottomControls0 addSubview:self.BottomControls1];
 }
 -(void)windowDidBecomeMain:(NSNotification *)notification
 {NSLog(@"DidBecomeMain");
-    [self activateSeet];
+    
 }
 
 -(void)activateSeet{
@@ -33,8 +36,15 @@
        didEndSelector:nil
           contextInfo:nil];
 }
--(void)cancelSheet{
-    NSLog(@"DELEGATION METHOD");
+-(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id{
+    NSLog(@"DELEGATION METHOD token %@ user_id %li",token,user_id);
+    
+    if(token && user_id){
+        self.S.settings.token=token;
+        self.S.settings.user_id=user_id;
+        [self.S saveSettings];
+    }
+    
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
     //self.sheet.window = nil;

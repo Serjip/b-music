@@ -7,23 +7,46 @@
 //
 
 #import "RuntimeSlider.h"
+#import "RuntimeSliderCell.h"
 
-@implementation RuntimeSlider
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
+@implementation RuntimeSlider{
+    NSTrackingArea * trackingArea;
 }
 
-- (void)drawRect:(NSRect)dirtyRect
+-(void)setProgress:(double)progress{
+    [self setDoubleValue:progress];
+    
+    double val=1-(self.maxValue-progress)/self.maxValue;
+    [self.selectedCell setProgress:val];
+    [self setNeedsDisplay:YES];
+}
+
+-(void)setBuffering:(double)buffering{
+    [self.selectedCell setBuffering:buffering];
+    [self setNeedsDisplay:YES];
+}
+
+-(void)mouseEntered:(NSEvent *)theEvent {
+    [self.selectedCell setShowKnob:YES];
+    [self setNeedsDisplay:YES];
+}
+
+-(void)mouseExited:(NSEvent *)theEvent
 {
-	[super drawRect:dirtyRect];
-	
-    // Drawing code here.
+    [self.selectedCell setShowKnob:NO];
+    [self setNeedsDisplay:YES];
+}
+
+-(void)updateTrackingAreas
+{
+    if(trackingArea != nil) {
+        [self removeTrackingArea:trackingArea];
+    }
+    trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+                                                 options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways)
+                                                   owner:self
+                                                userInfo:nil];
+    [self addTrackingArea:trackingArea];
 }
 
 @end

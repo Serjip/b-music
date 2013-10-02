@@ -1,5 +1,5 @@
 //
-//  RintimeSliderCell.h
+//  TableView.h
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface RintimeSliderCell : NSSliderCell
+@interface TableView : NSTableView
 
 @end

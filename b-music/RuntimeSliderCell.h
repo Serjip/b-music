@@ -1,5 +1,5 @@
 //
-//  RuntimeSlider.h
+//  RuntimeSliderCell.h
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
@@ -8,7 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface RuntimeSlider : NSSlider
+@interface RuntimeSliderCell : NSSliderCell{
+    double _buffering;
+    double _progress;
+    BOOL _isShowKnob;
+}
 -(void)setBuffering:(double)buffering;
 -(void)setProgress:(double)progress;
+-(void)setShowKnob:(BOOL)isShowKnob;
+
 @end

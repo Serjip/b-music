@@ -29,7 +29,10 @@
 		D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B3B17FC2E2F00F725BD /* AVFoundation.framework */; };
 		D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B3D17FC408700F725BD /* CoreMedia.framework */; };
 		D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4017FC4E5000F725BD /* RuntimeSlider.m */; };
-		D2825B4517FC4E8A00F725BD /* RintimeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */; };
+		D2825B4817FC90F000F725BD /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4717FC90F000F725BD /* Helper.m */; };
+		D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4B17FC990C00F725BD /* RuntimeSliderCell.m */; };
+		D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4E17FC9B1200F725BD /* TableRowView.m */; };
+		D2825B5317FC9BA700F725BD /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5217FC9BA700F725BD /* TableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +83,14 @@
 		D2825B3D17FC408700F725BD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		D2825B3F17FC4E5000F725BD /* RuntimeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeSlider.h; sourceTree = "<group>"; };
 		D2825B4017FC4E5000F725BD /* RuntimeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeSlider.m; sourceTree = "<group>"; };
-		D2825B4317FC4E8A00F725BD /* RintimeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RintimeSliderCell.h; sourceTree = "<group>"; };
-		D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RintimeSliderCell.m; sourceTree = "<group>"; };
+		D2825B4617FC90F000F725BD /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		D2825B4717FC90F000F725BD /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		D2825B4A17FC990C00F725BD /* RuntimeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeSliderCell.h; sourceTree = "<group>"; };
+		D2825B4B17FC990C00F725BD /* RuntimeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeSliderCell.m; sourceTree = "<group>"; };
+		D2825B4D17FC9B1200F725BD /* TableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableRowView.h; sourceTree = "<group>"; };
+		D2825B4E17FC9B1200F725BD /* TableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableRowView.m; sourceTree = "<group>"; };
+		D2825B5117FC9BA700F725BD /* TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableView.h; sourceTree = "<group>"; };
+		D2825B5217FC9BA700F725BD /* TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +165,7 @@
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
 				D21CEA2617FAFAFE00F5AF42 /* AppController.m */,
+				D2825B4917FC90F300F725BD /* Helper */,
 				D2825B3A17FC2D7800F725BD /* Player */,
 				D2825B3317FC24EE00F725BD /* PlayerWindow */,
 				D2825B2F17FC20FE00F725BD /* Sheet */,
@@ -163,6 +173,7 @@
 				D21CEA0317FAFA0900F5AF42 /* AppDelegate.h */,
 				D21CEA0417FAFA0900F5AF42 /* AppDelegate.m */,
 				D21CEA0917FAFA0900F5AF42 /* Images.xcassets */,
+				D2825B5017FC9B1E00F725BD /* Table */,
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
 				D2825B4217FC4E5500F725BD /* RuntimeSlider */,
 			);
@@ -241,12 +252,32 @@
 		D2825B4217FC4E5500F725BD /* RuntimeSlider */ = {
 			isa = PBXGroup;
 			children = (
+				D2825B4A17FC990C00F725BD /* RuntimeSliderCell.h */,
+				D2825B4B17FC990C00F725BD /* RuntimeSliderCell.m */,
 				D2825B3F17FC4E5000F725BD /* RuntimeSlider.h */,
 				D2825B4017FC4E5000F725BD /* RuntimeSlider.m */,
-				D2825B4317FC4E8A00F725BD /* RintimeSliderCell.h */,
-				D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */,
 			);
 			name = RuntimeSlider;
+			sourceTree = "<group>";
+		};
+		D2825B4917FC90F300F725BD /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B4617FC90F000F725BD /* Helper.h */,
+				D2825B4717FC90F000F725BD /* Helper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		D2825B5017FC9B1E00F725BD /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B5117FC9BA700F725BD /* TableView.h */,
+				D2825B5217FC9BA700F725BD /* TableView.m */,
+				D2825B4D17FC9B1200F725BD /* TableRowView.h */,
+				D2825B4E17FC9B1200F725BD /* TableRowView.m */,
+			);
+			name = Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,11 +382,14 @@
 				D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */,
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
 				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
-				D2825B4517FC4E8A00F725BD /* RintimeSliderCell.m in Sources */,
 				D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */,
+				D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */,
+				D2825B5317FC9BA700F725BD /* TableView.m in Sources */,
 				D2825B3217FC24E400F725BD /* PlayerWindow.m in Sources */,
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
+				D2825B4817FC90F000F725BD /* Helper.m in Sources */,
+				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
 				D2825B3617FC259C00F725BD /* PlayerView.m in Sources */,
 			);

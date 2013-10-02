@@ -10,16 +10,15 @@
 #import <WebKit/WebKit.h>
 
 @protocol SheetDelegate <NSObject>
-
--(void) cancelSheet;
-
+-(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id;
 @end
 
 @interface SheetWindowController : NSWindowController
 
 @property (weak) id <SheetDelegate> delegate;
-
 @property (weak) IBOutlet WebView *webview;
 
 -(IBAction)cancel:(id)sender;
+
+-(void)clearCookie;
 @end
