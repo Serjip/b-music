@@ -96,7 +96,15 @@ CA
                     </menu>
                 </menuItem>
                 <menuItem title="View" id="295">
-                    <menu key="submenu" title="View" id="296"/>
+                    <menu key="submenu" title="View" autoenablesItems="NO" id="296">
+                        <items>
+                            <menuItem title="Playlist" enabled="NO" keyEquivalent="1" id="sfo-9k-5Xy">
+                                <connections>
+                                    <action selector="showPlaylist:" target="DoF-XC-WxK" id="cPl-Sp-cir"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem title="Controls" id="vlf-7v-fBJ">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -171,6 +179,12 @@ CA
                             <menuItem title="Bring All to Front" id="5">
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="39"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Always on Top" id="uZ8-CU-UIJ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="alwaysOnTop:" target="DoF-XC-WxK" id="mzV-Um-yyK"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -309,7 +323,7 @@ CA
                 <outlet property="Controls3" destination="1DB-vh-iS2" id="C99-9z-Bre"/>
             </connections>
         </customObject>
-        <customView id="30f-RB-wt4">
+        <customView id="30f-RB-wt4" userLabel="Controls1">
             <rect key="frame" x="0.0" y="0.0" width="381" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -333,7 +347,7 @@ CA
                 </textField>
             </subviews>
         </customView>
-        <customView id="qsF-Cm-hro">
+        <customView id="qsF-Cm-hro" userLabel="Controls2">
             <rect key="frame" x="0.0" y="0.0" width="381" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -377,6 +391,9 @@ CA
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showPlaylist:" target="DoF-XC-WxK" id="1a7-qr-Uhe"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button">
                     <rect key="frame" x="200" y="14" width="22" height="22"/>
@@ -421,7 +438,7 @@ CA
                 </slider>
             </subviews>
         </customView>
-        <customView id="1DB-vh-iS2">
+        <customView id="1DB-vh-iS2" userLabel="Controls3">
             <rect key="frame" x="0.0" y="0.0" width="381" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -450,7 +467,7 @@ CA
                 </button>
             </subviews>
         </customView>
-        <customView id="fl9-Ey-vmi">
+        <customView id="fl9-Ey-vmi" userLabel="BottomControls1">
             <rect key="frame" x="0.0" y="0.0" width="381" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -460,17 +477,26 @@ CA
                     <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ"/>
                     <connections>
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
+                        <binding destination="DoF-XC-WxK" name="maxValue" keyPath="self.duration" id="H8W-oX-UES">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="DoF-XC-WxK" name="value" keyPath="self.runtime" previousBinding="H8W-oX-UES" id="udQ-J6-37i"/>
                     </connections>
                 </slider>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HMM-VP-0Fm">
-                    <rect key="frame" x="-3" y="7" width="46" height="15"/>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
+                    <rect key="frame" x="0.0" y="8" width="40" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="0:00" id="kgu-0N-5aT">
+                    <buttonCell key="cell" type="smallSquare" title="0:00" bezelStyle="smallSquare" imagePosition="overlaps" alignment="right" controlSize="small" state="on" imageScaling="proportionallyDown" inset="2" id="Jvi-14-iYr">
+                        <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" size="10" name="LucidaGrande"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
+                    </buttonCell>
+                    <connections>
+                        <action selector="switchRuntime:" target="DoF-XC-WxK" id="z0m-aS-hIY"/>
+                        <binding destination="DoF-XC-WxK" name="title" keyPath="self.runtime" id="aWH-jv-CCa"/>
+                    </connections>
+                </button>
             </subviews>
         </customView>
     </objects>

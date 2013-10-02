@@ -11,6 +11,7 @@
 @implementation AppController
 -(void)awakeFromNib{
     [self.Controls0 addSubview:self.Controls2];
+    [self.BottomControls0 addSubview:self.BottomControls1];
 }
 
 -(void)activateSeet{
@@ -57,7 +58,7 @@
     
 }
 -(IBAction)visitWebsite:(id)sender{ NSLog(@"visitwebsite");
-    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
 
@@ -71,6 +72,9 @@
 -(IBAction)runtime:(id)sender{NSLog(@"Runtime");
     
 }
+-(IBAction)switchRuntime:(id)sender{ NSLog(@"Switch Runtime");
+    
+}
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
     [self.Controls2 removeFromSuperview];
     [self.Controls0 addSubview:self.Controls3];
@@ -80,6 +84,9 @@
     [self.Controls0 addSubview:self.Controls2];
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
+    
+}
+-(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     
 }
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");

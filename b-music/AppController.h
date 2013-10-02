@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SheetWindowController.h"
-@interface AppController : NSObject<SheetDelegate>
+#import "PlayerController.h"
+
+@interface AppController : NSObject<SheetDelegate,PlayerDelegate>
+
 @property SheetWindowController * sheet;
+@property double duration;
+@property double runtime;
 
 @property (weak) IBOutlet NSView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
@@ -35,9 +40,11 @@
 -(IBAction)removeTrack:(id)sender;
 -(IBAction)volume:(id)sender;
 -(IBAction)runtime:(id)sender;
+-(IBAction)switchRuntime:(id)sender;
 -(IBAction)showSearch:(id)sender;
 -(IBAction)hideSearch:(id)sender;
 -(IBAction)search:(id)sender;
+-(IBAction)showPlaylist:(id)sender;
 -(IBAction)logout:(id)sender;
 
 @end

@@ -28,6 +28,8 @@
 		D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B3817FC2D7200F725BD /* PlayerController.m */; };
 		D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B3B17FC2E2F00F725BD /* AVFoundation.framework */; };
 		D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B3D17FC408700F725BD /* CoreMedia.framework */; };
+		D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4017FC4E5000F725BD /* RuntimeSlider.m */; };
+		D2825B4517FC4E8A00F725BD /* RintimeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,10 @@
 		D2825B3817FC2D7200F725BD /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
 		D2825B3B17FC2E2F00F725BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D2825B3D17FC408700F725BD /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D2825B3F17FC4E5000F725BD /* RuntimeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeSlider.h; sourceTree = "<group>"; };
+		D2825B4017FC4E5000F725BD /* RuntimeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeSlider.m; sourceTree = "<group>"; };
+		D2825B4317FC4E8A00F725BD /* RintimeSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RintimeSliderCell.h; sourceTree = "<group>"; };
+		D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RintimeSliderCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,7 @@
 				D21CEA0417FAFA0900F5AF42 /* AppDelegate.m */,
 				D21CEA0917FAFA0900F5AF42 /* Images.xcassets */,
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
+				D2825B4217FC4E5500F725BD /* RuntimeSlider */,
 			);
 			path = "b-music";
 			sourceTree = "<group>";
@@ -229,6 +236,17 @@
 				D2825B3817FC2D7200F725BD /* PlayerController.m */,
 			);
 			name = Player;
+			sourceTree = "<group>";
+		};
+		D2825B4217FC4E5500F725BD /* RuntimeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B3F17FC4E5000F725BD /* RuntimeSlider.h */,
+				D2825B4017FC4E5000F725BD /* RuntimeSlider.m */,
+				D2825B4317FC4E8A00F725BD /* RintimeSliderCell.h */,
+				D2825B4417FC4E8A00F725BD /* RintimeSliderCell.m */,
+			);
+			name = RuntimeSlider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,8 +351,10 @@
 				D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */,
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
 				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
+				D2825B4517FC4E8A00F725BD /* RintimeSliderCell.m in Sources */,
 				D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */,
 				D2825B3217FC24E400F725BD /* PlayerWindow.m in Sources */,
+				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
 				D2825B3617FC259C00F725BD /* PlayerView.m in Sources */,
