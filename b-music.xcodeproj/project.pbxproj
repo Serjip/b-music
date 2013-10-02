@@ -33,6 +33,8 @@
 		D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4B17FC990C00F725BD /* RuntimeSliderCell.m */; };
 		D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B4E17FC9B1200F725BD /* TableRowView.m */; };
 		D2825B5317FC9BA700F725BD /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5217FC9BA700F725BD /* TableView.m */; };
+		D2825B5617FC9E2C00F725BD /* Volume.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5517FC9E2C00F725BD /* Volume.m */; };
+		D2825B5A17FC9E4600F725BD /* VolumeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5917FC9E4600F725BD /* VolumeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,10 @@
 		D2825B4E17FC9B1200F725BD /* TableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableRowView.m; sourceTree = "<group>"; };
 		D2825B5117FC9BA700F725BD /* TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableView.h; sourceTree = "<group>"; };
 		D2825B5217FC9BA700F725BD /* TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableView.m; sourceTree = "<group>"; };
+		D2825B5417FC9E2C00F725BD /* Volume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Volume.h; sourceTree = "<group>"; };
+		D2825B5517FC9E2C00F725BD /* Volume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Volume.m; sourceTree = "<group>"; };
+		D2825B5817FC9E4600F725BD /* VolumeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeCell.h; sourceTree = "<group>"; };
+		D2825B5917FC9E4600F725BD /* VolumeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 				D2825B5017FC9B1E00F725BD /* Table */,
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
 				D2825B4217FC4E5500F725BD /* RuntimeSlider */,
+				D2825B5717FC9E3100F725BD /* Volume */,
 			);
 			path = "b-music";
 			sourceTree = "<group>";
@@ -280,6 +287,17 @@
 			name = Table;
 			sourceTree = "<group>";
 		};
+		D2825B5717FC9E3100F725BD /* Volume */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B5417FC9E2C00F725BD /* Volume.h */,
+				D2825B5517FC9E2C00F725BD /* Volume.m */,
+				D2825B5817FC9E4600F725BD /* VolumeCell.h */,
+				D2825B5917FC9E4600F725BD /* VolumeCell.m */,
+			);
+			name = Volume;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,9 +397,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2825B5A17FC9E4600F725BD /* VolumeCell.m in Sources */,
 				D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */,
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
 				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
+				D2825B5617FC9E2C00F725BD /* Volume.m in Sources */,
 				D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */,
 				D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */,
 				D2825B5317FC9BA700F725BD /* TableView.m in Sources */,

@@ -253,7 +253,7 @@ CA
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtH-2f-ep2">
-                                                            <rect key="frame" x="0.0" y="33" width="402" height="17"/>
+                                                            <rect key="frame" x="52" y="33" width="276" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="brD-gp-9qZ">
                                                                 <font key="font" metaFont="system"/>
@@ -431,10 +431,10 @@ CA
                         <action selector="shuffle:" target="DoF-XC-WxK" id="f48-1b-Tr1"/>
                     </connections>
                 </button>
-                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider">
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
                     <rect key="frame" x="272" y="18" width="89" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY"/>
+                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
                     <connections>
                         <action selector="volume:" target="DoF-XC-WxK" id="Xpo-5a-CWw"/>
                     </connections>
