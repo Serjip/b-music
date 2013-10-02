@@ -26,11 +26,13 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [self loadURL:@"http://google.com/"];
 }
-
--(IBAction)cancel:(id)sender{
-    
+-(void) loadURL:(NSString *) URLsring{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLsring]];
+    [self.webview.mainFrame loadRequest:request];
+}
+-(IBAction)cancel:(id)sender{NSLog(@"CancelSheet");
+    [_delegate cancelSheet];
 }
 @end

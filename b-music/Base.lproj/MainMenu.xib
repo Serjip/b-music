@@ -307,6 +307,9 @@ CA
                     <constraint firstItem="1e5-PT-RTg" firstAttribute="top" secondItem="372" secondAttribute="top" id="zdY-LJ-oev"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="DoF-XC-WxK" id="wrw-RI-ZOS"/>
+            </connections>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>

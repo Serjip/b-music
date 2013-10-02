@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SheetWindowController.h"
 #import "PlayerController.h"
+#import "Settings.h"
 
-@interface AppController : NSObject<SheetDelegate,PlayerDelegate>
+@interface AppController : NSObject<NSWindowDelegate,SheetDelegate,PlayerDelegate>
 
 @property SheetWindowController * sheet;
+@property Settings * S;
+@property PlayerController * PC;
 @property double duration;
 @property double runtime;
 

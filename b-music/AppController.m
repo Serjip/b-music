@@ -10,13 +10,23 @@
 
 @implementation AppController
 -(void)awakeFromNib{
+    
+    self.S=[[Settings alloc] init];
+    NSLog(@"%@",self.S);
+    
     [self.Controls0 addSubview:self.Controls2];
     [self.BottomControls0 addSubview:self.BottomControls1];
 }
+-(void)windowDidBecomeMain:(NSNotification *)notification
+{NSLog(@"DidBecomeMain");
+    [self activateSeet];
+}
 
 -(void)activateSeet{
-    self.sheet=[[SheetWindowController alloc] initWithWindowNibName:@"SheetWindowController"];
-    [self.sheet setDelegate:self];
+    if (!self.sheet) {
+        self.sheet=[[SheetWindowController alloc] initWithWindowNibName:@"SheetWindowController"];
+        [self.sheet setDelegate:self];
+    }
     [NSApp beginSheet:self.sheet.window
        modalForWindow:[[NSApp delegate]window]
         modalDelegate:self
@@ -27,11 +37,11 @@
     NSLog(@"DELEGATION METHOD");
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
-    self.sheet.window =nil;
+    //self.sheet.window = nil;
 }
 
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    
+
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     
