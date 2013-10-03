@@ -41,21 +41,25 @@
  * Player Methods
  *****************************************************************************************/
 
--(float)volumeTrack{
+-(float)getVolume{
     return self.S.settings.volume;
 }
+-(BOOL) getRuntime{
+    return self.S.settings.runTime;
+}
+-(BOOL) getRepert{
+    return self.S.settings.repeat;
+}
+-(NSString *)getNext{
+    return @"";
+}
+
 -(void)durationTrack:(double)duration{
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];
 }
 -(void)bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
-}
--(BOOL)runtime{
-    return self.S.settings.runTime;
-}
--(NSString *)nextTrack{
-    return @"";
 }
 -(void)runtimeTrack:(double)seconds secondsString:(NSString *)str{
     [[self.BottomControls1 viewWithTag:2] setProgress:seconds];
@@ -156,10 +160,17 @@
     
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
-    
+    NSEvent *event = [[NSApp sharedApplication] currentEvent];
+    BOOL endingDrag = event.type == NSLeftMouseUp;
+    if(endingDrag){
+        NSLog(@"ChangeVolume %f",[sender floatValue]);
+    }
 }
 -(IBAction)runtime:(id)sender{NSLog(@"Runtime");
-    
+    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
+    BOOL endingDrag = event.type == NSLeftMouseUp;
+    [sender setProgress:[sender doubleValue]];
+    if(endingDrag) [self.PC setRuntime:[sender doubleValue]];
 }
 -(IBAction)switchRuntime:(id)sender{ NSLog(@"Switch Runtime");
     self.S.settings.runTime=!self.S.settings.runTime;

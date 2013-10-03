@@ -11,12 +11,16 @@
 #import <CoreMedia/CoreMedia.h>
 
 @protocol PlayerDelegate <NSObject>
--(NSString*)nextTrack;
+
 -(void)bufferingTrack:(double)percentage;
 -(void)durationTrack:(double)duration;
 -(void) runtimeTrack:(double) seconds secondsString:(NSString*)str;
--(float)volumeTrack;
--(BOOL) runtime;
+
+-(NSString*)getNext;
+
+-(float)getVolume;
+-(BOOL) getRuntime;
+-(BOOL) getRepert;
 @end
 
 @interface PlayerController : NSObject
@@ -30,4 +34,5 @@
 @property (strong) AVPlayerItem *playerItem;
 
 -(void)play:(NSString*) URLstring;
+-(void)setRuntime:(double)time;
 @end

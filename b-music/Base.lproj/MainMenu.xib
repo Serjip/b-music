@@ -536,7 +536,7 @@ Gw
                 <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
                     <rect key="frame" x="48" y="8" width="313" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
                     <connections>
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
                     </connections>

@@ -19,7 +19,7 @@
     NSLog(@"Should play %@",URL);
     self.playerItem = [AVPlayerItem playerItemWithURL:URL];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    [self.player setVolume:[_delegate volumeTrack]];
+    [self.player setVolume:[_delegate getVolume]];
     //Add buffering observer
     [self.player.currentItem addObserver:self
                               forKeyPath:@"loadedTimeRanges"
@@ -27,7 +27,7 @@
                                  context:@"loadedTimeRanges"];
     _timerObserverIndicator=[NSTimer scheduledTimerWithTimeInterval:1.0
                                                              target:self
-                                                           selector:@selector(setRuntime:)
+                                                           selector:@selector(currentRuntime:)
                                                            userInfo:nil
                                                             repeats:YES];
     [self.player play];
@@ -50,12 +50,22 @@
         
     }
 }
-
--(void) setRuntime:(NSTimer *)timer{
+-(void)setRuntime:(double)currentTime{
+    NSString *str;
+    
+    if ([_delegate getRuntime]) {
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
+    }else{
+        str=[self convertTime:currentTime];
+    }
+    [_delegate runtimeTrack:currentTime secondsString:str];
+    [self.player seekToTime:CMTimeMakeWithSeconds(currentTime, NSEC_PER_SEC)];
+}
+-(void) currentRuntime:(NSTimer *)timer{
     double currentTime=CMTimeGetSeconds(self.player.currentTime);
     NSString *str;
     
-    if ([_delegate runtime]) {
+    if ([_delegate getRuntime]) {
         str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
     }else{
         str=[self convertTime:currentTime];
