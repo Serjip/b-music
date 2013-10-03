@@ -26,13 +26,6 @@
     return object;
 }
 
--(NSString*)convertTime:(double)seconds {
-    int secs = seconds;
-    int m = secs / 60;
-    int s = secs % 60;
-    return  [NSString stringWithFormat:@"%d:%02i",m, s];
-}
-
 //-(BOOL)checkResponseToError:(id)response{
 //    
 //    if([response objectForKey:@"error"]){

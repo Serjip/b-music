@@ -14,8 +14,9 @@
 -(NSString*)nextTrack;
 -(void)bufferingTrack:(double)percentage;
 -(void)durationTrack:(double)duration;
--(void) runtimeTrack:(double) seconds;
+-(void) runtimeTrack:(double) seconds secondsString:(NSString*)str;
 -(float)volumeTrack;
+-(BOOL) runtime;
 @end
 
 @interface PlayerController : NSObject

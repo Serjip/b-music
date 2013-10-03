@@ -45,14 +45,22 @@
     return self.S.settings.volume;
 }
 -(void)durationTrack:(double)duration{
-    [[self.BottomControls1 viewWithTag:1] setTitle:@"sss"];
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];
 }
 -(void)bufferingTrack:(double)seconds{
-    NSLog(@"BUffering %f",seconds);
+//    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
 }
-
+-(BOOL)runtime{
+    return self.S.settings.runTime;
+}
+-(NSString *)nextTrack{
+    return @"";
+}
+-(void)runtimeTrack:(double)seconds secondsString:(NSString *)str{
+    [[self.BottomControls1 viewWithTag:2] setProgress:seconds];
+    [[self.BottomControls1 viewWithTag:1] setTitle:str];
+}
 /*
  * Auth Methods
  *****************************************************************************************/
@@ -154,7 +162,8 @@
     
 }
 -(IBAction)switchRuntime:(id)sender{ NSLog(@"Switch Runtime");
-    
+    self.S.settings.runTime=!self.S.settings.runTime;
+    [self.S saveSettings];
 }
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
     [self.Controls2 removeFromSuperview];

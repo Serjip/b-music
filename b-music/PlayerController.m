@@ -8,7 +8,9 @@
 
 #import "PlayerController.h"
 
-@implementation PlayerController
+@implementation PlayerController{
+    NSTimer * _timerObserverIndicator;
+}
 
 -(void)play:(NSString*) URLstring{
     
@@ -23,6 +25,11 @@
                               forKeyPath:@"loadedTimeRanges"
                                  options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
                                  context:@"loadedTimeRanges"];
+    _timerObserverIndicator=[NSTimer scheduledTimerWithTimeInterval:1.0
+                                                             target:self
+                                                           selector:@selector(setRuntime:)
+                                                           userInfo:nil
+                                                            repeats:YES];
     [self.player play];
     [_delegate durationTrack:CMTimeGetSeconds([self.player.currentItem duration])];
 }
@@ -43,4 +50,24 @@
         
     }
 }
+
+-(void) setRuntime:(NSTimer *)timer{
+    double currentTime=CMTimeGetSeconds(self.player.currentTime);
+    NSString *str;
+    
+    if ([_delegate runtime]) {
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
+    }else{
+        str=[self convertTime:currentTime];
+    }
+    [_delegate runtimeTrack:currentTime secondsString:str];
+}
+
+-(NSString*)convertTime:(double)seconds {
+    int secs = seconds;
+    int m = secs / 60;
+    int s = secs % 60;
+    return  [NSString stringWithFormat:@"%d:%02i",m, s];
+}
+
 @end
