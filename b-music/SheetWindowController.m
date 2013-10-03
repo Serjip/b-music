@@ -38,6 +38,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    NSLog(@"Windows did load");
     //[self clearCookie];
     [self loadURL:kAuthURL];
 }

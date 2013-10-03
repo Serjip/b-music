@@ -48,6 +48,7 @@
 -(IBAction)hideSearch:(id)sender;
 -(IBAction)search:(id)sender;
 -(IBAction)showPlaylist:(id)sender;
+-(IBAction)close:(id)sender;
 -(IBAction)logout:(id)sender;
 
 @end

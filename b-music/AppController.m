@@ -109,6 +109,9 @@
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     
 }
+-(IBAction)close:(id)sender{ NSLog(@"Close");
+    [[[NSApp delegate] window] close];
+}
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
     [self activateSeet];
 }
