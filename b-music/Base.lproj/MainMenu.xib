@@ -337,6 +337,9 @@ CA
                     <constraint firstItem="1e5-PT-RTg" firstAttribute="top" secondItem="372" secondAttribute="top" id="zdY-LJ-oev"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="DoF-XC-WxK" id="Ea6-s8-oBg"/>
+            </connections>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
@@ -351,6 +354,7 @@ CA
                 <outlet property="Controls1" destination="30f-RB-wt4" id="qSt-mZ-YvI"/>
                 <outlet property="Controls2" destination="qsF-Cm-hro" id="rg0-g8-hqm"/>
                 <outlet property="Controls3" destination="1DB-vh-iS2" id="C99-9z-Bre"/>
+                <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
             </connections>
         </customObject>
         <customView id="30f-RB-wt4" userLabel="Controls1">

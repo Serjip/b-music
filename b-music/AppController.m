@@ -13,24 +13,33 @@
     NSMutableArray * _mainPlaylist;
     NSMutableArray * _supportPlaylist;
 }
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _S=[[Settings alloc] init];
+        _helper=[[Helper alloc] init];
+    }
+    return self;
+}
+-(void)awakeFromNib{ NSLog(@"AwakeFromNIB");
 
--(void)awakeFromNib{
+}
+-(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     
-    self.S=[[Settings alloc] init];
+    
     NSLog(@"%@",self.S);
     if (!self.S.settings.token) {
         [self activateSeet:YES clearCookiers:NO withURLstring:nil];
     }
     
-    self.helper=[[Helper alloc] init];
-    
     _mainPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
     NSLog(@"%@",_mainPlaylist);
+    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     [self.Controls0 addSubview:self.Controls2];
     [self.BottomControls0 addSubview:self.BottomControls1];
 }
-
 -(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring{
     
     if (!self.sheet) {
@@ -54,13 +63,11 @@
 
 -(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id{
     NSLog(@"DELEGATION METHOD token %@ user_id %li",token,user_id);
-    
     if(token && user_id){
         self.S.settings.token=token;
         self.S.settings.user_id=user_id;
         [self.S saveSettings];
     }
-    
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
     
@@ -71,6 +78,7 @@
 }
 /*
  * TableView Methodds
+ *
  *****************************************************************************************/
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{
     return [_mainPlaylist count];
@@ -84,6 +92,7 @@
 }
 /*
  * IBActions
+ *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
     

@@ -12,16 +12,17 @@
 #import "Settings.h"
 #import "Helper.h"
 
-@interface AppController : NSObject<NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate>
+@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate>
 
 @property SheetWindowController * sheet;
 @property Settings * S;
 @property PlayerController * PC;
 @property Helper * helper;
-@property NSTableView * tableview;
+
 @property double duration;
 @property double runtime;
 
+@property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet NSView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
