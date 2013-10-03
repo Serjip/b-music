@@ -12,13 +12,14 @@
 
 @protocol PlayerDelegate <NSObject>
 
--(void)bufferingTrack:(double)percentage;
--(void)durationTrack:(double)duration;
+-(void) bufferingTrack:(double)percentage;
+-(void) durationTrack:(double)duration;
 -(void) runtimeTrack:(double) seconds secondsString:(NSString*)str;
+-(void) isPlayerPlaying:(BOOL)flag;
 
 -(NSString*)getNext;
 
--(float)getVolume;
+-(float) getVolume;
 -(BOOL) getRuntime;
 -(BOOL) getRepeat;
 @end

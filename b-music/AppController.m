@@ -41,7 +41,7 @@
  * Player Methods
  *****************************************************************************************/
 
--(float)getVolume{
+-(float) getVolume{
     return self.S.settings.volume;
 }
 -(BOOL) getRuntime{
@@ -54,14 +54,18 @@
     return @"NEXT TRACK";
 }
 
--(void)durationTrack:(double)duration{
+-(void) isPlayerPlaying:(BOOL)flag{
+    NSLog(@"Player state %i",flag);
+}
+
+-(void) durationTrack:(double)duration{
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];
 }
--(void)bufferingTrack:(double)seconds{
+-(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
 }
--(void)runtimeTrack:(double)seconds secondsString:(NSString *)str{
+-(void) runtimeTrack:(double)seconds secondsString:(NSString *)str{
     [[self.BottomControls1 viewWithTag:2] setProgress:seconds];
     [[self.BottomControls1 viewWithTag:1] setTitle:str];
 }

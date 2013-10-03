@@ -13,11 +13,16 @@
 }
 
 -(void)play:(NSString*) URLstring{
+    if(_timerObserverIndicator){
+        
+        [self.player removeObserver:self forKeyPath:@"rate"];
+        [self.player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+        
+        [_timerObserverIndicator invalidate];
+        _timerObserverIndicator=nil;
+    }
     
-    NSURL *URL = [NSURL URLWithString:URLstring];
-    
-    NSLog(@"Should play %@",URL);
-    self.playerItem = [AVPlayerItem playerItemWithURL:URL];
+    self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:URLstring]];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
     [self.player setVolume:[_delegate getVolume]];
     //Add observer to next song
@@ -30,7 +35,14 @@
                               forKeyPath:@"loadedTimeRanges"
                                  options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
                                  context:@"loadedTimeRanges"];
-    _timerObserverIndicator=[NSTimer scheduledTimerWithTimeInterval:1.0
+    
+    //Add player state observer
+    [self.player addObserver:self
+                  forKeyPath:@"rate"
+                     options:NSKeyValueObservingOptionNew
+                     context:@"rate"];
+    
+    _timerObserverIndicator=[NSTimer scheduledTimerWithTimeInterval:0.1
                                                              target:self
                                                            selector:@selector(currentRuntime:)
                                                            userInfo:nil
@@ -51,8 +63,8 @@
         if(!result) result=0;
         [_delegate bufferingTrack:result/ CMTimeGetSeconds([self.player.currentItem duration])];
     
-    }else if (1!=1){
-        
+    }else if (context == @"rate") {
+        [_delegate isPlayerPlaying:[object rate]];
     }
 }
 
@@ -69,7 +81,6 @@
 
 -(void)setRuntime:(double)currentTime{
     NSString *str;
-    
     if ([_delegate getRuntime]) {
         str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
     }else{

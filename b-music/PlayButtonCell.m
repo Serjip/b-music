@@ -7,23 +7,19 @@
 //
 
 #import "PlayButtonCell.h"
-
 @implementation PlayButtonCell{
     NSTrackingArea * trackingArea;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    dirtyRect.size.width-=2;
-    dirtyRect.size.height-=2;
+    double x1=(self.frame.size.width+self.frame.size.height)/2-1;
+    double y1=x1;
+    double x0=self.frame.origin.x;
+    double y0=self.frame.origin.y;
     
-    double x1=dirtyRect.size.width;
-    double y1=dirtyRect.size.height;
-    double x0=dirtyRect.origin.x;
-    double y0=dirtyRect.origin.y;
-    
-    double t=2;
-    double p=15;
+    double t=1;//Thikness
+    double p=16;//Padding
     
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
