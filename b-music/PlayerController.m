@@ -20,6 +20,11 @@
     self.playerItem = [AVPlayerItem playerItemWithURL:URL];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
     [self.player setVolume:[_delegate getVolume]];
+    //Add observer to next song
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(nextTrack:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[self.player currentItem]];
     //Add buffering observer
     [self.player.currentItem addObserver:self
                               forKeyPath:@"loadedTimeRanges"
@@ -50,6 +55,18 @@
         
     }
 }
+
+
+- (void)nextTrack:(NSNotification *)notification
+{
+    if([_delegate getRepeat]){
+        [self.player seekToTime:kCMTimeZero];
+        [self.player play];
+    }else{
+        NSLog(@"%@",[_delegate getNext]);
+    }
+}
+
 -(void)setRuntime:(double)currentTime{
     NSString *str;
     

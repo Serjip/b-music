@@ -47,11 +47,11 @@
 -(BOOL) getRuntime{
     return self.S.settings.runTime;
 }
--(BOOL) getRepert{
+-(BOOL) getRepeat{
     return self.S.settings.repeat;
 }
 -(NSString *)getNext{
-    return @"";
+    return @"NEXT TRACK";
 }
 
 -(void)durationTrack:(double)duration{
@@ -160,11 +160,12 @@
     
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
-    NSEvent *event = [[NSApp sharedApplication] currentEvent];
+    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     BOOL endingDrag = event.type == NSLeftMouseUp;
-    if(endingDrag){
-        NSLog(@"ChangeVolume %f",[sender floatValue]);
-    }
+    [sender setProgress:[sender floatValue]];
+    self.S.settings.volume=[sender floatValue];
+    [self.PC.player setVolume:[sender floatValue]];
+    if(endingDrag) [self.S saveSettings];
 }
 -(IBAction)runtime:(id)sender{NSLog(@"Runtime");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SheetWindowController.h"
 #import "RuntimeSlider.h"
+#import "Volume.h"
 #import "PlayerController.h"
 #import "Settings.h"
 #import "Helper.h"

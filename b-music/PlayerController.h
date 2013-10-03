@@ -20,7 +20,7 @@
 
 -(float)getVolume;
 -(BOOL) getRuntime;
--(BOOL) getRepert;
+-(BOOL) getRepeat;
 @end
 
 @interface PlayerController : NSObject

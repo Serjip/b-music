@@ -468,7 +468,7 @@ CA
                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
                     <rect key="frame" x="272" y="18" width="89" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
                     <connections>
                         <action selector="volume:" target="DoF-XC-WxK" id="Xpo-5a-CWw"/>
                     </connections>
