@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface Helper : NSObject
-
+-(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token;
 @end

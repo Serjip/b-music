@@ -7,7 +7,6 @@
 //
 
 #import "SheetWindowController.h"
-#define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
 
 @interface SheetWindowController ()
 
@@ -39,9 +38,8 @@
 {
     [super windowDidLoad];
     NSLog(@"Windows did load");
-    //[self clearCookie];
-    [self loadURL:kAuthURL];
 }
+
 -(void) loadURL:(NSString *) URLsring{
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLsring]];
     [self.webview.mainFrame loadRequest:request];

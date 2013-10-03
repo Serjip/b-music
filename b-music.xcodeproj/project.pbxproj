@@ -35,6 +35,14 @@
 		D2825B5317FC9BA700F725BD /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5217FC9BA700F725BD /* TableView.m */; };
 		D2825B5617FC9E2C00F725BD /* Volume.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5517FC9E2C00F725BD /* Volume.m */; };
 		D2825B5A17FC9E4600F725BD /* VolumeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5917FC9E4600F725BD /* VolumeCell.m */; };
+		D2825B5D17FD8BA100F725BD /* PlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B5C17FD8BA100F725BD /* PlayButton.m */; };
+		D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6017FD8C1000F725BD /* RepeatButton.m */; };
+		D2825B6417FD8C1000F725BD /* ShuffleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6217FD8C1000F725BD /* ShuffleButton.m */; };
+		D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6617FD8C2800F725BD /* CloseButton.m */; };
+		D2825B6C17FD8C2900F725BD /* FfwdButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6817FD8C2800F725BD /* FfwdButton.m */; };
+		D2825B6D17FD8C2900F725BD /* RewindButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6A17FD8C2900F725BD /* RewindButton.m */; };
+		D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6F17FD8D7400F725BD /* ShowSearchButton.m */; };
+		D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +105,22 @@
 		D2825B5517FC9E2C00F725BD /* Volume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Volume.m; sourceTree = "<group>"; };
 		D2825B5817FC9E4600F725BD /* VolumeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeCell.h; sourceTree = "<group>"; };
 		D2825B5917FC9E4600F725BD /* VolumeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeCell.m; sourceTree = "<group>"; };
+		D2825B5B17FD8BA100F725BD /* PlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayButton.h; sourceTree = "<group>"; };
+		D2825B5C17FD8BA100F725BD /* PlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButton.m; sourceTree = "<group>"; };
+		D2825B5F17FD8C1000F725BD /* RepeatButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatButton.h; sourceTree = "<group>"; };
+		D2825B6017FD8C1000F725BD /* RepeatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatButton.m; sourceTree = "<group>"; };
+		D2825B6117FD8C1000F725BD /* ShuffleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleButton.h; sourceTree = "<group>"; };
+		D2825B6217FD8C1000F725BD /* ShuffleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleButton.m; sourceTree = "<group>"; };
+		D2825B6517FD8C2800F725BD /* CloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloseButton.h; sourceTree = "<group>"; };
+		D2825B6617FD8C2800F725BD /* CloseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseButton.m; sourceTree = "<group>"; };
+		D2825B6717FD8C2800F725BD /* FfwdButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FfwdButton.h; sourceTree = "<group>"; };
+		D2825B6817FD8C2800F725BD /* FfwdButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FfwdButton.m; sourceTree = "<group>"; };
+		D2825B6917FD8C2800F725BD /* RewindButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewindButton.h; sourceTree = "<group>"; };
+		D2825B6A17FD8C2900F725BD /* RewindButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewindButton.m; sourceTree = "<group>"; };
+		D2825B6E17FD8D7400F725BD /* ShowSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSearchButton.h; sourceTree = "<group>"; };
+		D2825B6F17FD8D7400F725BD /* ShowSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSearchButton.m; sourceTree = "<group>"; };
+		D2825B7117FD8E1E00F725BD /* ShowPlaylistButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPlaylistButton.h; sourceTree = "<group>"; };
+		D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPlaylistButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +207,7 @@
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
 				D2825B4217FC4E5500F725BD /* RuntimeSlider */,
 				D2825B5717FC9E3100F725BD /* Volume */,
+				D2825B5E17FD8BA600F725BD /* Buttons */,
 			);
 			path = "b-music";
 			sourceTree = "<group>";
@@ -298,6 +323,29 @@
 			name = Volume;
 			sourceTree = "<group>";
 		};
+		D2825B5E17FD8BA600F725BD /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B7117FD8E1E00F725BD /* ShowPlaylistButton.h */,
+				D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */,
+				D2825B6E17FD8D7400F725BD /* ShowSearchButton.h */,
+				D2825B6F17FD8D7400F725BD /* ShowSearchButton.m */,
+				D2825B6517FD8C2800F725BD /* CloseButton.h */,
+				D2825B6617FD8C2800F725BD /* CloseButton.m */,
+				D2825B6717FD8C2800F725BD /* FfwdButton.h */,
+				D2825B6817FD8C2800F725BD /* FfwdButton.m */,
+				D2825B6917FD8C2800F725BD /* RewindButton.h */,
+				D2825B6A17FD8C2900F725BD /* RewindButton.m */,
+				D2825B5F17FD8C1000F725BD /* RepeatButton.h */,
+				D2825B6017FD8C1000F725BD /* RepeatButton.m */,
+				D2825B6117FD8C1000F725BD /* ShuffleButton.h */,
+				D2825B6217FD8C1000F725BD /* ShuffleButton.m */,
+				D2825B5B17FD8BA100F725BD /* PlayButton.h */,
+				D2825B5C17FD8BA100F725BD /* PlayButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,12 +454,20 @@
 				D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */,
 				D2825B5317FC9BA700F725BD /* TableView.m in Sources */,
 				D2825B3217FC24E400F725BD /* PlayerWindow.m in Sources */,
+				D2825B6D17FD8C2900F725BD /* RewindButton.m in Sources */,
+				D2825B5D17FD8BA100F725BD /* PlayButton.m in Sources */,
+				D2825B6C17FD8C2900F725BD /* FfwdButton.m in Sources */,
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
+				D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */,
+				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
+				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* Helper.m in Sources */,
 				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
+				D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */,
 				D2825B3617FC259C00F725BD /* PlayerView.m in Sources */,
+				D2825B6417FD8C1000F725BD /* ShuffleButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

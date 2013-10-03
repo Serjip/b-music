@@ -10,12 +10,15 @@
 #import "SheetWindowController.h"
 #import "PlayerController.h"
 #import "Settings.h"
+#import "Helper.h"
 
-@interface AppController : NSObject<NSWindowDelegate,SheetDelegate,PlayerDelegate>
+@interface AppController : NSObject<NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate>
 
 @property SheetWindowController * sheet;
 @property Settings * S;
 @property PlayerController * PC;
+@property Helper * helper;
+@property NSTableView * tableview;
 @property double duration;
 @property double runtime;
 

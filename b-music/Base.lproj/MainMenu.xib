@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
             <connections>
-                <outlet property="delegate" destination="494" id="495"/>
+                <outlet property="delegate" destination="494" id="HeQ-t9-vRK"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -221,14 +221,14 @@ CA
                             <constraint firstAttribute="height" constant="50" id="tSp-pq-X5k"/>
                         </constraints>
                     </customView>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg">
                         <rect key="frame" x="0.0" y="30" width="405" height="405"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="xlY-Ir-Lny">
                             <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO" customClass="TableView">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO" customClass="TableView">
                                     <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -249,12 +249,12 @@ CA
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="lvK-lr-lQc">
+                                                <tableCellView identifier="MainCell" id="lvK-lr-lQc">
                                                     <rect key="frame" x="1" y="1" width="402" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtH-2f-ep2">
-                                                            <rect key="frame" x="52" y="33" width="276" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="rtH-2f-ep2">
+                                                            <rect key="frame" x="52" y="30" width="276" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="brD-gp-9qZ">
                                                                 <font key="font" metaFont="system"/>
@@ -262,18 +262,47 @@ CA
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="zdz-1m-oAd">
+                                                            <rect key="frame" x="52" y="8" width="276" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="71q-xc-9y7">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5p-f7-0Jh">
+                                                            <rect key="frame" x="3" y="2" width="44" height="46"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K1C-Fm-qrc">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-8h-3Jd">
+                                                            <rect key="frame" x="355" y="2" width="44" height="46"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WrD-Xj-S1B">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
                                                     </subviews>
                                                     <connections>
                                                         <outlet property="textField" destination="rtH-2f-ep2" id="3sb-mv-Xtg"/>
                                                     </connections>
                                                 </tableCellView>
                                                 <customView id="S89-kI-VRL" customClass="TableRowView">
-                                                    <rect key="frame" x="1" y="53" width="402" height="96"/>
+                                                    <rect key="frame" x="1" y="53" width="402" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </customView>
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
+                                    <connections>
+                                        <outlet property="dataSource" destination="DoF-XC-WxK" id="o5R-AL-aNZ"/>
+                                        <outlet property="delegate" destination="DoF-XC-WxK" id="5OU-AK-Fjj"/>
+                                    </connections>
                                 </tableView>
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -308,9 +337,6 @@ CA
                     <constraint firstItem="1e5-PT-RTg" firstAttribute="top" secondItem="372" secondAttribute="top" id="zdY-LJ-oev"/>
                 </constraints>
             </view>
-            <connections>
-                <outlet property="delegate" destination="DoF-XC-WxK" id="wrw-RI-ZOS"/>
-            </connections>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
@@ -355,8 +381,8 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="381" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPK-OF-Yv0" userLabel="Previous Button">
-                    <rect key="frame" x="12" y="10" width="30" height="30"/>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPK-OF-Yv0" userLabel="Previous Button" customClass="RewindButton">
+                    <rect key="frame" x="20" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Frr-mB-c3l">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -366,8 +392,8 @@ CA
                         <action selector="previous:" target="DoF-XC-WxK" id="bGX-Zz-1eL"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTt-bS-Gpj" userLabel="Play Button">
-                    <rect key="frame" x="41" y="10" width="30" height="30"/>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTt-bS-Gpj" userLabel="Play Button" customClass="PlayButton">
+                    <rect key="frame" x="49" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Eh0-aa-fRD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -377,8 +403,8 @@ CA
                         <action selector="play:" target="DoF-XC-WxK" id="Jeh-HX-CwG"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-5t-NVl" userLabel="Next Button">
-                    <rect key="frame" x="70" y="10" width="30" height="30"/>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-5t-NVl" userLabel="Next Button" customClass="FfwdButton">
+                    <rect key="frame" x="89" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SJt-co-nd9">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -388,7 +414,7 @@ CA
                         <action selector="next:" target="DoF-XC-WxK" id="AZZ-46-LPz"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button">
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button" customClass="ShowPlaylistButton">
                     <rect key="frame" x="179" y="14" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6g-3I-kvV">
@@ -399,7 +425,7 @@ CA
                         <action selector="showPlaylist:" target="DoF-XC-WxK" id="1a7-qr-Uhe"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button">
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button" customClass="ShowSearchButton">
                     <rect key="frame" x="200" y="14" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cdc-qB-VZD">
@@ -410,7 +436,7 @@ CA
                         <action selector="showSearch:" target="DoF-XC-WxK" id="GL2-ZC-LfA"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button">
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button" customClass="RepeatButton">
                     <rect key="frame" x="221" y="14" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ien-3c-DKA">
@@ -421,7 +447,7 @@ CA
                         <action selector="repeat:" target="DoF-XC-WxK" id="igJ-gB-Zpe"/>
                     </connections>
                 </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button">
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button" customClass="ShuffleButton">
                     <rect key="frame" x="242" y="14" width="22" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSEnterFullScreenTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W7K-Yw-i7n">
@@ -440,7 +466,7 @@ CA
                         <action selector="volume:" target="DoF-XC-WxK" id="Xpo-5a-CWw"/>
                     </connections>
                 </slider>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
                     <rect key="frame" x="0.0" y="36" width="13" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elv-lG-YyI">
@@ -469,12 +495,12 @@ CA
                         <action selector="search:" target="DoF-XC-WxK" id="Ha8-gQ-eYl"/>
                     </connections>
                 </searchField>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
-                    <rect key="frame" x="331" y="13" width="30" height="20"/>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
+                    <rect key="frame" x="331" y="14" width="30" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" title="Hide" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" inset="2" id="R0S-dM-Qac">
+                    <buttonCell key="cell" type="roundTextured" title="Hide" bezelStyle="texturedRounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="R0S-dM-Qac">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="smallSystem"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -483,7 +509,7 @@ Gw
                         <action selector="hideSearch:" target="DoF-XC-WxK" id="3OI-ci-pJN"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERj-wH-nft">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERj-wH-nft" customClass="CloseButton">
                     <rect key="frame" x="0.0" y="36" width="13" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iR5-eQ-8jW">
@@ -531,8 +557,10 @@ Gw
     </objects>
     <resources>
         <image name="NSEnterFullScreenTemplate" width="16" height="15"/>
+        <image name="NSGoRightTemplate" width="9" height="9"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
+        <image name="NSRemoveTemplate" width="8" height="8"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSStopProgressTemplate" width="11" height="11"/>
     </resources>

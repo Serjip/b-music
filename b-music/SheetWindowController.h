@@ -17,8 +17,8 @@
 
 @property (weak) id <SheetDelegate> delegate;
 @property (weak) IBOutlet WebView *webview;
-
 -(IBAction)cancel:(id)sender;
 
 -(void)clearCookie;
+-(void) loadURL:(NSString *) URLsring;
 @end
