@@ -12,8 +12,10 @@
 
 @protocol PlayerDelegate <NSObject>
 -(NSString*)nextTrack;
--(void)bufferingTrack:(double)seconds;
+-(void)bufferingTrack:(double)percentage;
 -(void)durationTrack:(double)duration;
+-(void) runtimeTrack:(double) seconds;
+-(float)volumeTrack;
 @end
 
 @interface PlayerController : NSObject
@@ -26,4 +28,5 @@
 @property (strong) AVPlayer *player;
 @property (strong) AVPlayerItem *playerItem;
 
+-(void)play:(NSString*) URLstring;
 @end

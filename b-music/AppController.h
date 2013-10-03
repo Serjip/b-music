@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SheetWindowController.h"
+#import "RuntimeSlider.h"
 #import "PlayerController.h"
 #import "Settings.h"
 #import "Helper.h"
@@ -19,9 +20,6 @@
 @property PlayerController * PC;
 @property Helper * helper;
 
-@property double duration;
-@property double runtime;
-
 @property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet NSView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
@@ -31,6 +29,9 @@
 @property (weak) IBOutlet NSView *BottomControls0;
 @property (weak) IBOutlet NSView *BottomControls1;
 
+@property (weak) IBOutlet NSMenu *controls;
+@property (weak) IBOutlet NSMenu *edit;
+@property (weak) IBOutlet NSMenu *view;
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;

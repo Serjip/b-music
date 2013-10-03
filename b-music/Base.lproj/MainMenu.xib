@@ -271,7 +271,7 @@ CA
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5p-f7-0Jh">
+                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5p-f7-0Jh" customClass="PlayButtonCell">
                                                             <rect key="frame" x="3" y="2" width="44" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K1C-Fm-qrc">
@@ -279,7 +279,7 @@ CA
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-8h-3Jd">
+                                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-8h-3Jd" customClass="RemoveButtonCell">
                                                             <rect key="frame" x="355" y="2" width="44" height="46"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WrD-Xj-S1B">
@@ -354,7 +354,10 @@ CA
                 <outlet property="Controls1" destination="30f-RB-wt4" id="qSt-mZ-YvI"/>
                 <outlet property="Controls2" destination="qsF-Cm-hro" id="rg0-g8-hqm"/>
                 <outlet property="Controls3" destination="1DB-vh-iS2" id="C99-9z-Bre"/>
+                <outlet property="controls" destination="zrA-x4-aEx" id="lB6-WA-e4r"/>
+                <outlet property="edit" destination="205" id="5NH-1c-LKv"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
+                <outlet property="view" destination="296" id="iNU-FV-CKf"/>
             </connections>
         </customObject>
         <customView id="30f-RB-wt4" userLabel="Controls1">
@@ -530,21 +533,15 @@ Gw
             <rect key="frame" x="0.0" y="0.0" width="381" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
+                <slider verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
                     <rect key="frame" x="48" y="8" width="313" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
                     <connections>
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
-                        <binding destination="DoF-XC-WxK" name="maxValue" keyPath="self.duration" id="H8W-oX-UES">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="DoF-XC-WxK" name="value" keyPath="self.runtime" previousBinding="H8W-oX-UES" id="udQ-J6-37i"/>
                     </connections>
                 </slider>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
+                <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
                     <rect key="frame" x="0.0" y="8" width="40" height="15"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" title="0:00" bezelStyle="smallSquare" imagePosition="overlaps" alignment="right" controlSize="small" state="on" imageScaling="proportionallyDown" inset="2" id="Jvi-14-iYr">
@@ -553,7 +550,6 @@ Gw
                     </buttonCell>
                     <connections>
                         <action selector="switchRuntime:" target="DoF-XC-WxK" id="z0m-aS-hIY"/>
-                        <binding destination="DoF-XC-WxK" name="title" keyPath="self.runtime" id="aWH-jv-CCa"/>
                     </connections>
                 </button>
             </subviews>

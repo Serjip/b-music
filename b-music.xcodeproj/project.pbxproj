@@ -43,6 +43,9 @@
 		D2825B6D17FD8C2900F725BD /* RewindButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6A17FD8C2900F725BD /* RewindButton.m */; };
 		D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B6F17FD8D7400F725BD /* ShowSearchButton.m */; };
 		D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */; };
+		D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7517FDB8FE00F725BD /* AddButtonCell.m */; };
+		D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */; };
+		D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +124,12 @@
 		D2825B6F17FD8D7400F725BD /* ShowSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSearchButton.m; sourceTree = "<group>"; };
 		D2825B7117FD8E1E00F725BD /* ShowPlaylistButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPlaylistButton.h; sourceTree = "<group>"; };
 		D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPlaylistButton.m; sourceTree = "<group>"; };
+		D2825B7417FDB8FE00F725BD /* AddButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddButtonCell.h; sourceTree = "<group>"; };
+		D2825B7517FDB8FE00F725BD /* AddButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddButtonCell.m; sourceTree = "<group>"; };
+		D2825B7617FDB8FE00F725BD /* PlayButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayButtonCell.h; sourceTree = "<group>"; };
+		D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButtonCell.m; sourceTree = "<group>"; };
+		D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveButtonCell.h; sourceTree = "<group>"; };
+		D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveButtonCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +313,7 @@
 		D2825B5017FC9B1E00F725BD /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				D2825B7D17FDB90900F725BD /* TableCell */,
 				D2825B5117FC9BA700F725BD /* TableView.h */,
 				D2825B5217FC9BA700F725BD /* TableView.m */,
 				D2825B4D17FC9B1200F725BD /* TableRowView.h */,
@@ -344,6 +354,19 @@
 				D2825B5C17FD8BA100F725BD /* PlayButton.m */,
 			);
 			name = Buttons;
+			sourceTree = "<group>";
+		};
+		D2825B7D17FDB90900F725BD /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B7417FDB8FE00F725BD /* AddButtonCell.h */,
+				D2825B7517FDB8FE00F725BD /* AddButtonCell.m */,
+				D2825B7617FDB8FE00F725BD /* PlayButtonCell.h */,
+				D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */,
+				D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */,
+				D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */,
+			);
+			name = TableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +483,9 @@
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
 				D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */,
 				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
+				D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */,
+				D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */,
+				D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* Helper.m in Sources */,

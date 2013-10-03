@@ -46,15 +46,20 @@
     if (self) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [defaults dataForKey:userDefaults];
+        
+        //[defaults removeObjectForKey:userDefaults];
         if (data) {
             _settings = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         } else {
+            NSLog(@"First Launching");
             _settings = [[SettingsC alloc] init];
+            _settings.volume=1.0;
+            
+            [self saveSettings];
         }
     }
     return self;
 }
-
 - (void)saveSettings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:_settings] forKey:userDefaults];

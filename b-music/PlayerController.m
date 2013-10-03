@@ -17,14 +17,14 @@
     NSLog(@"Should play %@",URL);
     self.playerItem = [AVPlayerItem playerItemWithURL:URL];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    [self.player setVolume:self.volume];
+    [self.player setVolume:[_delegate volumeTrack]];
     //Add buffering observer
     [self.player.currentItem addObserver:self
                               forKeyPath:@"loadedTimeRanges"
                                  options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
                                  context:@"loadedTimeRanges"];
     [self.player play];
-    [_delegate bufferingTrack:CMTimeGetSeconds([self.player.currentItem duration])];
+    [_delegate durationTrack:CMTimeGetSeconds([self.player.currentItem duration])];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

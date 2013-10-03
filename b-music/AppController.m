@@ -19,27 +19,44 @@
     if (self) {
         _S=[[Settings alloc] init];
         _helper=[[Helper alloc] init];
+        _PC=[[PlayerController alloc] init];
+        [_PC setDelegate:self];
     }
     return self;
 }
--(void)awakeFromNib{ NSLog(@"AwakeFromNIB");
-
-}
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
-    
-    
     NSLog(@"%@",self.S);
     if (!self.S.settings.token) {
         [self activateSeet:YES clearCookiers:NO withURLstring:nil];
     }
     
     _mainPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
-    NSLog(@"%@",_mainPlaylist);
+//    NSLog(@"%@",_mainPlaylist);
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     [self.Controls0 addSubview:self.Controls2];
     [self.BottomControls0 addSubview:self.BottomControls1];
 }
+/*
+ * Player Methods
+ *****************************************************************************************/
+
+-(float)volumeTrack{
+    return self.S.settings.volume;
+}
+-(void)durationTrack:(double)duration{
+    [[self.BottomControls1 viewWithTag:1] setTitle:@"sss"];
+    [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];
+}
+-(void)bufferingTrack:(double)seconds{
+    NSLog(@"BUffering %f",seconds);
+    [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
+}
+
+/*
+ * Auth Methods
+ *****************************************************************************************/
+
 -(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring{
     
     if (!self.sheet) {
@@ -95,7 +112,7 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    
+    [self.PC play:[[_mainPlaylist objectAtIndex:0] objectForKey:@"url"]];
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     
