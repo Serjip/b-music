@@ -91,7 +91,7 @@
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
     
-    [[[_tableview viewAtColumn:0 row:[_mainPlaylist indexOfObject:_currentTrack] makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
+    [[[_tableview viewAtColumn:0 row:[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist indexOfObject:_currentTrack] makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
 }
 
 -(void) durationTrack:(double)duration{
