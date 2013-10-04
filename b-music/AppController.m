@@ -90,6 +90,8 @@
 
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
+    
+    [[[_tableview viewAtColumn:0 row:[_mainPlaylist indexOfObject:_currentTrack] makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
 }
 
 -(void) durationTrack:(double)duration{
@@ -159,12 +161,8 @@
     id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
-    
-    if (obj==_currentTrack) {
-        [[cellview viewWithTag:1] setPauseState:YES];
-    }else{
-        [[cellview viewWithTag:1] setPauseState:NO];
-    }
+    [[cellview viewWithTag:4] setTitle:[obj objectForKey:@"duration"]];
+    [[cellview viewWithTag:1] setPauseState:([obj isEqualTo:_currentTrack])? YES : NO];
     return cellview;
 }
 
@@ -173,12 +171,26 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    if (_currentTrack==nil) {
-        _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:0]];
-        [self.PC play:[_currentTrack objectForKey:@"url"]];
+    if ([sender isKindOfClass:[PlayButtonCell class]]) {
+        NSInteger row=[_tableview rowForView:sender];
+        
+        id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
+        
+        if ([obj isEqualTo:_currentTrack]) {
+            if(self.PC.player.rate==1.0) [self.PC.player pause];
+            else [self.PC.player play];
+        }else{
+            _currentTrack=[[NSDictionary alloc] initWithDictionary:obj];
+            [self.PC play:[_currentTrack objectForKey:@"url"]];
+        }
     }else{
-        if(self.PC.player.rate==1.0) [self.PC.player pause];
-        else [self.PC.player play];
+        if (_currentTrack==nil) {
+            _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:0]];
+            [self.PC play:[_currentTrack objectForKey:@"url"]];
+        }else{
+            if(self.PC.player.rate==1.0) [self.PC.player pause];
+            else [self.PC.player play];
+        }
     }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
@@ -276,12 +288,16 @@
     [self.S saveSettings];
 }
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
+    [self.Controls1 removeFromSuperview];
     [self.Controls2 removeFromSuperview];
-    [self.Controls0 addSubview:self.Controls3];
+    [self.Controls3 removeFromSuperview];
+    [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
 }
 -(IBAction)hideSearch:(id)sender{NSLog(@"HideSearch");
+    [self.Controls1 removeFromSuperview];
+    [self.Controls2 removeFromSuperview];
     [self.Controls3 removeFromSuperview];
-    [self.Controls0 addSubview:self.Controls2];
+    [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
     NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
@@ -290,10 +306,13 @@
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
-    
+    id window=[[NSApp delegate] window];
+    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 313, 80) display:YES animate:YES];
 }
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
-    
+    int selectTrack=(int)[_mainPlaylist indexOfObject:_currentTrack];
+    [_tableview scrollRowToVisible:selectTrack];
+    [_tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:selectTrack] byExtendingSelection:NO];
 }
 -(IBAction)close:(id)sender{ NSLog(@"Close");
     [[[NSApp delegate] window] close];

@@ -12,8 +12,8 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-    double x1=dirtyRect.size.width;
-    double y1=dirtyRect.size.height;
+    double x1=self.frame.size.width;
+    double y1=self.frame.size.height;
     
     double t=2.1;
     double p=7;
