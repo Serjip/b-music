@@ -12,6 +12,8 @@
 @implementation AppController{
     NSMutableArray * _mainPlaylist;
     NSMutableArray * _supportPlaylist;
+    NSDictionary * _currentTrack;
+    BOOL _showSupportPlaylist;
 }
 - (id)init
 {
@@ -40,7 +42,12 @@
     
     [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
     
-    [[self.windowMenu itemWithTag:4] setState:self.S.settings.alwaysOnTop];//Set always on top in menu
+    if (self.S.settings.alwaysOnTop) { //Set Always on top
+        [[[NSApp delegate] window] setLevel:1000];
+        [[self.windowMenu itemWithTag:4] setState:1];
+        [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+    }
+    
     
     [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
     [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
@@ -52,13 +59,20 @@
         [item setEnabled:YES];
     }
 }
+/*
+ *                                  TEMP Methods
+ *
+ *****************************************************************************************/
+
 -(void) addSubviewHelper:(NSView*)master slerve:(NSView*)slerve{
     [master addSubview:slerve];
     [slerve setFrame:[master bounds]];
     [slerve setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
+
 /*
- * Player Methods
+ *                                  Player Methods
+ *
  *****************************************************************************************/
 
 -(float) getVolume{
@@ -75,7 +89,7 @@
 }
 
 -(void) isPlayerPlaying:(BOOL)flag{
-    NSLog(@"Player state %i",flag);
+    [[self.Controls2 viewWithTag:3] setPauseState:flag];
 }
 
 -(void) durationTrack:(double)duration{
@@ -89,8 +103,10 @@
     [[self.BottomControls1 viewWithTag:2] setProgress:seconds];
     [[self.BottomControls1 viewWithTag:1] setTitle:str];
 }
+
 /*
- * Auth Methods
+ *                                  Auth Methods
+ *
  *****************************************************************************************/
 
 -(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring{
@@ -129,32 +145,47 @@
     }
     NSLog(@"%@",[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token]);
 }
+
 /*
- * TableView Methodds
+ *                                  TableView Methodds
  *
  *****************************************************************************************/
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{
-    return [_mainPlaylist count];
+    return (_showSupportPlaylist) ? [_supportPlaylist count] : [_mainPlaylist count];
 }
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    NSTableCellView * cellview=[tableView makeViewWithIdentifier:@"MainCell" owner:self];
-    id obj=[_mainPlaylist objectAtIndex:row];
+    NSTableCellView * cellview=[tableView makeViewWithIdentifier:(_showSupportPlaylist)? @"SearchCell": @"MainCell" owner:self];
+    id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
     [[cellview viewWithTag:1] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"artist"]];
     return cellview;
 }
+
 /*
- * IBActions
+ *                                      IBActions
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    [self.PC play:[[_mainPlaylist objectAtIndex:0] objectForKey:@"url"]];
+    if (_currentTrack==nil) {
+        _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:0]];
+        [self.PC play:[_currentTrack objectForKey:@"url"]];
+    }else{
+        if(self.PC.player.rate==1.0) [self.PC.player pause];
+        else [self.PC.player play];
+    }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
-    
+    NSInteger num=(int)[_mainPlaylist indexOfObject:_currentTrack]+1;
+    if ([_mainPlaylist count]-num < 1) num=[_mainPlaylist count]-1;
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:num]];
+    [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
-    
+    NSInteger num=(int)[_mainPlaylist indexOfObject:_currentTrack]-1;
+    if (num-1<0) num=0;
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:num]];
+    [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
     self.S.settings.volume-=0.1;
@@ -202,9 +233,11 @@
     if (!self.S.settings.alwaysOnTop) {
         [[[NSApp delegate] window] setLevel:1000];
         [[self.windowMenu itemWithTag:4] setState:1];
+        [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
     }else{
         [[[NSApp delegate] window] setLevel:0];
         [[self.windowMenu itemWithTag:4] setState:0];
+        [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorDefault];
     }
     self.S.settings.alwaysOnTop=!self.S.settings.alwaysOnTop;
     [self.S saveSettings];
@@ -245,7 +278,10 @@
     [self.Controls0 addSubview:self.Controls2];
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
-    
+    NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
+    _supportPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+    _showSupportPlaylist=YES;
+    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     

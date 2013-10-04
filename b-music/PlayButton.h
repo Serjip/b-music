@@ -11,5 +11,5 @@
 @interface PlayButton : NSButton{
     BOOL _pause;
 }
--(void) setPause:(BOOL)state;
+-(void) setPauseState:(BOOL)state;
 @end
