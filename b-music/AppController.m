@@ -38,8 +38,15 @@
     [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];
     
     
-    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume
-    [[self.windowMenu itemWithTag:4] setState:self.S.settings.alwaysOnTop];//Set always on top
+    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
+    
+    [[self.windowMenu itemWithTag:4] setState:self.S.settings.alwaysOnTop];//Set always on top in menu
+    
+    [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
+    [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
+    
+    [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
+    [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
     
     for (NSMenuItem * item in [self.controlsMenu itemArray]) {
         [item setEnabled:YES];
@@ -170,10 +177,26 @@
     [self.S saveSettings];
 }
 -(IBAction)shuffle:(id)sender{NSLog(@"Shuffle");
-    
+    if (self.S.settings.shuffle) {
+        [sender setFlag:NO];
+        [[self.controlsMenu itemWithTag:5] setState:0];
+    }else{
+        [sender setFlag:YES];
+        [[self.controlsMenu itemWithTag:5] setState:1];
+    }
+    self.S.settings.shuffle=!self.S.settings.shuffle;
+    [self.S saveSettings];
 }
 -(IBAction)repeat:(id)sender{NSLog(@"Repeat");
-    
+    if (self.S.settings.repeat) {
+        [sender setFlag:NO];
+        [[self.controlsMenu itemWithTag:6] setState:0];
+    }else{
+        [sender setFlag:YES];
+        [[self.controlsMenu itemWithTag:6] setState:1];
+    }
+    self.S.settings.repeat=!self.S.settings.repeat;
+    [self.S saveSettings];
 }
 -(IBAction)alwaysOnTop:(id)sender{NSLog(@"Always On top");
     if (!self.S.settings.alwaysOnTop) {

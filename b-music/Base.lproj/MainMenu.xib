@@ -110,7 +110,7 @@ CA
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Controls" autoenablesItems="NO" id="zrA-x4-aEx">
                         <items>
-                            <menuItem title="Play" enabled="NO" keyEquivalent=" " id="0hj-jm-LAH">
+                            <menuItem title="Play" tag="1" enabled="NO" keyEquivalent=" " id="0hj-jm-LAH">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="play:" target="DoF-XC-WxK" id="IWX-2I-7CA"/>
@@ -128,13 +128,13 @@ CA
                             </menuItem>
                             <menuItem title="Go to Current Track" enabled="NO" keyEquivalent="l" id="Ej0-0B-wbh"/>
                             <menuItem isSeparatorItem="YES" id="AyR-uD-auF"/>
-                            <menuItem title="Shuffle" enabled="NO" id="agx-GW-JQM">
+                            <menuItem title="Shuffle" tag="5" enabled="NO" id="agx-GW-JQM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="shuffle:" target="DoF-XC-WxK" id="rQ3-J6-3zN"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Repeat" enabled="NO" id="W4a-eI-mPe">
+                            <menuItem title="Repeat" tag="6" enabled="NO" id="W4a-eI-mPe">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="repeat:" target="DoF-XC-WxK" id="ifd-G8-KhT"/>
