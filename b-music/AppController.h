@@ -13,6 +13,7 @@
 #import "RepeatButton.h"
 #import "ShuffleButton.h"
 #import "PlayButton.h"
+#import "PlayButtonCell.h"
 #import "PlayerController.h"
 #import "Settings.h"
 #import "Helper.h"

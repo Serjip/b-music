@@ -157,8 +157,14 @@
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     NSTableCellView * cellview=[tableView makeViewWithIdentifier:(_showSupportPlaylist)? @"SearchCell": @"MainCell" owner:self];
     id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
-    [[cellview viewWithTag:1] setStringValue:[obj objectForKey:@"title"]];
-    [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"artist"]];
+    [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
+    [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
+    
+    if (obj==_currentTrack) {
+        [[cellview viewWithTag:1] setPauseState:YES];
+    }else{
+        [[cellview viewWithTag:1] setPauseState:NO];
+    }
     return cellview;
 }
 

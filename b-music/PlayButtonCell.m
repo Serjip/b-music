@@ -49,7 +49,7 @@
     CGContextFillPath(ctx);
 }
 
--(void) setPause:(BOOL)state{
+-(void) setPauseState:(BOOL)state{
     _pause=state;
     [self setNeedsDisplay:YES];
 }
