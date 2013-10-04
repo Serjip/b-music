@@ -34,8 +34,21 @@
 //    NSLog(@"%@",_mainPlaylist);
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
-    [self.Controls0 addSubview:self.Controls2];
-    [self.BottomControls0 addSubview:self.BottomControls1];
+    [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
+    [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];
+    
+    
+    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume
+    [[self.windowMenu itemWithTag:4] setState:self.S.settings.alwaysOnTop];//Set always on top
+    
+    for (NSMenuItem * item in [self.controlsMenu itemArray]) {
+        [item setEnabled:YES];
+    }
+}
+-(void) addSubviewHelper:(NSView*)master slerve:(NSView*)slerve{
+    [master addSubview:slerve];
+    [slerve setFrame:[master bounds]];
+    [slerve setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 /*
  * Player Methods
@@ -137,13 +150,24 @@
     
 }
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
-    
+    self.S.settings.volume-=0.1;
+    if (self.S.settings.volume<0){ self.S.settings.volume=0;}else if (self.S.settings.volume==0){return;}
+    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.PC.player setVolume:self.S.settings.volume];
+    [self.S saveSettings];
 }
 -(IBAction)increaseVolume:(id)sender{ NSLog(@"IncreaseVolume");
-    
+    self.S.settings.volume+=0.1;
+    if (self.S.settings.volume>2){ self.S.settings.volume=2;}else if (self.S.settings.volume==2){return;}
+    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.PC.player setVolume:self.S.settings.volume];
+    [self.S saveSettings];
 }
 -(IBAction)mute:(id)sender{NSLog(@"Mute");
-    
+    self.S.settings.volume=0;
+    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.PC.player setVolume:self.S.settings.volume];
+    [self.S saveSettings];
 }
 -(IBAction)shuffle:(id)sender{NSLog(@"Shuffle");
     
@@ -152,7 +176,15 @@
     
 }
 -(IBAction)alwaysOnTop:(id)sender{NSLog(@"Always On top");
-    
+    if (!self.S.settings.alwaysOnTop) {
+        [[[NSApp delegate] window] setLevel:1000];
+        [[self.windowMenu itemWithTag:4] setState:1];
+    }else{
+        [[[NSApp delegate] window] setLevel:0];
+        [[self.windowMenu itemWithTag:4] setState:0];
+    }
+    self.S.settings.alwaysOnTop=!self.S.settings.alwaysOnTop;
+    [self.S saveSettings];
 }
 -(IBAction)visitWebsite:(id)sender{ NSLog(@"visitwebsite");
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];

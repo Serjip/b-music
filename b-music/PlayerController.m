@@ -108,4 +108,20 @@
     return  [NSString stringWithFormat:@"%d:%02i",m, s];
 }
 
+- (NSMutableArray*) generatePlaylistRnd:(NSInteger)trackCount
+{
+    NSMutableArray * arr=[[NSMutableArray alloc] init];
+    for (int i = 0; i<trackCount; i++) {
+        [arr addObject:@(i)];
+    }
+    NSUInteger count = [arr count];
+    for (NSUInteger i = 0; i < count; ++i) {
+        // Select a random element between i and end of array to swap with.
+        NSInteger nElements = count - i;
+        NSInteger n = (arc4random() % nElements) + i;
+        [arr exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+    return arr;
+}
+
 @end

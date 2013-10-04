@@ -30,9 +30,10 @@
 @property (weak) IBOutlet NSView *BottomControls0;
 @property (weak) IBOutlet NSView *BottomControls1;
 
-@property (weak) IBOutlet NSMenu *controls;
-@property (weak) IBOutlet NSMenu *edit;
-@property (weak) IBOutlet NSMenu *view;
+@property (weak) IBOutlet NSMenu *controlsMenu;
+@property (weak) IBOutlet NSMenu *editMenu;
+@property (weak) IBOutlet NSMenu *viewMenu;
+@property (weak) IBOutlet NSMenu *windowMenu;
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;
