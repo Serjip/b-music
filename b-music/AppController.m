@@ -286,6 +286,9 @@
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     
 }
+-(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
+    
+}
 -(IBAction)close:(id)sender{ NSLog(@"Close");
     [[[NSApp delegate] window] close];
 }

@@ -126,7 +126,11 @@ CA
                                     <action selector="previous:" target="DoF-XC-WxK" id="sCf-23-yQn"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Go to Current Track" enabled="NO" keyEquivalent="l" id="Ej0-0B-wbh"/>
+                            <menuItem title="Go to Current Track" enabled="NO" keyEquivalent="l" id="Ej0-0B-wbh">
+                                <connections>
+                                    <action selector="gotoCurrentTrack:" target="DoF-XC-WxK" id="eDN-hC-Bju"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="AyR-uD-auF"/>
                             <menuItem title="Shuffle" tag="5" enabled="NO" id="agx-GW-JQM">
                                 <modifierMask key="keyEquivalentModifierMask"/>
