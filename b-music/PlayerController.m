@@ -48,7 +48,8 @@
                                                            userInfo:nil
                                                             repeats:YES];
     [self.player play];
-    [_delegate durationTrack:CMTimeGetSeconds([self.player.currentItem duration])];
+    
+    [_delegate durationTrack:CMTimeGetSeconds([self.player.currentItem.asset duration])];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
@@ -60,8 +61,8 @@
         float durationSeconds = CMTimeGetSeconds(timeRange.duration);
         
         NSTimeInterval result = startSeconds + durationSeconds;
-        if(!result) result=0;
-        [_delegate bufferingTrack:result/ CMTimeGetSeconds([self.player.currentItem duration])];
+        if(isnan(result)) result=0;
+        [_delegate bufferingTrack:result/ CMTimeGetSeconds([self.player.currentItem.asset duration])];
     
     }else if (context == @"rate") {
         [_delegate isPlayerPlaying:[object rate]];
@@ -82,7 +83,7 @@
 -(void)setRuntime:(double)currentTime{
     NSString *str;
     if ([_delegate getRuntime]) {
-        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem.asset duration])-currentTime]];
     }else{
         str=[self convertTime:currentTime];
     }
@@ -94,7 +95,7 @@
     NSString *str;
     
     if ([_delegate getRuntime]) {
-        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem duration])-currentTime]];
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem.asset duration])-currentTime]];
     }else{
         str=[self convertTime:currentTime];
     }

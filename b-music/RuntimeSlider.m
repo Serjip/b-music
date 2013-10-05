@@ -15,7 +15,6 @@
 
 -(void)setProgress:(double)progress{
     [self setDoubleValue:progress];
-    
     double val=1-(self.maxValue-progress)/self.maxValue;
     [self.selectedCell setProgress:val];
     [self setNeedsDisplay:YES];

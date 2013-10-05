@@ -55,6 +55,7 @@
     
     
     //Progress
+    CGContextSetLineWidth(ctx, t2);
     CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(48/255.0, 98/255.0, 144/255.0, 1));
     if (_progress>.5) {
         aux=x1*_progress-t1;
@@ -79,13 +80,7 @@
     double y1=knobRect.size.height;
     double t=2;
     
-    if (_isShowKnob) {
-        
-        CGContextFillEllipseInRect(ctx, CGRectMake(x0+t, y0+t, x1-t*2, y1-t*2));
-        
-    }else{
-        
-    }
+    if (_isShowKnob) CGContextFillEllipseInRect(ctx, CGRectMake(x0+t, y0+t, x1-t*2, y1-t*2));
 }
 
 -(void)setShowKnob:(BOOL)isShowKnob{

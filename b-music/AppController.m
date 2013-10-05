@@ -10,9 +10,12 @@
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
 
 @implementation AppController{
-    NSMutableArray * _mainPlaylist;
-    NSMutableArray * _supportPlaylist;
+    
     NSDictionary * _currentTrack;
+    
+    NSMutableArray * _viewPlaylist;
+    NSMutableArray * _soundPlaylist;
+    
     BOOL _showSupportPlaylist;
 }
 - (id)init
@@ -32,7 +35,9 @@
         [self activateSeet:YES clearCookiers:NO withURLstring:nil];
     }
     
-    _mainPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+    _soundPlaylist=[_viewPlaylist mutableCopy];
+    
 //    NSLog(@"%@",_mainPlaylist);
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
@@ -91,7 +96,7 @@
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
     
-    [[[_tableview viewAtColumn:0 row:[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist indexOfObject:_currentTrack] makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
+//    [[[_tableview viewAtColumn:0 row:[_viewPlaylist indexOfObject:_currentTrack] makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
 }
 
 -(void) durationTrack:(double)duration{
@@ -154,11 +159,13 @@
  *****************************************************************************************/
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{
-    return (_showSupportPlaylist) ? [_supportPlaylist count] : [_mainPlaylist count];
+//    return (_showSupportPlaylist) ? [_supportPlaylist count] : [_mainPlaylist count];
+    return [_viewPlaylist count];
 }
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
     NSTableCellView * cellview=[tableView makeViewWithIdentifier:(_showSupportPlaylist)? @"SearchCell": @"MainCell" owner:self];
-    id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
+//    id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
+    id obj=[_viewPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
     [[cellview viewWithTag:4] setTitle:[obj objectForKey:@"duration"]];
@@ -173,8 +180,7 @@
 -(IBAction)play:(id)sender{ NSLog(@"Play");
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
-        
-        id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
+        id obj=[_soundPlaylist objectAtIndex:row];
         
         if ([obj isEqualTo:_currentTrack]) {
             if(self.PC.player.rate==1.0) [self.PC.player pause];
@@ -185,7 +191,7 @@
         }
     }else{
         if (_currentTrack==nil) {
-            _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:0]];
+            _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:0]];
             [self.PC play:[_currentTrack objectForKey:@"url"]];
         }else{
             if(self.PC.player.rate==1.0) [self.PC.player pause];
@@ -194,15 +200,15 @@
     }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
-    NSInteger num=(int)[_mainPlaylist indexOfObject:_currentTrack]+1;
-    if ([_mainPlaylist count]-num < 1) num=[_mainPlaylist count]-1;
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:num]];
+    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
+    if ([_soundPlaylist count]-num < 1) num=[_soundPlaylist count]-1;
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
-    NSInteger num=(int)[_mainPlaylist indexOfObject:_currentTrack]-1;
+    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]-1;
     if (num-1<0) num=0;
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_mainPlaylist objectAtIndex:num]];
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
@@ -301,7 +307,7 @@
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
     NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
-    _supportPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
     _showSupportPlaylist=YES;
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
@@ -310,9 +316,9 @@
     [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 313, 80) display:YES animate:YES];
 }
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
-    int selectTrack=(int)[_mainPlaylist indexOfObject:_currentTrack];
-    [_tableview scrollRowToVisible:selectTrack];
-    [_tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:selectTrack] byExtendingSelection:NO];
+//    int selectTrack=(int)[_mainPlaylist indexOfObject:_currentTrack];
+//    [_tableview scrollRowToVisible:selectTrack];
+//    [_tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:selectTrack] byExtendingSelection:NO];
 }
 -(IBAction)close:(id)sender{ NSLog(@"Close");
     [[[NSApp delegate] window] close];
