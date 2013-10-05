@@ -606,7 +606,7 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="388" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <searchField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
+                <searchField verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
                     <rect key="frame" x="20" y="15" width="303" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -621,7 +621,7 @@ CA
                         <action selector="search:" target="DoF-XC-WxK" id="Ha8-gQ-eYl"/>
                     </connections>
                 </searchField>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
+                <button verticalHuggingPriority="750" misplaced="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
                     <rect key="frame" x="331" y="16" width="37" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundTextured" title="Hide" bezelStyle="texturedRounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="R0S-dM-Qac">
@@ -635,7 +635,7 @@ Gw
                         <action selector="hideSearch:" target="DoF-XC-WxK" id="3OI-ci-pJN"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERj-wH-nft" customClass="CloseButton">
+                <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ERj-wH-nft" customClass="CloseButton">
                     <rect key="frame" x="6" y="35" width="11" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iR5-eQ-8jW">
@@ -659,16 +659,16 @@ Gw
             <rect key="frame" x="0.0" y="0.0" width="381" height="30"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <slider verticalHuggingPriority="750" misplaced="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
-                    <rect key="frame" x="48" y="8" width="313" height="17"/>
+                <slider verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
+                    <rect key="frame" x="45" y="7" width="316" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
                     <connections>
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
                     </connections>
                 </slider>
-                <button misplaced="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
-                    <rect key="frame" x="0.0" y="8" width="40" height="15"/>
+                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
+                    <rect key="frame" x="0.0" y="9" width="40" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="khr-zJ-x44"/>

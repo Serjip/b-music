@@ -51,7 +51,7 @@
     [_Controls0 setDelegate:self];//Set delegation method
     [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
     [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
-    
+    [[[self.Controls3 viewWithTag:2] cell] setFocusRingType:NSFocusRingTypeNone];//Hide focus ring for Search
     
     [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
     
