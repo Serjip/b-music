@@ -28,19 +28,19 @@
         _helper=[[Helper alloc] init];
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
-        
         _currentTableCell=kMainCell;
+        
     }
     return self;
 }
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     
     if (!_isInitialLoadingFinish) {
-        
-    NSLog(@"%@",self.S);
-    if (!self.S.settings.token) {
-        [self activateSeet:YES clearCookiers:NO withURLstring:nil];
-    }
+        [_Controls0 setDelegate:self];
+        NSLog(@"%@",self.S);
+        if (!self.S.settings.token) {
+            [self activateSeet:YES clearCookiers:NO withURLstring:nil];
+        }
     
     _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
     _soundPlaylist=[_viewPlaylist mutableCopy];
@@ -73,6 +73,13 @@
      
         _isInitialLoadingFinish=YES;
     }
+}
+/*
+ *                                  ControlsView Methods
+ *
+ *****************************************************************************************/
+-(void)isHovered:(BOOL)flag{
+    NSLog(@"IsHovered");
 }
 /*
  *                                  TEMP Methods
@@ -111,7 +118,9 @@
 }
 
 -(void) durationTrack:(double)duration{
-    [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];
+    [[self.Controls1 viewWithTag:1] setStringValue:[_currentTrack objectForKey:@"title"]];//Set title for player
+    [[self.Controls1 viewWithTag:2] setStringValue:[_currentTrack objectForKey:@"artist"]];//Set artist for player
+    [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];//Set duration for slider
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
@@ -213,9 +222,7 @@
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
-    if (num>0) {
-        [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
-    }
+    if (num>0) [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
     if ([_soundPlaylist count]-num < 1) num=0;
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];

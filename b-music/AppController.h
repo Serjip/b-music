@@ -15,10 +15,11 @@
 #import "PlayButton.h"
 #import "PlayButtonCell.h"
 #import "PlayerController.h"
+#import "ControlsView.h"
 #import "Settings.h"
 #import "Helper.h"
 
-@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate>
+@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>
 
 @property SheetWindowController * sheet;
 @property Settings * S;
@@ -26,7 +27,7 @@
 @property Helper * helper;
 
 @property (weak) IBOutlet NSTableView * tableview;
-@property (weak) IBOutlet NSView *Controls0;
+@property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
 @property (weak) IBOutlet NSView *Controls3;
