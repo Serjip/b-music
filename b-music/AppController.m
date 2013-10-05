@@ -8,13 +8,15 @@
 
 #import "AppController.h"
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
+#define kMainCell @"MainCell"
+#define kSearchCell @"SearchCell"
 
 @implementation AppController{
     
     NSDictionary * _currentTrack;
     NSMutableArray * _viewPlaylist;
     NSMutableArray * _soundPlaylist;
-    BOOL _showSupportPlaylist;
+    NSString * _currentTableCell;
     
     BOOL _isInitialLoadingFinish;
 }
@@ -26,6 +28,8 @@
         _helper=[[Helper alloc] init];
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
+        
+        _currentTableCell=kMainCell;
     }
     return self;
 }
@@ -165,12 +169,10 @@
  *****************************************************************************************/
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{
-//    return (_showSupportPlaylist) ? [_supportPlaylist count] : [_mainPlaylist count];
     return [_viewPlaylist count];
 }
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    NSTableCellView * cellview=[tableView makeViewWithIdentifier:(_showSupportPlaylist)? @"SearchCell": @"MainCell" owner:self];
-//    id obj=[(_showSupportPlaylist) ? _supportPlaylist: _mainPlaylist objectAtIndex:row];
+    NSTableCellView * cellview=[tableView makeViewWithIdentifier:_currentTableCell owner:self];
     id obj=[_viewPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
@@ -187,9 +189,8 @@
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
         
-        if (_showSupportPlaylist) {
-            _soundPlaylist=[_viewPlaylist mutableCopy];
-        }
+        if (![_soundPlaylist isEqualTo:_viewPlaylist]) _soundPlaylist=[_viewPlaylist mutableCopy]; //Chech to play new playlist
+        
         id obj=[_soundPlaylist objectAtIndex:row];
         
         if ([obj isEqualTo:_currentTrack]) {
@@ -319,10 +320,17 @@
     if ([sender stringValue].length!=0) {
         NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
         _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
-        _showSupportPlaylist=YES;
+        _currentTableCell=kSearchCell;
+        
+        if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
     }else{
-        _viewPlaylist=[_soundPlaylist mutableCopy];
-        _showSupportPlaylist=NO;
+        
+        if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+            _viewPlaylist=[_soundPlaylist mutableCopy];
+        }else{
+            _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        }
+        _currentTableCell=kMainCell;
     }
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
