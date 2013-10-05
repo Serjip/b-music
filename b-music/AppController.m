@@ -37,7 +37,6 @@
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     
     if (!_isInitialLoadingFinish) {
-        [_Controls0 setDelegate:self];
         NSLog(@"%@",self.S);
         if (!self.S.settings.token) {
             [self activateSeet:YES clearCookiers:NO withURLstring:nil];
@@ -49,8 +48,9 @@
 //    NSLog(@"%@",_mainPlaylist);
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
-    [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
-    [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];
+    [_Controls0 setDelegate:self];//Set delegation method
+    [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
+    [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
     
     
     [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
