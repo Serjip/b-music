@@ -36,4 +36,5 @@
 
 -(void)play:(NSString*) URLstring;
 -(void)setRuntime:(double)time;
+-(NSString*)convertTime:(double)seconds;
 @end

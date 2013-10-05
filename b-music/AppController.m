@@ -45,7 +45,6 @@
     _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
     _soundPlaylist=[_viewPlaylist mutableCopy];
     
-//    NSLog(@"%@",_mainPlaylist);
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     [_Controls0 setDelegate:self];//Set delegation method
@@ -200,7 +199,7 @@
     id obj=[_viewPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
-    [[cellview viewWithTag:4] setTitle:[obj objectForKey:@"duration"]];
+    [[cellview viewWithTag:4] setTitle:[self.PC convertTime:[[obj objectForKey:@"duration"] doubleValue]]];
     [[cellview viewWithTag:1] setPauseState:([obj isEqualTo:_currentTrack])? YES : NO];
     return cellview;
 }

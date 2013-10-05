@@ -291,15 +291,15 @@ CA
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="ddA-8h-3Jd" customClass="RemoveButtonCell">
-                                                            <rect key="frame" x="355" y="2" width="44" height="46"/>
+                                                            <rect key="frame" x="355" y="3" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="44" id="BeX-D6-KNH"/>
                                                                 <constraint firstAttribute="width" constant="44" id="EBa-Lv-Kon"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="smallSquare" title="0:00" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WrD-Xj-S1B">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                <font key="font" metaFont="system"/>
+                                                            <buttonCell key="cell" type="square" title="0:00" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="WrD-Xj-S1B">
+                                                                <behavior key="behavior" lightByContents="YES"/>
+                                                                <font key="font" size="11" name="LucidaGrande"/>
                                                             </buttonCell>
                                                         </button>
                                                     </subviews>
