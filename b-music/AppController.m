@@ -105,10 +105,9 @@
 
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
-    NSInteger row;
-    if ((row=(int)[_viewPlaylist indexOfObject:_currentTrack])) {
-        [[[_tableview viewAtColumn:0 row:row makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
-    }
+    NSInteger row=(int)[_viewPlaylist indexOfObject:_currentTrack];
+    NSLog(@" isPlayPlaying %li",row);
+    [[[_tableview viewAtColumn:0 row:row makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
 }
 
 -(void) durationTrack:(double)duration{
@@ -214,20 +213,17 @@
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
-    
-    [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
-    
-    
-    if ([_soundPlaylist count]-num < 1) num=[_soundPlaylist count]-1;
+    if (num>0) {
+        [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
+    }
+    if ([_soundPlaylist count]-num < 1) num=0;
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
-    
-    [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
-    
-    if (num-2<0) num=0;
+    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
+    if (num-1<0) num=0; else num-=1;
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
