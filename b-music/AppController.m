@@ -79,12 +79,23 @@
  *
  *****************************************************************************************/
 -(void)isHovered:(BOOL)flag{
-    NSLog(@"IsHovered");
+    [self removeSubviews];
+    if (flag) {
+        [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
+    }else{
+        [self addSubviewHelper:self.Controls0 slerve:self.Controls1];
+    }
 }
 /*
  *                                  TEMP Methods
  *
  *****************************************************************************************/
+
+-(void) removeSubviews{
+    [self.Controls1 removeFromSuperview];
+    [self.Controls2 removeFromSuperview];
+    [self.Controls3 removeFromSuperview];
+}
 
 -(void) addSubviewHelper:(NSView*)master slerve:(NSView*)slerve{
     [master addSubview:slerve];
@@ -196,6 +207,9 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
+    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
+    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
+    
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
         
@@ -317,15 +331,11 @@
     [self.S saveSettings];
 }
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
-    [self.Controls1 removeFromSuperview];
-    [self.Controls2 removeFromSuperview];
-    [self.Controls3 removeFromSuperview];
+    [self removeSubviews];
     [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
 }
 -(IBAction)hideSearch:(id)sender{NSLog(@"HideSearch");
-    [self.Controls1 removeFromSuperview];
-    [self.Controls2 removeFromSuperview];
-    [self.Controls3 removeFromSuperview];
+    [self removeSubviews];
     [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
