@@ -12,11 +12,11 @@
 @implementation AppController{
     
     NSDictionary * _currentTrack;
-    
     NSMutableArray * _viewPlaylist;
     NSMutableArray * _soundPlaylist;
-    
     BOOL _showSupportPlaylist;
+    
+    BOOL _isInitialLoadingFinish;
 }
 - (id)init
 {
@@ -30,6 +30,9 @@
     return self;
 }
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
+    
+    if (!_isInitialLoadingFinish) {
+        
     NSLog(@"%@",self.S);
     if (!self.S.settings.token) {
         [self activateSeet:YES clearCookiers:NO withURLstring:nil];
@@ -62,6 +65,9 @@
     
     for (NSMenuItem * item in [self.controlsMenu itemArray]) {
         [item setEnabled:YES];
+    }
+     
+        _isInitialLoadingFinish=YES;
     }
 }
 /*
@@ -180,6 +186,10 @@
 -(IBAction)play:(id)sender{ NSLog(@"Play");
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
+        
+        if (_showSupportPlaylist) {
+            _soundPlaylist=[_viewPlaylist mutableCopy];
+        }
         id obj=[_soundPlaylist objectAtIndex:row];
         
         if ([obj isEqualTo:_currentTrack]) {
@@ -306,9 +316,14 @@
     [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
-    NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
-    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
-    _showSupportPlaylist=YES;
+    if ([sender stringValue].length!=0) {
+        NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
+        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        _showSupportPlaylist=YES;
+    }else{
+        _viewPlaylist=[_soundPlaylist mutableCopy];
+        _showSupportPlaylist=NO;
+    }
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
@@ -316,9 +331,9 @@
     [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 313, 80) display:YES animate:YES];
 }
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
-//    int selectTrack=(int)[_mainPlaylist indexOfObject:_currentTrack];
-//    [_tableview scrollRowToVisible:selectTrack];
-//    [_tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:selectTrack] byExtendingSelection:NO];
+    int selectTrack=(int)[_viewPlaylist indexOfObject:_currentTrack];
+    [_tableview scrollRowToVisible:selectTrack];
+    [_tableview selectRowIndexes:[NSIndexSet indexSetWithIndex:selectTrack] byExtendingSelection:NO];
 }
 -(IBAction)close:(id)sender{ NSLog(@"Close");
     [[[NSApp delegate] window] close];
