@@ -18,6 +18,7 @@
     NSMutableArray * _soundPlaylist;
     NSString * _currentTableCell;
     
+    BOOL _isSearchShown;
     BOOL _isInitialLoadingFinish;
 }
 - (id)init
@@ -79,11 +80,13 @@
  *
  *****************************************************************************************/
 -(void)isHovered:(BOOL)flag{
-    [self removeSubviews];
-    if (flag) {
-        [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
-    }else{
-        [self addSubviewHelper:self.Controls0 slerve:self.Controls1];
+    if (![self.Controls3 superview]) {
+        [self removeSubviews];
+        if (flag) {
+            [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
+        }else{
+            [self addSubviewHelper:self.Controls0 slerve:self.Controls1];
+        }
     }
 }
 /*
