@@ -15,6 +15,7 @@
 #import "PlayButton.h"
 #import "PlayButtonCell.h"
 #import "PlayerController.h"
+#import "AddButtonCell.h"
 #import "ControlsView.h"
 #import "Settings.h"
 #import "Helper.h"

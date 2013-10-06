@@ -10,6 +10,7 @@
 
 @implementation RemoveButtonCell{
     NSTrackingArea * trackingArea;
+    NSString * _t;
 }
 
 //- (void)drawRect:(NSRect)dirtyRect
@@ -40,12 +41,15 @@
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    NSLog(@"%@",self.title);
+    [self setImage:[NSImage imageNamed:@"NSRemoveTemplate"]];
+    _t=self.title;
+    [self setTitle:@""];
 }
 
 -(void)mouseExited:(NSEvent *)theEvent
 {
-    
+    [self setImage:nil];
+    [self setTitle:_t];
 }
 
 -(void)updateTrackingAreas

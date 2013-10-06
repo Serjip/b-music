@@ -372,6 +372,9 @@ CA
                                                                 <behavior key="behavior" lightByContents="YES"/>
                                                                 <font key="font" size="11" name="LucidaGrande"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="addTrack:" target="DoF-XC-WxK" id="fKc-j5-CK3"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>

@@ -69,7 +69,14 @@
         [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
         [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
     
-        for (NSMenuItem * item in [self.controlsMenu itemArray]) {
+        
+        
+        
+        for (NSMenuItem * item in  [self.controlsMenu itemArray]) {
+            [item setEnabled:YES];
+        }
+        
+        for (NSMenuItem * item in  [self.viewMenu itemArray]) {
             [item setEnabled:YES];
         }
         
@@ -361,7 +368,7 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
-
+    [sender setComplete];
 }
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
     NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
@@ -372,6 +379,7 @@
     if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
         [_soundPlaylist removeObjectAtIndex:row];
     }
+
     [_viewPlaylist removeObjectAtIndex:row];
     [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:row] withAnimation:NSTableViewAnimationSlideUp];
 }
