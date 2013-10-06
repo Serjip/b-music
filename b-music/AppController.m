@@ -313,7 +313,10 @@
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
     
-    [self performSelector:someFunc];
+    
+    if (someFunc!=nil) {
+        [self performSelector:someFunc];
+    }
 }
 /*
  *                                  TableView Methodds
@@ -340,6 +343,7 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
+    
     [self setPauseStateForButton:_currentTrack state:NO];
     
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
@@ -359,6 +363,7 @@
     }else{
         if (_currentTrack==nil) {
             _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:0]];
+            NSLog(@"%@",_currentTrack);
             [self.PC play:[_currentTrack objectForKey:@"url"]];
         }else{
             if(self.PC.player.rate==1.0) [self.PC.player pause];
