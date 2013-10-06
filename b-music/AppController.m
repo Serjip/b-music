@@ -368,7 +368,15 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
-    [sender setComplete];
+    
+    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+//    id obj=[_viewPlaylist objectAtIndex:row];
+//    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
+//    [self.helper requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
+
+    if ([sender isKindOfClass:[AddButtonCell class]]) {
+        [sender setComplete];
+    }
 }
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
     NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
