@@ -40,10 +40,8 @@
     return YES;
 }
 
-//- (void)keyDown:(NSEvent *)theEvent { //This method block default sound on keyDown
-//    if ([theEvent keyCode]==49) {//Exeption "Enter"
-//        [super keyDown:theEvent];
-//    }
+//-(void)keyDown:(NSEvent *)theEvent{
+////    NSLog(@"Player Vindow %hu",theEvent.keyCode);
 //}
 
 @end

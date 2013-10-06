@@ -35,7 +35,7 @@
     return self;
 }
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
-    
+ 
     if (!_isInitialLoadingFinish) {
         NSLog(@"%@",self.S);
         if (!self.S.settings.token) {
@@ -72,7 +72,15 @@
         for (NSMenuItem * item in [self.controlsMenu itemArray]) {
             [item setEnabled:YES];
         }
-     
+        
+        for (NSMenuItem * item in [self.editMenu itemArray]) {
+            [item setEnabled:YES];
+        }
+        
+        //Monitor hotkeys
+//        [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
+//                                              handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
+        
         _isInitialLoadingFinish=YES;
     }
 }
@@ -94,6 +102,37 @@
  *                                  TEMP Methods
  *
  *****************************************************************************************/
+
+-(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
+    
+    NSLog(@"%hu",event.keyCode);
+    
+    
+    NSUInteger flags = [event modifierFlags]& NSCommandKeyMask;
+    
+    
+    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
+    
+    NSLog(@"firstresponfer %@",[firstResponder class] );
+    
+    
+    
+    if ([firstResponder isKindOfClass:[NSTextView class]]){
+        
+        return event;
+    }
+    
+    NSLog( @"Monitor events %i" ,event.keyCode);
+    switch (event.keyCode) {
+        case 01:
+            
+            break;
+        default:
+            if (!flags) [_tableview keyDown:event];
+            break;
+    }
+    return event;
+}
 
 -(void) removeSubviews{
     [self.Controls1 removeFromSuperview];
@@ -325,7 +364,16 @@
 
 }
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
+    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+//    id obj=[_viewPlaylist objectAtIndex:row];
+//    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&album_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
+//    [self.helper requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
     
+    if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+        [_soundPlaylist removeObjectAtIndex:row];
+    }
+    [_viewPlaylist removeObjectAtIndex:row];
+    [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:row] withAnimation:NSTableViewAnimationSlideUp];
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
@@ -348,6 +396,7 @@
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
     [self removeSubviews];
     [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
+    [[self.Controls3 viewWithTag:2] selectText:nil];//Set cursor and select text in search field
 }
 -(IBAction)hideSearch:(id)sender{NSLog(@"HideSearch");
     [self removeSubviews];
