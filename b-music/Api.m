@@ -27,9 +27,14 @@
 }
 
 -(BOOL)checkResponse:(id)response{
-    
-    
-    return YES;
+    if([response objectForKey:@"error"]){
+        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
+        
+        }
+        
+        return YES;
+    }
+    return NO;
 }
 
 //-(BOOL)checkResponseToError:(id)response{

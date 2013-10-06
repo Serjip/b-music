@@ -10,7 +10,7 @@
 #import <WebKit/WebKit.h>
 
 @protocol SheetDelegate <NSObject>
--(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id;
+-(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id execute:(SEL)someFunc;
 @end
 
 @interface SheetWindowController : NSWindowController
@@ -20,5 +20,5 @@
 -(IBAction)cancel:(id)sender;
 
 -(void)clearCookie;
--(void) loadURL:(NSString *) URLsring;
+-(void) loadURL:(NSString *) URLsring execute:(SEL)someFunc;
 @end

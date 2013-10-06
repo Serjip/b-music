@@ -21,6 +21,7 @@
     
     BOOL _isSearchShown;
     BOOL _isInitialLoadingFinish;
+    NSString * _searchQuery;
 }
 - (id)init
 {
@@ -39,14 +40,9 @@
     if (!_isInitialLoadingFinish) {
         NSLog(@"%@",self.S);
         if (!self.S.settings.token) {
-            [self activateSeet:YES clearCookiers:NO withURLstring:nil];
+            [self activateSeet:YES clearCookiers:NO withURLstring:nil execute:@selector(requestToMainPlaylist)];
         }
-    
-        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
-        _soundPlaylist=[_viewPlaylist mutableCopy];
-    
-        [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    
+        
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
         [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
@@ -59,12 +55,9 @@
             [[self.windowMenu itemWithTag:4] setState:1];
             [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
         }
-    
-        if (self.S.settings.shuffle) {
-            _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
-            [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
-            [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
-        }
+        
+        [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
+        [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
         
         [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
         [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
@@ -89,8 +82,12 @@
 //                                              handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
         
         _isInitialLoadingFinish=YES;
+        
+        
+        [self requestToMainPlaylist];
     }
 }
+
 /*
  *                                  ControlsView Methods
  *
@@ -109,6 +106,45 @@
  *                                  TEMP Methods
  *
  *****************************************************************************************/
+-(void)requestToSearch{
+    NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",_searchQuery];
+    
+    id response=[self.api requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token];
+    
+    if ([response objectForKey:@"error"]) {
+        
+        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
+            
+            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToSearch)];
+        }
+        
+        return;
+    }
+    
+    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
+    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
+-(void)requestToMainPlaylist{
+    
+    id response=[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token];
+    
+    if ([response objectForKey:@"error"]) {
+        
+        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
+            
+            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToMainPlaylist)];
+        }
+        
+        return;
+    }
+    
+    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
+    _soundPlaylist=[_viewPlaylist mutableCopy];
+    
+    if (self.S.settings.shuffle) {_shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist]; }
+    
+    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+}
 
 -(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
     
@@ -153,6 +189,10 @@
     [slerve setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 
+-(void) setPauseStateForButton:(id)object state:(BOOL)flag{
+    NSInteger num=(int)[_viewPlaylist indexOfObject:object];
+    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
+}
 /*
  *                                  Player Methods
  *
@@ -173,9 +213,8 @@
 }
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
-    NSInteger row=(int)[_viewPlaylist indexOfObject:_currentTrack];
-    NSLog(@" isPlayPlaying %li",row);
-    [[[_tableview viewAtColumn:0 row:row makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
+    
+    [self setPauseStateForButton:_currentTrack state:flag];
 }
 
 -(void) durationTrack:(double)duration{
@@ -197,7 +236,7 @@
  *
  *****************************************************************************************/
 
--(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring{
+-(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring execute:(SEL)func{
     
     if (!self.sheet) {
         self.sheet=[[SheetWindowController alloc] initWithWindowNibName:@"SheetWindowController"];
@@ -212,13 +251,14 @@
     
     if (cookies) [self.sheet clearCookie];
     if (auth) {
-        [self.sheet loadURL:kAuthURL];
+        [self.sheet loadURL:kAuthURL execute:func];
     }else{
-        [self.sheet loadURL:URLstring];
+        [self.sheet loadURL:URLstring execute:func];
     }
 }
 
--(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id{
+-(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id execute:(SEL)someFunc{
+    
     NSLog(@"DELEGATION METHOD token %@ user_id %li",token,user_id);
     if(token && user_id){
         self.S.settings.token=token;
@@ -228,12 +268,8 @@
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
     
-    if (!self.api) {
-        self.api=[[Api alloc] init];
-    }
-    NSLog(@"%@",[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token]);
+    [self performSelector:someFunc];
 }
-
 /*
  *                                  TableView Methodds
  *
@@ -259,8 +295,7 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
-    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
+    [self setPauseStateForButton:_currentTrack state:NO];
     
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
@@ -287,10 +322,9 @@
     }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
+    [self setPauseStateForButton:_currentTrack state:NO];
+    
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
-    
-    if (num>0) [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
-    
     if ([_soundPlaylist count]-num < 1){
         num=0;
         if(self.S.settings.shuffle){
@@ -302,8 +336,8 @@
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
+    [self setPauseStateForButton:_currentTrack state:NO];
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
-    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
     if (num-1<0) num=0; else num-=1;
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
@@ -420,9 +454,10 @@
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
     if ([sender stringValue].length!=0) {
-        NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
-        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        
         _currentTableCell=kSearchCell;
+        _searchQuery=[sender stringValue];
+        [self requestToSearch];
         
         if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
     }else{
@@ -430,11 +465,10 @@
         if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
             _viewPlaylist=[_soundPlaylist mutableCopy];
         }else{
-            _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+            [self requestToMainPlaylist];
         }
         _currentTableCell=kMainCell;
     }
-    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     id window=[[NSApp delegate] window];
@@ -449,6 +483,6 @@
     [[[NSApp delegate] window] close];
 }
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
-    [self activateSeet:YES clearCookiers:YES withURLstring:nil];
+    [self activateSeet:YES clearCookiers:YES withURLstring:nil execute:@selector(requestToMainPlaylist)];
 }
 @end

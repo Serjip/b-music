@@ -12,7 +12,9 @@
 
 @end
 
-@implementation SheetWindowController
+@implementation SheetWindowController{
+    SEL _someMethod;
+}
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -30,7 +32,9 @@
         NSDictionary *res=[ self parseStringURL:[URLstring componentsSeparatedByString:@"#"][1]];
         NSLog(@"Parse url %@",res);
         if (res[@"access_token"]) {
-            [_delegate cancelSheet:res[@"access_token"] user_id:[res[@"user_id"] integerValue]];
+            [_delegate cancelSheet:res[@"access_token"] user_id:[res[@"user_id"] integerValue] execute:_someMethod];
+        }else if (res[@"success"]){
+            [_delegate cancelSheet:nil user_id:0 execute:_someMethod];
         }
     }
 }
@@ -40,9 +44,10 @@
     NSLog(@"Windows did load");
 }
 
--(void) loadURL:(NSString *) URLsring{
+-(void) loadURL:(NSString *) URLsring execute:(SEL)someFunc{
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLsring]];
     [self.webview.mainFrame loadRequest:request];
+    _someMethod=someFunc;
 }
 
 -(void)clearCookie{
@@ -70,6 +75,6 @@
     return queryStringDictionary;
 }
 -(IBAction)cancel:(id)sender{NSLog(@"CancelSheet");
-    [_delegate cancelSheet:nil user_id:0];
+    [_delegate cancelSheet:nil user_id:0 execute:nil];
 }
 @end
