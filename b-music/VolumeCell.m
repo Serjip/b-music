@@ -8,6 +8,9 @@
 
 #import "VolumeCell.h"
 
+#define posY 8.5
+#define thikness 2
+
 @implementation VolumeCell
 - (id)init
 {
@@ -23,36 +26,19 @@
 {
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(50/255.0, 50/255.0, 50/255.0, 1));
-    
-    double x1=aRect.size.width;
-    double y1=aRect.size.height;
-    
-    double t1=2;
-    double t2=2.5;
-    
     CGContextSetLineCap(ctx, kCGLineCapRound);//Round
-    CGContextSetLineWidth(ctx, t1);
+    CGContextSetLineWidth(ctx, thikness);
     
     //Default
-    CGContextMoveToPoint(ctx, t1/2, y1/2);
-    CGContextAddLineToPoint(ctx, x1-t1/2, y1/2);
+    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(50/255.0, 50/255.0, 50/255.0, 1));
+    CGContextMoveToPoint(ctx, aRect.origin.x+1, posY);
+    CGContextAddLineToPoint(ctx, aRect.size.width, posY);
     CGContextStrokePath(ctx);
     
-    CGContextSetLineWidth(ctx, t2);
-    
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(20/255.0, 20/255.0, 20/255.0, 1));
-    
-    double aux;
-    if (_progress>.5) {
-        aux=x1*_progress-t2;;
-    }else{
-        aux=x1*_progress+t2;
-    }
-    
     //Progress
-    CGContextMoveToPoint(ctx, t2, y1/2);
-    CGContextAddLineToPoint(ctx, aux, y1/2);
+    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(20/255.0, 20/255.0, 20/255.0, 1));
+    CGContextMoveToPoint(ctx, aRect.origin.x+1, posY);
+    CGContextAddLineToPoint(ctx, aRect.size.width*_progress+2*(1-_progress), posY);
     CGContextStrokePath(ctx);
 }
 

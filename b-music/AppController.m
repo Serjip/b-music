@@ -22,6 +22,8 @@
     BOOL _isSearchShown;
     BOOL _isInitialLoadingFinish;
     NSString * _searchQuery;
+    
+    NSInteger _row;
 }
 - (id)init
 {
@@ -106,6 +108,49 @@
  *                                  TEMP Methods
  *
  *****************************************************************************************/
+
+-(void)requestToRemovetrack{
+    id obj=[_viewPlaylist objectAtIndex:_row];
+    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
+    id response=[self.api requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
+    if ([response objectForKey:@"error"]) {
+        
+        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
+            
+            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToRemovetrack)];
+        }
+        
+        return;
+    }
+    
+    if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+        [_soundPlaylist removeObjectAtIndex:_row];
+    }
+    
+    [_viewPlaylist removeObjectAtIndex:_row];
+    [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:_row] withAnimation:NSTableViewAnimationSlideUp];
+}
+
+-(void)requestToAddtrack{
+    
+    
+    id obj=[_viewPlaylist objectAtIndex:_row];
+    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
+    id response=[self.api requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
+    
+    if ([response objectForKey:@"error"]) {
+        
+        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
+            
+            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToAddtrack)];
+        }
+        
+        return;
+    }
+    
+    [[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
+}
+
 -(void)requestToSearch{
     NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",_searchQuery];
     
@@ -324,20 +369,19 @@
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     [self setPauseStateForButton:_currentTrack state:NO];
     
-    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
-    if ([_soundPlaylist count]-num < 1){
+    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack]+1;
+    if ([(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist count]-num < 1){
         num=0;
         if(self.S.settings.shuffle){
             _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
         }
     }
-    
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
     [self setPauseStateForButton:_currentTrack state:NO];
-    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
+    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
     if (num-1<0) num=0; else num-=1;
     _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
@@ -402,28 +446,12 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
-    
-    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
-//    id obj=[_viewPlaylist objectAtIndex:row];
-//    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-//    [self.api requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
-
-    if ([sender isKindOfClass:[AddButtonCell class]]) {
-        [sender setComplete];
-    }
+    _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+    [self requestToAddtrack];
 }
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
-    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
-//    id obj=[_viewPlaylist objectAtIndex:row];
-//    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&album_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-//    [self.api requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
-    
-    if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
-        [_soundPlaylist removeObjectAtIndex:row];
-    }
-
-    [_viewPlaylist removeObjectAtIndex:row];
-    [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:row] withAnimation:NSTableViewAnimationSlideUp];
+    _row==([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+    [self requestToRemovetrack];
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
@@ -462,11 +490,11 @@
         if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
     }else{
         
-        if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
-            _viewPlaylist=[_soundPlaylist mutableCopy];
-        }else{
+//        if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+//            _viewPlaylist=[_soundPlaylist mutableCopy];
+//        }else{
             [self requestToMainPlaylist];
-        }
+//        }
         _currentTableCell=kMainCell;
     }
 }
