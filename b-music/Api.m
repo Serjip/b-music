@@ -1,14 +1,14 @@
 //
-//  Helper.m
+//  Api.m
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
 //  Copyright (c) 2013 Sergey P. All rights reserved.
 //
 
-#import "Helper.h"
+#import "Api.h"
 
-@implementation Helper
+@implementation Api
 
 
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token {
@@ -24,6 +24,12 @@
                  error:&error];
     if(error) { /* JSON was malformed, act appropriately here */ }
     return object;
+}
+
+-(BOOL)checkResponse:(id)response{
+    
+    
+    return YES;
 }
 
 //-(BOOL)checkResponseToError:(id)response{

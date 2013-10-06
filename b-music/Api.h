@@ -1,5 +1,5 @@
 //
-//  Helper.h
+//  Api.h
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Helper : NSObject
+@interface Api : NSObject
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token;
 @end

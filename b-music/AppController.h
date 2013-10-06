@@ -18,14 +18,14 @@
 #import "AddButtonCell.h"
 #import "ControlsView.h"
 #import "Settings.h"
-#import "Helper.h"
+#import "Api.h"
 
 @interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>
 
 @property SheetWindowController * sheet;
 @property Settings * S;
 @property PlayerController * PC;
-@property Helper * helper;
+@property Api * api;
 
 @property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet ControlsView *Controls0;

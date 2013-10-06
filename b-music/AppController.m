@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         _S=[[Settings alloc] init];
-        _helper=[[Helper alloc] init];
+        _api=[[Api alloc] init];
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
         _currentTableCell=kMainCell;
@@ -42,7 +42,7 @@
             [self activateSeet:YES clearCookiers:NO withURLstring:nil];
         }
     
-        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
         _soundPlaylist=[_viewPlaylist mutableCopy];
     
         [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
@@ -228,10 +228,10 @@
     [NSApp endSheet:self.sheet.window];
     [self.sheet.window close];
     
-    if (!self.helper) {
-        self.helper=[[Helper alloc] init];
+    if (!self.api) {
+        self.api=[[Api alloc] init];
     }
-    NSLog(@"%@",[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token]);
+    NSLog(@"%@",[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token]);
 }
 
 /*
@@ -372,7 +372,7 @@
     NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
 //    id obj=[_viewPlaylist objectAtIndex:row];
 //    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-//    [self.helper requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
+//    [self.api requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
 
     if ([sender isKindOfClass:[AddButtonCell class]]) {
         [sender setComplete];
@@ -382,7 +382,7 @@
     NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
 //    id obj=[_viewPlaylist objectAtIndex:row];
 //    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&album_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-//    [self.helper requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
+//    [self.api requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
     
     if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
         [_soundPlaylist removeObjectAtIndex:row];
@@ -421,7 +421,7 @@
 -(IBAction)search:(id)sender{NSLog(@"Search");
     if ([sender stringValue].length!=0) {
         NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",[sender stringValue]];
-        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
         _currentTableCell=kSearchCell;
         
         if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
@@ -430,7 +430,7 @@
         if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
             _viewPlaylist=[_soundPlaylist mutableCopy];
         }else{
-            _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+            _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
         }
         _currentTableCell=kMainCell;
     }
