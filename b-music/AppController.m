@@ -31,7 +31,6 @@
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
         _currentTableCell=kMainCell;
-        
     }
     return self;
 }
@@ -206,7 +205,9 @@
     [[cellview viewWithTag:1] setPauseState:([obj isEqualTo:_currentTrack])? YES : NO];
     return cellview;
 }
-
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row{
+    return [tableView makeViewWithIdentifier:@"MainRow" owner:self];
+}
 /*
  *                                      IBActions
  *
