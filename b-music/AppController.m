@@ -14,9 +14,10 @@
 @implementation AppController{
     
     NSDictionary * _currentTrack;
-    NSMutableArray * _viewPlaylist;
-    NSMutableArray * _soundPlaylist;
-    NSString * _currentTableCell;
+    NSMutableArray * _viewPlaylist;//Playlist for table
+    NSMutableArray * _soundPlaylist;//Playlist for playing
+    NSMutableArray * _shufflePlaylist;
+    NSString * _currentTableCell;//For table whitch one cell is shown
     
     BOOL _isSearchShown;
     BOOL _isInitialLoadingFinish;
@@ -42,34 +43,36 @@
             [self activateSeet:YES clearCookiers:NO withURLstring:nil];
         }
     
-    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
-    _soundPlaylist=[_viewPlaylist mutableCopy];
+        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[[self.helper requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token] objectForKey:@"response"] objectForKey:@"items"]];
+        _soundPlaylist=[_viewPlaylist mutableCopy];
     
-    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+        [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
-    [_Controls0 setDelegate:self];//Set delegation method
-    [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
-    [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
-    [[[self.Controls3 viewWithTag:2] cell] setFocusRingType:NSFocusRingTypeNone];//Hide focus ring for Search
+        [_Controls0 setDelegate:self];//Set delegation method
+        [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
+        [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
+        [[[self.Controls3 viewWithTag:2] cell] setFocusRingType:NSFocusRingTypeNone];//Hide focus ring for Search
     
-    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
+        [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
     
-    if (self.S.settings.alwaysOnTop) { //Set Always on top
-        [[[NSApp delegate] window] setLevel:1000];
-        [[self.windowMenu itemWithTag:4] setState:1];
-        [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
-    }
+        if (self.S.settings.alwaysOnTop) { //Set Always on top
+            [[[NSApp delegate] window] setLevel:1000];
+            [[self.windowMenu itemWithTag:4] setState:1];
+            [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+        }
     
+        if (self.S.settings.shuffle) {
+            _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
+            [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
+            [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
+        }
+        
+        [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
+        [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
     
-    [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
-    [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
-    
-    [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
-    [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
-    
-    for (NSMenuItem * item in [self.controlsMenu itemArray]) {
-        [item setEnabled:YES];
-    }
+        for (NSMenuItem * item in [self.controlsMenu itemArray]) {
+            [item setEnabled:YES];
+        }
      
         _isInitialLoadingFinish=YES;
     }
@@ -119,10 +122,10 @@
 -(BOOL) getRepeat{
     return self.S.settings.repeat;
 }
--(NSString *)getNext{
-    return @"NEXT TRACK";
-}
 
+-(void)nextTrack{
+    [self next:self];
+}
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
     NSInteger row=(int)[_viewPlaylist indexOfObject:_currentTrack];
@@ -209,7 +212,7 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
+    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
     if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
     
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
@@ -228,7 +231,7 @@
         }
     }else{
         if (_currentTrack==nil) {
-            _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:0]];
+            _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:0]];
             [self.PC play:[_currentTrack objectForKey:@"url"]];
         }else{
             if(self.PC.player.rate==1.0) [self.PC.player pause];
@@ -238,16 +241,24 @@
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack]+1;
+    
     if (num>0) [[[_tableview viewAtColumn:0 row:num-1 makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
-    if ([_soundPlaylist count]-num < 1) num=0;
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
+    
+    if ([_soundPlaylist count]-num < 1){
+        num=0;
+        if(self.S.settings.shuffle){
+            _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
+        }
+    }
+    
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
     NSInteger num=(int)[_soundPlaylist indexOfObject:_currentTrack];
     if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:NO];
     if (num-1<0) num=0; else num-=1;
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[_soundPlaylist objectAtIndex:num]];
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
@@ -275,6 +286,7 @@
         [sender setFlag:NO];
         [[self.controlsMenu itemWithTag:5] setState:0];
     }else{
+        _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];//Set Shuffle Playlist
         [sender setFlag:YES];
         [[self.controlsMenu itemWithTag:5] setState:1];
     }

@@ -76,7 +76,7 @@
         [self.player seekToTime:kCMTimeZero];
         [self.player play];
     }else{
-        NSLog(@"%@",[_delegate getNext]);
+        [_delegate nextTrack];
     }
 }
 
@@ -109,12 +109,10 @@
     return  [NSString stringWithFormat:@"%d:%02i",m, s];
 }
 
-- (NSMutableArray*) generatePlaylistRnd:(NSInteger)trackCount
+- (NSMutableArray*)generateShufflePlaylist:(NSMutableArray*)playlist
 {
-    NSMutableArray * arr=[[NSMutableArray alloc] init];
-    for (int i = 0; i<trackCount; i++) {
-        [arr addObject:@(i)];
-    }
+    if (!playlist) return nil;
+    NSMutableArray * arr=[playlist mutableCopy];
     NSUInteger count = [arr count];
     for (NSUInteger i = 0; i < count; ++i) {
         // Select a random element between i and end of array to swap with.

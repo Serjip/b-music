@@ -21,13 +21,14 @@
 
 - (void)drawBarInside:(NSRect)aRect flipped:(BOOL)flipped
 {
+//    NSRectFill(aRect);
+//    NSLog(@"%f %f",aRect.size.height,aRect.origin.y);
+//    
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-    
     CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(50/255.0, 50/255.0, 50/255.0, 1));
     
     double x1=aRect.size.width;
     double y1=aRect.size.height;
-    
     double t1=2;
     double t2=2.5;
     
@@ -38,7 +39,6 @@
     CGContextMoveToPoint(ctx, t1/2, y1/2);
     CGContextAddLineToPoint(ctx, x1-t1/2, y1/2);
     CGContextStrokePath(ctx);
-    
     
     CGContextSetLineWidth(ctx, t2);
     CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(20/255.0, 20/255.0, 20/255.0, 1));

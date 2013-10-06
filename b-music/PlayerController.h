@@ -16,8 +16,7 @@
 -(void) durationTrack:(double)duration;
 -(void) runtimeTrack:(double) seconds secondsString:(NSString*)str;
 -(void) isPlayerPlaying:(BOOL)flag;
-
--(NSString*)getNext;
+-(void)nextTrack;
 
 -(float) getVolume;
 -(BOOL) getRuntime;
@@ -37,4 +36,5 @@
 -(void)play:(NSString*) URLstring;
 -(void)setRuntime:(double)time;
 -(NSString*)convertTime:(double)seconds;
+- (NSMutableArray*)generateShufflePlaylist:(NSMutableArray*)playlist;
 @end
