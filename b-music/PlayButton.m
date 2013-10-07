@@ -49,8 +49,11 @@
     CGContextStrokeEllipseInRect(ctx, CGRectMake(t/2, t/2, x1-t, y1-t));
     
     if(_pause){
-        CGContextFillRect (ctx, CGRectMake (x0+p, y0+p, (x1-p*2)/3, y1-p*2 ));
-        CGContextFillRect (ctx, CGRectMake (x0+p+(x1-p*2)*2/3, y0+p, (x1-p*2)/3, y1-p*2 ));
+        CGContextMoveToPoint(ctx, x1/2-2, p);
+        CGContextAddLineToPoint(ctx, x1/2-2 , y1-p);
+        CGContextMoveToPoint(ctx, x1/2+2, p);
+        CGContextAddLineToPoint(ctx, x1/2+2 , y1-p);
+        CGContextStrokePath(ctx);
     }else{
         CGContextMoveToPoint(ctx, x0+p, y0+p);
         CGContextAddLineToPoint(ctx, x0+p , y1-p);
