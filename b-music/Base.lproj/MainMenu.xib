@@ -275,7 +275,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="71q-xc-9y7">
                                                                 <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
@@ -346,7 +346,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Lg3-pa-Q82">
                                                                 <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
@@ -462,6 +462,7 @@ CA
                 <outlet property="Controls2" destination="qsF-Cm-hro" id="rg0-g8-hqm"/>
                 <outlet property="Controls3" destination="1DB-vh-iS2" id="C99-9z-Bre"/>
                 <outlet property="controlsMenu" destination="zrA-x4-aEx" id="WdG-He-t8q"/>
+                <outlet property="dockMenu" destination="5rC-c8-uiv" id="FFS-YW-gga"/>
                 <outlet property="editMenu" destination="205" id="UVJ-h2-M51"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
                 <outlet property="viewMenu" destination="296" id="nIm-Eu-Kkx"/>
@@ -676,8 +677,8 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="388" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <searchField verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
-                    <rect key="frame" x="20" y="15" width="303" height="19"/>
+                <searchField verticalHuggingPriority="750" alphaValue="0.50000000000000011" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
+                    <rect key="frame" x="20" y="15" width="310" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="UMB-os-ohg"/>
@@ -692,11 +693,11 @@ CA
                     </connections>
                 </searchField>
                 <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
-                    <rect key="frame" x="331" y="15" width="37" height="19"/>
+                    <rect key="frame" x="338" y="15" width="30" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Hide" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="R0S-dM-Qac">
+                    <buttonCell key="cell" type="square" title="Hide" bezelStyle="shadowlessSquare" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="R0S-dM-Qac">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="miniSystem"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -768,19 +769,19 @@ Gw
         </customView>
         <menu autoenablesItems="NO" id="5rC-c8-uiv" userLabel="Dock Menu">
             <items>
-                <menuItem title="Play" id="5ut-ho-SBK">
+                <menuItem title="Play" tag="1" enabled="NO" id="5ut-ho-SBK">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="play:" target="DoF-XC-WxK" id="zyC-4y-e8C"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Next" id="zNY-MS-hs7">
+                <menuItem title="Next" tag="2" enabled="NO" id="zNY-MS-hs7">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="next:" target="DoF-XC-WxK" id="6hq-TT-98P"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Previous" id="Hra-gZ-3Ic">
+                <menuItem title="Previous" tag="3" enabled="NO" id="Hra-gZ-3Ic">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="previous:" target="DoF-XC-WxK" id="ZJN-5Y-BcZ"/>

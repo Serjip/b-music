@@ -40,6 +40,7 @@
 @property (weak) IBOutlet NSMenu *editMenu;
 @property (weak) IBOutlet NSMenu *viewMenu;
 @property (weak) IBOutlet NSMenu *windowMenu;
+@property (weak) IBOutlet NSMenu *dockMenu;
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;

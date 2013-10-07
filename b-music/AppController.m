@@ -79,6 +79,10 @@
             [item setEnabled:YES];
         }
         
+        for (NSMenuItem * item in [self.dockMenu itemArray]) {
+            [item setEnabled:YES];
+        }
+        
         //Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
                                               handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
@@ -192,12 +196,26 @@
 }
 
 -(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
+//    NSLog(@"%hu",event.keyCode);
     if ([[[NSApp keyWindow] firstResponder] isKindOfClass:[NSTextView class]]){
+        
+        if (event.keyCode==125) {
+            [_tableview keyDown:event];
+        }else if (event.keyCode==126){
+            [_tableview keyDown:event];
+        }else if (event.keyCode==36 && _tableview.selectedRow>-1) {
+            [[[_tableview viewAtColumn:0 row:_tableview.selectedRow makeIfNecessary:NO] viewWithTag:1] performClick:nil];
+            return nil;
+        }
         return event;
+    }
+    
+    if (event.keyCode==36 && _tableview.selectedRow>-1) {
+        [[[_tableview viewAtColumn:0 row:_tableview.selectedRow makeIfNecessary:NO] viewWithTag:1] performClick:nil];
+        return nil;
     }
     [_tableview keyDown:event];
     return nil;
-    NSLog(@"%hu",event.keyCode);
 }
 
 -(void) removeSubviews{
