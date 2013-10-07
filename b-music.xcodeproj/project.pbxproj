@@ -218,7 +218,6 @@
 		D21CE9F717FAFA0900F5AF42 /* b-music */ = {
 			isa = PBXGroup;
 			children = (
-				D271B5D3180208A500D92282 /* b-music.entitlements */,
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
@@ -243,6 +242,7 @@
 		D21CE9F817FAFA0900F5AF42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D271B5D3180208A500D92282 /* b-music.entitlements */,
 				D21CE9F917FAFA0900F5AF42 /* b-music-Info.plist */,
 				D21CE9FA17FAFA0900F5AF42 /* InfoPlist.strings */,
 				D21CE9FD17FAFA0900F5AF42 /* main.m */,

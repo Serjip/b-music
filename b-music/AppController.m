@@ -455,7 +455,7 @@
     [self requestToAddtrack];
 }
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
-    _row==([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+    _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
     [self requestToRemovetrack];
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");

@@ -36,6 +36,8 @@
         }else if (res[@"success"]){
             [_delegate cancelSheet:nil user_id:0 execute:_someMethod];
         }
+        
+        [_delegate cancelSheet:nil user_id:0 execute:_someMethod];
     }
 }
 - (void)windowDidLoad

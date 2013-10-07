@@ -225,14 +225,14 @@ CA
                             <constraint firstAttribute="height" constant="50" id="tSp-pq-X5k"/>
                         </constraints>
                     </customView>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg">
+                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg">
                         <rect key="frame" x="0.0" y="30" width="405" height="405"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="xlY-Ir-Lny">
                             <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO" customClass="TableView">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="Ua7-TF-GCO" customClass="TableView">
                                     <rect key="frame" x="0.0" y="0.0" width="405" height="405"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -545,71 +545,12 @@ CA
                         <action selector="next:" target="DoF-XC-WxK" id="AZZ-46-LPz"/>
                     </connections>
                 </button>
-                <button ambiguous="YES" misplaced="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button" customClass="ShowPlaylistButton">
-                    <rect key="frame" x="150" y="15" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="S8x-l3-CZh"/>
-                        <constraint firstAttribute="height" constant="20" id="jV9-rW-Xek"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6g-3I-kvV">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showPlaylist:" target="DoF-XC-WxK" id="1a7-qr-Uhe"/>
-                    </connections>
-                </button>
-                <button ambiguous="YES" misplaced="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button" customClass="ShowSearchButton">
-                    <rect key="frame" x="170" y="15" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="MPP-BN-Ykf"/>
-                        <constraint firstAttribute="width" constant="20" id="doa-Y7-WgQ"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cdc-qB-VZD">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showSearch:" target="DoF-XC-WxK" id="GL2-ZC-LfA"/>
-                    </connections>
-                </button>
-                <button ambiguous="YES" misplaced="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button" customClass="RepeatButton">
-                    <rect key="frame" x="190" y="15" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="5fj-P9-QEh"/>
-                        <constraint firstAttribute="width" constant="20" id="QKL-16-pbl"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ien-3c-DKA">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="repeat:" target="DoF-XC-WxK" id="igJ-gB-Zpe"/>
-                    </connections>
-                </button>
-                <button ambiguous="YES" misplaced="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button" customClass="ShuffleButton">
-                    <rect key="frame" x="210" y="15" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="PJW-7p-Rqs"/>
-                        <constraint firstAttribute="height" constant="20" id="whs-5b-Iqb"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSEnterFullScreenTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W7K-Yw-i7n">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="shuffle:" target="DoF-XC-WxK" id="f48-1b-Tr1"/>
-                    </connections>
-                </button>
-                <slider verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
-                    <rect key="frame" x="238" y="17" width="123" height="17"/>
+                <slider verticalHuggingPriority="750" ambiguous="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
+                    <rect key="frame" x="261" y="17" width="100" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="OuY-hE-f7S"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" priority="852" constant="100" id="nh9-Yv-DeZ"/>
                     </constraints>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
                     <connections>
@@ -631,27 +572,100 @@ CA
                         <action selector="close:" target="DoF-XC-WxK" id="SgF-Rs-TCp"/>
                     </connections>
                 </button>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="9IN-Zg-Fm2">
+                    <rect key="frame" x="130" y="0.0" width="120" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button" customClass="ShowPlaylistButton">
+                            <rect key="frame" x="20" y="15" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="S8x-l3-CZh"/>
+                                <constraint firstAttribute="height" constant="20" id="jV9-rW-Xek"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSListViewTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="j6g-3I-kvV">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showPlaylist:" target="DoF-XC-WxK" id="1a7-qr-Uhe"/>
+                            </connections>
+                        </button>
+                        <button tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button" customClass="RepeatButton">
+                            <rect key="frame" x="60" y="15" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="5fj-P9-QEh"/>
+                                <constraint firstAttribute="width" constant="20" id="QKL-16-pbl"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ien-3c-DKA">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="repeat:" target="DoF-XC-WxK" id="igJ-gB-Zpe"/>
+                            </connections>
+                        </button>
+                        <button tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button" customClass="ShowSearchButton">
+                            <rect key="frame" x="40" y="15" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="MPP-BN-Ykf"/>
+                                <constraint firstAttribute="width" constant="20" id="doa-Y7-WgQ"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cdc-qB-VZD">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showSearch:" target="DoF-XC-WxK" id="GL2-ZC-LfA"/>
+                            </connections>
+                        </button>
+                        <button tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button" customClass="ShuffleButton">
+                            <rect key="frame" x="80" y="15" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="PJW-7p-Rqs"/>
+                                <constraint firstAttribute="height" constant="20" id="whs-5b-Iqb"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSEnterFullScreenTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W7K-Yw-i7n">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="shuffle:" target="DoF-XC-WxK" id="f48-1b-Tr1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="xui-Zx-xpI" secondAttribute="centerY" id="1h0-mk-7Bx"/>
+                        <constraint firstAttribute="width" constant="120" id="3aN-2m-RoE"/>
+                        <constraint firstItem="N0i-Xy-91b" firstAttribute="leading" secondItem="fTl-PR-A9a" secondAttribute="trailing" id="6A7-7q-pni"/>
+                        <constraint firstAttribute="centerY" secondItem="XrI-JG-hfx" secondAttribute="centerY" id="9fv-r8-ape"/>
+                        <constraint firstItem="XrI-JG-hfx" firstAttribute="leading" secondItem="xui-Zx-xpI" secondAttribute="trailing" id="B5Z-wf-ENQ"/>
+                        <constraint firstItem="fTl-PR-A9a" firstAttribute="leading" secondItem="XrI-JG-hfx" secondAttribute="trailing" id="UzB-Oa-mRz"/>
+                        <constraint firstAttribute="centerY" secondItem="N0i-Xy-91b" secondAttribute="centerY" id="WOV-kZ-V8D"/>
+                        <constraint firstAttribute="height" constant="50" id="dXL-KD-Duw"/>
+                        <constraint firstItem="xui-Zx-xpI" firstAttribute="leading" secondItem="9IN-Zg-Fm2" secondAttribute="leading" constant="20" symbolic="YES" id="eOU-H6-yVT"/>
+                        <constraint firstAttribute="centerY" secondItem="fTl-PR-A9a" secondAttribute="centerY" id="qxe-xA-2Ox"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="jz2-d1-dqI" firstAttribute="leading" secondItem="qsF-Cm-hro" secondAttribute="leading" constant="6" id="5Fx-IK-GgY"/>
-                <constraint firstItem="APo-cf-DUn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="N0i-Xy-91b" secondAttribute="trailing" constant="8" symbolic="YES" id="5HM-CW-zXg"/>
                 <constraint firstAttribute="centerY" secondItem="nPK-OF-Yv0" secondAttribute="centerY" id="6Np-ph-MIE"/>
                 <constraint firstAttribute="centerY" secondItem="rTt-bS-Gpj" secondAttribute="centerY" id="ARU-1F-xde"/>
                 <constraint firstAttribute="centerY" secondItem="LWS-5t-NVl" secondAttribute="centerY" id="Ehe-pn-utY"/>
-                <constraint firstAttribute="centerY" secondItem="XrI-JG-hfx" secondAttribute="centerY" id="NmI-nU-9vV"/>
-                <constraint firstItem="N0i-Xy-91b" firstAttribute="leading" secondItem="fTl-PR-A9a" secondAttribute="trailing" id="OrK-In-QbS"/>
-                <constraint firstAttribute="centerY" secondItem="N0i-Xy-91b" secondAttribute="centerY" id="R8O-eE-p6z"/>
+                <constraint firstItem="APo-cf-DUn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9IN-Zg-Fm2" secondAttribute="trailing" id="aqN-3S-azZ"/>
                 <constraint firstAttribute="trailing" secondItem="APo-cf-DUn" secondAttribute="trailing" constant="20" symbolic="YES" id="aww-od-bkP"/>
                 <constraint firstItem="rTt-bS-Gpj" firstAttribute="leading" secondItem="nPK-OF-Yv0" secondAttribute="trailing" id="dVZ-Tw-C7L"/>
                 <constraint firstItem="nPK-OF-Yv0" firstAttribute="leading" secondItem="jz2-d1-dqI" secondAttribute="trailing" constant="8" id="dic-qg-Hd8"/>
+                <constraint firstItem="9IN-Zg-Fm2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LWS-5t-NVl" secondAttribute="trailing" id="e5G-KE-w0k"/>
                 <constraint firstItem="jz2-d1-dqI" firstAttribute="top" secondItem="qsF-Cm-hro" secondAttribute="top" constant="6" id="hUg-vo-QLM"/>
-                <constraint firstItem="xui-Zx-xpI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LWS-5t-NVl" secondAttribute="trailing" constant="10" symbolic="YES" id="hyV-3b-Isr"/>
-                <constraint firstAttribute="centerY" secondItem="xui-Zx-xpI" secondAttribute="centerY" id="jSY-Mv-rXm"/>
-                <constraint firstAttribute="centerY" secondItem="fTl-PR-A9a" secondAttribute="centerY" id="rPq-4h-hjP"/>
-                <constraint firstItem="fTl-PR-A9a" firstAttribute="leading" secondItem="XrI-JG-hfx" secondAttribute="trailing" id="rTD-Gv-GEt"/>
+                <constraint firstAttribute="centerX" secondItem="9IN-Zg-Fm2" secondAttribute="centerX" id="qZM-Ls-4pG"/>
                 <constraint firstAttribute="centerY" secondItem="APo-cf-DUn" secondAttribute="centerY" id="w7N-J3-y1x"/>
-                <constraint firstItem="XrI-JG-hfx" firstAttribute="leading" secondItem="xui-Zx-xpI" secondAttribute="trailing" id="xDa-14-JjY"/>
                 <constraint firstItem="LWS-5t-NVl" firstAttribute="leading" secondItem="rTt-bS-Gpj" secondAttribute="trailing" id="y2d-Lv-YXj"/>
+                <constraint firstAttribute="centerY" secondItem="9IN-Zg-Fm2" secondAttribute="centerY" id="y34-ey-BpT"/>
             </constraints>
         </customView>
         <customView id="1DB-vh-iS2" userLabel="Controls3">
@@ -676,9 +690,9 @@ CA
                 <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
                     <rect key="frame" x="331" y="15" width="37" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Hide" bezelStyle="texturedRounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="R0S-dM-Qac">
+                    <buttonCell key="cell" type="roundTextured" title="Hide" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="R0S-dM-Qac">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="smallSystem"/>
+                        <font key="font" metaFont="system"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
