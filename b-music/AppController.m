@@ -80,8 +80,8 @@
         }
         
         //Monitor hotkeys
-//        [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
-//                                              handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
+        [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
+                                              handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
         
         _isInitialLoadingFinish=YES;
         
@@ -192,34 +192,12 @@
 }
 
 -(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
-    
-    NSLog(@"%hu",event.keyCode);
-    
-    
-    NSUInteger flags = [event modifierFlags]& NSCommandKeyMask;
-    
-    
-    NSResponder *firstResponder = [[NSApp keyWindow] firstResponder];
-    
-    NSLog(@"firstresponfer %@",[firstResponder class] );
-    
-    
-    
-    if ([firstResponder isKindOfClass:[NSTextView class]]){
-        
+    if ([[[NSApp keyWindow] firstResponder] isKindOfClass:[NSTextView class]]){
         return event;
     }
-    
-    NSLog( @"Monitor events %i" ,event.keyCode);
-    switch (event.keyCode) {
-        case 01:
-            
-            break;
-        default:
-            if (!flags) [_tableview keyDown:event];
-            break;
-    }
-    return event;
+    [_tableview keyDown:event];
+    return nil;
+    NSLog(@"%hu",event.keyCode);
 }
 
 -(void) removeSubviews{
