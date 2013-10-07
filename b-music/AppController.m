@@ -197,6 +197,9 @@
 
 -(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
 //    NSLog(@"%hu",event.keyCode);
+    
+    if (event.modifierFlags& NSCommandKeyMask) return event;
+    
     if ([[[NSApp keyWindow] firstResponder] isKindOfClass:[NSTextView class]]){
         
         if (event.keyCode==125) {
@@ -501,7 +504,7 @@
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
     id window=[[NSApp delegate] window];
-    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 313, 80) display:YES animate:YES];
+    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 350, 80) display:YES animate:YES];
 }
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
     int selectTrack=(int)[_viewPlaylist indexOfObject:_currentTrack];
