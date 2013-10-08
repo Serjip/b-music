@@ -22,6 +22,7 @@
 		D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2617FAFAFE00F5AF42 /* AppController.m */; };
 		D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2917FB016D00F5AF42 /* Settings.m */; };
 		D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F538417FEF0E800703A88 /* SystemConfiguration.framework */; };
+		D253E1681803504400BDC92A /* HideSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D253E1671803504400BDC92A /* HideSearchButton.m */; };
 		D2825B2917FC20CE00F725BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B2817FC20CE00F725BD /* WebKit.framework */; };
 		D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B2B17FC20F200F725BD /* SheetWindowController.m */; };
 		D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2825B2C17FC20F200F725BD /* SheetWindowController.xib */; };
@@ -87,6 +88,8 @@
 		D21CEA2817FB016D00F5AF42 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D21CEA2917FB016D00F5AF42 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 		D21F538417FEF0E800703A88 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D253E1661803504400BDC92A /* HideSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideSearchButton.h; sourceTree = "<group>"; };
+		D253E1671803504400BDC92A /* HideSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideSearchButton.m; sourceTree = "<group>"; };
 		D271B5D3180208A500D92282 /* b-music.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "b-music.entitlements"; sourceTree = "<group>"; };
 		D2825B2817FC20CE00F725BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D2825B2A17FC20F200F725BD /* SheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetWindowController.h; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 		D2825B5E17FD8BA600F725BD /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				D253E1661803504400BDC92A /* HideSearchButton.h */,
+				D253E1671803504400BDC92A /* HideSearchButton.m */,
 				D2825B7117FD8E1E00F725BD /* ShowPlaylistButton.h */,
 				D2825B7217FD8E1E00F725BD /* ShowPlaylistButton.m */,
 				D2825B6E17FD8D7400F725BD /* ShowSearchButton.h */,
@@ -503,6 +508,7 @@
 				D213286E180065D000AFF98C /* ControlsView.m in Sources */,
 				D2825B4F17FC9B1200F725BD /* TableRowView.m in Sources */,
 				D2825B5317FC9BA700F725BD /* TableView.m in Sources */,
+				D253E1681803504400BDC92A /* HideSearchButton.m in Sources */,
 				D2825B3217FC24E400F725BD /* PlayerWindow.m in Sources */,
 				D2825B6D17FD8C2900F725BD /* RewindButton.m in Sources */,
 				D2825B5D17FD8BA100F725BD /* PlayButton.m in Sources */,
