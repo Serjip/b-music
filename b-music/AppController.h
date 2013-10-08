@@ -20,7 +20,9 @@
 #import "Settings.h"
 #import "Api.h"
 
-@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>
+@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>{
+    NSStatusItem *statusItem;
+}
 
 @property SheetWindowController * sheet;
 @property Settings * S;
@@ -41,6 +43,7 @@
 @property (weak) IBOutlet NSMenu *viewMenu;
 @property (weak) IBOutlet NSMenu *windowMenu;
 @property (weak) IBOutlet NSMenu *dockMenu;
+@property (weak) IBOutlet NSMenu *statusMenu;
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;

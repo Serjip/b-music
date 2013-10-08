@@ -464,6 +464,7 @@ CA
                 <outlet property="controlsMenu" destination="zrA-x4-aEx" id="WdG-He-t8q"/>
                 <outlet property="dockMenu" destination="5rC-c8-uiv" id="FFS-YW-gga"/>
                 <outlet property="editMenu" destination="205" id="UVJ-h2-M51"/>
+                <outlet property="statusMenu" destination="452-f3-juW" id="jhR-rL-i7J"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
                 <outlet property="viewMenu" destination="296" id="nIm-Eu-Kkx"/>
                 <outlet property="windowMenu" destination="24" id="lJg-1C-TwT"/>
@@ -677,7 +678,7 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="388" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <searchField verticalHuggingPriority="750" alphaValue="0.50000000000000011" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
+                <searchField verticalHuggingPriority="750" misplaced="YES" alphaValue="0.50000000000000011" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="JZA-dL-eKG">
                     <rect key="frame" x="20" y="15" width="309" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -692,10 +693,10 @@ CA
                         <action selector="search:" target="DoF-XC-WxK" id="Ha8-gQ-eYl"/>
                     </connections>
                 </searchField>
-                <button verticalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
+                <button verticalHuggingPriority="750" misplaced="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="5PZ-YY-h9X">
                     <rect key="frame" x="337" y="15" width="31" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="squareTextured" title="Hide" bezelStyle="texturedSquare" alignment="center" controlSize="small" borderStyle="border" inset="2" id="R0S-dM-Qac">
+                    <buttonCell key="cell" type="squareTextured" title="hide" bezelStyle="texturedSquare" imagePosition="overlaps" alignment="center" controlSize="small" borderStyle="border" inset="2" id="R0S-dM-Qac">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                         <string key="keyEquivalent" base64-UTF8="YES">
@@ -767,6 +768,28 @@ Gw
                 <constraint firstItem="1rg-pt-0fA" firstAttribute="leading" secondItem="fl9-Ey-vmi" secondAttribute="leading" id="zzx-bt-DtB"/>
             </constraints>
         </customView>
+        <menu autoenablesItems="NO" id="452-f3-juW" userLabel="Status Menu">
+            <items>
+                <menuItem title="Play" tag="1" enabled="NO" id="JdV-ik-oi1">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="play:" target="DoF-XC-WxK" id="MDg-Sf-kQl"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Next" tag="2" enabled="NO" id="BoE-yK-pYr">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="next:" target="DoF-XC-WxK" id="F6b-hR-5fc"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Previous" tag="3" enabled="NO" id="Bmo-bo-Mmg">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="previous:" target="DoF-XC-WxK" id="8BS-Df-0PP"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
         <menu autoenablesItems="NO" id="5rC-c8-uiv" userLabel="Dock Menu">
             <items>
                 <menuItem title="Play" tag="1" enabled="NO" id="5ut-ho-SBK">

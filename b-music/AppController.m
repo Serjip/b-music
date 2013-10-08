@@ -40,6 +40,12 @@
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
  
     if (!_isInitialLoadingFinish) {
+        
+//        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+//        [statusItem setMenu:self.statusMenu];
+//        [statusItem setHighlightMode:YES];
+//        [statusItem setImage:[NSImage imageNamed:@"status-play.png"]];
+        
         NSLog(@"%@",self.S);
         if (!self.S.settings.token) {
             [self activateSeet:YES clearCookiers:NO withURLstring:nil execute:@selector(requestToMainPlaylist)];

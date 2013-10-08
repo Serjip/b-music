@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HideSearchButton : NSButtonCell
+@interface HideSearchButton : NSButton
 
 @end
