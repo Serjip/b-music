@@ -202,7 +202,8 @@
 }
 
 -(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
-//    NSLog(@"%hu",event.keyCode);
+//    NSLog(@"%hu %@",event.keyCode, [[[NSApp keyWindow] firstResponder] className]);
+//    return event;
     
     if (event.modifierFlags& NSCommandKeyMask) return event;
     
@@ -216,6 +217,8 @@
             [[[_tableview viewAtColumn:0 row:_tableview.selectedRow makeIfNecessary:NO] viewWithTag:1] performClick:nil];
             return nil;
         }
+        return event;
+    }else if ([[[[NSApp keyWindow] firstResponder] className] isEqualToString:@"WebHTMLView"]){
         return event;
     }
     
@@ -348,6 +351,7 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
+    if (_soundPlaylist.count==0) return;
     
     [self setPauseStateForButton:_currentTrack state:NO];
     
@@ -377,6 +381,7 @@
     }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
+    if (_soundPlaylist.count==0) return;
     [self setPauseStateForButton:_currentTrack state:NO];
     
     NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack]+1;
@@ -390,6 +395,7 @@
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
+    if (_soundPlaylist.count==0) return;
     [self setPauseStateForButton:_currentTrack state:NO];
     NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
     if (num-1<0) num=0; else num-=1;
