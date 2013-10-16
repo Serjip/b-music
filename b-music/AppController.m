@@ -89,9 +89,13 @@
             [item setEnabled:YES];
         }
         
-        //Monitor hotkeys
+        //Local Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
-                                              handler:^(NSEvent *event) { return [self monitorKeydownEvents:event];}];
+                                              handler:^(NSEvent *event) { return [self localMonitorKeydownEvents:event];}];
+        //GLobal Monitor hotkeys
+
+//        [NSEvent addGlobalMonitorForEventsMatchingMask:(NSKeyDownMask)
+//                                               handler:^(NSEvent *event){NSLog(@"GLOBAL");}];
         
         _isInitialLoadingFinish=YES;
         
@@ -201,7 +205,7 @@
     [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 }
 
--(NSEvent*) monitorKeydownEvents:(NSEvent*)event{
+-(NSEvent*) localMonitorKeydownEvents:(NSEvent*)event{
 //    NSLog(@"%hu %@",event.keyCode, [[[NSApp keyWindow] firstResponder] className]);
 //    return event;
     
@@ -228,6 +232,9 @@
     }
     [_tableview keyDown:event];
     return nil;
+}
+-(void) globalMonitorKeydownEvents:(NSEvent*)event{
+    NSLog(@"%hu",event.keyCode);
 }
 
 -(void) removeSubviews{
