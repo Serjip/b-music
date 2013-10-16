@@ -143,6 +143,7 @@
 		D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButtonCell.m; sourceTree = "<group>"; };
 		D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveButtonCell.h; sourceTree = "<group>"; };
 		D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveButtonCell.m; sourceTree = "<group>"; };
+		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +202,7 @@
 		D21CE9F017FAFA0900F5AF42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */,
 				D21F538417FEF0E800703A88 /* SystemConfiguration.framework */,
 				D2825B3D17FC408700F725BD /* CoreMedia.framework */,
 				D2825B3B17FC2E2F00F725BD /* AVFoundation.framework */,

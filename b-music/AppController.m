@@ -24,6 +24,8 @@
     NSString * _searchQuery;
     
     NSInteger _row;
+    
+    BOOL _userHoldKey;//global key event holding indicator
 }
 - (id)init
 {
@@ -93,9 +95,8 @@
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
                                               handler:^(NSEvent *event) { return [self localMonitorKeydownEvents:event];}];
         //GLobal Monitor hotkeys
-
-//        [NSEvent addGlobalMonitorForEventsMatchingMask:(NSKeyDownMask)
-//                                               handler:^(NSEvent *event){NSLog(@"GLOBAL");}];
+        [NSEvent addGlobalMonitorForEventsMatchingMask: (NSKeyDownMask | NSSystemDefinedMask)
+                                               handler: ^(NSEvent *event) {[self globalMonitorKeydownEvents:event];}];
         
         _isInitialLoadingFinish=YES;
         
@@ -146,8 +147,6 @@
 }
 
 -(void)requestToAddtrack{
-    
-    
     id obj=[_viewPlaylist objectAtIndex:_row];
     NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
     id response=[self.api requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
@@ -234,7 +233,47 @@
     return nil;
 }
 -(void) globalMonitorKeydownEvents:(NSEvent*)event{
-    NSLog(@"%hu",event.keyCode);
+    if (!(event.modifierFlags&NSCommandKeyMask)) return;
+//    NSLog(@"%li",event.data1);
+    switch (event.data1) {
+        case 1051136://Play
+            [self play:nil];
+            break;
+        case 1247745://ffwd
+            _userHoldKey=YES;
+            double change1=[[self.BottomControls1 viewWithTag:2] doubleValue]+[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
+            if (change1>[[self.BottomControls1 viewWithTag:2] maxValue]){
+                [self next:nil];
+                [[self.BottomControls1 viewWithTag:2] setProgress:0];
+                [self.PC setRuntime:0];
+            }else{
+                [[self.BottomControls1 viewWithTag:2] setProgress:change1];
+                [self.PC setRuntime:change1];
+            }
+            
+            break;
+        case 1248000://End ffwd
+            if (!_userHoldKey) [self next:nil];
+            _userHoldKey=NO;
+            break;
+        case 1313281://Rewind
+            _userHoldKey=YES;
+            double change=[[self.BottomControls1 viewWithTag:2] doubleValue]-[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
+            if (change<0){
+                [self previous:nil];
+                
+                [[self.BottomControls1 viewWithTag:2] setProgress:[[self.BottomControls1 viewWithTag:2] maxValue]];
+                [self.PC setRuntime:[[self.BottomControls1 viewWithTag:2] maxValue]];
+            }else{
+                [[self.BottomControls1 viewWithTag:2] setProgress:change];
+                [self.PC setRuntime:change];
+            }
+            break;
+        case 1313536://End Rewind
+            if (!_userHoldKey) [self previous:nil];
+            _userHoldKey=NO;
+            break;
+    }
 }
 
 -(void) removeSubviews{
