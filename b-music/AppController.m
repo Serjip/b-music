@@ -402,7 +402,10 @@
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
         NSInteger row=[_tableview rowForView:sender];
         
-        if (![_soundPlaylist isEqualTo:_viewPlaylist]) _soundPlaylist=[_viewPlaylist mutableCopy]; //Chech to play new playlist
+        if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+            _soundPlaylist=[_viewPlaylist mutableCopy];
+            _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
+        }
         
         id obj=[_soundPlaylist objectAtIndex:row];
         
