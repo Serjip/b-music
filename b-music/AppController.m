@@ -351,8 +351,6 @@
  *
  *****************************************************************************************/
 -(IBAction)play:(id)sender{ NSLog(@"Play");
-    if (_soundPlaylist.count==0) return;
-    
     [self setPauseStateForButton:_currentTrack state:NO];
     
     if ([sender isKindOfClass:[PlayButtonCell class]]) {
@@ -381,7 +379,6 @@
     }
 }
 -(IBAction)next:(id)sender{ NSLog(@"Next");
-    if (_soundPlaylist.count==0) return;
     [self setPauseStateForButton:_currentTrack state:NO];
     
     NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack]+1;
@@ -395,7 +392,6 @@
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
-    if (_soundPlaylist.count==0) return;
     [self setPauseStateForButton:_currentTrack state:NO];
     NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
     if (num-1<0) num=0; else num-=1;
