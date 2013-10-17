@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A598" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="3336"/>
     </dependencies>
     <objects>
@@ -26,7 +26,9 @@
                     <webView translatesAutoresizingMaskIntoConstraints="NO" id="Qlx-pm-SZd">
                         <rect key="frame" x="0.0" y="61" width="665" height="349"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12"/>
+                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
+                            <nil key="identifier"/>
+                        </webPreferences>
                         <connections>
                             <outlet property="frameLoadDelegate" destination="-2" id="IdX-hK-NjV"/>
                         </connections>
@@ -45,8 +47,21 @@ Gw
                             <action selector="cancel:" target="-2" id="hyw-wf-Vlm"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5TA-s8-vQ4">
+                        <rect key="frame" x="526" y="13" width="125" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Sign up (free)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VQs-Rw-Zfn">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="signup:" target="-2" id="ruG-Ak-FRm"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5TA-s8-vQ4" secondAttribute="trailing" constant="20" symbolic="YES" id="2Lh-W0-SQG"/>
+                    <constraint firstAttribute="bottom" secondItem="5TA-s8-vQ4" secondAttribute="bottom" constant="20" symbolic="YES" id="3Go-3c-IWp"/>
                     <constraint firstItem="Qlx-pm-SZd" firstAttribute="top" secondItem="2" secondAttribute="top" id="7hK-mi-URK"/>
                     <constraint firstItem="Qlx-pm-SZd" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="WFa-02-7uI"/>
                     <constraint firstAttribute="bottom" secondItem="q20-j1-GUP" secondAttribute="bottom" constant="20" id="hsV-5d-VO7"/>

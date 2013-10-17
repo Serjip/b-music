@@ -79,4 +79,7 @@
 -(IBAction)cancel:(id)sender{NSLog(@"CancelSheet");
     [_delegate cancelSheet:nil user_id:0 execute:nil];
 }
+- (IBAction)signup:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/"]];
+}
 @end
