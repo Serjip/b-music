@@ -19,7 +19,7 @@
         
         _repeat = [coder decodeBoolForKey:@"repeat"];
         _shuffle = [coder decodeBoolForKey:@"shuffle"];
-        _runTime = [coder decodeBoolForKey:@"runTime"];
+        _runTime = [coder decodeBoolForKey:@"runtime"];
         _alwaysOnTop = [coder decodeBoolForKey:@"alwaysOnTop"];
         _volume = [coder decodeFloatForKey:@"volume"];
         

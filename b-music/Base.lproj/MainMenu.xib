@@ -74,9 +74,41 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Edit" id="217">
-                    <menu key="submenu" title="Edit" autoenablesItems="NO" id="205">
+                <menuItem title="Edit" id="217" userLabel="Menu Item - Edit">
+                    <menu key="submenu" title="Edit" autoenablesItems="NO" id="205" userLabel="Menu - Edit">
                         <items>
+                            <menuItem title="Undo" keyEquivalent="z" id="7by-Bv-KSJ">
+                                <connections>
+                                    <action selector="undo:" target="-1" id="3Av-eo-Lm4"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Redo" keyEquivalent="Z" id="9yu-39-T52">
+                                <connections>
+                                    <action selector="redo:" target="-1" id="yWS-iZ-gjq"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Ron-3a-5ek"/>
+                            <menuItem title="Cut" keyEquivalent="x" id="3bB-FT-vfj">
+                                <connections>
+                                    <action selector="cut:" target="-1" id="7G8-5K-2ZZ"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Copy" keyEquivalent="c" id="LyZ-E3-GKH">
+                                <connections>
+                                    <action selector="copy:" target="-1" id="S9v-vd-rKl"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Paste" keyEquivalent="v" id="gKR-o5-c7V">
+                                <connections>
+                                    <action selector="paste:" target="-1" id="O3w-wB-Pmv"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Select All" keyEquivalent="a" id="55A-Zn-krm">
+                                <connections>
+                                    <action selector="selectAll:" target="-1" id="UCA-lI-LCT"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="d4Y-GC-YDs"/>
                             <menuItem title="Add" enabled="NO" keyEquivalent="d" id="202">
                                 <connections>
                                     <action selector="addTrack:" target="DoF-XC-WxK" id="Xnd-aJ-cVD"/>
@@ -551,7 +583,7 @@ CA
                         <action selector="next:" target="DoF-XC-WxK" id="AZZ-46-LPz"/>
                     </connections>
                 </button>
-                <slider verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
+                <slider verticalHuggingPriority="750" ambiguous="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
                     <rect key="frame" x="261" y="17" width="100" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
