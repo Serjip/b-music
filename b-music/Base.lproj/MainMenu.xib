@@ -27,10 +27,10 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="236">
+                            <menuItem isSeparatorItem="YES" hidden="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," id="129"/>
+                            <menuItem title="Preferences…" hidden="YES" keyEquivalent="," id="129"/>
                             <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -203,12 +203,12 @@ CA
                 <menuItem title="Window" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">
                         <items>
-                            <menuItem title="Minimize" keyEquivalent="m" id="23">
+                            <menuItem title="Minimize" hidden="YES" keyEquivalent="m" id="23">
                                 <connections>
                                     <action selector="performMiniaturize:" target="-1" id="37"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Zoom" id="239">
+                            <menuItem title="Zoom" hidden="YES" id="239">
                                 <connections>
                                     <action selector="performZoom:" target="-1" id="240"/>
                                 </connections>
@@ -761,7 +761,6 @@ Gw
             </subviews>
             <constraints>
                 <constraint firstItem="ERj-wH-nft" firstAttribute="top" secondItem="1DB-vh-iS2" secondAttribute="top" constant="6" id="4PC-2o-Y9W"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5PZ-YY-h9X" secondAttribute="trailing" constant="20" symbolic="YES" id="Bkl-n5-OFp"/>
                 <constraint firstAttribute="centerY" secondItem="JZA-dL-eKG" secondAttribute="centerY" id="Jv7-FG-Hus"/>
                 <constraint firstItem="5PZ-YY-h9X" firstAttribute="leading" secondItem="JZA-dL-eKG" secondAttribute="trailing" constant="8" id="Kuk-GF-Z8I"/>
                 <constraint firstItem="JZA-dL-eKG" firstAttribute="leading" secondItem="1DB-vh-iS2" secondAttribute="leading" constant="20" symbolic="YES" id="SX6-bG-TtA"/>
