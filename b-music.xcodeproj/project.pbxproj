@@ -23,8 +23,6 @@
 		D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2917FB016D00F5AF42 /* Settings.m */; };
 		D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F538417FEF0E800703A88 /* SystemConfiguration.framework */; };
 		D253E1681803504400BDC92A /* HideSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D253E1671803504400BDC92A /* HideSearchButton.m */; };
-		D27387E5180472E100E29AE9 /* status-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = D27387E4180472E100E29AE9 /* status-pause.png */; };
-		D27387E7180472EA00E29AE9 /* status-play.png in Resources */ = {isa = PBXBuildFile; fileRef = D27387E6180472EA00E29AE9 /* status-play.png */; };
 		D2825B2917FC20CE00F725BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2825B2817FC20CE00F725BD /* WebKit.framework */; };
 		D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B2B17FC20F200F725BD /* SheetWindowController.m */; };
 		D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2825B2C17FC20F200F725BD /* SheetWindowController.xib */; };
@@ -93,8 +91,6 @@
 		D253E1661803504400BDC92A /* HideSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideSearchButton.h; sourceTree = "<group>"; };
 		D253E1671803504400BDC92A /* HideSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideSearchButton.m; sourceTree = "<group>"; };
 		D271B5D3180208A500D92282 /* b-music.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "b-music.entitlements"; sourceTree = "<group>"; };
-		D27387E4180472E100E29AE9 /* status-pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-pause.png"; sourceTree = "<group>"; };
-		D27387E6180472EA00E29AE9 /* status-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-play.png"; sourceTree = "<group>"; };
 		D2825B2817FC20CE00F725BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D2825B2A17FC20F200F725BD /* SheetWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetWindowController.h; sourceTree = "<group>"; };
 		D2825B2B17FC20F200F725BD /* SheetWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetWindowController.m; sourceTree = "<group>"; };
@@ -251,8 +247,6 @@
 		D21CE9F817FAFA0900F5AF42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D27387E6180472EA00E29AE9 /* status-play.png */,
-				D27387E4180472E100E29AE9 /* status-pause.png */,
 				D271B5D3180208A500D92282 /* b-music.entitlements */,
 				D21CE9F917FAFA0900F5AF42 /* b-music-Info.plist */,
 				D21CE9FA17FAFA0900F5AF42 /* InfoPlist.strings */,
@@ -488,8 +482,6 @@
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
 				D21CEA0217FAFA0900F5AF42 /* Credits.html in Resources */,
-				D27387E7180472EA00E29AE9 /* status-play.png in Resources */,
-				D27387E5180472E100E29AE9 /* status-pause.png in Resources */,
 				D21CEA0817FAFA0900F5AF42 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
