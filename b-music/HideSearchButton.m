@@ -10,17 +10,11 @@
 #define thikess 2
 @implementation HideSearchButton
 
-- (id)initWithFrame:(NSRect)frame
+- (void)drawRect:(NSRect)dirtyRect
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
-
-- (void)drawRect:(CGRect)rect
-{
+    dirtyRect.size.width-=2;
+    dirtyRect.size.height-=2;
+    
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
     if ([self.cell isHighlighted]) {
@@ -31,13 +25,34 @@
         CGContextSetRGBFillColor (ctx, 60/255.0, 60/255.0, 60/255.0, 1);
     }
     
-    NSBezierPath* thePath = [NSBezierPath bezierPath];
     
-    [thePath setLineWidth:thikess];
-    CGRect aRect=NSMakeRect(self.bounds.origin.x+thikess, self.bounds.origin.y+thikess, self.bounds.size.width-2*thikess, self.bounds.size.height-2*thikess);
-    [thePath appendBezierPathWithRoundedRect:aRect xRadius:8 yRadius:8];
-    [thePath stroke];
+    double px=2;
+    double py=2;
+    double x1=dirtyRect.size.width-px;
+    double y1=dirtyRect.size.height-py;
+    double t=2.1;
     
+    //----------------------
+    CGContextSetLineWidth(ctx, 1);
+    
+    CGContextMoveToPoint(ctx, x1*0.6+t/2, y1*0.6+t/2);
+    CGContextAddLineToPoint(ctx, t*1.5, t*1.5);
+    
+    CGContextMoveToPoint(ctx, t*1.5, y1*0.6+t/2);
+    CGContextAddLineToPoint(ctx, x1*0.6+t/2, t*1.5);
+    
+    CGContextStrokePath(ctx);
+    //----------------------
+    
+    CGContextSetLineCap(ctx, kCGLineCapRound);
+    CGContextSetLineWidth(ctx, t);
+    
+    CGContextAddEllipseInRect(ctx, CGRectMake(t, t, x1*0.6, y1*0.6));
+    CGContextStrokePath(ctx);
+    
+    CGContextMoveToPoint(ctx, x1*0.6+t/2, y1*0.6+t/2);
+    CGContextAddLineToPoint(ctx, x1-t, y1-t);
+    CGContextStrokePath(ctx);
 }
 
 @end
