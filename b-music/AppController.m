@@ -70,6 +70,9 @@
         
         [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
         [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
+        
+        //Set search
+        [[self.searchField cell]setFocusRingType:NSFocusRingTypeNone];
     
         
         for (NSMenuItem * item in  [self.controlsMenu itemArray]) {
@@ -521,18 +524,15 @@
     [self.S saveSettings];
 }
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
-//    [self removeSubviews];
-//    [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
-//    [[self.Controls3 viewWithTag:2] selectText:nil];//Set cursor and select text in search field
-    
     //Set search view height
     if ([self.searchViewHeight constant]>0) {
         [[self.searchViewHeight animator] setConstant:0];
+        [self.searchField setEnabled:NO];
     }else{
         [[self.searchViewHeight animator] setConstant:30];
+        [self.searchField setEnabled:YES];
+        [self.searchField selectText:nil];
     }
-    
-    
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
     if ([sender stringValue].length!=0) {

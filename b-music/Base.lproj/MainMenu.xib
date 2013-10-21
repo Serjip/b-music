@@ -472,7 +472,7 @@ CA
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="hP8-6b-4lx"/>
                                 </constraints>
-                                <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search..." usesSingleLineMode="YES" bezelStyle="round" id="Vdf-yb-qQE" customClass="SearchFieldCell">
+                                <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" borderStyle="bezel" placeholderString="Search..." usesSingleLineMode="YES" bezelStyle="round" id="Vdf-yb-qQE">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -525,6 +525,7 @@ CA
                 <outlet property="controlsMenu" destination="zrA-x4-aEx" id="WdG-He-t8q"/>
                 <outlet property="dockMenu" destination="5rC-c8-uiv" id="FFS-YW-gga"/>
                 <outlet property="editMenu" destination="205" id="UVJ-h2-M51"/>
+                <outlet property="searchField" destination="QDs-sT-8Xu" id="cfM-i9-pnh"/>
                 <outlet property="searchViewHeight" destination="6bq-sP-CBT" id="B3f-9E-0g4"/>
                 <outlet property="statusMenu" destination="452-f3-juW" id="jhR-rL-i7J"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>

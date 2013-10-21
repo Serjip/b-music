@@ -35,6 +35,7 @@
 @property (weak) IBOutlet NSView *Controls2;
 
 @property (weak) IBOutlet NSLayoutConstraint *searchViewHeight;
+@property (weak) IBOutlet NSSearchField *searchField;
 
 @property (weak) IBOutlet NSView *BottomControls0;
 @property (weak) IBOutlet NSView *BottomControls1;
@@ -45,6 +46,7 @@
 @property (weak) IBOutlet NSMenu *windowMenu;
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSMenu *statusMenu;
+
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;
