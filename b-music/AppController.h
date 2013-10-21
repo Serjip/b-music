@@ -10,8 +10,11 @@
 #import "SheetWindowController.h"
 #import "RuntimeSlider.h"
 #import "Volume.h"
+
 #import "RepeatButton.h"
 #import "ShuffleButton.h"
+#import "ShowSearchButton.h"
+
 #import "PlayButton.h"
 #import "PlayButtonCell.h"
 #import "PlayerController.h"

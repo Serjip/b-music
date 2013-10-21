@@ -19,7 +19,6 @@
     NSMutableArray * _shufflePlaylist;
     NSString * _currentTableCell;//For table whitch one cell is shown
     
-    BOOL _isSearchShown;
     BOOL _isInitialLoadingFinish;
     NSString * _searchQuery;
     
@@ -528,10 +527,14 @@
     if ([self.searchViewHeight constant]>0) {
         [[self.searchViewHeight animator] setConstant:0];
         [self.searchField setEnabled:NO];
+        
+        [[self.Controls2 viewWithTag:6] setFlag:NO];//Show search button change color
     }else{
         [[self.searchViewHeight animator] setConstant:30];
         [self.searchField setEnabled:YES];
         [self.searchField selectText:nil];
+        
+        [[self.Controls2 viewWithTag:6] setFlag:YES];//Show search button change color
     }
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");

@@ -9,5 +9,5 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ShowSearchButton : NSButton
-
+-(void) setFlag:(BOOL)flag;
 @end
