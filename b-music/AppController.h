@@ -33,7 +33,8 @@
 @property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
-@property (weak) IBOutlet NSView *Controls3;
+
+@property (weak) IBOutlet NSLayoutConstraint *searchViewHeight;
 
 @property (weak) IBOutlet NSView *BottomControls0;
 @property (weak) IBOutlet NSView *BottomControls1;
@@ -62,7 +63,6 @@
 -(IBAction)runtime:(id)sender;
 -(IBAction)switchRuntime:(id)sender;
 -(IBAction)showSearch:(id)sender;
--(IBAction)hideSearch:(id)sender;
 -(IBAction)search:(id)sender;
 -(IBAction)showPlaylist:(id)sender;
 -(IBAction)gotoCurrentTrack:(id)sender;

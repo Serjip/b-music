@@ -56,7 +56,6 @@
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
         [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
-        [[[self.Controls3 viewWithTag:2] cell] setFocusRingType:NSFocusRingTypeNone];//Hide focus ring for Search
     
         [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
     
@@ -89,6 +88,7 @@
             [item setEnabled:YES];
         }
         
+        
         //Local Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
                                               handler:^(NSEvent *event) { return [self localMonitorKeydownEvents:event];}];
@@ -108,14 +108,14 @@
  *
  *****************************************************************************************/
 -(void)isHovered:(BOOL)flag{
-    if (![self.Controls3 superview]) {
+//    if (![self.Controls3 superview]) {
         [self removeSubviews];
         if (flag) {
             [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
         }else{
             [self addSubviewHelper:self.Controls0 slerve:self.Controls1];
         }
-    }
+//    }
 }
 /*
  *                                  TEMP Methods
@@ -277,7 +277,6 @@
 -(void) removeSubviews{
     [self.Controls1 removeFromSuperview];
     [self.Controls2 removeFromSuperview];
-    [self.Controls3 removeFromSuperview];
 }
 
 -(void) addSubviewHelper:(NSView*)master slerve:(NSView*)slerve{
@@ -522,13 +521,18 @@
     [self.S saveSettings];
 }
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
-    [self removeSubviews];
-    [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
-    [[self.Controls3 viewWithTag:2] selectText:nil];//Set cursor and select text in search field
-}
--(IBAction)hideSearch:(id)sender{NSLog(@"HideSearch");
-    [self removeSubviews];
-    [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
+//    [self removeSubviews];
+//    [self addSubviewHelper:self.Controls0 slerve:self.Controls3];
+//    [[self.Controls3 viewWithTag:2] selectText:nil];//Set cursor and select text in search field
+    
+    //Set search view height
+    if ([self.searchViewHeight constant]>0) {
+        [[self.searchViewHeight animator] setConstant:0];
+    }else{
+        [[self.searchViewHeight animator] setConstant:30];
+    }
+    
+    
 }
 -(IBAction)search:(id)sender{NSLog(@"Search");
     if ([sender stringValue].length!=0) {
