@@ -533,7 +533,6 @@
         [[self.searchViewHeight animator] setConstant:30];
         [self.searchField setEnabled:YES];
         [self.searchField selectText:nil];
-        
         [[self.Controls2 viewWithTag:6] setFlag:YES];//Show search button change color
     }
 }
@@ -556,8 +555,14 @@
     }
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
+    double widthPlayer=350;
+    double heightPlayer=70;
+    
+    if ([self.searchViewHeight constant]>0)
+        heightPlayer+=30;
+    
     id window=[[NSApp delegate] window];
-    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, 350, 80) display:YES animate:YES];
+    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer) display:YES animate:YES];
 }
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
     int selectTrack=(int)[_viewPlaylist indexOfObject:_currentTrack];

@@ -24,6 +24,8 @@
 	[super drawRect:dirtyRect];
     // Drawing code here.
     
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetRGBFillColor(ctx, 30/255.0, 30/255.0, 30/255.0, 1);
     NSRectFill(dirtyRect);
 }
 
