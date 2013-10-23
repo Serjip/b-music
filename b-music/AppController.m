@@ -25,6 +25,8 @@
     NSInteger _row;
     
     BOOL _userHoldKey;//global key event holding indicator
+    
+    NSImageView * _imageview;
 }
 - (id)init
 {
@@ -316,9 +318,16 @@
 }
 
 -(void) durationTrack:(double)duration{
-    [[self.Controls1 viewWithTag:1] setStringValue:[_currentTrack objectForKey:@"title"]];//Set title for player
-    [[self.Controls1 viewWithTag:2] setStringValue:[_currentTrack objectForKey:@"artist"]];//Set artist for player
+    NSString * title=[_currentTrack objectForKey:@"title"];
+    NSString * artist=[_currentTrack objectForKey:@"artist"];
+    
+    [[self.Controls1 viewWithTag:1] setStringValue:title];//Set title for player
+    [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];//Set duration for slider
+    
+    id img=[self.api requestAPILastfm:@"track.getInfo" param:[NSString stringWithFormat:@"&autocorrect=1&artist=%@&track=%@",artist,title]];
+    NSString *url=[[img objectAtIndex:3]objectForKey:@"#text"];
+    NSLog(@"%@",url);
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);

@@ -10,6 +10,22 @@
 
 @implementation ControlsView{
     NSTrackingArea * trackingArea;
+    NSImageView * _imageview;
+}
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        _imageview =[[NSImageView alloc] initWithFrame:frame];
+        [_imageview setImage:[[NSImage alloc] initWithContentsOfURL:[NSImage imageNamed:@"http://userserve-ak.last.fm/serve/300x300/93158109.png"]]];
+        
+        [self addSubview:_imageview];
+        NSLog(@"HELLO %f %f %f %f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height);
+    
+    }
+    return self;
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent
