@@ -328,6 +328,11 @@
     id img=[self.api requestAPILastfm:@"track.getInfo" param:[NSString stringWithFormat:@"&autocorrect=1&artist=%@&track=%@",artist,title]];
     NSString *url=[[img objectAtIndex:3]objectForKey:@"#text"];
     NSLog(@"%@",url);
+    
+    _imageview =[[NSImageView alloc] initWithFrame:self.Controls1.frame];
+    [_imageview setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:url]]];
+    [_imageview setImageScaling:NSImageScaleAxesIndependently];
+    [self.Controls1 addSubview:_imageview];
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
