@@ -49,6 +49,7 @@
 		D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7517FDB8FE00F725BD /* AddButtonCell.m */; };
 		D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */; };
 		D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */; };
+		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,8 @@
 		D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButtonCell.m; sourceTree = "<group>"; };
 		D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveButtonCell.h; sourceTree = "<group>"; };
 		D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveButtonCell.m; sourceTree = "<group>"; };
+		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
+		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -340,6 +343,8 @@
 			children = (
 				D2825B4617FC90F000F725BD /* Api.h */,
 				D2825B4717FC90F000F725BD /* Api.m */,
+				D29E5F5F1819441300406490 /* LastfmAPI.h */,
+				D29E5F601819441300406490 /* LastfmAPI.m */,
 			);
 			name = Api;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */,
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
 				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
+				D29E5F611819441300406490 /* LastfmAPI.m in Sources */,
 				D2825B5617FC9E2C00F725BD /* Volume.m in Sources */,
 				D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */,
 				D213286E180065D000AFF98C /* ControlsView.m in Sources */,

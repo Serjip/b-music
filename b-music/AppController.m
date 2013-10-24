@@ -325,14 +325,6 @@
     [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];//Set duration for slider
     
-    id img=[self.api requestAPILastfm:@"track.getInfo" param:[NSString stringWithFormat:@"&autocorrect=1&artist=%@&track=%@",artist,title]];
-    NSString *url=[[img objectAtIndex:3]objectForKey:@"#text"];
-    NSLog(@"%@",url);
-    
-    _imageview =[[NSImageView alloc] initWithFrame:self.Controls1.frame];
-    [_imageview setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:url]]];
-    [_imageview setImageScaling:NSImageScaleAxesIndependently];
-    [self.Controls1 addSubview:_imageview];
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);

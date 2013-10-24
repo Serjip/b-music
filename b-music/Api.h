@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Api : NSObject
+
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token;
--(id) requestAPILastfm:(NSString*)method param:(NSString*)param;
+
 @end
