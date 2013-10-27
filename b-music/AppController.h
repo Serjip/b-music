@@ -41,6 +41,7 @@
 @property Api * api;
 @property LastfmAPI * lastfmAPI;
 
+@property (weak) IBOutlet NSScrollView *scrollview;
 @property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
