@@ -8,22 +8,24 @@
 
 #import "MoreButtonCell.h"
 
-@implementation MoreButtonCell
+#define kRed 31
+#define kGreen 31
+#define kBlue 31
+#define kAlpha 1
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
+@implementation MoreButtonCell
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[super drawRect:dirtyRect];
-	
-    // Drawing code here.
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
+    CGContextFillRect(ctx, dirtyRect);
+    
+    if ([self.cell isHighlighted]) {
+        
+    }else{
+        
+    }
 }
 
 @end

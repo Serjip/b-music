@@ -8,10 +8,10 @@
 
 #import "RemoveButtonCell.h"
 
-#define red 40
-#define green 40
-#define blue 40
-#define alpha 1.0
+#define kRed 210
+#define kGreen 74
+#define kBlue 67
+#define kAlpha 1.0
 
 @implementation RemoveButtonCell{
     NSTrackingArea * _trackingArea;
@@ -21,14 +21,14 @@
 {
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
-    CGContextSetRGBFillColor(ctx, red/255.0, green/255.0, blue/255.0, alpha);
+    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
     
-    CGContextFillRect(ctx, dirtyRect);
+    CGContextFillRect(ctx, self.bounds);
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    
+    NSLog(@"%f / ",NSHeight(self.bounds));
 }
 
 -(void)mouseExited:(NSEvent *)theEvent

@@ -12,4 +12,5 @@
     BOOL _pause;
 }
 -(void) setPauseState:(BOOL)state;
+
 @end

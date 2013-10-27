@@ -8,8 +8,6 @@
 
 #import "AppController.h"
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
-#define kMainCell @"MainCell"
-#define kSearchCell @"SearchCell"
 
 @implementation AppController{
     
@@ -17,7 +15,9 @@
     NSMutableArray * _viewPlaylist;//Playlist for table
     NSMutableArray * _soundPlaylist;//Playlist for playing
     NSMutableArray * _shufflePlaylist;
-    NSString * _currentTableCell;//For table whitch one cell is shown
+    
+    
+    NSString * _currentTableRow;//For table whitch one cell is shown
     
     BOOL _isInitialLoadingFinish;
     NSString * _searchQuery;
@@ -27,9 +27,6 @@
     BOOL _userHoldKey;//global key event holding indicator
     
     NSImageView * _imageview;
-    
-    
-    NSInteger _pawlRemoveButton;//Check if remove button exist
 }
 - (id)init
 {
@@ -42,7 +39,7 @@
         
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
-        _currentTableCell=kMainCell;
+        _currentTableRow=@"MainRow";
     }
     return self;
 }
@@ -396,7 +393,7 @@
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    TableCellView * cellview=[tableView makeViewWithIdentifier:_currentTableCell owner:self];
+    TableCellView * cellview=[tableView makeViewWithIdentifier:@"MainCell" owner:self];
     id obj=[_viewPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
@@ -408,7 +405,7 @@
 }
 
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row{
-    return [tableView makeViewWithIdentifier:@"MainRow" owner:self];
+    return [tableView makeViewWithIdentifier:_currentTableRow owner:self];
 }
 
 /*
@@ -563,19 +560,16 @@
 -(IBAction)search:(id)sender{NSLog(@"Search");
     if ([sender stringValue].length!=0) {
         
-        _currentTableCell=kSearchCell;
+        _currentTableRow=@"SearchRow";
         _searchQuery=[sender stringValue];
         [self requestToSearch];
         
         if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
     }else{
         
-//        if (![_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
-//            _viewPlaylist=[_soundPlaylist mutableCopy];
-//        }else{
-            [self requestToMainPlaylist];
-//        }
-        _currentTableCell=kMainCell;
+        [self requestToMainPlaylist];
+        
+        _currentTableRow=@"MainRow";
     }
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");

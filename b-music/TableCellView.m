@@ -27,18 +27,20 @@
         CGFloat width=NSWidth(self.frame);
         CGFloat height=NSHeight(self.frame);
         _startFrame = NSMakeRect(0.0, 0.0, width, height);
-        _endFrame= NSMakeRect(-300, 0, width, height);
+        _endFrame= NSMakeRect(-_slideValue, 0, width, height);
         _isEnd=NO;
     }
+    
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
     if (self.select) {
         [[NSColor brownColor]set];
         self.select=NO;
     }else{
-        [[NSColor grayColor]set];
+        CGContextSetRGBFillColor(ctx, 45/255.0, 45/255.0, 45/255.0, 1);
     }
     
-    NSRectFill(dirtyRect);
+    CGContextFillRect(ctx, dirtyRect);
 }
 
 -(void) slideCell:(double)slideValue{

@@ -11,7 +11,6 @@
 @implementation AddButtonCell{
     BOOL _complete;
     NSTrackingArea * trackingArea;
-    NSString * _t;
 }
 
 //- (void)drawRect:(NSRect)dirtyRect
@@ -52,26 +51,14 @@
 //}
 
 -(void) setComplete{
-    _complete=YES;
-    [self setEnabled:NO];
-    [self setImage:[NSImage imageNamed:@"NSMenuOnStateTemplate"]];
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    if (_complete) {
-        [self setImage:[NSImage imageNamed:@"NSMenuOnStateTemplate"]];
-    }else{
-        [self setImage:[NSImage imageNamed:@"NSAddTemplate"]];
-    }
-    _t=self.title;
-    [self setTitle:@""];
 }
 
 -(void)mouseExited:(NSEvent *)theEvent
 {
-    [self setImage:nil];
-    [self setTitle:_t];
 }
 
 -(void)updateTrackingAreas
