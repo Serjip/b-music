@@ -8,59 +8,43 @@
 
 #import "RemoveButtonCell.h"
 
+#define red 40
+#define green 40
+#define blue 40
+#define alpha 1.0
+
 @implementation RemoveButtonCell{
-    NSTrackingArea * trackingArea;
-    NSString * _t;
+    NSTrackingArea * _trackingArea;
 }
 
-//- (void)drawRect:(NSRect)dirtyRect
-//{
-//    double x1=self.frame.size.width;
-//    double y1=self.frame.size.height;
-//    
-//    double t=2.1;
-//    double p=7;
-//    
-//    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-//    
-//    if ([self.cell isHighlighted]) {
-//        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(120/255.0, 120/255.0, 120/255.0, 1));
-//        CGContextSetRGBFillColor (ctx, 120/255.0, 120/255.0, 120/255.0, 1);
-//    }else{
-//        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(150/255.0, 150/255.0, 150/255.0, 1));
-//        CGContextSetRGBFillColor (ctx, 150/255.0, 150/255.0, 150/255.0, 1);
-//    }
-//    
-//    CGContextSetLineCap(ctx, kCGLineCapRound);
-//    
-//    CGContextSetLineWidth(ctx, t);
-//    CGContextMoveToPoint(ctx, p, y1/2);
-//    CGContextAddLineToPoint(ctx, x1-p , y1/2);
-//    CGContextStrokePath(ctx);
-//}
+- (void)drawRect:(NSRect)dirtyRect
+{
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    
+    CGContextSetRGBFillColor(ctx, red/255.0, green/255.0, blue/255.0, alpha);
+    
+    CGContextFillRect(ctx, dirtyRect);
+}
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    [self setImage:[NSImage imageNamed:@"NSRemoveTemplate"]];
-    _t=self.title;
-    [self setTitle:@""];
+    
 }
 
 -(void)mouseExited:(NSEvent *)theEvent
 {
-    [self setImage:nil];
-    [self setTitle:_t];
+    
 }
 
 -(void)updateTrackingAreas
 {
-    if(trackingArea != nil) {
-        [self removeTrackingArea:trackingArea];
+    if(_trackingArea != nil) {
+        [self removeTrackingArea:_trackingArea];
     }
-    trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
                                                  options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways)
                                                    owner:self
                                                 userInfo:nil];
-    [self addTrackingArea:trackingArea];
+    [self addTrackingArea:_trackingArea];
 }
 @end

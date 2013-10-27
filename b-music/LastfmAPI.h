@@ -12,4 +12,6 @@
 
 -(id) requestAPILastfm:(NSString*)method param:(NSString*)param;
 
+-(NSString*)getImageStringURL:(NSString *) artist title:(NSString *)title;
+
 @end

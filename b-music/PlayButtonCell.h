@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PlayButtonCell : NSButton{
-    BOOL _pause;
-}
+@interface PlayButtonCell : NSButton
+
 -(void) setPauseState:(BOOL)state;
+//-(void)setImageURL:(NSString *)stringURL;
+
 @end

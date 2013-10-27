@@ -7,13 +7,16 @@
 //
 
 #import "TableRowView.h"
+#import "TableCellView.h"
 
 @implementation TableRowView
 
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
-    if (self.selectionHighlightStyle != NSTableViewSelectionHighlightStyleNone) {
-        [[NSColor colorWithSRGBRed:48/255.0 green:98/255.0 blue:144/255.0 alpha:1] setFill];
-        NSRectFill(dirtyRect);
-    }
+//    if (self.selectionHighlightStyle != NSTableViewSelectionHighlightStyleNone) {
+//        [[NSColor colorWithSRGBRed:48/255.0 green:98/255.0 blue:144/255.0 alpha:1] setFill];
+//        NSRectFill(dirtyRect);
+//    }
+//
+    [[self.subviews objectAtIndex:[self.subviews count]-1] setSelect:YES];
 }
 @end

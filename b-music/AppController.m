@@ -27,6 +27,9 @@
     BOOL _userHoldKey;//global key event holding indicator
     
     NSImageView * _imageview;
+    
+    
+    NSInteger _pawlRemoveButton;//Check if remove button exist
 }
 - (id)init
 {
@@ -34,6 +37,9 @@
     if (self) {
         _S=[[Settings alloc] init];
         _api=[[Api alloc] init];
+        
+        _lastfmAPI=[[LastfmAPI alloc] init];
+        
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
         _currentTableCell=kMainCell;
@@ -293,6 +299,7 @@
     NSInteger num=(int)[_viewPlaylist indexOfObject:object];
     if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
 }
+
 /*
  *                                  Player Methods
  *
@@ -325,6 +332,8 @@
     [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];//Set duration for slider
     
+//    NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
+//    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setImageURL:[_lastfmAPI getImageStringURL:artist title:title]];
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
@@ -378,25 +387,30 @@
     }
 }
 /*
- *                                  TableView Methodds
+ *                                  TableView Methods
  *
  *****************************************************************************************/
 
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{ // count of table view items
     return [_viewPlaylist count];
 }
+
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
-    NSTableCellView * cellview=[tableView makeViewWithIdentifier:_currentTableCell owner:self];
+    TableCellView * cellview=[tableView makeViewWithIdentifier:_currentTableCell owner:self];
     id obj=[_viewPlaylist objectAtIndex:row];
     [[cellview viewWithTag:2] setStringValue:[obj objectForKey:@"title"]];
     [[cellview viewWithTag:3] setStringValue:[obj objectForKey:@"artist"]];
     [[cellview viewWithTag:4] setTitle:[self.PC convertTime:[[obj objectForKey:@"duration"] doubleValue]]];
+    
     [[cellview viewWithTag:1] setPauseState:([obj isEqualTo:_currentTrack])? YES : NO];
+    
     return cellview;
 }
+
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row{
     return [tableView makeViewWithIdentifier:@"MainRow" owner:self];
 }
+
 /*
  *                                      IBActions
  *
@@ -501,6 +515,10 @@
 }
 -(IBAction)visitWebsite:(id)sender{ NSLog(@"visitwebsite");
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
+}
+
+-(IBAction)more:(id)sender{ NSLog(@"More");
+    [[_tableview viewAtColumn:0 row:[_tableview rowForView:sender] makeIfNecessary:NO] slideCell:75];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
     _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];

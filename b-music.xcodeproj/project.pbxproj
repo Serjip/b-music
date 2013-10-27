@@ -49,7 +49,10 @@
 		D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7517FDB8FE00F725BD /* AddButtonCell.m */; };
 		D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */; };
 		D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */; };
+		D283B724181D1C6A000AB6DE /* MoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D283B723181D1C6A000AB6DE /* MoreButtonCell.m */; };
+		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
+		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,8 +143,13 @@
 		D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayButtonCell.m; sourceTree = "<group>"; };
 		D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveButtonCell.h; sourceTree = "<group>"; };
 		D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveButtonCell.m; sourceTree = "<group>"; };
+		D283B722181D1C6A000AB6DE /* MoreButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreButtonCell.h; sourceTree = "<group>"; };
+		D283B723181D1C6A000AB6DE /* MoreButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreButtonCell.m; sourceTree = "<group>"; };
+		D297146E181C4F57003E704D /* TableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellView.h; sourceTree = "<group>"; };
+		D297146F181C4F57003E704D /* TableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellView.m; sourceTree = "<group>"; };
 		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
+		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -150,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */,
 				D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */,
 				D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */,
 				D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */,
@@ -210,6 +219,7 @@
 		D21CE9F017FAFA0900F5AF42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D29E5F621819869800406490 /* QuartzCore.framework */,
 				D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */,
 				D21F538417FEF0E800703A88 /* SystemConfiguration.framework */,
 				D2825B3D17FC408700F725BD /* CoreMedia.framework */,
@@ -398,6 +408,18 @@
 		D2825B7D17FDB90900F725BD /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				D283B725181D1CFD000AB6DE /* Buttons */,
+				D297146E181C4F57003E704D /* TableCellView.h */,
+				D297146F181C4F57003E704D /* TableCellView.m */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
+		D283B725181D1CFD000AB6DE /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D283B722181D1C6A000AB6DE /* MoreButtonCell.h */,
+				D283B723181D1C6A000AB6DE /* MoreButtonCell.m */,
 				D2825B7417FDB8FE00F725BD /* AddButtonCell.h */,
 				D2825B7517FDB8FE00F725BD /* AddButtonCell.m */,
 				D2825B7617FDB8FE00F725BD /* PlayButtonCell.h */,
@@ -405,7 +427,7 @@
 				D2825B7817FDB8FE00F725BD /* RemoveButtonCell.h */,
 				D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */,
 			);
-			name = TableCell;
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,6 +551,7 @@
 				D2825B5D17FD8BA100F725BD /* PlayButton.m in Sources */,
 				D2825B6C17FD8C2900F725BD /* FfwdButton.m in Sources */,
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
+				D283B724181D1C6A000AB6DE /* MoreButtonCell.m in Sources */,
 				D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */,
 				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
 				D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */,
@@ -541,6 +564,7 @@
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
 				D212C536181577BC00C4E21D /* SearchView.m in Sources */,
 				D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */,
+				D2971470181C4F57003E704D /* TableCellView.m in Sources */,
 				D2825B3617FC259C00F725BD /* PlayerView.m in Sources */,
 				D2825B6417FD8C1000F725BD /* ShuffleButton.m in Sources */,
 			);

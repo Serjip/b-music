@@ -15,13 +15,21 @@
 #import "ShuffleButton.h"
 #import "ShowSearchButton.h"
 
+//
+#import "TableCellView.h"
+
 #import "PlayButton.h"
 #import "PlayButtonCell.h"
 #import "PlayerController.h"
+
 #import "AddButtonCell.h"
+#import "RemoveButtonCell.h"
+
 #import "ControlsView.h"
 #import "Settings.h"
+
 #import "Api.h"
+#import "LastfmAPI.h"
 
 @interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>{
     NSStatusItem *statusItem;
@@ -31,6 +39,7 @@
 @property Settings * S;
 @property PlayerController * PC;
 @property Api * api;
+@property LastfmAPI * lastfmAPI;
 
 @property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet ControlsView *Controls0;
@@ -62,8 +71,11 @@
 -(IBAction)repeat:(id)sender;
 -(IBAction)alwaysOnTop:(id)sender;
 -(IBAction)visitWebsite:(id)sender;
+
+-(IBAction)more:(id)sender;
 -(IBAction)addTrack:(id)sender;
 -(IBAction)removeTrack:(id)sender;
+
 -(IBAction)volume:(id)sender;
 -(IBAction)runtime:(id)sender;
 -(IBAction)switchRuntime:(id)sender;
