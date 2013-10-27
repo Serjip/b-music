@@ -8,47 +8,21 @@
 
 #import "AddButtonCell.h"
 
+#define kRed 119
+#define kGreen 185
+#define kBlue 126
+#define kAlpha 1.0
+
 @implementation AddButtonCell{
-    BOOL _complete;
     NSTrackingArea * trackingArea;
 }
 
-//- (void)drawRect:(NSRect)dirtyRect
-//{
-//    double x1=self.frame.size.width;
-//    double y1=self.frame.size.height;
-//    
-//    double t=2.1;
-//    double p=7;
-//    
-//    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-//    
-//    if ([self.cell isHighlighted]) {
-//        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(120/255.0, 120/255.0, 120/255.0, 1));
-//        CGContextSetRGBFillColor (ctx, 120/255.0, 120/255.0, 120/255.0, 1);
-//    }else{
-//        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(150/255.0, 150/255.0, 150/255.0, 1));
-//        CGContextSetRGBFillColor (ctx, 150/255.0, 150/255.0, 150/255.0, 1);
-//    }
-//    
-//    CGContextSetLineCap(ctx, kCGLineCapRound);
-//    CGContextSetLineWidth(ctx, t);
-//    
-//    if (_complete) {
-//        CGContextMoveToPoint(ctx, p, y1/2);
-//        CGContextAddLineToPoint(ctx, x1/2-p , y1-p);
-//        CGContextAddLineToPoint(ctx, x1-p , p);
-//        CGContextStrokePath(ctx);
-//    }else{
-//        CGContextMoveToPoint(ctx, p, y1/2);
-//        CGContextAddLineToPoint(ctx, x1-p , y1/2);
-//        CGContextStrokePath(ctx);
-//        
-//        CGContextMoveToPoint(ctx, x1/2, p);
-//        CGContextAddLineToPoint(ctx, x1/2 , y1-p);
-//        CGContextStrokePath(ctx);
-//    }
-//}
+- (void)drawRect:(NSRect)dirtyRect
+{
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
+    CGContextFillRect(ctx, self.bounds);
+}
 
 -(void) setComplete{
 }

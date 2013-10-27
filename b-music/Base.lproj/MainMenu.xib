@@ -375,13 +375,13 @@ CA
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="laA-6K-N9K" customClass="AddButtonCell">
-                                                            <rect key="frame" x="395" y="0.0" width="75" height="52"/>
+                                                            <rect key="frame" x="395" y="1" width="75" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="75" id="1Oi-w2-Sfh"/>
                                                                 <constraint firstAttribute="height" constant="50" id="gRp-G9-zl3"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ctd-dc-PuF">
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ctd-dc-PuF">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
@@ -775,6 +775,7 @@ CA
         </menu>
     </objects>
     <resources>
+        <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSEnterFullScreenTemplate" width="16" height="15"/>
         <image name="NSGoRightTemplate" width="9" height="9"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
