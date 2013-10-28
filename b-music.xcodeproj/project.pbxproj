@@ -311,6 +311,33 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		D24F0AFA181EDAE3008D9EDA /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B5117FC9BA700F725BD /* TableView.h */,
+				D2825B5217FC9BA700F725BD /* TableView.m */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		D24F0AFB181EDAEC008D9EDA /* TableRow */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B4D17FC9B1200F725BD /* TableRowView.h */,
+				D2825B4E17FC9B1200F725BD /* TableRowView.m */,
+			);
+			name = TableRow;
+			sourceTree = "<group>";
+		};
+		D24F0AFC181EDB0C008D9EDA /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D2825B3417FC259C00F725BD /* PlayerView.h */,
+				D2825B3517FC259C00F725BD /* PlayerView.m */,
+			);
+			name = PlayerView;
+			sourceTree = "<group>";
+		};
 		D2825B2F17FC20FE00F725BD /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,8 +351,7 @@
 		D2825B3317FC24EE00F725BD /* PlayerWindow */ = {
 			isa = PBXGroup;
 			children = (
-				D2825B3417FC259C00F725BD /* PlayerView.h */,
-				D2825B3517FC259C00F725BD /* PlayerView.m */,
+				D24F0AFC181EDB0C008D9EDA /* PlayerView */,
 				D2825B3017FC24E400F725BD /* PlayerWindow.h */,
 				D2825B3117FC24E400F725BD /* PlayerWindow.m */,
 			);
@@ -367,10 +393,8 @@
 			isa = PBXGroup;
 			children = (
 				D2825B7D17FDB90900F725BD /* TableCell */,
-				D2825B5117FC9BA700F725BD /* TableView.h */,
-				D2825B5217FC9BA700F725BD /* TableView.m */,
-				D2825B4D17FC9B1200F725BD /* TableRowView.h */,
-				D2825B4E17FC9B1200F725BD /* TableRowView.m */,
+				D24F0AFA181EDAE3008D9EDA /* TableView */,
+				D24F0AFB181EDAEC008D9EDA /* TableRow */,
 			);
 			name = Table;
 			sourceTree = "<group>";

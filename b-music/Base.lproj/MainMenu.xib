@@ -572,7 +572,7 @@ CA
                         <action selector="next:" target="DoF-XC-WxK" id="AZZ-46-LPz"/>
                     </connections>
                 </button>
-                <slider verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
+                <slider verticalHuggingPriority="750" ambiguous="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
                     <rect key="frame" x="261" y="17" width="100" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -585,7 +585,7 @@ CA
                     </connections>
                 </slider>
                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
-                    <rect key="frame" x="6" y="34" width="11" height="11"/>
+                    <rect key="frame" x="6" y="35" width="11" height="9"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="Sdt-cm-1wu"/>

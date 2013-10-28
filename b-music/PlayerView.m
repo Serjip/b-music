@@ -8,11 +8,15 @@
 
 #import "PlayerView.h"
 
+#define kRed 40
+#define kGreen 40
+#define kBlue 40
+#define kAlpha 1
+
 @implementation PlayerView
 - (void)drawRect:(NSRect)dirtyRect
 {
-    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-    CGContextSetRGBFillColor(ctx, 40/255.0, 40/255.0, 40/255.0, 1);
+    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];    
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:10 yRadius:10];
     [path fill];
 }

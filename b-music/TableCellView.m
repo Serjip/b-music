@@ -8,6 +8,11 @@
 
 #import "TableCellView.h"
 
+#define kRed 45
+#define kGreen 45
+#define kBlue 45
+#define kAlpha 1.0
+
 @implementation TableCellView{
     NSRect _startFrame;
     NSRect _endFrame;
@@ -31,16 +36,15 @@
         _isEnd=NO;
     }
     
-    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-    
     if (self.select) {
         [[NSColor brownColor]set];
         self.select=NO;
     }else{
-        CGContextSetRGBFillColor(ctx, 45/255.0, 45/255.0, 45/255.0, 1);
+        [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
     }
     
-    CGContextFillRect(ctx, dirtyRect);
+    
+    NSRectFill(self.bounds);
 }
 
 -(void) slideCell:(double)slideValue{
