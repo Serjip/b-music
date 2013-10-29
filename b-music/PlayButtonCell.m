@@ -21,13 +21,18 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-//    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-//    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
-//    CGContextFillRect(ctx, dirtyRect);
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
+    CGContextFillRect(ctx, self.bounds);
     
-    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
-    NSRectFill(self.bounds);
-
+    CGFloat h=NSHeight(self.bounds);
+    CGFloat w=NSWidth(self.bounds);
+    CGFloat s=5;
+    
+    CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
+    
+    CGContextSetLineWidth(ctx, 2);
+    
     if ([self.cell isHighlighted]) {
         
     }else{
@@ -35,10 +40,16 @@
     }
     
     if(_pause){
+        CGContextMoveToPoint(ctx, w/2-s/2,h/2-s);
+        CGContextAddLineToPoint(ctx, w/2-s/2, h/2+s);
         
+        CGContextMoveToPoint(ctx, w/2+s/2,h/2-s);
+        CGContextAddLineToPoint(ctx, w/2+s/2, h/2+s);
     }else{
         
     }
+    
+    CGContextStrokePath(ctx);
 }
 
 -(void) setPauseState:(BOOL)state{
@@ -55,12 +66,10 @@
 
 -(void)mouseEntered:(NSEvent *)theEvent
 {
-    NSLog(@"EnterPlay");
 }
 
 -(void)mouseExited:(NSEvent *)theEvent
 {
-    NSLog(@"ExitPlay");
 }
 
 -(void)updateTrackingAreas

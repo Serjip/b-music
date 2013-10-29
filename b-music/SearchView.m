@@ -8,25 +8,21 @@
 
 #import "SearchView.h"
 
-@implementation SearchView
+#define kRed 25
+#define kGreen 25
+#define kBlue 25
+#define kAlpha 1
 
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
+@implementation SearchView
 
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
     // Drawing code here.
+    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
     
-    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-    CGContextSetRGBFillColor(ctx, 30/255.0, 30/255.0, 30/255.0, 1);
-    NSRectFill(dirtyRect);
+    NSRectFill(self.bounds);
+    
 }
 
 @end

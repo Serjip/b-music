@@ -8,9 +8,9 @@
 
 #import "PlayerView.h"
 
-#define kRed 40
-#define kGreen 40
-#define kBlue 40
+#define kRed 31
+#define kGreen 31
+#define kBlue 31
 #define kAlpha 1
 
 @implementation PlayerView

@@ -35,11 +35,11 @@
     }
     
     if (_isHovered) {
-        CGContextSetRGBFillColor(ctx, .05, .05, .05, kAlpha);
+        CGContextSetRGBFillColor(ctx, .07, .07, .07, kAlpha);
         
-        CGContextAddEllipseInRect(ctx, NSMakeRect(10 , self.bounds.size.height/2-15/2, 10, 10));
-        CGContextAddEllipseInRect(ctx, NSMakeRect(30 , self.bounds.size.height/2-15/2, 10, 10));
-        CGContextAddEllipseInRect(ctx, NSMakeRect(50 , self.bounds.size.height/2-15/2, 10, 10));
+        CGContextAddEllipseInRect(ctx, NSMakeRect(10 , self.bounds.size.height/2-15/2, 5, 5));
+        CGContextAddEllipseInRect(ctx, NSMakeRect(30 , self.bounds.size.height/2-15/2, 5, 5));
+        CGContextAddEllipseInRect(ctx, NSMakeRect(50 , self.bounds.size.height/2-15/2, 5, 5));
         
         CGContextFillPath(ctx);
     }else{

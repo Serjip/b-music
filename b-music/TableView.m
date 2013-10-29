@@ -8,10 +8,15 @@
 
 #import "TableView.h"
 
+#define kRed 19
+#define kGreen 19
+#define kBlue 19
+#define kAlpha 1
+
 @implementation TableView
 
 - (NSColor *)backgroundColor{
-    return [NSColor colorWithCGColor:CGColorCreateGenericRGB(19/255.0, 19/255.0, 19/255.0, 1.0)];
+    return [NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha];
 }
 //- (NSColor *)gridColor{
 //    return [NSColor colorWithCGColor:CGColorCreateGenericRGB(40/255.0, 40/255.0, 40/255.0, 1.0)];

@@ -166,7 +166,9 @@
         return;
     }
     
-    [[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
+    //[[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
+    [[[_tableview rowViewAtRow:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
+    //[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] slideCell:0];
 }
 
 -(void)requestToSearch{
