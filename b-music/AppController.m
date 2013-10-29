@@ -516,6 +516,7 @@
 
 -(IBAction)more:(id)sender{ NSLog(@"More");
     [[_tableview viewAtColumn:0 row:[_tableview rowForView:sender] makeIfNecessary:NO] slideCell:75];
+    [sender mouseExited:nil];
 }
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
     _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
@@ -573,15 +574,45 @@
     }
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
-    double widthPlayer=350;
-    double heightPlayer=70;
     
-    if ([self.searchViewHeight constant]>0)
-        heightPlayer+=30;
+    CGRect rect;
+    
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+         NSLog(@"1%@",sender);
+        
+        switch ([sender tag]) {
+            case 1:
+                NSLog(@"HELLO");
+                
+            case 2:
+                //rect=[[NSScreen mainScreen] visibleFrame];
+            case 3:
+                rect=[[NSScreen mainScreen] visibleFrame];
+        }
+        
+        
+    }else{
+         NSLog(@"2%@",sender);
+    }
     
     id window=[[NSApp delegate] window];
-    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer) display:YES animate:YES];
+    [window setFrame:rect display:YES animate:YES];
+    
+//    double widthPlayer=350;
+//    double heightPlayer=70;
+//    
+//    if ([self.searchViewHeight constant]>0)
+//        heightPlayer+=30;
+//    
+//    id window=[[NSApp delegate] window];
+//    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer) display:YES animate:YES];
 }
+
+-(IBAction)minimize:(id)sender{NSLog(@"Minimize");
+    id window=[[NSApp delegate] window];
+    [window miniaturize:self];
+}
+
 -(IBAction)gotoCurrentTrack:(id)sender{ NSLog(@"Go to Current Track");
     int selectTrack=(int)[_viewPlaylist indexOfObject:_currentTrack];
     [_tableview scrollRowToVisible:selectTrack];

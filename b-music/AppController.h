@@ -81,8 +81,11 @@
 -(IBAction)runtime:(id)sender;
 -(IBAction)switchRuntime:(id)sender;
 -(IBAction)showSearch:(id)sender;
+
 -(IBAction)search:(id)sender;
 -(IBAction)showPlaylist:(id)sender;
+-(IBAction)minimize:(id)sender;
+
 -(IBAction)gotoCurrentTrack:(id)sender;
 -(IBAction)close:(id)sender;
 -(IBAction)logout:(id)sender;

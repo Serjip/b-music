@@ -36,15 +36,14 @@
         _isEnd=NO;
     }
     
-    if (self.select) {
-        [[NSColor brownColor]set];
-        self.select=NO;
-    }else{
-        [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
-    }
-    
-    
+    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
     NSRectFill(self.bounds);
+    
+    if (self.select) {
+        [[NSColor colorWithSRGBRed:48/255.0 green:98/255.0 blue:144/255.0 alpha:1] setFill];
+        NSRectFill(NSMakeRect(0, 0, 53, 50));
+        self.select=NO;
+    }
 }
 
 -(void) slideCell:(double)slideValue{

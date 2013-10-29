@@ -14,7 +14,8 @@
 #define kAlpha 1.0
 
 @implementation RemoveButtonCell{
-    NSTrackingArea * _trackingArea;
+    BOOL mouseInside;
+    NSTrackingArea *trackingArea;
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -27,25 +28,37 @@
     NSRectFill(self.bounds);
 }
 
--(void)mouseEntered:(NSEvent *)theEvent
-{
-    NSLog(@"%f / ",NSHeight(self.bounds));
-}
-
--(void)mouseExited:(NSEvent *)theEvent
-{
-    
-}
-
--(void)updateTrackingAreas
-{
-    if(_trackingArea != nil) {
-        [self removeTrackingArea:_trackingArea];
+- (void)setMouseInside:(BOOL)value {
+    if (mouseInside != value) {
+        mouseInside = value;
+        [self setNeedsDisplay:YES];
     }
-    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
-                                                 options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways)
-                                                   owner:self
-                                                userInfo:nil];
-    [self addTrackingArea:_trackingArea];
 }
+
+- (BOOL)mouseInside {
+    return mouseInside;
+}
+
+- (void)ensureTrackingArea {
+    if (trackingArea == nil) {
+        trackingArea = [[NSTrackingArea alloc] initWithRect:NSZeroRect options:NSTrackingInVisibleRect | NSTrackingActiveAlways | NSTrackingMouseEnteredAndExited owner:self userInfo:nil];
+    }
+}
+
+- (void)updateTrackingAreas {
+    [super updateTrackingAreas];
+    [self ensureTrackingArea];
+    if (![[self trackingAreas] containsObject:trackingArea]) {
+        [self addTrackingArea:trackingArea];
+    }
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent {
+    self.mouseInside = YES;
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+    self.mouseInside = NO;
+}
+
 @end
