@@ -30,8 +30,7 @@
     CGFloat s=5;
     
     CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
-    
-    CGContextSetLineWidth(ctx, 2);
+    CGContextSetRGBFillColor(ctx, 1, 1, 1, kAlpha);
     
     if ([self.cell isHighlighted]) {
         
@@ -40,16 +39,25 @@
     }
     
     if(_pause){
+        CGContextSetLineWidth(ctx, 2);
         CGContextMoveToPoint(ctx, w/2-s/2,h/2-s);
         CGContextAddLineToPoint(ctx, w/2-s/2, h/2+s);
         
         CGContextMoveToPoint(ctx, w/2+s/2,h/2-s);
         CGContextAddLineToPoint(ctx, w/2+s/2, h/2+s);
+        CGContextStrokePath(ctx);
     }else{
+        
+        CGContextMoveToPoint(ctx, w/2-s/2,h/2-s);
+        CGContextAddLineToPoint(ctx, w/2-s/2, h/2+s);
+        
+        CGContextAddLineToPoint(ctx, w/2+s/2, h/2);
+        CGContextClosePath(ctx);
+        CGContextFillPath(ctx);
         
     }
     
-    CGContextStrokePath(ctx);
+    
 }
 
 -(void) setPauseState:(BOOL)state{

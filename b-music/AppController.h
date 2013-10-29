@@ -41,11 +41,14 @@
 @property Api * api;
 @property LastfmAPI * lastfmAPI;
 
+@property (weak) IBOutlet NSPopover *popoverVolume;
 @property (weak) IBOutlet NSScrollView *scrollview;
 @property (weak) IBOutlet NSTableView * tableview;
 @property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
+
+@property (weak) IBOutlet Volume *volume;
 
 @property (weak) IBOutlet NSLayoutConstraint *searchViewHeight;
 @property (weak) IBOutlet NSSearchField *searchField;
@@ -77,7 +80,9 @@
 -(IBAction)addTrack:(id)sender;
 -(IBAction)removeTrack:(id)sender;
 
+-(IBAction)showVolume:(id)sender;
 -(IBAction)volume:(id)sender;
+
 -(IBAction)runtime:(id)sender;
 -(IBAction)switchRuntime:(id)sender;
 -(IBAction)showSearch:(id)sender;

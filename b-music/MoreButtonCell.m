@@ -24,10 +24,6 @@
     CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
     CGContextFillRect(ctx, self.bounds);
     
-    
-    
- 
-    
     if ([self.cell isHighlighted]) {
         
     }else{

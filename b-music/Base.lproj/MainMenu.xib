@@ -498,12 +498,14 @@ CA
                 <outlet property="controlsMenu" destination="zrA-x4-aEx" id="WdG-He-t8q"/>
                 <outlet property="dockMenu" destination="5rC-c8-uiv" id="FFS-YW-gga"/>
                 <outlet property="editMenu" destination="205" id="UVJ-h2-M51"/>
+                <outlet property="popoverVolume" destination="Brn-dQ-DWu" id="tDg-2Y-Wcr"/>
                 <outlet property="scrollview" destination="K4F-an-rVg" id="K2d-O9-kDx"/>
                 <outlet property="searchField" destination="QDs-sT-8Xu" id="cfM-i9-pnh"/>
                 <outlet property="searchViewHeight" destination="6bq-sP-CBT" id="B3f-9E-0g4"/>
                 <outlet property="statusMenu" destination="452-f3-juW" id="jhR-rL-i7J"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
                 <outlet property="viewMenu" destination="296" id="nIm-Eu-Kkx"/>
+                <outlet property="volume" destination="APo-cf-DUn" id="OyR-Nx-xmX"/>
                 <outlet property="windowMenu" destination="24" id="lJg-1C-TwT"/>
             </connections>
         </customObject>
@@ -588,20 +590,8 @@ CA
                         <action selector="next:" target="DoF-XC-WxK" id="AZZ-46-LPz"/>
                     </connections>
                 </button>
-                <slider verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
-                    <rect key="frame" x="261" y="17" width="100" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="OuY-hE-f7S"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" priority="852" constant="100" id="nh9-Yv-DeZ"/>
-                    </constraints>
-                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
-                    <connections>
-                        <action selector="volume:" target="DoF-XC-WxK" id="Xpo-5a-CWw"/>
-                    </connections>
-                </slider>
-                <button ambiguous="YES" misplaced="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button" customClass="ShowPlaylistButton">
-                    <rect key="frame" x="180" y="15" width="20" height="20"/>
+                <button tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="xui-Zx-xpI" userLabel="Show playlist Button" customClass="ShowPlaylistButton">
+                    <rect key="frame" x="261" y="15" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="S8x-l3-CZh"/>
@@ -615,8 +605,8 @@ CA
                         <action selector="showPlaylist:" target="DoF-XC-WxK" id="1a7-qr-Uhe"/>
                     </connections>
                 </button>
-                <button ambiguous="YES" misplaced="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button" customClass="ShowSearchButton">
-                    <rect key="frame" x="199" y="15" width="20" height="20"/>
+                <button tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-JG-hfx" userLabel="Show Search Button" customClass="ShowSearchButton">
+                    <rect key="frame" x="281" y="15" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="MPP-BN-Ykf"/>
@@ -645,8 +635,8 @@ CA
                         <action selector="close:" target="DoF-XC-WxK" id="SgF-Rs-TCp"/>
                     </connections>
                 </button>
-                <button ambiguous="YES" misplaced="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button" customClass="RepeatButton">
-                    <rect key="frame" x="218" y="15" width="20" height="20"/>
+                <button tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-PR-A9a" userLabel="Repeat Button" customClass="RepeatButton">
+                    <rect key="frame" x="301" y="15" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="5fj-P9-QEh"/>
@@ -660,8 +650,8 @@ CA
                         <action selector="repeat:" target="DoF-XC-WxK" id="igJ-gB-Zpe"/>
                     </connections>
                 </button>
-                <button ambiguous="YES" misplaced="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button" customClass="ShuffleButton">
-                    <rect key="frame" x="237" y="15" width="20" height="20"/>
+                <button tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="N0i-Xy-91b" userLabel="Shuffle Button" customClass="ShuffleButton">
+                    <rect key="frame" x="321" y="15" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="PJW-7p-Rqs"/>
@@ -675,26 +665,50 @@ CA
                         <action selector="shuffle:" target="DoF-XC-WxK" id="f48-1b-Tr1"/>
                     </connections>
                 </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="X1a-Or-U0s" customClass="ShowVolumeButton">
+                    <rect key="frame" x="341" y="15" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Hah-uh-WJS"/>
+                        <constraint firstAttribute="height" constant="20" id="x9R-KI-T6d"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="91k-Im-GKE">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showVolume:" target="DoF-XC-WxK" id="Qcw-6R-19Y"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="jz2-d1-dqI" firstAttribute="leading" secondItem="qsF-Cm-hro" secondAttribute="leading" constant="6" id="5Fx-IK-GgY"/>
                 <constraint firstAttribute="centerY" secondItem="nPK-OF-Yv0" secondAttribute="centerY" id="6Np-ph-MIE"/>
                 <constraint firstAttribute="centerY" secondItem="rTt-bS-Gpj" secondAttribute="centerY" id="ARU-1F-xde"/>
                 <constraint firstAttribute="centerY" secondItem="LWS-5t-NVl" secondAttribute="centerY" id="Ehe-pn-utY"/>
-                <constraint firstAttribute="trailing" secondItem="APo-cf-DUn" secondAttribute="trailing" constant="20" symbolic="YES" id="aww-od-bkP"/>
+                <constraint firstItem="X1a-Or-U0s" firstAttribute="leading" secondItem="N0i-Xy-91b" secondAttribute="trailing" id="KjM-Jq-kcu"/>
+                <constraint firstAttribute="centerY" secondItem="N0i-Xy-91b" secondAttribute="centerY" id="MQw-lF-XSC"/>
+                <constraint firstAttribute="centerY" secondItem="XrI-JG-hfx" secondAttribute="centerY" id="QHX-8L-xAe"/>
+                <constraint firstAttribute="centerY" secondItem="xui-Zx-xpI" secondAttribute="centerY" id="Rv7-07-o09"/>
+                <constraint firstItem="fTl-PR-A9a" firstAttribute="leading" secondItem="XrI-JG-hfx" secondAttribute="trailing" id="bgp-8C-5W0"/>
                 <constraint firstItem="rTt-bS-Gpj" firstAttribute="leading" secondItem="nPK-OF-Yv0" secondAttribute="trailing" id="dVZ-Tw-C7L"/>
                 <constraint firstItem="nPK-OF-Yv0" firstAttribute="leading" secondItem="jz2-d1-dqI" secondAttribute="trailing" constant="8" id="dic-qg-Hd8"/>
                 <constraint firstItem="jz2-d1-dqI" firstAttribute="top" secondItem="qsF-Cm-hro" secondAttribute="top" constant="6" id="hUg-vo-QLM"/>
-                <constraint firstAttribute="centerY" secondItem="APo-cf-DUn" secondAttribute="centerY" id="w7N-J3-y1x"/>
+                <constraint firstItem="xui-Zx-xpI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LWS-5t-NVl" secondAttribute="trailing" constant="10" symbolic="YES" id="jB0-ce-I5i"/>
+                <constraint firstAttribute="centerY" secondItem="X1a-Or-U0s" secondAttribute="centerY" id="mbh-hc-wnd"/>
+                <constraint firstItem="XrI-JG-hfx" firstAttribute="leading" secondItem="xui-Zx-xpI" secondAttribute="trailing" id="ncm-PU-RxB"/>
+                <constraint firstAttribute="trailing" secondItem="X1a-Or-U0s" secondAttribute="trailing" constant="20" id="oZE-CJ-6Kn"/>
+                <constraint firstAttribute="centerY" secondItem="fTl-PR-A9a" secondAttribute="centerY" id="vMc-TQ-26d"/>
                 <constraint firstItem="LWS-5t-NVl" firstAttribute="leading" secondItem="rTt-bS-Gpj" secondAttribute="trailing" id="y2d-Lv-YXj"/>
+                <constraint firstItem="N0i-Xy-91b" firstAttribute="leading" secondItem="fTl-PR-A9a" secondAttribute="trailing" id="zsr-SY-Dgg"/>
             </constraints>
         </customView>
         <customView id="fl9-Ey-vmi" userLabel="BottomControls1">
             <rect key="frame" x="0.0" y="0.0" width="381" height="82"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <slider verticalHuggingPriority="750" misplaced="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
-                    <rect key="frame" x="45" y="33" width="251" height="17"/>
+                <slider verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yEZ-8b-PGl" customClass="RuntimeSlider">
+                    <rect key="frame" x="45" y="33" width="316" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="dnb-1G-VqQ" customClass="RuntimeSliderCell"/>
                     <connections>
@@ -768,12 +782,43 @@ CA
                 </menuItem>
             </items>
         </menu>
+        <viewController id="GXc-gS-P1T" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="8Sq-g7-od9" id="R2A-6v-vc3"/>
+            </connections>
+        </viewController>
+        <popover appearance="HUD" behavior="t" id="Brn-dQ-DWu">
+            <connections>
+                <outlet property="contentViewController" destination="GXc-gS-P1T" id="9v8-QQ-Jvt"/>
+            </connections>
+        </popover>
+        <customView id="8Sq-g7-od9">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <slider verticalHuggingPriority="750" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="APo-cf-DUn" userLabel="Volume Slider" customClass="Volume">
+                    <rect key="frame" x="10" y="12" width="120" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="2" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="lM8-xb-pGY" customClass="VolumeCell"/>
+                    <connections>
+                        <action selector="volume:" target="DoF-XC-WxK" id="Xpo-5a-CWw"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="APo-cf-DUn" secondAttribute="centerY" id="WwH-1B-rgH"/>
+                <constraint firstAttribute="centerX" secondItem="APo-cf-DUn" secondAttribute="centerX" id="bty-wi-aMd"/>
+                <constraint firstItem="APo-cf-DUn" firstAttribute="leading" secondItem="8Sq-g7-od9" secondAttribute="leading" constant="10" id="eVS-SC-Mkb"/>
+                <constraint firstAttribute="trailing" secondItem="APo-cf-DUn" secondAttribute="trailing" constant="10" id="v2F-WG-q1U"/>
+            </constraints>
+        </customView>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSEnterFullScreenTemplate" width="16" height="15"/>
         <image name="NSGoRightTemplate" width="9" height="9"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
+        <image name="NSQuickLookTemplate" width="21" height="16"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>

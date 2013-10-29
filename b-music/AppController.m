@@ -61,7 +61,7 @@
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
         [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
     
-        [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];//Set volume on view
+        [self.volume setProgress:self.S.settings.volume];//Set volume on view
     
         if (self.S.settings.alwaysOnTop) { //Set Always on top
             [[[NSApp delegate] window] setLevel:1000];
@@ -115,14 +115,14 @@
  *
  *****************************************************************************************/
 -(void)isHovered:(BOOL)flag{
-//    if (![self.Controls3 superview]) {
+    if (![_popoverVolume isShown]) {
         [self removeSubviews];
         if (flag) {
             [self addSubviewHelper:self.Controls0 slerve:self.Controls2];
         }else{
             [self addSubviewHelper:self.Controls0 slerve:self.Controls1];
         }
-//    }
+    }
 }
 /*
  *                                  TEMP Methods
@@ -468,20 +468,20 @@
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
     self.S.settings.volume-=0.1;
     if (self.S.settings.volume<0){ self.S.settings.volume=0;}else if (self.S.settings.volume==0){return;}
-    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.volume setProgress:self.S.settings.volume];
     [self.PC.player setVolume:self.S.settings.volume];
     [self.S saveSettings];
 }
 -(IBAction)increaseVolume:(id)sender{ NSLog(@"IncreaseVolume");
     self.S.settings.volume+=0.1;
     if (self.S.settings.volume>2){ self.S.settings.volume=2;}else if (self.S.settings.volume==2){return;}
-    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.volume setProgress:self.S.settings.volume];
     [self.PC.player setVolume:self.S.settings.volume];
     [self.S saveSettings];
 }
 -(IBAction)mute:(id)sender{NSLog(@"Mute");
     self.S.settings.volume=0;
-    [[self.Controls2 viewWithTag:9] setProgress:self.S.settings.volume];
+    [self.volume setProgress:self.S.settings.volume];
     [self.PC.player setVolume:self.S.settings.volume];
     [self.S saveSettings];
 }
@@ -527,6 +527,10 @@
 -(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
     _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
     [self requestToRemovetrack];
+}
+-(IBAction)showVolume:(id)sender{ NSLog(@"ShowVolume");
+    
+    [self.popoverVolume showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxXEdge];
 }
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
@@ -579,35 +583,30 @@
     
     CGRect rect;
     
-    if ([sender isKindOfClass:[NSMenuItem class]]) {
-         NSLog(@"1%@",sender);
-        
-        switch ([sender tag]) {
-            case 1:
-                NSLog(@"HELLO");
-                
-            case 2:
-                //rect=[[NSScreen mainScreen] visibleFrame];
-            case 3:
-                rect=[[NSScreen mainScreen] visibleFrame];
-        }
-        
-        
-    }else{
-         NSLog(@"2%@",sender);
-    }
+    CGFloat widthPlayer=250;
+    CGFloat heightPlayer=70;
     
     id window=[[NSApp delegate] window];
-    [window setFrame:rect display:YES animate:YES];
     
-//    double widthPlayer=350;
-//    double heightPlayer=70;
-//    
-//    if ([self.searchViewHeight constant]>0)
-//        heightPlayer+=30;
-//    
-//    id window=[[NSApp delegate] window];
-//    [window setFrame:NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer) display:YES animate:YES];
+    if ([sender isKindOfClass:[NSMenuItem class]]) {
+        if ([sender tag]==1) {
+            if ([self.searchViewHeight constant]>0)
+                heightPlayer+=30;
+            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+        }else if ([sender tag]==2){
+            
+        }else if ([sender tag]==3){
+            rect=[[NSScreen mainScreen] visibleFrame];
+        }
+    }else{
+        if ([self.searchViewHeight constant]>0)
+            heightPlayer+=30;
+        
+        rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+    }
+    
+    
+    [window setFrame:rect display:YES animate:YES];
 }
 
 -(IBAction)minimize:(id)sender{NSLog(@"Minimize");
