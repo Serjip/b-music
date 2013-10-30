@@ -42,8 +42,19 @@
     }
     return self;
 }
+
+- (void)registerMyApp {
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+
+}
+
+- (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    NSLog(@"%@",[event paramDescriptorForKeyword:keyDirectObject]);
+}
+    
+    
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
- 
+    [self registerMyApp];
     if (!_isInitialLoadingFinish) {
         
 //        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
