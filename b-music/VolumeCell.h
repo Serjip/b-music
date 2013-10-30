@@ -8,11 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface VolumeCell : NSSliderCell{
-    double _progress;
-    BOOL _isShowKnob;
-}
+@interface VolumeCell : NSSliderCell
+
 -(void)setProgress:(double)progress;
--(void)setShowKnob:(BOOL)isShowKnob;
 
 @end

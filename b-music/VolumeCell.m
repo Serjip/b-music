@@ -11,7 +11,10 @@
 #define posY 8.5
 #define thikness 2
 
-@implementation VolumeCell
+@implementation VolumeCell{
+    double _progress;
+}
+
 - (id)init
 {
     self = [super init];
@@ -52,18 +55,9 @@
     double x1=knobRect.size.width;
     double y1=knobRect.size.height;
     double t=2;
-    
-    if (_isShowKnob) {
-        
-        CGContextFillEllipseInRect(ctx, CGRectMake(x0+t, y0+t, x1-t*2, y1-t*2));
-        
-    }else{
-        
-    }
-}
 
--(void)setShowKnob:(BOOL)isShowKnob{
-    _isShowKnob=isShowKnob;
+        
+    CGContextFillEllipseInRect(ctx, CGRectMake(x0+t, y0+t, x1-t*2, y1-t*2));
 }
 - (BOOL)_usesCustomTrackImage
 {

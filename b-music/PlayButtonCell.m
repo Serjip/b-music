@@ -21,9 +21,17 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    
+    
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    
+    //Backgorund
     CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
     CGContextFillRect(ctx, self.bounds);
+
+    
+    
+    [super drawRect:dirtyRect];
     
     CGFloat h=NSHeight(self.bounds);
     CGFloat w=NSWidth(self.bounds);
@@ -31,7 +39,7 @@
     
     CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
     CGContextSetRGBFillColor(ctx, 1, 1, 1, kAlpha);
-    
+
     if ([self.cell isHighlighted]) {
         
     }else{
@@ -56,8 +64,6 @@
         CGContextFillPath(ctx);
         
     }
-    
-    
 }
 
 -(void) setPauseState:(BOOL)state{

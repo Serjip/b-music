@@ -23,43 +23,46 @@
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
     CGContextFillRect(ctx, self.bounds);
+
+    [super drawRect:dirtyRect];
     
-    if ([self.cell isHighlighted]) {
-        
-    }else{
-        
-    }
-    
-    if (_isHovered) {
-        CGContextSetRGBFillColor(ctx, .07, .07, .07, kAlpha);
-        
-        CGContextAddEllipseInRect(ctx, NSMakeRect(10 , self.bounds.size.height/2-15/2, 5, 5));
-        CGContextAddEllipseInRect(ctx, NSMakeRect(30 , self.bounds.size.height/2-15/2, 5, 5));
-        CGContextAddEllipseInRect(ctx, NSMakeRect(50 , self.bounds.size.height/2-15/2, 5, 5));
-        
-        CGContextFillPath(ctx);
-    }else{
-        CGRect viewBounds = self.bounds;
-        
-        CGContextTranslateCTM(ctx, 0, viewBounds.size.height);
-        CGContextScaleCTM(ctx, 1, -1);
-        
-        CGFloat w, h;
-        w = self.bounds.size.width;
-        h = self.bounds. size.height;
-        
-        CGAffineTransform myTextTransform; // 2
-        CGContextSelectFont (ctx, // 3
-                             "Lucida Grande",
-                             12,
-                             kCGEncodingMacRoman);
-        CGContextSetCharacterSpacing (ctx, 1); // 4
-        CGContextSetTextDrawingMode (ctx, kCGTextFill); // 5
-        CGContextSetRGBFillColor (ctx, 0.7, 0.7, 0.7, 1); // 6
-        myTextTransform =  CGAffineTransformMakeRotation(0); // 8
-        CGContextSetTextMatrix (ctx, myTextTransform); // 9
-        CGContextShowTextAtPoint (ctx, 20, 20, [self.title cStringUsingEncoding:[NSString defaultCStringEncoding]], [self.title length]); // 10
-    }
+//
+//    if ([self.cell isHighlighted]) {
+//        
+//    }else{
+//        
+//    }
+//    
+//    if (_isHovered) {
+//        CGContextSetRGBFillColor(ctx, .07, .07, .07, kAlpha);
+//        
+//        CGContextAddEllipseInRect(ctx, NSMakeRect(10 , self.bounds.size.height/2-15/2, 5, 5));
+//        CGContextAddEllipseInRect(ctx, NSMakeRect(30 , self.bounds.size.height/2-15/2, 5, 5));
+//        CGContextAddEllipseInRect(ctx, NSMakeRect(50 , self.bounds.size.height/2-15/2, 5, 5));
+//        
+//        CGContextFillPath(ctx);
+//    }else{
+//        CGRect viewBounds = self.bounds;
+//        
+//        CGContextTranslateCTM(ctx, 0, viewBounds.size.height);
+//        CGContextScaleCTM(ctx, 1, -1);
+//        
+//        CGFloat w, h;
+//        w = self.bounds.size.width;
+//        h = self.bounds. size.height;
+//        
+//        CGAffineTransform myTextTransform; // 2
+//        CGContextSelectFont (ctx, // 3
+//                             "Lucida Grande",
+//                             12,
+//                             kCGEncodingMacRoman);
+//        CGContextSetCharacterSpacing (ctx, 1); // 4
+//        CGContextSetTextDrawingMode (ctx, kCGTextFill); // 5
+//        CGContextSetRGBFillColor (ctx, 0.7, 0.7, 0.7, 1); // 6
+//        myTextTransform =  CGAffineTransformMakeRotation(0); // 8
+//        CGContextSetTextMatrix (ctx, myTextTransform); // 9
+//        CGContextShowTextAtPoint (ctx, 20, 20, [self.title cStringUsingEncoding:[NSString defaultCStringEncoding]], [self.title length]); // 10
+//    }
 }
 
 -(void)mouseEntered:(NSEvent *)theEvent

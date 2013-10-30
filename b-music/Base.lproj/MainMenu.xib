@@ -328,7 +328,7 @@ CA
                                                                 <constraint firstAttribute="height" constant="50" id="w8U-p2-0yp"/>
                                                             </constraints>
                                                             <buttonCell key="cell" type="smallSquare" title="--:--" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="R1R-E7-bZo">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <behavior key="behavior" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
@@ -342,8 +342,8 @@ CA
                                                                 <constraint firstAttribute="height" constant="50" id="MbC-FO-525"/>
                                                                 <constraint firstAttribute="width" constant="50" id="z9X-h6-DL8"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSGoRightTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="28K-eS-vOQ">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="28K-eS-vOQ">
+                                                                <behavior key="behavior" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
@@ -716,7 +716,7 @@ CA
                     </connections>
                 </slider>
                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
-                    <rect key="frame" x="0.0" y="35" width="40" height="13"/>
+                    <rect key="frame" x="0.0" y="34" width="40" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="khr-zJ-x44"/>
@@ -816,7 +816,6 @@ CA
     <resources>
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSEnterFullScreenTemplate" width="16" height="15"/>
-        <image name="NSGoRightTemplate" width="9" height="9"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
         <image name="NSQuickLookTemplate" width="21" height="16"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>

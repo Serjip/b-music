@@ -8,9 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "VolumeCell.h"
-@interface Volume : NSSlider{
-    double _progress;
-}
+@interface Volume : NSSlider
 -(void)setProgress:(double)progress;
 
 @end

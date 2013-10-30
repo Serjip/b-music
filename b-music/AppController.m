@@ -12,21 +12,20 @@
 @implementation AppController{
     
     NSDictionary * _currentTrack;
+    
     NSMutableArray * _viewPlaylist;//Playlist for table
     NSMutableArray * _soundPlaylist;//Playlist for playing
     NSMutableArray * _shufflePlaylist;
+    NSMutableDictionary * _imageList;
     
     
     NSString * _currentTableRow;//For table whitch one cell is shown
-    
-    BOOL _isInitialLoadingFinish;
+    BOOL _isInitialLoadingFinish;//Indicator starting app
     NSString * _searchQuery;
-    
     NSInteger _row;
-    
     BOOL _userHoldKey;//global key event holding indicator
     
-    NSImageView * _imageview;
+    CGSize _windowSize;//size player
 }
 - (id)init
 {
@@ -77,6 +76,9 @@
         
         //Set search
         [[self.searchField cell]setFocusRingType:NSFocusRingTypeNone];
+        
+        //Setting size window
+        _windowSize=[[NSApp delegate] window].frame.size;
     
         
         for (NSMenuItem * item in  [self.controlsMenu itemArray]) {
@@ -107,6 +109,20 @@
         
         
         [self requestToMainPlaylist];
+    }
+}
+
+/*
+ *                                  Window Methods
+ *
+ *****************************************************************************************/
+
+-(void)windowDidResize:(NSNotification *)notification{
+    
+    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
+    if ([event type]==6) {
+         id window=[[NSApp delegate] window];
+        _windowSize=[window frame].size;
     }
 }
 
@@ -331,8 +347,23 @@
     [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
     [[self.BottomControls1 viewWithTag:2] setMaxValue:duration];//Set duration for slider
     
-//    NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
-//    if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setImageURL:[_lastfmAPI getImageStringURL:artist title:title]];
+    NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
+    
+    dispatch_queue_t downloadQueue = dispatch_queue_create("com.b-music.imglastfm", NULL);
+    dispatch_async(downloadQueue, ^{
+        if (num>-1){
+            NSButton * btn=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
+            NSImage * image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[_lastfmAPI getImageStringURL:artist title:title]]];
+            
+            if (!_imageList) {
+                _imageList = [[NSMutableDictionary alloc]init];
+            }
+            if (image) {
+                [_imageList setObject:image forKey:_currentTrack];
+                [btn setImage:image];
+            }
+        }
+    });
 }
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
@@ -402,6 +433,13 @@
     [[cellview viewWithTag:4] setTitle:[self.PC convertTime:[[obj objectForKey:@"duration"] doubleValue]]];
     
     [[cellview viewWithTag:1] setPauseState:([obj isEqualTo:_currentTrack])? YES : NO];
+    
+    
+    if (_imageList) {
+        
+        NSImage * image = [_imageList objectForKey:obj];
+        [[cellview viewWithTag:1] setImage:image];
+    }
     
     return cellview;
 }
@@ -594,6 +632,8 @@
                 heightPlayer+=30;
             rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
         }else if ([sender tag]==2){
+            
+            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
             
         }else if ([sender tag]==3){
             rect=[[NSScreen mainScreen] visibleFrame];
