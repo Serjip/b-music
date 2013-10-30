@@ -8,6 +8,26 @@
 
 #import "ShuffleButton.h"
 
+#define kRed 50
+#define kGreen 50
+#define kBlue 50
+
+
+#define kRed1 60
+#define kGreen1 60
+#define kBlue1 60
+
+
+
+#define kRedH 48
+#define kGreenH 98
+#define kBlueH 144
+
+
+#define kRedH1 36
+#define kGreenH1 72
+#define kBlueH1 105
+
 @implementation ShuffleButton{
     BOOL _flag;
 }
@@ -22,19 +42,19 @@
     
     if (_flag) {
         if ([self.cell isHighlighted]) {
-            CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(36/255.0, 72/255.0, 105/255.0, 1));
-            CGContextSetRGBFillColor (ctx, 36/255.0, 72/255.0, 105/255.0, 1);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRedH1/255.0 green:kGreenH1/255.0 blue:kBlueH1/255.0 alpha:1].CGColor);
+            CGContextSetRGBFillColor (ctx, kRedH1/255.0, kGreenH1/255.0, kBlueH1/255.0, 1);
         }else{
-            CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(48/255.0, 98/255.0, 144/255.0, 1));
-            CGContextSetRGBFillColor (ctx, 48/255.0, 98/255.0, 144/255.0, 1);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRedH/255.0 green:kGreenH/255.0 blue:kBlueH/255.0 alpha:1].CGColor);
+            CGContextSetRGBFillColor (ctx, kRedH/255.0, kGreenH/255.0, kBlueH/255.0, 1);
         }
     }else{
         if ([self.cell isHighlighted]) {
-            CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(50/255.0, 50/255.0, 50/255.0, 1));
-            CGContextSetRGBFillColor (ctx, 50/255.0, 50/255.0, 50/255.0, 1);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:1].CGColor);
+            CGContextSetRGBFillColor (ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, 1);
         }else{
-            CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(60/255.0, 60/255.0, 60/255.0, 1));
-            CGContextSetRGBFillColor (ctx, 60/255.0, 60/255.0, 60/255.0, 1);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRed1/255.0 green:kGreen1/255.0 blue:kBlue1/255.0 alpha:1].CGColor);
+            CGContextSetRGBFillColor (ctx, kRed1/255.0, kGreen1/255.0, kBlue1/255.0, 1);
         }
     }
     

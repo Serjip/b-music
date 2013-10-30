@@ -329,7 +329,7 @@ CA
                                                             </constraints>
                                                             <buttonCell key="cell" type="smallSquare" title="--:--" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="R1R-E7-bZo">
                                                                 <behavior key="behavior" lightByContents="YES"/>
-                                                                <font key="font" metaFont="system"/>
+                                                                <font key="font" size="11" name="LucidaGrande"/>
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="more:" target="DoF-XC-WxK" id="4Gv-VB-xSI"/>
