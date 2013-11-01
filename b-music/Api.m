@@ -129,4 +129,24 @@
     return response;
 }
 
+
+- (void)alertSheet{
+    //Create alert
+    NSAlert * alert=[NSAlert alertWithMessageText:@"Alert message"
+                                    defaultButton:@"ok"
+                                  alternateButton:@"alt"
+                                      otherButton:@"Other"
+                        informativeTextWithFormat:@"Inform texy"];
+    
+    //Start alert
+    [alert beginSheetModalForWindow:[[NSApp delegate] window]
+                      modalDelegate:self
+                     didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                        contextInfo:nil];
+}
+
+- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo{
+    NSLog(@"The return code was %li",returnCode);
+}
+
 @end
