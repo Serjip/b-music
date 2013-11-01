@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SheetWindowController.h"
+
 #import "RuntimeSlider.h"
 #import "Volume.h"
 
@@ -31,11 +31,10 @@
 #import "Api.h"
 #import "LastfmAPI.h"
 
-@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,SheetDelegate,PlayerDelegate,ControlsViewDelegate>{
+@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,PlayerDelegate,ControlsViewDelegate>{
     NSStatusItem *statusItem;
 }
 
-@property SheetWindowController * sheet;
 @property Settings * S;
 @property PlayerController * PC;
 @property Api * api;

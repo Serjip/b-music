@@ -7,7 +7,6 @@
 //
 
 #import "AppController.h"
-#define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
 
 @implementation AppController{
     
@@ -21,8 +20,7 @@
     
     NSString * _currentTableRow;//For table whitch one cell is shown
     BOOL _isInitialLoadingFinish;//Indicator starting app
-    NSString * _searchQuery;
-    NSInteger _row;
+    
     BOOL _userHoldKey;//global key event holding indicator
     
     CGSize _windowSize;//size player
@@ -49,9 +47,15 @@
 }
 
 - (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-    NSLog(@"%@",[event paramDescriptorForKeyword:keyDirectObject]);
-}
     
+    NSMutableDictionary *tokenDic = [self.api parseAccessTokenAndUserIdFormString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSLog(@"%@",tokenDic);
+    
+    self.S.settings.token=[tokenDic objectForKey:@"access_token"];
+    self.S.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
+    
+    [self.S saveSettings];
+}
     
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     [self registerMyApp];
@@ -64,7 +68,7 @@
         
         NSLog(@"%@",self.S);
         if (!self.S.settings.token) {
-            [self activateSeet:YES clearCookiers:NO withURLstring:nil execute:@selector(requestToMainPlaylist)];
+            [self.api auth];
         }
         
         [_Controls0 setDelegate:self];//Set delegation method
@@ -119,7 +123,7 @@
         _isInitialLoadingFinish=YES;
         
         
-        [self requestToMainPlaylist];
+        [self loadMainPlaylist];
     }
 }
 
@@ -156,88 +160,6 @@
  *
  *****************************************************************************************/
 
--(void)requestToRemovetrack{
-    id obj=[_viewPlaylist objectAtIndex:_row];
-    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-    id response=[self.api requestAPI:@"audio.delete" parametesForMethod:q token:self.S.settings.token];
-    if ([response objectForKey:@"error"]) {
-        
-        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
-            
-            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToRemovetrack)];
-        }
-        
-        return;
-    }
-    
-    if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
-        [_soundPlaylist removeObjectAtIndex:_row];
-    }
-    
-    [_viewPlaylist removeObjectAtIndex:_row];
-    [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:_row] withAnimation:NSTableViewAnimationSlideUp];
-}
-
--(void)requestToAddtrack{
-    id obj=[_viewPlaylist objectAtIndex:_row];
-    NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.0&",[obj objectForKey:@"owner_id"],[obj objectForKey:@"id"]];
-    id response=[self.api requestAPI:@"audio.add" parametesForMethod:q token:self.S.settings.token];
-    
-    if ([response objectForKey:@"error"]) {
-        
-        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
-            
-            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToAddtrack)];
-        }
-        
-        return;
-    }
-    
-    //[[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
-    [[[_tableview rowViewAtRow:_row makeIfNecessary:NO] viewWithTag:4] setComplete];
-    //[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] slideCell:0];
-}
-
--(void)requestToSearch{
-    NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=50&v=5.2&",_searchQuery];
-    
-    id response=[self.api requestAPI:@"audio.search" parametesForMethod:q token:self.S.settings.token];
-    
-    if ([response objectForKey:@"error"]) {
-        
-        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
-            
-            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToSearch)];
-        }
-        
-        return;
-    }
-    
-    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
-    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-}
--(void)requestToMainPlaylist{
-    
-    id response=[self.api requestAPI:@"audio.get" parametesForMethod:@"&v=5.2&" token:self.S.settings.token];
-    
-    if ([response objectForKey:@"error"]) {
-        
-        if ([[[response objectForKey:@"error"] objectForKey:@"error_code"] isEqual:@(17)]) {
-            
-            [self activateSeet:NO clearCookiers:NO withURLstring:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"] execute:@selector(requestToMainPlaylist)];
-        }
-        
-        return;
-    }
-    
-    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
-    _soundPlaylist=[_viewPlaylist mutableCopy];
-    
-    if (self.S.settings.shuffle) {_shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist]; }
-    
-    [self.tableview performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-}
-
 -(NSEvent*) localMonitorKeydownEvents:(NSEvent*)event{
 //    NSLog(@"%hu %@",event.keyCode, [[[NSApp keyWindow] firstResponder] className]);
 //    return event;
@@ -255,9 +177,11 @@
             return nil;
         }
         return event;
-    }else if ([[[[NSApp keyWindow] firstResponder] className] isEqualToString:@"WebHTMLView"]){
-        return event;
     }
+//    Method not use from v 2.1.1
+//    else if ([[[[NSApp keyWindow] firstResponder] className] isEqualToString:@"WebHTMLView"]){
+//        return event;
+//    }
     
     if (event.keyCode==36 && _tableview.selectedRow>-1) {
         [[[_tableview viewAtColumn:0 row:_tableview.selectedRow makeIfNecessary:NO] viewWithTag:1] performClick:nil];
@@ -266,6 +190,8 @@
     [_tableview keyDown:event];
     return nil;
 }
+
+
 -(void) globalMonitorKeydownEvents:(NSEvent*)event{
     if (!(event.modifierFlags&NSCommandKeyMask)) return;
 //    NSLog(@"%li",event.data1);
@@ -321,9 +247,27 @@
     [slerve setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
 }
 
+//Switcher to pause state in table view
 -(void) setPauseStateForButton:(id)object state:(BOOL)flag{
     NSInteger num=(int)[_viewPlaylist indexOfObject:object];
     if (num>-1) [[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1] setPauseState:flag];
+}
+
+
+-(void) loadMainPlaylist{
+    
+    id response =[self.api requestAPIVkLoadMainplaylist:self.S.settings.token];
+    
+    if (![self.api checkForErrorResponse:response]) return;//Some error happend
+    
+    _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
+    _soundPlaylist=[_viewPlaylist mutableCopy];
+    
+    if (self.S.settings.shuffle) { _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist]; }
+    
+    [self.tableview performSelectorOnMainThread:@selector(reloadData)
+                                     withObject:nil
+                                  waitUntilDone:NO];
 }
 
 /*
@@ -385,48 +329,6 @@
     [[self.BottomControls1 viewWithTag:1] setTitle:str];
 }
 
-/*
- *                                  Auth Methods
- *
- *****************************************************************************************/
-
--(void)activateSeet:(BOOL)auth clearCookiers:(BOOL)cookies withURLstring:(NSString*)URLstring execute:(SEL)func{
-    
-    if (!self.sheet) {
-        self.sheet=[[SheetWindowController alloc] initWithWindowNibName:@"SheetWindowController"];
-        [self.sheet setDelegate:self];
-    }
-    
-    [NSApp beginSheet:self.sheet.window
-       modalForWindow:[[NSApp delegate]window]
-        modalDelegate:self
-       didEndSelector:nil
-          contextInfo:nil];
-    
-    if (cookies) [self.sheet clearCookie];
-    if (auth) {
-        [self.sheet loadURL:kAuthURL execute:func];
-    }else{
-        [self.sheet loadURL:URLstring execute:func];
-    }
-}
-
--(void) cancelSheet:(NSString*)token user_id:(NSInteger)user_id execute:(SEL)someFunc{
-    
-    NSLog(@"DELEGATION METHOD token %@ user_id %li",token,user_id);
-    if(token && user_id){
-        self.S.settings.token=token;
-        self.S.settings.user_id=user_id;
-        [self.S saveSettings];
-    }
-    [NSApp endSheet:self.sheet.window];
-    [self.sheet.window close];
-    
-    
-    if (someFunc!=nil) {
-        [self performSelector:someFunc];
-    }
-}
 /*
  *                                  TableView Methods
  *
@@ -561,26 +463,61 @@
     self.S.settings.alwaysOnTop=!self.S.settings.alwaysOnTop;
     [self.S saveSettings];
 }
+
+
 -(IBAction)visitWebsite:(id)sender{ NSLog(@"visitwebsite");
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/"]];
 }
+
 
 -(IBAction)more:(id)sender{ NSLog(@"More");
     [[_tableview viewAtColumn:0 row:[_tableview rowForView:sender] makeIfNecessary:NO] slideCell:75];
     [sender mouseExited:nil];
 }
+
+
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
-    _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
-    [self requestToAddtrack];
-}
--(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
-    _row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
-    [self requestToRemovetrack];
-}
--(IBAction)showVolume:(id)sender{ NSLog(@"ShowVolume");
+    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
     
+    id obj=[_viewPlaylist objectAtIndex:row];
+    
+    BOOL result=[self.api requestAPIVkAddTrack:self.S.settings.token
+                                      owner_id:[obj objectForKey:@"owner_id"]
+                                       idTrack:[obj objectForKey:@"id"]];
+    
+    if (!result) return;// Some error happend
+    
+    [[[_tableview rowViewAtRow:row makeIfNecessary:NO] viewWithTag:4] setComplete];
+    //[[_tableview viewAtColumn:0 row:_row makeIfNecessary:NO] slideCell:0];
+}
+
+
+-(IBAction)removeTrack:(id)sender{NSLog(@"RemoveTrack");
+    
+    NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
+    
+    id obj=[_viewPlaylist objectAtIndex:row];
+    
+    BOOL result=[self.api requestAPIVkRemoveTrack:self.S.settings.token
+                                         owner_id:[obj objectForKey:@"owner_id"]
+                                          idTrack:[obj objectForKey:@"id"]];
+    
+    if (!result) return;// Some error happend
+    
+    if ([_soundPlaylist isEqualTo:_viewPlaylist]){ //Chech to play new playlist
+        [_soundPlaylist removeObjectAtIndex:row];
+    }
+    
+    [_viewPlaylist removeObjectAtIndex:row];
+    [_tableview removeRowsAtIndexes:[[NSIndexSet alloc] initWithIndex:row] withAnimation:NSTableViewAnimationSlideUp];
+}
+
+
+-(IBAction)showVolume:(id)sender{ NSLog(@"ShowVolume");
     [self.popoverVolume showRelativeToRect:[sender bounds] ofView:sender preferredEdge:NSMaxXEdge];
 }
+
+
 -(IBAction)volume:(id)sender{NSLog(@"Volume");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     BOOL endingDrag = event.type == NSLeftMouseUp;
@@ -589,16 +526,22 @@
     [self.PC.player setVolume:[sender floatValue]];
     if(endingDrag) [self.S saveSettings];
 }
+
+
 -(IBAction)runtime:(id)sender{NSLog(@"Runtime");
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     BOOL endingDrag = event.type == NSLeftMouseUp;
     [sender setProgress:[sender doubleValue]];
     if(endingDrag) [self.PC setRuntime:[sender doubleValue]];
 }
+
+
 -(IBAction)switchRuntime:(id)sender{ NSLog(@"Switch Runtime");
     self.S.settings.runTime=!self.S.settings.runTime;
     [self.S saveSettings];
 }
+
+
 -(IBAction)showSearch:(id)sender{NSLog(@"ShowSearch");
     //Set search view height
     if ([self.searchViewHeight constant]>0) {
@@ -617,21 +560,26 @@
     if ([sender stringValue].length!=0) {
         
         _currentTableRow=@"SearchRow";
-        _searchQuery=[sender stringValue];
-        [self requestToSearch];
+        id response =[self.api requestAPIVkSearch:self.S.settings.token
+                                      searchQuery:[sender stringValue]];
         
-        if([[sender stringValue] isEqual:@"Sergei Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
+        if (![self.api checkForErrorResponse:response]) return;//Some error happend
+        
+        _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
+        
+        [self.tableview performSelectorOnMainThread:@selector(reloadData)
+                                         withObject:nil
+                                      waitUntilDone:NO];
+        
+        if([[sender stringValue] isEqual:@"Sergey Popov"]){[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://vk.com/serji"]];}
+        
     }else{
-        
-        [self requestToMainPlaylist];
-        
+        [self loadMainPlaylist];
         _currentTableRow=@"MainRow";
     }
 }
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
-    
     CGRect rect;
-    
     CGFloat widthPlayer=250;
     CGFloat heightPlayer=70;
     
@@ -656,7 +604,6 @@
         rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
     }
     
-    
     [window setFrame:rect display:YES animate:YES];
 }
 
@@ -673,7 +620,11 @@
 -(IBAction)close:(id)sender{ NSLog(@"Close");
     [[[NSApp delegate] window] close];
 }
+
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
-    [self activateSeet:YES clearCookiers:YES withURLstring:nil execute:@selector(requestToMainPlaylist)];
+    self.S.settings.token=nil;//Remove token
+    [self.S saveSettings];
+    [self.api auth];//Start auth
 }
+
 @end
