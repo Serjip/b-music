@@ -10,6 +10,8 @@
 
 @interface Api : NSObject
 
+@property (weak) NSAlert * alert;
+
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token;
 
 -(void) auth;

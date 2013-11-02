@@ -133,29 +133,29 @@
 
 - (void)alertSheet{
     //Create alert
-    NSAlert * alert=[NSAlert alertWithMessageText:@"Authorization is required"
+    self.alert=[NSAlert alertWithMessageText:@"Authorization is required"
                                     defaultButton:@"Login"//0
                                   alternateButton:@"Cancel"//1
                                       otherButton:@"Singup"//-1
                         informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
     
     //Start alert
-    [alert beginSheetModalForWindow:[[NSApp delegate] window]
+    [self.alert beginSheetModalForWindow:[[NSApp delegate] window]
                       modalDelegate:self
                      didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
                         contextInfo:nil];
     
     
-    NSButton *button = [[alert buttons] objectAtIndex:2];
+    NSButton *button = [[self.alert buttons] objectAtIndex:0];
     
-    id oldTarget = [button target];
-    SEL oldAction = [button action];
+//    id oldTarget = [button target];
+//    SEL oldAction = [button action];
     [button setTarget:self];
     [button setAction:@selector(test)];
 }
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo{
-    NSLog(@"The return code was %li",returnCode);
+    NSLog(@"The return code was %li %@",returnCode , self.alert);
     if (returnCode==-1) {
         [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://vk.com/"]];
     }else if (returnCode==1){
@@ -166,7 +166,7 @@
 }
 
 -(void)test{
-    NSLog(@"TEST HAPPEND");
+    NSLog(@"TEST HAPPEND ");
 }
 
 @end
