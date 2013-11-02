@@ -51,14 +51,25 @@
     NSMutableDictionary *tokenDic = [self.api parseAccessTokenAndUserIdFormString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
     NSLog(@"%@",tokenDic);
     
-    self.S.settings.token=[tokenDic objectForKey:@"access_token"];
-    self.S.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
+    if (!self.S.settings.token) {
+        
+        self.S.settings.token=[tokenDic objectForKey:@"access_token"];
+        self.S.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
+        [self.S saveSettings];
+        
+        [self loadMainPlaylist];
+        
+    }
     
-    [self.S saveSettings];
 }
-    
+
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     [self registerMyApp];
+    
+//    if (!self.S.settings.token){
+//        [self.api auth];
+//    }
+    
     if (!_isInitialLoadingFinish) {
         
 //        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -67,9 +78,6 @@
 //        [statusItem setImage:[NSImage imageNamed:@"status-play.png"]];
         
         NSLog(@"%@",self.S);
-        if (!self.S.settings.token) {
-            [self.api auth];
-        }
         
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)

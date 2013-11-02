@@ -30,7 +30,7 @@
 }
 
 -(void) auth{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kAuthURL]];
+    [self alertSheet];
 }
 
 
@@ -78,6 +78,7 @@
             
             //Open error in browser
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[[response objectForKey:@"error"] objectForKey:@"redirect_uri"]]];
+            NSLog(@"%@",response);
         }
         
         return NO;//Error
@@ -132,21 +133,40 @@
 
 - (void)alertSheet{
     //Create alert
-    NSAlert * alert=[NSAlert alertWithMessageText:@"Alert message"
-                                    defaultButton:@"ok"
-                                  alternateButton:@"alt"
-                                      otherButton:@"Other"
-                        informativeTextWithFormat:@"Inform texy"];
+    NSAlert * alert=[NSAlert alertWithMessageText:@"Authorization is required"
+                                    defaultButton:@"Login"//0
+                                  alternateButton:@"Cancel"//1
+                                      otherButton:@"Singup"//-1
+                        informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
     
     //Start alert
     [alert beginSheetModalForWindow:[[NSApp delegate] window]
                       modalDelegate:self
                      didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
                         contextInfo:nil];
+    
+    
+    NSButton *button = [[alert buttons] objectAtIndex:2];
+    
+    id oldTarget = [button target];
+    SEL oldAction = [button action];
+    [button setTarget:self];
+    [button setAction:@selector(test)];
 }
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo{
     NSLog(@"The return code was %li",returnCode);
+    if (returnCode==-1) {
+        [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://vk.com/"]];
+    }else if (returnCode==1){
+        [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];
+    }else if (returnCode==0){
+        [[[NSApp delegate] window] close];
+    }
+}
+
+-(void)test{
+    NSLog(@"TEST HAPPEND");
 }
 
 @end
