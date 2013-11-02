@@ -586,19 +586,24 @@
         _currentTableRow=@"MainRow";
     }
 }
+
+
 -(IBAction)showPlaylist:(id)sender{ NSLog(@"ShowPlaylist");
+    
     CGRect rect;
+    
     CGFloat widthPlayer=250;
     CGFloat heightPlayer=70;
     
     id window=[[NSApp delegate] window];
     
     if ([sender isKindOfClass:[NSMenuItem class]]) {
-        if ([sender tag]==1) {
-            if ([self.searchViewHeight constant]>0)
+        if ([sender tag]==2) {
+            if ([self.searchViewHeight constant]>0){
                 heightPlayer+=30;
+            }
             rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
-        }else if ([sender tag]==2){
+        }else if ([sender tag]==1){
             
             rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
             
@@ -606,10 +611,15 @@
             rect=[[NSScreen mainScreen] visibleFrame];
         }
     }else{
-        if ([self.searchViewHeight constant]>0)
+        if ([self.searchViewHeight constant]>0){
             heightPlayer+=30;
+        }
         
-        rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+        if ([window frame].size.width==widthPlayer && [window frame].size.height==heightPlayer) {
+            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
+        }else{
+            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+        }
     }
     
     [window setFrame:rect display:YES animate:YES];
