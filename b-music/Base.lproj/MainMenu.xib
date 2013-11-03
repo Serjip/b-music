@@ -429,11 +429,11 @@ CA
                         </scroller>
                     </scrollView>
                     <customView identifier="SearchView" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HH0-tu-mfu" customClass="SearchView">
-                        <rect key="frame" x="0.0" y="409" width="470" height="30"/>
+                        <rect key="frame" x="0.0" y="404" width="470" height="35"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <searchField verticalHuggingPriority="750" alphaValue="0.50000000000000011" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="QDs-sT-8Xu">
-                                <rect key="frame" x="20" y="-24" width="430" height="19"/>
+                            <searchField verticalHuggingPriority="750" misplaced="YES" alphaValue="0.50000000000000011" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="QDs-sT-8Xu">
+                                <rect key="frame" x="20" y="9" width="430" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="hP8-6b-4lx"/>
@@ -715,7 +715,7 @@ CA
                         <action selector="runtime:" target="DoF-XC-WxK" id="Ecj-eL-eRd"/>
                     </connections>
                 </slider>
-                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA">
+                <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA" customClass="SwitchRuntimeButton">
                     <rect key="frame" x="0.0" y="34" width="40" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
@@ -723,7 +723,7 @@ CA
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" title="--:--" bezelStyle="smallSquare" imagePosition="overlaps" alignment="right" controlSize="small" state="on" imageScaling="proportionallyDown" inset="2" id="Jvi-14-iYr">
                         <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" size="10" name="LucidaGrande"/>
+                        <font key="font" size="9" name="LucidaGrande"/>
                     </buttonCell>
                     <connections>
                         <action selector="switchRuntime:" target="DoF-XC-WxK" id="z0m-aS-hIY"/>
@@ -740,19 +740,19 @@ CA
         </customView>
         <menu autoenablesItems="NO" id="452-f3-juW" userLabel="Status Menu">
             <items>
-                <menuItem title="Play" tag="1" enabled="NO" id="JdV-ik-oi1">
+                <menuItem title="Play" tag="1" id="JdV-ik-oi1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="play:" target="DoF-XC-WxK" id="MDg-Sf-kQl"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Next" tag="2" enabled="NO" id="BoE-yK-pYr">
+                <menuItem title="Next" tag="2" id="BoE-yK-pYr">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="next:" target="DoF-XC-WxK" id="F6b-hR-5fc"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Previous" tag="3" enabled="NO" id="Bmo-bo-Mmg">
+                <menuItem title="Previous" tag="3" id="Bmo-bo-Mmg">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="previous:" target="DoF-XC-WxK" id="8BS-Df-0PP"/>

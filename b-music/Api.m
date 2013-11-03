@@ -8,7 +8,6 @@
 
 #import "Api.h"
 
-//#define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=https://oauth.vk.com/blank.html&display=wap&v=5.2&response_type=token"
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=http://ttitt.ru/auth/&v=5.2&response_type=token"
 
 @implementation Api
@@ -33,10 +32,7 @@
     [self alertSheet];
 }
 
-
-
 -(NSMutableDictionary *) parseAccessTokenAndUserIdFormString:(NSString*)stringURL{
-    
     
     NSInteger index = [@"com.ttitt.b-music://" length];
     NSString * tokenString=[stringURL substringFromIndex:index];
@@ -52,7 +48,6 @@
         
         return nil;
     }
-    
     
     return tokenDict;
 }
@@ -133,40 +128,75 @@
 
 - (void)alertSheet{
     //Create alert
+    if (!self.alert) {
+    
+    
     self.alert=[NSAlert alertWithMessageText:@"Authorization is required"
-                                    defaultButton:@"Login"//0
-                                  alternateButton:@"Cancel"//1
-                                      otherButton:@"Singup"//-1
-                        informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
+                               defaultButton:@"Login"//0
+                             alternateButton:@"Cancel"//1
+                                 otherButton:@"Singup"//-1
+                   informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
+    
+    
+    
+    [[[self.alert buttons] objectAtIndex:0] setTarget:self];
+    [[[self.alert buttons] objectAtIndex:0] setAction:@selector(login)];
+    
+    [[[self.alert buttons] objectAtIndex:1] setTarget:self];
+    [[[self.alert buttons] objectAtIndex:1] setAction:@selector(signup)];
+    
+    [[[self.alert buttons] objectAtIndex:2] setTarget:self];
+    [[[self.alert buttons] objectAtIndex:2] setAction:@selector(cancel)];
+    
+    [self registerMyApp];
+        
+    }
     
     //Start alert
     [self.alert beginSheetModalForWindow:[[NSApp delegate] window]
-                      modalDelegate:self
-                     didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-                        contextInfo:nil];
-    
-    
-    NSButton *button = [[self.alert buttons] objectAtIndex:0];
-    
-//    id oldTarget = [button target];
-//    SEL oldAction = [button action];
-    [button setTarget:self];
-    [button setAction:@selector(test)];
+                           modalDelegate:self
+                          didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                             contextInfo:nil];
 }
 
 - (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo{
-    NSLog(@"The return code was %li %@",returnCode , self.alert);
-    if (returnCode==-1) {
-        [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://vk.com/"]];
-    }else if (returnCode==1){
-        [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];
-    }else if (returnCode==0){
-        [[[NSApp delegate] window] close];
-    }
+    NSLog(@"The return code was %li ",returnCode);
 }
 
--(void)test{
-    NSLog(@"TEST HAPPEND ");
+-(void)login{ NSLog(@"Login");
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];
 }
+
+-(void)signup{ NSLog(@"Singup");
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://vk.com/"]];
+}
+
+-(void)cancel{ NSLog(@"Cancel");
+    [[[NSApp delegate] window] close];
+    [NSApp endSheet:[self.alert window]];
+    [[self.alert window]close];
+    self.alert=nil;
+}
+
+- (void)registerMyApp {
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+}
+
+- (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    
+    NSMutableDictionary *tokenDic = [self parseAccessTokenAndUserIdFormString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
+    NSLog(@"%@",tokenDic);
+    
+    [[[NSApp delegate] window] makeKeyWindow];
+    [[[NSApp delegate] window] makeMainWindow];
+    
+    [NSApp endSheet:[self.alert window]];
+    [[self.alert window]close];
+    self.alert=nil;
+    
+    [self.delegate finishAuth:[tokenDic objectForKey:@"access_token"]
+                      user_id:[[tokenDic objectForKey:@"user_id"] integerValue]];
+}
+
 
 @end

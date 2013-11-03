@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol ApiDelegate <NSObject>
+-(void) finishAuth:(NSString*)token user_id:(NSInteger)user_id;
+@end
+
 @interface Api : NSObject
 
+
+@property (weak) id <ApiDelegate> delegate;
 @property (weak) NSAlert * alert;
 
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token;

@@ -31,6 +31,7 @@
     if (self) {
         _S=[[Settings alloc] init];
         _api=[[Api alloc] init];
+        [_api setDelegate:self];
         
         _lastfmAPI=[[LastfmAPI alloc] init];
         
@@ -41,50 +42,56 @@
     return self;
 }
 
-- (void)registerMyApp {
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+/*
+ *                                  Api Delegate Methods
+ *
+ *****************************************************************************************/
 
+-(void) finishAuth:(NSString*)token user_id:(NSInteger)user_id{
+    NSLog(@"NEW TOKEN");
+    
+    self.S.settings.token=token;
+    self.S.settings.user_id=user_id;
+    [self.S saveSettings];
+    
+    [self loadMainPlaylist];
 }
 
-- (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+/*
+ *                                  Window Methods
+ *
+ *****************************************************************************************/
+
+-(void)windowDidResize:(NSNotification *)notification{
     
-    NSMutableDictionary *tokenDic = [self.api parseAccessTokenAndUserIdFormString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
-    NSLog(@"%@",tokenDic);
-    
-    if (!self.S.settings.token) {
-        
-        self.S.settings.token=[tokenDic objectForKey:@"access_token"];
-        self.S.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
-        [self.S saveSettings];
-        
-        [self loadMainPlaylist];
-        
+    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
+    if ([event type]==6) {
+         id window=[[NSApp delegate] window];
+        _windowSize=[window frame].size;
     }
-    
 }
+
 
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
-    [self registerMyApp];
-    
-//    if (!self.S.settings.token){
-//        [self.api auth];
-//    }
+    if (!self.S.settings.token){
+        [self.api auth];
+    }
     
     if (!_isInitialLoadingFinish) {
         
-//        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-//        [statusItem setMenu:self.statusMenu];
-//        [statusItem setHighlightMode:YES];
-//        [statusItem setImage:[NSImage imageNamed:@"status-play.png"]];
+        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        [statusItem setMenu:self.statusMenu];
+        [statusItem setHighlightMode:YES];
+        [statusItem setImage:[NSImage imageNamed:@"NSGoRightTemplate"]];
         
         NSLog(@"%@",self.S);
         
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
         [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
-    
+        
         [self.volume setProgress:self.S.settings.volume];//Set volume on view
-    
+        
         if (self.S.settings.alwaysOnTop) { //Set Always on top
             [[[NSApp delegate] window] setLevel:1000];
             [[self.windowMenu itemWithTag:4] setState:1];
@@ -102,7 +109,7 @@
         
         //Setting size window
         _windowSize=[[NSApp delegate] window].frame.size;
-    
+        
         
         for (NSMenuItem * item in  [self.controlsMenu itemArray]) {
             [item setEnabled:YES];
@@ -130,25 +137,9 @@
         
         _isInitialLoadingFinish=YES;
         
-        
         [self loadMainPlaylist];
     }
 }
-
-/*
- *                                  Window Methods
- *
- *****************************************************************************************/
-
--(void)windowDidResize:(NSNotification *)notification{
-    
-    NSEvent *event = [[NSApplication sharedApplication] currentEvent];
-    if ([event type]==6) {
-         id window=[[NSApp delegate] window];
-        _windowSize=[window frame].size;
-    }
-}
-
 /*
  *                                  ControlsView Methods
  *

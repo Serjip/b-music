@@ -16,6 +16,7 @@
 }
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag{
     [self.window orderFront:nil];
+    [self.window makeMainWindow];
     return NO;
 }
 

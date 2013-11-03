@@ -30,7 +30,7 @@
 #import "Api.h"
 #import "LastfmAPI.h"
 
-@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,PlayerDelegate,ControlsViewDelegate>{
+@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,PlayerDelegate,ControlsViewDelegate,ApiDelegate>{
     NSStatusItem *statusItem;
 }
 
