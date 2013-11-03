@@ -30,8 +30,11 @@
 #import "Api.h"
 #import "LastfmAPI.h"
 
+#import "Preferences.h"
+
 @interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,PlayerDelegate,ControlsViewDelegate,ApiDelegate>{
     NSStatusItem *statusItem;
+    Preferences * preferences;
 }
 
 @property Settings * S;
@@ -61,6 +64,8 @@
 @property (weak) IBOutlet NSMenu *dockMenu;
 @property (weak) IBOutlet NSMenu *statusMenu;
 
+
+-(IBAction)preferences:(id)sender;
 
 -(IBAction)play:(id)sender;
 -(IBAction)next:(id)sender;

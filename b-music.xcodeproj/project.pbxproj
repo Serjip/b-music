@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D20A47F318267883002B7B18 /* StatusBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47F218267883002B7B18 /* StatusBarIcon.m */; };
 		D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */; };
+		D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47FB1826AF5D002B7B18 /* Preferences.m */; };
+		D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A47FC1826AF5D002B7B18 /* Preferences.xib */; };
 		D212C536181577BC00C4E21D /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D212C535181577BC00C4E21D /* SearchView.m */; };
 		D213286E180065D000AFF98C /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213286D180065D000AFF98C /* ControlsView.m */; };
 		D21CE9F217FAFA0900F5AF42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE9F117FAFA0900F5AF42 /* Cocoa.framework */; };
@@ -73,6 +75,9 @@
 		D20A47F218267883002B7B18 /* StatusBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarIcon.m; sourceTree = "<group>"; };
 		D20A47F518267C8E002B7B18 /* SwitchRuntimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRuntimeButton.h; sourceTree = "<group>"; };
 		D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRuntimeButton.m; sourceTree = "<group>"; };
+		D20A47FA1826AF5D002B7B18 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		D20A47FB1826AF5D002B7B18 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		D20A47FC1826AF5D002B7B18 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		D212C534181577BC00C4E21D /* SearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchView.h; sourceTree = "<group>"; };
 		D212C535181577BC00C4E21D /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		D213286C180065D000AFF98C /* ControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsView.h; sourceTree = "<group>"; };
@@ -198,6 +203,16 @@
 			name = Status;
 			sourceTree = "<group>";
 		};
+		D20A47FF1826AF62002B7B18 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				D20A47FA1826AF5D002B7B18 /* Preferences.h */,
+				D20A47FB1826AF5D002B7B18 /* Preferences.m */,
+				D20A47FC1826AF5D002B7B18 /* Preferences.xib */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		D212C53A18157A2500C4E21D /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
+				D20A47FF1826AF62002B7B18 /* Preferences */,
 				D2F011CD181EC5EF00B067CD /* ScrollView */,
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
@@ -576,6 +592,7 @@
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
 				D21CEA0217FAFA0900F5AF42 /* Credits.html in Resources */,
+				D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */,
 				D21CEA0817FAFA0900F5AF42 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +638,7 @@
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* Api.m in Sources */,
 				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,
+				D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */,
 				D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
 				D212C536181577BC00C4E21D /* SearchView.m in Sources */,

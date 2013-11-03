@@ -376,6 +376,13 @@
  *                                      IBActions
  *
  *****************************************************************************************/
+-(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
+    if (!preferences) {
+        preferences=[[Preferences alloc] initWithWindowNibName:@"Preferences"];
+    }
+    [preferences showWindow:self];
+}
+
 -(IBAction)play:(id)sender{ NSLog(@"Play");
     [self setPauseStateForButton:_currentTrack state:NO];
     
