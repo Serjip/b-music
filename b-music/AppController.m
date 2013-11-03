@@ -289,8 +289,20 @@
 }
 -(void) isPlayerPlaying:(BOOL)flag{
     [[self.Controls2 viewWithTag:3] setPauseState:flag];
-    
     [self setPauseStateForButton:_currentTrack state:flag];
+    
+    NSString * state;
+    if (flag) {
+        state=@"Pause";
+    }else{
+        state=@"Play";
+    }
+    
+    
+    [[self.controlsMenu itemWithTag:1] setTitle:state];
+    [[self.statusMenu itemWithTag:1] setTitle:state];
+    [[self.dockMenu itemWithTag:1] setTitle:state];
+    
 }
 
 -(void) durationTrack:(double)duration{
