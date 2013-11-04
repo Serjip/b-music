@@ -23,22 +23,50 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="HNF-pl-mcq">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="76317847-754F-441B-966B-E616AC44234E" label="Custom View" paletteLabel="Custom View" id="4kh-HF-TPd">
+                    <toolbarItem implicitItemIdentifier="76317847-754F-441B-966B-E616AC44234E" label="General" paletteLabel="General" image="NSPreferencesGeneral" id="4kh-HF-TPd">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="64" height="64"/>
-                        <size key="maxSize" width="64" height="64"/>
+                        <size key="minSize" width="19" height="20"/>
+                        <size key="maxSize" width="79" height="40005"/>
                         <button key="view" id="3PO-Hl-mYV">
-                            <rect key="frame" x="7" y="14" width="64" height="64"/>
+                            <rect key="frame" x="4" y="14" width="41" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JPH-RD-tKX">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSPreferencesGeneral" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="JPH-RD-tKX">
+                                <behavior key="behavior" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="070C82AA-81C6-4093-A3DB-213E6AB177DB" label="vk" paletteLabel="vk" id="1em-1F-spU">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="19" height="31"/>
+                        <size key="maxSize" width="79" height="66"/>
+                        <button key="view" id="wYS-dA-8gI">
+                            <rect key="frame" x="0.0" y="14" width="50" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="ksD-7I-i9l">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system" size="10"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="1EBA1981-1828-49D7-83D2-BD9EB7672A0B" label="lastfm" paletteLabel="lastfm" id="OD1-Nd-NLu">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="19" height="31"/>
+                        <size key="maxSize" width="79" height="66"/>
+                        <button key="view" id="IjQ-Np-KVf">
+                            <rect key="frame" x="0.0" y="14" width="50" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="JZQ-5U-laI">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
                             </buttonCell>
                         </button>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="4kh-HF-TPd"/>
+                    <toolbarItem reference="1em-1F-spU"/>
+                    <toolbarItem reference="OD1-Nd-NLu"/>
                 </defaultToolbarItems>
             </toolbar>
             <connections>
@@ -46,4 +74,7 @@
             </connections>
         </window>
     </objects>
+    <resources>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
 </document>
