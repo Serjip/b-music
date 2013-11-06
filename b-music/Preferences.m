@@ -28,6 +28,20 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    [self.toolbar setSelectedItemIdentifier:@"GeneralPreferences"];
 }
+
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar{
+    NSLog(@"HELLO toolbar");
+    
+    return [NSArray arrayWithObjects:@"GeneralPreferences",
+//            AccountPreferences,
+//            AppearancePreferences,
+//            FontsAndColorsPreferences,
+//            AdvancedPreferences,
+            nil];
+}
+
 
 @end

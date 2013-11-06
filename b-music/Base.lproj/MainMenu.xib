@@ -720,7 +720,7 @@ CA
                     </connections>
                 </slider>
                 <button tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1rg-pt-0fA" customClass="SwitchRuntimeButton">
-                    <rect key="frame" x="0.0" y="34" width="40" height="13"/>
+                    <rect key="frame" x="0.0" y="35" width="40" height="12"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="khr-zJ-x44"/>

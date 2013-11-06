@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Preferences : NSWindowController
-
+@interface Preferences : NSWindowController <NSToolbarDelegate>
+@property (weak) IBOutlet NSToolbar *toolbar;
 @end

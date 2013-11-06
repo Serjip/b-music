@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Preferences">
             <connections>
+                <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -21,9 +22,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="HNF-pl-mcq">
+            <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="small" id="HNF-pl-mcq">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="76317847-754F-441B-966B-E616AC44234E" label="General" paletteLabel="General" image="NSPreferencesGeneral" id="4kh-HF-TPd">
+                    <toolbarItem implicitItemIdentifier="76317847-754F-441B-966B-E616AC44234E" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="General" image="NSPreferencesGeneral" id="4kh-HF-TPd">
                         <nil key="toolTip"/>
                         <size key="minSize" width="19" height="20"/>
                         <size key="maxSize" width="79" height="40005"/>
@@ -68,6 +69,9 @@
                     <toolbarItem reference="1em-1F-spU"/>
                     <toolbarItem reference="OD1-Nd-NLu"/>
                 </defaultToolbarItems>
+                <connections>
+                    <outlet property="delegate" destination="-2" id="he3-7B-Rug"/>
+                </connections>
             </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
