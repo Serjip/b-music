@@ -372,10 +372,12 @@
     return [tableView makeViewWithIdentifier:_currentTableRow owner:self];
 }
 
+#pragma mark -
+#pragma mark IBAcrions
 /*
- *                                      IBActions
- *
- *****************************************************************************************/
+ *@ IBActions
+ */
+
 -(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
     if (!preferences) {
         preferences=[[Preferences alloc] initWithWindowNibName:@"Preferences"];

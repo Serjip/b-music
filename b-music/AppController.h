@@ -65,6 +65,8 @@
 @property (weak) IBOutlet NSMenu *statusMenu;
 
 
+#pragma mark -
+#pragma mark IBAcrions
 -(IBAction)preferences:(id)sender;
 
 -(IBAction)play:(id)sender;
