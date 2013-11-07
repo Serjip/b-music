@@ -46,7 +46,7 @@
  *                                  Api Delegate Methods
  *
  *****************************************************************************************/
-
+#pragma mark APIvk
 -(void) finishAuth:(NSString*)token user_id:(NSInteger)user_id{
     NSLog(@"NEW TOKEN");
     
@@ -61,7 +61,7 @@
  *                                  Window Methods
  *
  *****************************************************************************************/
-
+#pragma mark Window
 -(void)windowDidResize:(NSNotification *)notification{
     
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
@@ -177,10 +177,7 @@
         }
         return event;
     }
-//    Method not use from v 2.1.1
-//    else if ([[[[NSApp keyWindow] firstResponder] className] isEqualToString:@"WebHTMLView"]){
-//        return event;
-//    }
+    
     
     if (event.keyCode==36 && _tableview.selectedRow>-1) {
         [[[_tableview viewAtColumn:0 row:_tableview.selectedRow makeIfNecessary:NO] viewWithTag:1] performClick:nil];
@@ -273,7 +270,7 @@
  *                                  Player Methods
  *
  *****************************************************************************************/
-
+#pragma mark Player
 -(float) getVolume{
     return self.S.settings.volume;
 }
@@ -315,11 +312,13 @@
     
     NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
     
-    dispatch_queue_t downloadQueue = dispatch_queue_create("com.b-music.imglastfm", NULL);
+    dispatch_queue_t downloadQueue = dispatch_queue_create("com.ttitt.b-music.lastfm", NULL);
     dispatch_async(downloadQueue, ^{
         if (num>-1){
             NSButton * btn=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
-            NSImage * image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[_lastfmAPI getImageStringURL:artist title:title]]];
+            
+            
+            NSImage * image =[self.lastfmAPI getImageWithArtist:artist title:title size:3];
             
             if (!_imageList) {
                 _imageList = [[NSMutableDictionary alloc]init];
@@ -331,6 +330,8 @@
         }
     });
 }
+
+
 -(void) bufferingTrack:(double)seconds{
 //    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
@@ -344,6 +345,7 @@
  *                                  TableView Methods
  *
  *****************************************************************************************/
+#pragma mark Table
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView{ // count of table view items
     return [_viewPlaylist count];

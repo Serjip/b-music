@@ -7,16 +7,14 @@
 //
 
 #import "LastfmAPI.h"
+#define API_URL @"http://ws.audioscrobbler.com/2.0/"
+#define API_KEY @"2eae06b8e133096849f10006f4da696a"
+#define AuthURL @"http://www.last.fm/api/auth/?api_key=2eae06b8e133096849f10006f4da696a"
 
 @implementation LastfmAPI
 
 -(id)requestAPILastfm:(NSString*)method param:(NSString*)param{
-    
-    NSString * api_key=@"2eae06b8e133096849f10006f4da696a";
-    NSString * src=@"http://ws.audioscrobbler.com/2.0/";
-    
-    NSString *stringURL=[NSString stringWithFormat:@"%@?method=%@&api_key=%@&format=json&%@" , src , method , api_key , param];
-    
+    NSString *stringURL=[NSString stringWithFormat:@"%@?method=%@&api_key=%@&format=json&%@" , API_URL , method , API_KEY , param];
     stringURL=[stringURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [[NSURL alloc] initWithString:stringURL];
     NSData *returnedData = [[NSData alloc] initWithContentsOfURL:url];
@@ -25,22 +23,28 @@
                  JSONObjectWithData:returnedData
                  options:0
                  error:&error];
-    if(error) { /* JSON was malformed, act appropriately here */ }
-    
-    //NSLog(@"LAST FM %@",);
-    return [[[object objectForKey:@"track"] objectForKey:@"album"] objectForKey:@"image"];
-    
+    if (error) { /* JSON was malformed, act appropriately here */ }
+    NSLog(@"LAST FM %@",object);
+    return object;
 }
 
 
--(NSString*)getImageStringURL:(NSString *) artist title:(NSString *)title {
-    
-    id img=[self requestAPILastfm:@"track.getInfo" param:[NSString stringWithFormat:@"&autocorrect=1&artist=%@&track=%@",artist,title]];
-    
-    NSString *stringURL=[[img objectAtIndex:3]objectForKey:@"#text"];
-    NSLog(@"%@",stringURL);
-    
-    return stringURL;
+-(id)track_getInfo:(NSString *) artist title:(NSString *)title{
+    id obj = [self requestAPILastfm:@"track.getInfo" param:[NSString stringWithFormat:@"&autocorrect=1&artist=%@&track=%@",artist,title]];
+    return obj;
+}
+
+
+-( NSImage * )getImageWithArtist:(NSString *) artist title:(NSString *)title size:(NSInteger)size {
+    id obj=[self track_getInfo:artist title:title];
+    id imageObj = [[[obj objectForKey:@"track"] objectForKey:@"album"] objectForKey:@"image"];
+    NSString * stringImageURL = [[imageObj objectAtIndex:size]objectForKey:@"#text"];
+    NSLog(@"%@",stringImageURL);
+    return [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:stringImageURL]];
+}
+
+-(void) authorize{
+    [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:AuthURL]];
 }
 
 @end

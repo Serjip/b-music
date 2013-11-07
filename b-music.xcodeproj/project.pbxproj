@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D20A47F318267883002B7B18 /* StatusBarIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47F218267883002B7B18 /* StatusBarIcon.m */; };
 		D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */; };
 		D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47FB1826AF5D002B7B18 /* Preferences.m */; };
 		D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A47FC1826AF5D002B7B18 /* Preferences.xib */; };
@@ -71,8 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D20A47F118267883002B7B18 /* StatusBarIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarIcon.h; sourceTree = "<group>"; };
-		D20A47F218267883002B7B18 /* StatusBarIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarIcon.m; sourceTree = "<group>"; };
 		D20A47F518267C8E002B7B18 /* SwitchRuntimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRuntimeButton.h; sourceTree = "<group>"; };
 		D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRuntimeButton.m; sourceTree = "<group>"; };
 		D20A47FA1826AF5D002B7B18 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -194,15 +191,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D20A47F41826788A002B7B18 /* Status */ = {
-			isa = PBXGroup;
-			children = (
-				D20A47F118267883002B7B18 /* StatusBarIcon.h */,
-				D20A47F218267883002B7B18 /* StatusBarIcon.m */,
-			);
-			name = Status;
-			sourceTree = "<group>";
-		};
 		D20A47FF1826AF62002B7B18 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +273,6 @@
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
 				D21CEA2617FAFAFE00F5AF42 /* AppController.m */,
-				D20A47F41826788A002B7B18 /* Status */,
 				D2825B4917FC90F300F725BD /* Api */,
 				D2825B3A17FC2D7800F725BD /* Player */,
 				D2825B3317FC24EE00F725BD /* PlayerWindow */,
@@ -644,7 +631,6 @@
 				D212C536181577BC00C4E21D /* SearchView.m in Sources */,
 				D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */,
 				D2971470181C4F57003E704D /* TableCellView.m in Sources */,
-				D20A47F318267883002B7B18 /* StatusBarIcon.m in Sources */,
 				D27207781820031D0067D2CB /* ShowVolumeButton.m in Sources */,
 				D2825B3617FC259C00F725BD /* PlayerView.m in Sources */,
 				D2825B6417FD8C1000F725BD /* ShuffleButton.m in Sources */,

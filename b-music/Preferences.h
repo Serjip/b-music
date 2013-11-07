@@ -7,12 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "LastfmAPI.h"
+#import "Settings.h"
 
 @interface Preferences : NSWindowController <NSToolbarDelegate>
 
+@property LastfmAPI * lastfmAPI;
+@property Settings * se;
+
 @property (weak) IBOutlet NSToolbar *toolbar;
-@property (weak) IBOutlet NSView *mainView;
+
 @property (strong) IBOutlet NSView *generalPreferencesView;
+@property (strong) IBOutlet NSView *lastfmPreferencesView;
+@property (strong) IBOutlet NSView *vkPreferencesView;
 
 - (IBAction)switchView:(id)sender;
+- (IBAction)authorize:(id)sender;
+
 @end

@@ -196,6 +196,8 @@
     
     [self.delegate finishAuth:[tokenDic objectForKey:@"access_token"]
                       user_id:[[tokenDic objectForKey:@"user_id"] integerValue]];
+    
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:nil andSelector:nil forEventClass:kInternetEventClass andEventID:kAEGetURL];
 }
 
 

@@ -10,8 +10,8 @@
 
 @interface LastfmAPI : NSObject
 
--(id) requestAPILastfm:(NSString*)method param:(NSString*)param;
-
--(NSString*)getImageStringURL:(NSString *) artist title:(NSString *)title;
+-(id)track_getInfo:(NSString *) artist title:(NSString *)title;
+-(NSImage*)getImageWithArtist:(NSString *) artist title:(NSString *)title size:(NSInteger)size;
+-(void) authorize;
 
 @end

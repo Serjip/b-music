@@ -8,8 +8,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="Preferences">
             <connections>
                 <outlet property="generalPreferencesView" destination="qrY-qb-kSb" id="CYE-KB-M0W"/>
-                <outlet property="mainView" destination="2" id="zes-ol-34m"/>
+                <outlet property="lastfmPreferencesView" destination="ZEV-Z5-5tv" id="FZo-dX-ql4"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
+                <outlet property="vkPreferencesView" destination="Lla-Kg-HsL" id="kep-XC-obl"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -20,17 +21,31 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
-            <view key="contentView" focusRingType="none" id="2">
+            <view key="contentView" autoresizesSubviews="NO" focusRingType="none" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="small" id="HNF-pl-mcq">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="1FA44A09-9804-4BD5-9AFE-18758D8485DA" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="Genaral" image="NSPreferencesGeneral" id="IgA-pu-i6j"/>
-                    <toolbarItem implicitItemIdentifier="EA3AFCFF-C4AE-431B-B403-83F994B178D0" label="lastfm" paletteLabel="lastfm" tag="1" image="NSActionTemplate" id="o6L-Nb-6w5"/>
+                    <toolbarItem implicitItemIdentifier="1FA44A09-9804-4BD5-9AFE-18758D8485DA" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="Genaral" tag="1" image="NSPreferencesGeneral" id="IgA-pu-i6j">
+                        <connections>
+                            <action selector="switchView:" target="-2" id="Lw6-oe-Itl"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="D924B082-E059-40C7-87C0-926A514B2661" explicitItemIdentifier="VkPreferences" label="vk.com" paletteLabel="vk.com" tag="2" image="NSActionTemplate" id="roN-nc-dpZ">
+                        <connections>
+                            <action selector="switchView:" target="-2" id="ntt-hI-thT"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="EA3AFCFF-C4AE-431B-B403-83F994B178D0" explicitItemIdentifier="LastfmPreferences" label="Last.fm" paletteLabel="Last.fm" tag="3" image="NSActionTemplate" id="o6L-Nb-6w5">
+                        <connections>
+                            <action selector="switchView:" target="-2" id="3es-uw-DnX"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="IgA-pu-i6j"/>
+                    <toolbarItem reference="roN-nc-dpZ"/>
                     <toolbarItem reference="o6L-Nb-6w5"/>
                 </defaultToolbarItems>
                 <connections>
@@ -41,19 +56,64 @@
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>
-        <customView id="qrY-qb-kSb">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="340"/>
+        <customView id="qrY-qb-kSb" userLabel="GeneralView">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="216"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w5y-sM-Nth">
-                    <rect key="frame" x="183" y="157" width="115" height="25"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGu-dW-2qt">
+                    <rect key="frame" x="187" y="20" width="94" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Round Textured" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uIa-TG-Kyg">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General" id="qj5-IN-g2f">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="wGu-dW-2qt" secondAttribute="centerX" id="eyR-kN-USX"/>
+                <constraint firstAttribute="centerY" secondItem="wGu-dW-2qt" secondAttribute="centerY" id="gkM-TV-0ne"/>
+            </constraints>
+        </customView>
+        <customView id="ZEV-Z5-5tv" userLabel="LastfmView">
+            <rect key="frame" x="0.0" y="0.0" width="595" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w5y-sM-Nth">
+                    <rect key="frame" x="340" y="92" width="135" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="Authorize Last.fm" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" inset="2" id="uIa-TG-Kyg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="authorize:" target="-2" id="0PJ-2k-yzZ"/>
+                    </connections>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="w5y-sM-Nth" secondAttribute="centerY" id="Eib-Dq-DfH"/>
+                <constraint firstAttribute="centerX" secondItem="w5y-sM-Nth" secondAttribute="centerX" id="yGL-v5-Pes"/>
+            </constraints>
+        </customView>
+        <customView id="Lla-Kg-HsL" userLabel="vkView">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="405"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghj-bS-Kl7">
+                    <rect key="frame" x="204" y="162" width="67" height="55"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="VKCOM" id="ARa-2o-8l0">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="ghj-bS-Kl7" secondAttribute="centerY" id="8cy-p8-bU1"/>
+                <constraint firstAttribute="centerX" secondItem="ghj-bS-Kl7" secondAttribute="centerX" id="kGj-pa-zCB"/>
+            </constraints>
         </customView>
     </objects>
     <resources>
