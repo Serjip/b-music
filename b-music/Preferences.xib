@@ -27,17 +27,17 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="small" id="HNF-pl-mcq">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="1FA44A09-9804-4BD5-9AFE-18758D8485DA" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="Genaral" tag="1" image="NSPreferencesGeneral" id="IgA-pu-i6j">
+                    <toolbarItem implicitItemIdentifier="1FA44A09-9804-4BD5-9AFE-18758D8485DA" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="Genaral" tag="1" image="NSActionTemplate" id="IgA-pu-i6j">
                         <connections>
                             <action selector="switchView:" target="-2" id="Lw6-oe-Itl"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="D924B082-E059-40C7-87C0-926A514B2661" explicitItemIdentifier="VkPreferences" label="vk.com" paletteLabel="vk.com" tag="2" image="NSActionTemplate" id="roN-nc-dpZ">
+                    <toolbarItem implicitItemIdentifier="D924B082-E059-40C7-87C0-926A514B2661" explicitItemIdentifier="VkPreferences" label="vk.com" paletteLabel="vk.com" tag="2" image="vk" id="roN-nc-dpZ">
                         <connections>
                             <action selector="switchView:" target="-2" id="ntt-hI-thT"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="EA3AFCFF-C4AE-431B-B403-83F994B178D0" explicitItemIdentifier="LastfmPreferences" label="Last.fm" paletteLabel="Last.fm" tag="3" image="NSActionTemplate" id="o6L-Nb-6w5">
+                    <toolbarItem implicitItemIdentifier="EA3AFCFF-C4AE-431B-B403-83F994B178D0" explicitItemIdentifier="LastfmPreferences" label="Last.fm" paletteLabel="Last.fm" tag="3" image="lastfm" id="o6L-Nb-6w5">
                         <connections>
                             <action selector="switchView:" target="-2" id="3es-uw-DnX"/>
                         </connections>
@@ -118,6 +118,7 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="lastfm" width="32" height="32"/>
+        <image name="vk" width="64" height="64"/>
     </resources>
 </document>
