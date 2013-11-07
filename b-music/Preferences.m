@@ -12,9 +12,7 @@
 
 @end
 
-@implementation Preferences{
-    int currentViewTag;
-}
+@implementation Preferences
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -38,11 +36,6 @@
     return [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",nil];
 }
 
-- (BOOL)validateToolbarItem:(NSToolbarItem *)item {
-    if ([item tag] == currentViewTag) return NO;
-    else return YES;
-}
-
 - (IBAction)switchView:(id)sender { NSLog(@"switchView");
     NSInteger tag= [sender tag];
     NSView * view;
@@ -61,18 +54,13 @@
         [[NSAnimationContext currentContext] setDuration:1.0];
     }
     
-    
-    
     NSRect newFrame = [self newFrameForNewContentView:view];
     [[self.window animator] setFrame:newFrame display:YES];
-    
     [[self.window.contentView animator] replaceSubview:previousView with:view];
-    
     [NSAnimationContext endGrouping];
 }
 
 - (NSRect)newFrameForNewContentView:(NSView*)view {
-    
     NSWindow *window = [self window];
     NSRect newFrameRect = [window frameRectForContentRect:[view frame]];
     NSRect oldFrameRect = [window frame];
