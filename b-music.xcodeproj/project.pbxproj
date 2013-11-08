@@ -12,8 +12,6 @@
 		D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A47FC1826AF5D002B7B18 /* Preferences.xib */; };
 		D212C536181577BC00C4E21D /* SearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D212C535181577BC00C4E21D /* SearchView.m */; };
 		D213286E180065D000AFF98C /* ControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D213286D180065D000AFF98C /* ControlsView.m */; };
-		D2163A69182C1DA70036FFCE /* lastfm.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D2163A68182C1DA70036FFCE /* lastfm.tiff */; };
-		D2163A6F182C22450036FFCE /* vk.png in Resources */ = {isa = PBXBuildFile; fileRef = D2163A6E182C22450036FFCE /* vk.png */; };
 		D21CE9F217FAFA0900F5AF42 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21CE9F117FAFA0900F5AF42 /* Cocoa.framework */; };
 		D21CE9FC17FAFA0900F5AF42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D21CE9FA17FAFA0900F5AF42 /* InfoPlist.strings */; };
 		D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CE9FD17FAFA0900F5AF42 /* main.m */; };
@@ -58,6 +56,8 @@
 		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
+		D2B3B88A182D0511004D4EC0 /* vkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */; };
+		D2B3B88C182D073A004D4EC0 /* lastfmTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */; };
 		D2F011CC181EC5E900B067CD /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F011CB181EC5E900B067CD /* ScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -81,8 +81,6 @@
 		D212C535181577BC00C4E21D /* SearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchView.m; sourceTree = "<group>"; };
 		D213286C180065D000AFF98C /* ControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsView.h; sourceTree = "<group>"; };
 		D213286D180065D000AFF98C /* ControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsView.m; sourceTree = "<group>"; };
-		D2163A68182C1DA70036FFCE /* lastfm.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = lastfm.tiff; sourceTree = "<group>"; };
-		D2163A6E182C22450036FFCE /* vk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vk.png; sourceTree = "<group>"; };
 		D21CE9EE17FAFA0900F5AF42 /* b-music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "b-music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21CE9F117FAFA0900F5AF42 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D21CE9F417FAFA0900F5AF42 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -165,6 +163,8 @@
 		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vkTemplate.pdf; sourceTree = "<group>"; };
+		D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = lastfmTemplate.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		D2F011CA181EC5E800B067CD /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollView.h; path = "b-music/ScrollView.h"; sourceTree = "<group>"; };
 		D2F011CB181EC5E900B067CD /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollView.m; path = "b-music/ScrollView.m"; sourceTree = "<group>"; };
@@ -223,13 +223,13 @@
 			name = Controls;
 			sourceTree = "<group>";
 		};
-		D2163A67182C1CF00036FFCE /* Resources */ = {
+		D2163A67182C1CF00036FFCE /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				D2163A6E182C22450036FFCE /* vk.png */,
-				D2163A68182C1DA70036FFCE /* lastfm.tiff */,
+				D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */,
+				D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */,
 			);
-			name = Resources;
+			name = Graphics;
 			sourceTree = "<group>";
 		};
 		D21CE9E517FAFA0900F5AF42 = {
@@ -282,7 +282,7 @@
 			children = (
 				D20A47FF1826AF62002B7B18 /* Preferences */,
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
-				D2163A67182C1CF00036FFCE /* Resources */,
+				D2163A67182C1CF00036FFCE /* Graphics */,
 				D2F011CD181EC5EF00B067CD /* ScrollView */,
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
@@ -590,9 +590,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21CE9FC17FAFA0900F5AF42 /* InfoPlist.strings in Resources */,
-				D2163A69182C1DA70036FFCE /* lastfm.tiff in Resources */,
-				D2163A6F182C22450036FFCE /* vk.png in Resources */,
+				D2B3B88C182D073A004D4EC0 /* lastfmTemplate.pdf in Resources */,
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
+				D2B3B88A182D0511004D4EC0 /* vkTemplate.pdf in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
 				D21CEA0217FAFA0900F5AF42 /* Credits.html in Resources */,
 				D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */,
