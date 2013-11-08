@@ -625,11 +625,11 @@ CA
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
-                    <rect key="frame" x="6" y="34" width="11" height="11"/>
+                    <rect key="frame" x="6" y="32" width="11" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="Sdt-cm-1wu"/>
-                        <constraint firstAttribute="height" constant="9" id="vkt-tz-eAV"/>
+                        <constraint firstAttribute="height" constant="11" id="vkt-tz-eAV"/>
                     </constraints>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="elv-lG-YyI">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

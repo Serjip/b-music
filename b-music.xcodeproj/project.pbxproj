@@ -25,6 +25,8 @@
 		D21CEA1C17FAFA0A00F5AF42 /* b_musicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA1B17FAFA0A00F5AF42 /* b_musicTests.m */; };
 		D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2617FAFAFE00F5AF42 /* AppController.m */; };
 		D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = D21CEA2917FB016D00F5AF42 /* Settings.m */; };
+		D21F1EE4182D7393002404A1 /* lastfmTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D21F1EE2182D7393002404A1 /* lastfmTemplate.pdf */; };
+		D21F1EE5182D7393002404A1 /* vkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D21F1EE3182D7393002404A1 /* vkTemplate.pdf */; };
 		D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F538417FEF0E800703A88 /* SystemConfiguration.framework */; };
 		D27207781820031D0067D2CB /* ShowVolumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D27207771820031D0067D2CB /* ShowVolumeButton.m */; };
 		D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B2B17FC20F200F725BD /* SheetWindowController.m */; };
@@ -56,8 +58,6 @@
 		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
-		D2B3B88A182D0511004D4EC0 /* vkTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */; };
-		D2B3B88C182D073A004D4EC0 /* lastfmTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */; };
 		D2F011CC181EC5E900B067CD /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F011CB181EC5E900B067CD /* ScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +104,8 @@
 		D21CEA2617FAFAFE00F5AF42 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		D21CEA2817FB016D00F5AF42 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		D21CEA2917FB016D00F5AF42 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		D21F1EE2182D7393002404A1 /* lastfmTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = lastfmTemplate.pdf; sourceTree = "<group>"; };
+		D21F1EE3182D7393002404A1 /* vkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vkTemplate.pdf; sourceTree = "<group>"; };
 		D21F538417FEF0E800703A88 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D271B5D3180208A500D92282 /* b-music.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "b-music.entitlements"; sourceTree = "<group>"; };
 		D27207761820031D0067D2CB /* ShowVolumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowVolumeButton.h; sourceTree = "<group>"; };
@@ -163,8 +165,6 @@
 		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vkTemplate.pdf; sourceTree = "<group>"; };
-		D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = lastfmTemplate.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		D2F011CA181EC5E800B067CD /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollView.h; path = "b-music/ScrollView.h"; sourceTree = "<group>"; };
 		D2F011CB181EC5E900B067CD /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollView.m; path = "b-music/ScrollView.m"; sourceTree = "<group>"; };
@@ -226,8 +226,8 @@
 		D2163A67182C1CF00036FFCE /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				D2B3B88B182D073A004D4EC0 /* lastfmTemplate.pdf */,
-				D2B3B889182D0511004D4EC0 /* vkTemplate.pdf */,
+				D21F1EE2182D7393002404A1 /* lastfmTemplate.pdf */,
+				D21F1EE3182D7393002404A1 /* vkTemplate.pdf */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -590,10 +590,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21CE9FC17FAFA0900F5AF42 /* InfoPlist.strings in Resources */,
-				D2B3B88C182D073A004D4EC0 /* lastfmTemplate.pdf in Resources */,
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
-				D2B3B88A182D0511004D4EC0 /* vkTemplate.pdf in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
+				D21F1EE5182D7393002404A1 /* vkTemplate.pdf in Resources */,
+				D21F1EE4182D7393002404A1 /* lastfmTemplate.pdf in Resources */,
 				D21CEA0217FAFA0900F5AF42 /* Credits.html in Resources */,
 				D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */,
 				D21CEA0817FAFA0900F5AF42 /* MainMenu.xib in Resources */,
