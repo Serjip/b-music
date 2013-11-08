@@ -291,10 +291,11 @@
     NSString * state;
     if (flag) {
         state=@"Pause";
+        [statusItem setImage:[NSImage imageNamed:@"pauseTemplate"]];
     }else{
         state=@"Play";
+        [statusItem setImage:[NSImage imageNamed:@"NSGoRightTemplate"]];
     }
-    
     
     [[self.controlsMenu itemWithTag:1] setTitle:state];
     [[self.statusMenu itemWithTag:1] setTitle:state];

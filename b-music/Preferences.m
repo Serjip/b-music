@@ -43,10 +43,13 @@
     
     if (tag==1) {
         view=self.generalPreferencesView;
+        [self.window setTitle:@"General"];
     }else if (tag==2) {
         view=self.vkPreferencesView;
+        [self.window setTitle:@"vk.com"];
     }else if (tag==3) {
         view=self.lastfmPreferencesView;
+        [self.window setTitle:@"Last.fm"];
     }
     
     [NSAnimationContext beginGrouping];
