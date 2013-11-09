@@ -10,8 +10,19 @@
 
 @interface LastfmAPI : NSObject
 
--(id)track_getInfo:(NSString *) artist title:(NSString *)title;
--(NSImage*)getImageWithArtist:(NSString *) artist title:(NSString *)title size:(NSInteger)size;
+@property (strong)  NSString * session;
+
+
+
+
+-(NSImage*)getImageWithArtist:(NSString *) artist track:(NSString *)track size:(NSInteger)size;
 -(void) authorize;
+
+
+
+#pragma mark Last.fm Methods
+-(id)auth_getSession:(NSString *)token;
+-(id)track_getInfo:(NSString *) artist track:(NSString *)track;
+-(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track;
 
 @end

@@ -14,29 +14,73 @@
 {
     self = [super init];
     if (self) {
+        
+        /*
+         * VK
+         */
         _user_id=[coder decodeIntegerForKey:@"user_id"];
         _token=[coder decodeObjectForKey:@"token"];
+        _userOffline=[coder decodeBoolForKey:@"userOffline"];
         
+        /*
+         * Player
+         */
         _repeat = [coder decodeBoolForKey:@"repeat"];
         _shuffle = [coder decodeBoolForKey:@"shuffle"];
         _runTime = [coder decodeBoolForKey:@"runtime"];
         _alwaysOnTop = [coder decodeBoolForKey:@"alwaysOnTop"];
         _volume = [coder decodeFloatForKey:@"volume"];
+        /*
+         * Lastfm
+         */
+        _nowPlayingTrack=[coder decodeBoolForKey:@"nowPlayingTrack"];
+        _scrobbleTrack=[coder decodeBoolForKey:@"scrobbleTrack"];
+        
+        /*
+         *Preferences general
+         */
+        _showIconMenubar=[coder decodeBoolForKey:@"showIconMenubar"];
+        _showArtworkDock=[coder decodeBoolForKey:@"showArtworkDock"];
+        _showNotafications=[coder decodeBoolForKey:@"showNotafications"];
+        _searchArtwork=[coder decodeBoolForKey:@"searchArtwork"];
+        
         
     }
     return self;
 }
 -(void)encodeWithCoder:(NSCoder *)aCoder{
+    /*
+     * VK
+     */
     
-    [aCoder encodeInteger:_user_id forKey:@"user_id"];
-    [aCoder encodeObject:_token forKey:@"token"];
+    [aCoder encodeInteger:_user_id  forKey:@"user_id"];
+    [aCoder encodeObject:_token     forKey:@"token"];
+    [aCoder encodeBool:_userOffline forKey:@"userOffline"];
     
-    [aCoder encodeBool:_repeat forKey:@"repeat"];
-    [aCoder encodeBool:_shuffle forKey:@"shuffle"];
-    [aCoder encodeBool:_runTime forKey:@"runtime"];
+    /*
+     * Player
+     */
+    [aCoder encodeBool:_repeat      forKey:@"repeat"];
+    [aCoder encodeBool:_shuffle     forKey:@"shuffle"];
+    [aCoder encodeBool:_runTime     forKey:@"runtime"];
     [aCoder encodeBool:_alwaysOnTop forKey:@"alwaysOnTop"];
-    [aCoder encodeFloat:_volume forKey:@"volume"];
+    [aCoder encodeFloat:_volume     forKey:@"volume"];
+    
+    /*
+     * Lastfm
+     */
+    [aCoder encodeBool:_nowPlayingTrack forKey:@"nowPlayingTrack"];
+    [aCoder encodeBool:_scrobbleTrack   forKey:@"scrobbleTrack"];
+    
+    /*
+     *Preferences general
+     */
+    [aCoder encodeBool:_showIconMenubar     forKey:@"showIconMenubar"];
+    [aCoder encodeBool:_showArtworkDock     forKey:@"showArtworkDock"];
+    [aCoder encodeBool:_showNotafications   forKey:@"showNotafications"];
+    [aCoder encodeBool:_searchArtwork       forKey:@"searchArtwork"];
 }
+
 @end
 
 @implementation Settings

@@ -313,13 +313,26 @@
     
     NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
     
+    
+    //---------------------------------
+    NSString *token=@"e1f769263aba2690e29a20dfb0349377";
+    
+    self.lastfmAPI.session=[[[self.lastfmAPI auth_getSession:token] objectForKey:@"session"] objectForKey:@"key"];
+    
+    [self.lastfmAPI track_updateNowPlaying:artist track:title];
+    
+    
+    //==================================
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.ttitt.b-music.lastfm", NULL);
     dispatch_async(downloadQueue, ^{
         if (num>-1){
             NSButton * btn=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
             
             
-            NSImage * image =[self.lastfmAPI getImageWithArtist:artist title:title size:3];
+            NSImage * image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
+            
+            //set dock icon
+            [NSApp setApplicationIconImage: image];
             
             if (!_imageList) {
                 _imageList = [[NSMutableDictionary alloc]init];
