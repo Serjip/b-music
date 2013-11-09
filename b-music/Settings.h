@@ -33,9 +33,10 @@
  *Preferences Lastfm
  */
 
-@property BOOL nowPlayingTrack;
-@property BOOL scrobbleTrack;
-@property NSString *session;
+@property BOOL nowPlayingTrackLastfm;
+@property BOOL scrobbleTrackLastfm;
+@property NSString *sessionLastfm;
+@property NSString *nameLastfm;
 
 /*
  *Preferences VK

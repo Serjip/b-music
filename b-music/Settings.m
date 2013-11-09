@@ -30,11 +30,14 @@
         _runTime = [coder decodeBoolForKey:@"runtime"];
         _alwaysOnTop = [coder decodeBoolForKey:@"alwaysOnTop"];
         _volume = [coder decodeFloatForKey:@"volume"];
+        
         /*
          * Lastfm
          */
-        _nowPlayingTrack=[coder decodeBoolForKey:@"nowPlayingTrack"];
-        _scrobbleTrack=[coder decodeBoolForKey:@"scrobbleTrack"];
+        _nowPlayingTrackLastfm=[coder decodeBoolForKey:@"nowPlayingTrackLastfm"];
+        _scrobbleTrackLastfm=[coder decodeBoolForKey:@"scrobbleTrackLastfm"];
+        _sessionLastfm=[coder decodeObjectForKey:@"sessionLastfm"];
+        _nameLastfm=[coder decodeObjectForKey:@"nameLastfm"];
         
         /*
          *Preferences general
