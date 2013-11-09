@@ -35,6 +35,7 @@
 
 @property BOOL nowPlayingTrack;
 @property BOOL scrobbleTrack;
+@property NSString *session;
 
 /*
  *Preferences VK

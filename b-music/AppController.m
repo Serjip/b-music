@@ -314,21 +314,6 @@
     
     NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
     
-    
-    //---------------------------------
-    NSString *token=@"9fcee1d319f0bac9cddb7fab65c53699";
-    
-    id session= [self.lastfmAPI auth_getSession:token];
-    
-    
-    NSLog(@"%@",session);
-    
-    self.lastfmAPI.session=[[session objectForKey:@"session"] objectForKey:@"key"];
-    
-    [self.lastfmAPI track_updateNowPlaying:artist track:title duration:durationSec];
-    
-    
-    //==================================
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.ttitt.b-music.lastfm", NULL);
     dispatch_async(downloadQueue, ^{
         if (num>-1){

@@ -130,7 +130,6 @@
     //Create alert
     if (!self.alert) {
     
-    
     self.alert=[NSAlert alertWithMessageText:@"Authorization is required"
                                defaultButton:@"Login"//0
                              alternateButton:@"Cancel"//1

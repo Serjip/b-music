@@ -10,11 +10,8 @@
 #import <CommonCrypto/CommonCrypto.h>
 
 #define API_URL @"http://ws.audioscrobbler.com/2.0/"
-
 #define API_KEY @"2eae06b8e133096849f10006f4da696a"
-
 #define SECRET @"ad9e320f7137cff7666348ef5a447c97"
-
 #define AuthURL @"http://www.last.fm/api/auth/?api_key="
 
 @implementation LastfmAPI
@@ -32,10 +29,6 @@
     
     stringParam=[stringParam substringToIndex:stringParam.length-1];//Removing last amp
     stringParam=[stringParam stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    NSLog(@"QUERY TO LAST FM%@",stringParam);
-    
     
     // Do we need to POST or GET?
     BOOL doPost = YES;
@@ -66,19 +59,16 @@
     NSError *error;
     NSData *returnedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
-    
-    
-    
     id object = [NSJSONSerialization
                  JSONObjectWithData:returnedData
                  options:0
                  error:&error];
     if (error) { /* JSON was malformed, act appropriately here */ }
-    //NSLog(@"LAST FM %@",object);
     return object;
 }
 
--(id)track_getInfo:(NSString *) artist track:(NSString *)track{
+-(id)track_getInfo:(NSString *) artist
+             track:(NSString *)track{
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     
@@ -92,7 +82,10 @@
     return obj;
 }
 
--( NSImage * )getImageWithArtist:(NSString *) artist track:(NSString *)track size:(NSInteger)size {
+-( NSImage * )getImageWithArtist:(NSString *)artist
+                           track:(NSString *)track
+                            size:(NSInteger)size {
+    
     id obj=[self track_getInfo:artist track:track];
     id imageObj = [[[obj objectForKey:@"track"] objectForKey:@"album"] objectForKey:@"image"];
     NSString * stringImageURL = [[imageObj objectAtIndex:size]objectForKey:@"#text"];
@@ -106,7 +99,7 @@
 }
 
 
--(id)auth_getSession:(NSString *)token{
+-(id)auth_getSession:(NSString *)token {
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"auth.getSession"  forKey:@"method"];
@@ -120,7 +113,10 @@
     return obj;
 }
 
--(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track duration:(NSString*)duration{
+-(id) track_updateNowPlaying:(NSString *)session
+                      artist:(NSString *)artist
+                       track:(NSString*)track
+                    duration:(NSString*)duration {
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"track.updateNowPlaying" forKey:@"method"];
@@ -130,7 +126,24 @@
     [params setObject:API_KEY                   forKey:@"api_key"];
     [params setObject:self.session              forKey:@"sk"];
     
+    NSString * api_sig=[self api_sigWithParams:params];
+    [params setObject:api_sig forKey:@"api_sig"];
+    
+    id obj = [self requestAPILastfmWithParams:params];
+    return obj;
+}
 
+-(id) track_scrobble:(NSString *)session
+              artist:(NSString *)artist
+               track:(NSString*)track{
+    
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    [params setObject:@"track.scrobble"                             forKey:@"method"];
+    [params setObject:artist                                        forKey:@"artist"];
+    [params setObject:track                                         forKey:@"track"];
+    [params setObject:@((int)[[NSDate date] timeIntervalSince1970]) forKey:@"timestamp"];
+    [params setObject:API_KEY                                       forKey:@"api_key"];
+    [params setObject:session                                       forKey:@"sk"];
     
     NSString * api_sig=[self api_sigWithParams:params];
     [params setObject:api_sig forKey:@"api_sig"];
