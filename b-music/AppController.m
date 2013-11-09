@@ -306,6 +306,7 @@
 -(void) durationTrack:(double)duration{
     NSString * title=[_currentTrack objectForKey:@"title"];
     NSString * artist=[_currentTrack objectForKey:@"artist"];
+    NSString * durationSec=[_currentTrack objectForKey:@"duration"];
     
     [[self.Controls1 viewWithTag:1] setStringValue:title];//Set title for player
     [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
@@ -315,11 +316,16 @@
     
     
     //---------------------------------
-    NSString *token=@"e1f769263aba2690e29a20dfb0349377";
+    NSString *token=@"9fcee1d319f0bac9cddb7fab65c53699";
     
-    self.lastfmAPI.session=[[[self.lastfmAPI auth_getSession:token] objectForKey:@"session"] objectForKey:@"key"];
+    id session= [self.lastfmAPI auth_getSession:token];
     
-    [self.lastfmAPI track_updateNowPlaying:artist track:title];
+    
+    NSLog(@"%@",session);
+    
+    self.lastfmAPI.session=[[session objectForKey:@"session"] objectForKey:@"key"];
+    
+    [self.lastfmAPI track_updateNowPlaying:artist track:title duration:durationSec];
     
     
     //==================================

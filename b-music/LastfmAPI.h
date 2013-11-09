@@ -23,6 +23,6 @@
 #pragma mark Last.fm Methods
 -(id)auth_getSession:(NSString *)token;
 -(id)track_getInfo:(NSString *) artist track:(NSString *)track;
--(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track;
+-(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track duration:(NSString*)duration;
 
 @end

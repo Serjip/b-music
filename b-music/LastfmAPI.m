@@ -23,24 +23,18 @@
     
     [params setObject:@"json" forKey:@"format"];
     
-    NSString *stringURL=[NSString stringWithFormat:@"%@?" , API_URL];
-    
+    NSString * stringParam=@"";
     for (NSString * key in params) {
         NSString * value = [params objectForKey:key];
         
-        stringURL=[stringURL stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",key,value]];
+        stringParam=[stringParam stringByAppendingString:[NSString stringWithFormat:@"%@=%@&",key,value]];
     }
     
-    NSLog(@"QUERY TO LAST FM%@",stringURL);
-    //-------------------------------------------------------------------------------------
+    stringParam=[stringParam substringToIndex:stringParam.length-1];//Removing last amp
+    stringParam=[stringParam stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
-    
-    
-    
-    
-    
-    
+    NSLog(@"QUERY TO LAST FM%@",stringParam);
     
     
     // Do we need to POST or GET?
@@ -60,10 +54,9 @@
         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:API_URL]];
         request.timeoutInterval = 10;
         [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:[[NSString stringWithFormat:@"%@&api_sig=%@", [sortedParamsArray componentsJoinedByString:@"&"], signature] dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setHTTPBody:[stringParam dataUsingEncoding:NSUTF8StringEncoding]];
     } else {
-        NSString *paramsString = [NSString stringWithFormat:@"%@&api_sig=%@", [sortedParamsArray componentsJoinedByString:@"&"], signature];
-        NSString *urlString = [NSString stringWithFormat:@"%@?%@", API_URL, paramsString];
+        NSString *urlString = [NSString stringWithFormat:@"%@?%@", API_URL, stringParam];
         
         NSURLRequestCachePolicy policy = NSURLRequestUseProtocolCachePolicy;
         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:policy timeoutInterval:10];
@@ -71,35 +64,17 @@
     
     NSHTTPURLResponse *response;
     NSError *error;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSData *returnedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //-----------------------------------------------------------------------------------------------
-    stringURL=[stringURL substringToIndex:stringURL.length-1];//Removing last amp
-    stringURL=[stringURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [[NSURL alloc] initWithString:stringURL];
-    NSData *returnedData = [[NSData alloc] initWithContentsOfURL:url];
-    NSError *error = nil;
     id object = [NSJSONSerialization
                  JSONObjectWithData:returnedData
                  options:0
                  error:&error];
     if (error) { /* JSON was malformed, act appropriately here */ }
-//    NSLog(@"LAST FM %@",object);
+    //NSLog(@"LAST FM %@",object);
     return object;
 }
 
@@ -142,17 +117,16 @@
     [params setObject:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
-    NSLog(@"%@",obj);
-    
     return obj;
 }
 
--(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track {
+-(id) track_updateNowPlaying:(NSString *)artist track:(NSString*)track duration:(NSString*)duration{
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"track.updateNowPlaying" forKey:@"method"];
     [params setObject:artist                    forKey:@"artist"];
     [params setObject:track                     forKey:@"track"];
+    [params setObject:duration               forKey:@"duration"];
     [params setObject:API_KEY                   forKey:@"api_key"];
     [params setObject:self.session              forKey:@"sk"];
     
@@ -162,8 +136,6 @@
     [params setObject:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
-    NSLog(@"%@",obj);
-    
     return obj;
 }
 
