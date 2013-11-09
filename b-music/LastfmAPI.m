@@ -126,7 +126,7 @@
     [params setObject:@"track.updateNowPlaying" forKey:@"method"];
     [params setObject:artist                    forKey:@"artist"];
     [params setObject:track                     forKey:@"track"];
-    [params setObject:duration               forKey:@"duration"];
+    [params setObject:duration                  forKey:@"duration"];
     [params setObject:API_KEY                   forKey:@"api_key"];
     [params setObject:self.session              forKey:@"sk"];
     
