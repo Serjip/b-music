@@ -124,7 +124,7 @@
     [params setObject:track                     forKey:@"track"];
     [params setObject:duration                  forKey:@"duration"];
     [params setObject:API_KEY                   forKey:@"api_key"];
-    [params setObject:self.session              forKey:@"sk"];
+    [params setObject:session                   forKey:@"sk"];
     
     NSString * api_sig=[self api_sigWithParams:params];
     [params setObject:api_sig forKey:@"api_sig"];

@@ -52,10 +52,10 @@
     return self;
 }
 -(void)encodeWithCoder:(NSCoder *)aCoder{
+    
     /*
      * VK
      */
-    
     [aCoder encodeInteger:_user_id  forKey:@"user_id"];
     [aCoder encodeObject:_token     forKey:@"token"];
     [aCoder encodeBool:_userOffline forKey:@"userOffline"];
@@ -72,8 +72,10 @@
     /*
      * Lastfm
      */
-    [aCoder encodeBool:_nowPlayingTrack forKey:@"nowPlayingTrack"];
-    [aCoder encodeBool:_scrobbleTrack   forKey:@"scrobbleTrack"];
+    [aCoder encodeBool:_nowPlayingTrackLastfm   forKey:@"nowPlayingTrack"];
+    [aCoder encodeBool:_scrobbleTrackLastfm     forKey:@"scrobbleTrack"];
+    [aCoder encodeObject:_sessionLastfm         forKey:@"sessionLastfm"];
+    [aCoder encodeObject:_nameLastfm            forKey:@"nameLastfm"];
     
     /*
      *Preferences general
