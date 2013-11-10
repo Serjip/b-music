@@ -75,15 +75,34 @@
     frame.origin.y -= (newSize.height - oldSize.height);
     return frame;
 }
+/*
+ *  VK Preferences
+ *************************/
+#pragma mark VK Preferences
 
-- (IBAction)authorize:(id)sender {NSLog(@"Authorize");
+- (IBAction)authorizationVk:(id)sender{ NSLog(@"authorizationVk");
     
+}
+
+- (IBAction)offlineVk:(id)sender{ NSLog(@"AuthorizeLastfm");
+    
+}
+
+/*
+ *  Lastfm Preferences
+ *************************/
+#pragma mark Lastfm Preferences
+- (IBAction)authorizeLastfm:(id)sender{ NSLog(@"AuthorizeLastfm");
     if (!_lastfmAPI) {
         _lastfmAPI= [[LastfmAPI alloc] init];
     }
     [self.lastfmAPI authorize];
+}
+- (IBAction)nowPlayingLastfm:(id)sender{ NSLog(@"nowPlayngLastfm");
     
-//    com.ttitt.b-music://?token=ace63663e743c7a09ba01f7777f8c211
+}
+- (IBAction)scrobbleTracksLastfm:(id)sender{ NSLog(@"scrobbleTracksLastfm");
+    
 }
 
 @end

@@ -22,6 +22,26 @@
 @property (strong) IBOutlet NSView *vkPreferencesView;
 
 - (IBAction)switchView:(id)sender;
-- (IBAction)authorize:(id)sender;
+
+/*
+ *  VK Preferences
+ *************************/
+@property (weak) IBOutlet NSButton *authorizationVkBtn;
+@property (weak) IBOutlet NSButton *offlineVkBtn;
+
+- (IBAction)authorizationVk:(id)sender;
+- (IBAction)offlineVk:(id)sender;
+
+/*
+ *  Lastfm Preferences
+ *************************/
+@property (weak) IBOutlet NSButton *authorizeLastfmBtn;
+@property (weak) IBOutlet NSButton *nowPlayingLastfmBtn;
+@property (weak) IBOutlet NSButton *scrobbleTracksLastfmBtn;
+
+- (IBAction)authorizeLastfm:(id)sender;
+- (IBAction)nowPlayingLastfm:(id)sender;
+- (IBAction)scrobbleTracksLastfm:(id)sender;
+
 
 @end

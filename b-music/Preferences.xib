@@ -7,8 +7,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Preferences">
             <connections>
+                <outlet property="authorizationVkBtn" destination="Xn5-hX-qRi" id="ba8-8s-f49"/>
+                <outlet property="authorizeLastfmBtn" destination="w5y-sM-Nth" id="qAW-fa-Km3"/>
                 <outlet property="generalPreferencesView" destination="qrY-qb-kSb" id="CYE-KB-M0W"/>
                 <outlet property="lastfmPreferencesView" destination="ZEV-Z5-5tv" id="FZo-dX-ql4"/>
+                <outlet property="nowPlayingLastfmBtn" destination="3BO-t8-bS7" id="jKE-u3-YaG"/>
+                <outlet property="offlineVkBtn" destination="743-w3-gIG" id="4pU-CX-tki"/>
+                <outlet property="scrobbleTracksLastfmBtn" destination="12q-aA-aEy" id="fMg-2S-gth"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
                 <outlet property="vkPreferencesView" destination="Lla-Kg-HsL" id="kep-XC-obl"/>
                 <outlet property="window" destination="1" id="3"/>
@@ -150,24 +155,30 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="authorize:" target="-2" id="0PJ-2k-yzZ"/>
+                        <action selector="authorizeLastfm:" target="-2" id="eJf-ib-b8L"/>
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3BO-t8-bS7">
                     <rect key="frame" x="159" y="46" width="188" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Send &quot;Now Playing&quot; tracks" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="U6g-GU-MNV">
+                    <buttonCell key="cell" type="check" title="Send &quot;Now Playing&quot; tracks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U6g-GU-MNV">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="nowPlayingLastfm:" target="-2" id="xpW-4F-UD8"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12q-aA-aEy">
                     <rect key="frame" x="159" y="26" width="130" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Scroblle tracks" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="Rgy-NH-edD">
+                    <buttonCell key="cell" type="check" title="Scroblle tracks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rgy-NH-edD">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="scrobbleTracksLastfm:" target="-2" id="Dif-0v-6z8"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -186,6 +197,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="authorizationVk:" target="-2" id="X4h-zS-uMg"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qHj-Rd-GRm">
                     <rect key="frame" x="101" y="50" width="48" height="17"/>
@@ -203,6 +217,9 @@
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="offlineVk:" target="-2" id="Gyu-vO-AXC"/>
+                    </connections>
                 </button>
             </subviews>
         </customView>
