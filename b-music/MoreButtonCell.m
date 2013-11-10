@@ -20,7 +20,6 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
     CGContextFillRect(ctx, self.bounds);

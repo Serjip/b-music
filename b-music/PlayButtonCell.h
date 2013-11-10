@@ -11,6 +11,5 @@
 @interface PlayButtonCell : NSButton
 
 -(void) setPauseState:(BOOL)state;
-//-(void)setImageURL:(NSString *)stringURL;
 
 @end

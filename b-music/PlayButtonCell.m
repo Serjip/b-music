@@ -71,31 +71,24 @@
     [self setNeedsDisplay:YES];
 }
 
-//-(void)setImageURL:(NSString *)stringURL{
-//    _imageview =[[NSImageView alloc] initWithFrame:self.bounds];
-//    [_imageview setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:stringURL]]];
-//    [_imageview setImageScaling:NSImageScaleAxesIndependently];
-//    [self addSubview:_imageview];
+//-(void)mouseEntered:(NSEvent *)theEvent
+//{
 //}
-
--(void)mouseEntered:(NSEvent *)theEvent
-{
-}
-
--(void)mouseExited:(NSEvent *)theEvent
-{
-}
-
--(void)updateTrackingAreas
-{
-    if(_trackingArea != nil) {
-        [self removeTrackingArea:_trackingArea];
-    }
-    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
-                                                 options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways)
-                                                   owner:self
-                                                userInfo:nil];
-    [self addTrackingArea:_trackingArea];
-}
+//
+//-(void)mouseExited:(NSEvent *)theEvent
+//{
+//}
+//
+//-(void)updateTrackingAreas
+//{
+//    if(_trackingArea != nil) {
+//        [self removeTrackingArea:_trackingArea];
+//    }
+//    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+//                                                 options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways)
+//                                                   owner:self
+//                                                userInfo:nil];
+//    [self addTrackingArea:_trackingArea];
+//}
 
 @end
