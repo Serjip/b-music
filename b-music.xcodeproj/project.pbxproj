@@ -60,6 +60,7 @@
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
 		D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AFF77E182FF55F00B6236C /* MainMenu.xib */; };
+		D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFF781183002E900B6236C /* PlayerOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,8 @@
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D2AFF77E182FF55F00B6236C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D2AFF780183002E900B6236C /* PlayerOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerOverlay.h; sourceTree = "<group>"; };
+		D2AFF781183002E900B6236C /* PlayerOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerOverlay.m; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -284,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AFF77E182FF55F00B6236C /* MainMenu.xib */,
+				D2AFF783183002EE00B6236C /* Overlay */,
 				D20A47FF1826AF62002B7B18 /* Preferences */,
 				D2163A67182C1CF00036FFCE /* Graphics */,
 				D213286F180065D600AFF98C /* Controls */,
@@ -498,6 +502,15 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		D2AFF783183002EE00B6236C /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				D2AFF780183002E900B6236C /* PlayerOverlay.h */,
+				D2AFF781183002E900B6236C /* PlayerOverlay.m */,
+			);
+			name = Overlay;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -625,6 +638,7 @@
 				D2825B6C17FD8C2900F725BD /* FfwdButton.m in Sources */,
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
 				D283B724181D1C6A000AB6DE /* MoreButtonCell.m in Sources */,
+				D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */,
 				D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */,
 				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
 				D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */,

@@ -508,6 +508,7 @@ CA
                 <outlet property="searchViewHeight" destination="6bq-sP-CBT" id="B3f-9E-0g4"/>
                 <outlet property="statusMenu" destination="452-f3-juW" id="jhR-rL-i7J"/>
                 <outlet property="tableview" destination="Ua7-TF-GCO" id="nr1-o3-0XO"/>
+                <outlet property="test" destination="6n9-l3-56q" id="tNr-e2-nkG"/>
                 <outlet property="viewMenu" destination="296" id="nIm-Eu-Kkx"/>
                 <outlet property="volume" destination="APo-cf-DUn" id="OyR-Nx-xmX"/>
                 <outlet property="windowMenu" destination="24" id="lJg-1C-TwT"/>
@@ -814,6 +815,64 @@ CA
                 <constraint firstAttribute="centerX" secondItem="APo-cf-DUn" secondAttribute="centerX" id="bty-wi-aMd"/>
                 <constraint firstItem="APo-cf-DUn" firstAttribute="leading" secondItem="8Sq-g7-od9" secondAttribute="leading" constant="10" id="eVS-SC-Mkb"/>
                 <constraint firstAttribute="trailing" secondItem="APo-cf-DUn" secondAttribute="trailing" constant="10" id="v2F-WG-q1U"/>
+            </constraints>
+        </customView>
+        <customView id="6n9-l3-56q" customClass="PlayerOverlay">
+            <rect key="frame" x="0.0" y="0.0" width="368" height="344"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="WZe-PR-thc">
+                    <rect key="frame" x="176" y="164" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </progressIndicator>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-kr-Cjz">
+                    <rect key="frame" x="106" y="90" width="157" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="157" id="PsX-GN-a8P"/>
+                    </constraints>
+                    <buttonCell key="cell" type="roundTextured" title="Login" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="vCX-u1-aJR">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="loginAuthVk:" target="DoF-XC-WxK" id="jXx-N6-XBK"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXl-7R-m5e">
+                    <rect key="frame" x="106" y="60" width="156" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="Sign Up" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="DXA-3k-ueK">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="signupAuthVk:" target="DoF-XC-WxK" id="xz6-cW-g61"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zrx-bk-7n5">
+                    <rect key="frame" x="106" y="30" width="156" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="Khi-sx-N7z">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cancelAuthVk:" target="DoF-XC-WxK" id="FDY-Is-afE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="zrx-bk-7n5" secondAttribute="leading" id="6TH-Nq-c72"/>
+                <constraint firstAttribute="centerX" secondItem="CXl-7R-m5e" secondAttribute="centerX" id="DJ1-UM-K1w"/>
+                <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="WZe-PR-thc" secondAttribute="bottom" constant="50" id="DRv-LG-LWV"/>
+                <constraint firstAttribute="centerX" secondItem="WZe-PR-thc" secondAttribute="centerX" id="EGb-Do-FYn"/>
+                <constraint firstAttribute="centerX" secondItem="zrx-bk-7n5" secondAttribute="centerX" id="GwH-8J-QEd"/>
+                <constraint firstAttribute="centerX" secondItem="UvB-kr-Cjz" secondAttribute="centerX" id="NJ3-WL-rQS"/>
+                <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="Ptx-bd-h1t"/>
+                <constraint firstItem="zrx-bk-7n5" firstAttribute="top" secondItem="CXl-7R-m5e" secondAttribute="bottom" constant="8" symbolic="YES" id="Pvy-fw-DJN"/>
+                <constraint firstItem="CXl-7R-m5e" firstAttribute="top" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="8" symbolic="YES" id="boe-4a-7KS"/>
+                <constraint firstAttribute="centerY" secondItem="WZe-PR-thc" secondAttribute="centerY" id="hY3-Ef-2Gc"/>
             </constraints>
         </customView>
     </objects>

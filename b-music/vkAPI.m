@@ -30,10 +30,6 @@
     return object;
 }
 
--(void) auth{
-    [self alertSheet];
-}
-
 -(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr{
     
     NSMutableDictionary *tokenDic=[self parseStringURL:tokenStr];
@@ -133,7 +129,7 @@
 -(id) requestAPIVkLoadMainplaylist:(NSString*)token {
     
     if (token==nil) {
-        [self auth];//Check tokeb if doesn't exist auth
+//        [self auth];//Check tokeb if doesn't exist auth
         return nil;
     }
     
@@ -142,43 +138,7 @@
     return response;
 }
 
-
-- (void)alertSheet{
-    //Create alert
-    if (!self.alert) {
-    
-    self.alert=[NSAlert alertWithMessageText:@"Authorization is required"
-                               defaultButton:@"Login"//0
-                             alternateButton:@"Cancel"//1
-                                 otherButton:@"Sing Up"//-1
-                   informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
-    
-    
-    
-        [[[self.alert buttons] objectAtIndex:0] setTarget:self];
-        [[[self.alert buttons] objectAtIndex:0] setAction:@selector(login)];
-    
-        [[[self.alert buttons] objectAtIndex:1] setTarget:self];
-        [[[self.alert buttons] objectAtIndex:1] setAction:@selector(signup)];
-    
-        [[[self.alert buttons] objectAtIndex:2] setTarget:self];
-        [[[self.alert buttons] objectAtIndex:2] setAction:@selector(cancel)];
-        
-    }
-    
-    //Start alert
-    [self.alert beginSheetModalForWindow:[[NSApp delegate] window]
-                           modalDelegate:self
-                          didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-                             contextInfo:nil];
-}
-
-- (void) alertDidEnd:(NSAlert *)alert
-          returnCode:(NSInteger)returnCode
-         contextInfo:(void *)contextInfo{
-    NSLog(@"The return code was %li ",returnCode);
-}
-
+//
 -(void)login{ NSLog(@"Login");
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];
 }
@@ -189,8 +149,5 @@
 
 -(void)cancel{ NSLog(@"Cancel");
     [[[NSApp delegate] window] close];
-    [NSApp endSheet:[self.alert window]];
-    [[self.alert window]close];
-    self.alert=nil;
 }
 @end

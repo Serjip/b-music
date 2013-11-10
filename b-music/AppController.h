@@ -35,6 +35,7 @@
 @interface AppController : NSObject<NSWindowDelegate,
                                     NSTableViewDataSource,
                                     NSTableViewDelegate,
+                                    NSUserNotificationCenterDelegate,
                                     PlayerDelegate,
                                     ControlsViewDelegate,
                                     vkAPIDelegate,
@@ -54,6 +55,7 @@
 @property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
+@property (weak) IBOutlet NSView *test;
 
 @property (weak) IBOutlet Volume *volume;
 
@@ -73,6 +75,11 @@
 
 #pragma mark -
 #pragma mark IBAcrions
+
+-(IBAction)loginAuthVk:(id)sender;
+-(IBAction)signupAuthVk:(id)sender;
+-(IBAction)cancelAuthVk:(id)sender;
+
 -(IBAction)preferences:(id)sender;
 
 -(IBAction)play:(id)sender;

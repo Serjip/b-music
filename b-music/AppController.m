@@ -38,6 +38,8 @@
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
         _currentTableRow=@"MainRow";
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     }
     return self;
 }
@@ -55,6 +57,12 @@
     [self.S saveSettings];
     
     [self loadMainPlaylist];
+    
+    
+    for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
+        [view setHidden:NO];
+    }
+    [self.test removeFromSuperview];
 }
 
 /*
@@ -85,7 +93,11 @@
 
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     if (!self.S.settings.token){
-        [self.vkAPI auth];
+        for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
+            [view setHidden:YES];
+        }
+        [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
+        [self.test setHidden:NO];
     }
     
     if (!_isInitialLoadingFinish) {
@@ -140,7 +152,6 @@
             [item setEnabled:YES];
         }
         
-        
         //Local Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
                                               handler:^(NSEvent *event) { return [self localMonitorKeydownEvents:event];}];
@@ -153,9 +164,18 @@
         [self loadMainPlaylist];
     }
 }
+
 /*
- *                                  ControlsView Methods Delegate
- *****************************************************************************************/
+ * Notafication center delagate
+ *******************************/
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
+     shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
+}
+
+/*
+ *  ControlsView Methods Delegate
+ ***************************************/
 -(void)isHovered:(BOOL)flag{
     if (![_popoverVolume isShown]) {
         [self removeSubviews];
@@ -376,6 +396,12 @@
             }
         }
     });
+    
+    //Notafication
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = title;
+    notification.informativeText = artist;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 
@@ -441,6 +467,15 @@
 /*
  *@ IBActions
  */
+-(IBAction)loginAuthVk:(id)sender{ NSLog(@"loginAuthVk");
+    [self.vkAPI login];
+}
+-(IBAction)signupAuthVk:(id)sender{ NSLog(@"signupAuthVk");
+    [self.vkAPI signup];
+}
+-(IBAction)cancelAuthVk:(id)sender{ NSLog(@"cancelAuthVk");
+    [self.vkAPI cancel];
+}
 
 -(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
     if (!preferences) {
@@ -716,9 +751,14 @@
 }
 
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
+    
+    for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
+        [view setHidden:YES];
+    }
+    [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
+    
     self.S.settings.token=nil;//Remove token
     [self.S saveSettings];
-    [self.vkAPI auth];//Start auth
 }
 
 @end

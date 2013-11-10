@@ -19,9 +19,6 @@
 @property (weak) id <vkAPIDelegate> delegate;
 @property (weak) NSAlert * alert;
 
-//Start auth
--(void) auth;
-
 -(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr;
 
 -(BOOL) checkForErrorResponse:(id)response;
@@ -42,4 +39,7 @@
 //Set accaunt offline
 -(BOOL) account_setOffline:(NSString *)token ;
 
+-(void)login;
+-(void)signup;
+-(void)cancel;
 @end
