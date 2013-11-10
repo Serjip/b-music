@@ -34,7 +34,7 @@
 -(id)track_getInfo:(NSString *)artist
              track:(NSString *)track;
 
--(id) track_updateNowPlaying:(NSString *)session
+-(void) track_updateNowPlaying:(NSString *)session
                       artist:(NSString *)artist
                        track:(NSString *)track
                     duration:(NSString *)duration;

@@ -116,14 +116,16 @@
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@"user_id %ld, token %@, repeat %i, shuffle %i, runtime %i, alwaysOnTop %i, volume %f"
+    return [NSString stringWithFormat:@"Player settings: user_id %ld, token %@, repeat %i, shuffle %i, runtime %i, alwaysOnTop %i, volume %f Lastfm settings: sessionlastfm %@,namelastfm %@"
                                         ,self.settings.user_id
                                         ,self.settings.token
                                         ,self.settings.repeat
                                         ,self.settings.shuffle
                                         ,self.settings.runTime
                                         ,self.settings.alwaysOnTop
-                                        ,self.settings.volume];
+                                        ,self.settings.volume
+                                        ,self.settings.sessionLastfm
+                                        ,self.settings.nameLastfm];
 }
 
 @end

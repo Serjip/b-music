@@ -115,10 +115,12 @@
     return obj;
 }
 
--(id) track_updateNowPlaying:(NSString *)session
+-(void) track_updateNowPlaying:(NSString *)session
                       artist:(NSString *)artist
                        track:(NSString*)track
                     duration:(NSString*)duration {
+    
+    if (!session || session.length==0) return ;
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"track.updateNowPlaying" forKey:@"method"];
@@ -132,7 +134,8 @@
     [params setObject:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
-    return obj;
+    
+    NSLog(@"Lastfm response %@",obj);
 }
 
 -(id) track_scrobble:(NSString *)session

@@ -17,10 +17,8 @@
     NSMutableArray * _shufflePlaylist;
     NSMutableDictionary * _imageList;
     
-    
     NSString * _currentTableRow;//For table whitch one cell is shown
     BOOL _isInitialLoadingFinish;//Indicator starting app
-    
     BOOL _userHoldKey;//global key event holding indicator
     
     CGSize _windowSize;//size player
@@ -304,9 +302,8 @@
 }
 
 /*
- *                                  Player Methods
- *
- *****************************************************************************************/
+ *  Player Methods
+ *******************************/
 #pragma mark Player
 -(float) getVolume{
     return self.S.settings.volume;
@@ -343,7 +340,7 @@
 -(void) durationTrack:(double)duration{
     NSString * title=[_currentTrack objectForKey:@"title"];
     NSString * artist=[_currentTrack objectForKey:@"artist"];
-    NSString * durationSec=[_currentTrack objectForKey:@"duration"];
+    NSString * durationString=[_currentTrack objectForKey:@"duration"];
     
     [[self.Controls1 viewWithTag:1] setStringValue:title];//Set title for player
     [[self.Controls1 viewWithTag:2] setStringValue:artist];//Set artist for player
@@ -354,10 +351,15 @@
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.ttitt.b-music.lastfm", NULL);
     dispatch_async(downloadQueue, ^{
         if (num>-1){
-            NSButton * btn=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
-            
+            NSButton * btnPlayTableCell=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
             
             NSImage * image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
+            
+            //Set updateNowPlayng lastfm
+            [self.lastfmAPI track_updateNowPlaying:self.S.settings.sessionLastfm
+                                            artist:artist
+                                             track:title
+                                          duration:durationString];
             
             //set dock icon
             [NSApp setApplicationIconImage: image];
@@ -367,7 +369,7 @@
             }
             if (image) {
                 [_imageList setObject:image forKey:_currentTrack];
-                [btn setImage:image];
+                [btnPlayTableCell setImage:image];
             }
         }
     });
