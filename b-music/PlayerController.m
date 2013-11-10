@@ -49,10 +49,14 @@
                                                             repeats:YES];
     [self.player play];
     
-    [_delegate durationTrack:CMTimeGetSeconds([self.player.currentItem.asset duration])];
+    self.duration=CMTimeGetSeconds([self.player.currentItem.asset duration]);
+    [_delegate durationTrack:self.duration];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context{
     
     if (context==@"loadedTimeRanges") {
         
@@ -61,8 +65,10 @@
         float durationSeconds = CMTimeGetSeconds(timeRange.duration);
         
         NSTimeInterval result = startSeconds + durationSeconds;
-        if(isnan(result)) result=0;
-        [_delegate bufferingTrack:result/ CMTimeGetSeconds([self.player.currentItem.asset duration])];
+        
+        double delay=result/ self.duration;
+        if(isnan(delay)) delay=0;
+        [_delegate bufferingTrack:delay];
     
     }else if (context == @"rate") {
         [_delegate isPlayerPlaying:[object rate]];
@@ -83,11 +89,15 @@
 -(void)setRuntime:(double)currentTime{
     NSString *str;
     if ([_delegate getRuntime]) {
-        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem.asset duration])-currentTime]];
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:self.duration-currentTime]];
     }else{
         str=[self convertTime:currentTime];
     }
-    [_delegate runtimeTrack:currentTime secondsString:str];
+    
+    [_delegate runtimeTrack:currentTime
+              secondsString:str
+                   scrobble:NO];
+    
     [self.player seekToTime:CMTimeMakeWithSeconds(currentTime, NSEC_PER_SEC)];
 }
 -(void) currentRuntime:(NSTimer *)timer{
@@ -95,11 +105,22 @@
     NSString *str;
     
     if ([_delegate getRuntime]) {
-        str=[NSString stringWithFormat:@"-%@",[self convertTime:CMTimeGetSeconds([self.player.currentItem.asset duration])-currentTime]];
+        str=[NSString stringWithFormat:@"-%@",[self convertTime:self.duration-currentTime]];
     }else{
         str=[self convertTime:currentTime];
     }
-    [_delegate runtimeTrack:currentTime secondsString:str];
+    
+    BOOL scrobble=NO;
+    
+    if (self.duration>30.0) {
+        if (currentTime > 4*60.0 || self.duration/2 < currentTime) {
+            scrobble=YES;
+        }
+    }
+    
+    [_delegate runtimeTrack:currentTime
+              secondsString:str
+                   scrobble:scrobble];
 }
 
 -(NSString*)convertTime:(double)seconds {

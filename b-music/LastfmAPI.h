@@ -39,8 +39,8 @@
                        track:(NSString *)track
                     duration:(NSString *)duration;
 
--(id) track_scrobble:(NSString *)session
-              artist:(NSString *)artist
-               track:(NSString *)track;
+-(void) track_scrobble:(NSString *)session
+                artist:(NSString *)artist
+                 track:(NSString *)track;
 
 @end

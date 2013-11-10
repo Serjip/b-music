@@ -14,7 +14,11 @@
 
 -(void) bufferingTrack:(double)percentage;
 -(void) durationTrack:(double)duration;
--(void) runtimeTrack:(double) seconds secondsString:(NSString*)str;
+
+-(void) runtimeTrack:(double)seconds
+       secondsString:(NSString *)str
+            scrobble:(BOOL)scrobble;
+
 -(void) isPlayerPlaying:(BOOL)flag;
 -(void)nextTrack;
 
@@ -29,6 +33,7 @@
 
 @property float volume;
 @property BOOL repeat;
+@property double duration;
 
 @property (strong) AVPlayer *player;
 @property (strong) AVPlayerItem *playerItem;

@@ -22,6 +22,7 @@
     BOOL _userHoldKey;//global key event holding indicator
     
     CGSize _windowSize;//size player
+    BOOL _scrobbleIndicator;//Shows send track has been sent or not
 }
 - (id)init
 {
@@ -348,6 +349,8 @@
     
     NSInteger num=(int)[_viewPlaylist indexOfObject:_currentTrack];
     
+    _scrobbleIndicator=NO;//Reset inicator
+    
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.ttitt.b-music.lastfm", NULL);
     dispatch_async(downloadQueue, ^{
         if (num>-1){
@@ -380,9 +383,24 @@
 //    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
 }
--(void) runtimeTrack:(double)seconds secondsString:(NSString *)str{
+-(void) runtimeTrack:(double)seconds
+       secondsString:(NSString *)str
+            scrobble:(BOOL)scrobble{
+    
     [[self.BottomControls1 viewWithTag:2] setProgress:seconds];
     [[self.BottomControls1 viewWithTag:1] setTitle:str];
+
+    if (!_scrobbleIndicator && scrobble) {
+        NSLog(@"SCROBBLE REUQUEST");
+        NSString * title=[_currentTrack objectForKey:@"title"];
+        NSString * artist=[_currentTrack objectForKey:@"artist"];
+        
+        //Scrobbing request
+        [self.lastfmAPI track_scrobble:self.S.settings.sessionLastfm
+                                artist:artist
+                                 track:title];
+        _scrobbleIndicator=YES;
+    }
 }
 
 /*

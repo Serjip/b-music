@@ -138,9 +138,11 @@
     NSLog(@"Lastfm response %@",obj);
 }
 
--(id) track_scrobble:(NSString *)session
+-(void) track_scrobble:(NSString *)session
               artist:(NSString *)artist
                track:(NSString *)track{
+    
+    if (!session || session.length==0) return ;
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"track.scrobble"                             forKey:@"method"];
@@ -154,7 +156,7 @@
     [params setObject:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
-    return obj;
+    NSLog(@"Lastfm response %@",obj);
 }
 
 -(void)parseTokenUsernameFormString:(NSString *)tokenStr{
