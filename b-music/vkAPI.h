@@ -1,5 +1,5 @@
 //
-//  Api.h
+//  vkAPI.h
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ApiDelegate <NSObject>
+@protocol vkAPIDelegate <NSObject>
 -(void) finishAuth:(NSString *)token
            user_id:(NSInteger)user_id;
 @end
 
 
-@interface Api : NSObject
+@interface vkAPI : NSObject
 
-@property (weak) id <ApiDelegate> delegate;
+@property (weak) id <vkAPIDelegate> delegate;
 @property (weak) NSAlert * alert;
 
 //Start auth

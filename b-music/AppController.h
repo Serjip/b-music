@@ -27,7 +27,7 @@
 #import "ControlsView.h"
 #import "Settings.h"
 
-#import "Api.h"
+#import "vkAPI.h"
 #import "LastfmAPI.h"
 
 #import "Preferences.h"
@@ -37,7 +37,7 @@
                                     NSTableViewDelegate,
                                     PlayerDelegate,
                                     ControlsViewDelegate,
-                                    ApiDelegate,
+                                    vkAPIDelegate,
                                     LastfmAPIDelegate>{
     NSStatusItem *statusItem;
     Preferences * preferences;
@@ -45,7 +45,7 @@
 
 @property Settings * S;
 @property PlayerController * PC;
-@property Api * api;
+@property vkAPI * vkAPI;
 @property LastfmAPI * lastfmAPI;
 
 @property (weak) IBOutlet NSPopover *popoverVolume;

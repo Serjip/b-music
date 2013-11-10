@@ -1,16 +1,16 @@
 //
-//  Api.m
+//  vkAPI.m
 //  b-music
 //
 //  Created by Sergey P on 02.10.13.
 //  Copyright (c) 2013 Sergey P. All rights reserved.
 //
 
-#import "Api.h"
+#import "vkAPI.h"
 
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=http://ttitt.ru/auth/&v=5.2&response_type=token"
 
-@implementation Api
+@implementation vkAPI
 
 
 -(id) requestAPI:(NSString*)method parametesForMethod:(NSString*)param token:(NSString*)token {

@@ -29,8 +29,8 @@
     self = [super init];
     if (self) {
         _S=[[Settings alloc] init];
-        _api=[[Api alloc] init];
-        [_api setDelegate:self];
+        _vkAPI=[[vkAPI alloc] init];
+        [_vkAPI setDelegate:self];
         
         _lastfmAPI=[[LastfmAPI alloc] init];
         [_lastfmAPI setDelegate:self];
@@ -85,7 +85,7 @@
 
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
     if (!self.S.settings.token){
-        [self.api auth];
+        [self.vkAPI auth];
     }
     
     if (!_isInitialLoadingFinish) {
@@ -191,7 +191,7 @@
         [self.lastfmAPI parseTokenUsernameFormString:tokenString];
     }else{
         //VK
-        [self.api parseAccessTokenAndUserIdFormString:tokenString];
+        [self.vkAPI parseAccessTokenAndUserIdFormString:tokenString];
     }
 }
 
@@ -288,9 +288,9 @@
 
 -(void) loadMainPlaylist{
     
-    id response =[self.api requestAPIVkLoadMainplaylist:self.S.settings.token];
+    id response =[self.vkAPI requestAPIVkLoadMainplaylist:self.S.settings.token];
     
-    if (![self.api checkForErrorResponse:response]) return;//Some error happend
+    if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
     
     _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
     _soundPlaylist=[_viewPlaylist mutableCopy];
@@ -565,7 +565,7 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.api requestAPIVkAddTrack:self.S.settings.token
+    BOOL result=[self.vkAPI requestAPIVkAddTrack:self.S.settings.token
                                       owner_id:[obj objectForKey:@"owner_id"]
                                        idTrack:[obj objectForKey:@"id"]];
     
@@ -582,7 +582,7 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.api requestAPIVkRemoveTrack:self.S.settings.token
+    BOOL result=[self.vkAPI requestAPIVkRemoveTrack:self.S.settings.token
                                          owner_id:[obj objectForKey:@"owner_id"]
                                           idTrack:[obj objectForKey:@"id"]];
     
@@ -644,10 +644,10 @@
     if ([sender stringValue].length!=0) {
         
         _currentTableRow=@"SearchRow";
-        id response =[self.api requestAPIVkSearch:self.S.settings.token
+        id response =[self.vkAPI requestAPIVkSearch:self.S.settings.token
                                       searchQuery:[sender stringValue]];
         
-        if (![self.api checkForErrorResponse:response]) return;//Some error happend
+        if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
         
         _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
         
@@ -718,7 +718,7 @@
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
     self.S.settings.token=nil;//Remove token
     [self.S saveSettings];
-    [self.api auth];//Start auth
+    [self.vkAPI auth];//Start auth
 }
 
 @end
