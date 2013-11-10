@@ -150,7 +150,7 @@
     self.alert=[NSAlert alertWithMessageText:@"Authorization is required"
                                defaultButton:@"Login"//0
                              alternateButton:@"Cancel"//1
-                                 otherButton:@"Singup"//-1
+                                 otherButton:@"Sing Up"//-1
                    informativeTextWithFormat:@"Please Login or Sign Up with vk.com"];
     
     

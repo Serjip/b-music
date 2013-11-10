@@ -616,7 +616,7 @@ CA
                         <constraint firstAttribute="height" constant="20" id="MPP-BN-Ykf"/>
                         <constraint firstAttribute="width" constant="20" id="doa-Y7-WgQ"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="searchTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Cdc-qB-VZD">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Cdc-qB-VZD">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -624,8 +624,8 @@ CA
                         <action selector="showSearch:" target="DoF-XC-WxK" id="GL2-ZC-LfA"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" misplaced="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
-                    <rect key="frame" x="7" y="35" width="9" height="9"/>
+                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
+                    <rect key="frame" x="6" y="35" width="9" height="9"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="9" id="Sdt-cm-1wu"/>
@@ -661,7 +661,7 @@ CA
                         <constraint firstAttribute="width" constant="20" id="PJW-7p-Rqs"/>
                         <constraint firstAttribute="height" constant="20" id="whs-5b-Iqb"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="shuffleTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="W7K-Yw-i7n">
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="W7K-Yw-i7n">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -822,8 +822,7 @@ CA
         <image name="NSListViewTemplate" width="11" height="10"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSStopProgressTemplate" width="11" height="11"/>
-        <image name="searchTemplate" width="20" height="20"/>
-        <image name="shuffleTemplate" width="20" height="20"/>
     </resources>
 </document>
