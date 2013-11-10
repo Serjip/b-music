@@ -11,10 +11,12 @@
 
 #define API_URL @"http://ws.audioscrobbler.com/2.0/"
 #define API_KEY @"2eae06b8e133096849f10006f4da696a"
-#define SECRET @"ad9e320f7137cff7666348ef5a447c97"
+#define SECRET  @"ad9e320f7137cff7666348ef5a447c97"
 #define AuthURL @"http://www.last.fm/api/auth/?api_key="
 
-@implementation LastfmAPI
+@implementation LastfmAPI{
+    NSString * _token;
+}
 
 -(id)requestAPILastfmWithParams:(NSMutableDictionary*)params{
     
@@ -135,7 +137,7 @@
 
 -(id) track_scrobble:(NSString *)session
               artist:(NSString *)artist
-               track:(NSString*)track{
+               track:(NSString *)track{
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"track.scrobble"                             forKey:@"method"];
@@ -152,6 +154,24 @@
     return obj;
 }
 
+-(void)parseTokenUsernameFormString:(NSString *)tokenStr{
+    tokenStr =[tokenStr substringFromIndex:1];
+    NSArray *components = [tokenStr componentsSeparatedByString:@"="];
+    
+    if (![[components objectAtIndex:0] isEqual:@"token"])
+        return;
+    
+    id obj=[self auth_getSession:[components objectAtIndex:1]];
+    id sessionObj=[obj objectForKey:@"session"];
+    
+    NSString * key= [sessionObj objectForKey:@"key"];
+    NSString * name= [sessionObj objectForKey:@"name"];
+    
+    if (!key || !name) return;
+    
+    [self.delegate finishAuthorizeWithSession:key
+                                     username:name];
+}
 
 #pragma mark Private methods
 

@@ -44,13 +44,13 @@
 }
 
 /*
- *                                  Api Delegate Methods
- *
- *****************************************************************************************/
+ *  Api VK Delegate
+ *****************************/
 #pragma mark APIvk
--(void) finishAuth:(NSString*)token user_id:(NSInteger)user_id{
-    NSLog(@"NEW TOKEN");
+-(void) finishAuth:(NSString*)token
+           user_id:(NSInteger)user_id{
     
+    NSLog(@"TOKEN vk");
     self.S.settings.token=token;
     self.S.settings.user_id=user_id;
     [self.S saveSettings];
@@ -58,6 +58,17 @@
     [self loadMainPlaylist];
 }
 
+/*
+ *  LastfmApi VK Delegate
+ *****************************/
+#pragma mark Lastfm Delegate
+-(void) finishAuthorizeWithSession:(NSString *)session
+                          username:(NSString*)username{
+    NSLog(@"TOKEN Lastfm");
+    self.S.settings.sessionLastfm=session;
+    self.S.settings.nameLastfm=username;
+    [self.S saveSettings];
+}
 /*
  *                                  Window Methods
  *
@@ -79,6 +90,8 @@
     }
     
     if (!_isInitialLoadingFinish) {
+        
+        [self registerHandlerLinks];//Handler tokens /lastfm/vk
         
         statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         [statusItem setMenu:self.statusMenu];
@@ -142,8 +155,7 @@
     }
 }
 /*
- *                                  ControlsView Methods
- *
+ *                                  ControlsView Methods Delegate
  *****************************************************************************************/
 -(void)isHovered:(BOOL)flag{
     if (![_popoverVolume isShown]) {
@@ -157,9 +169,32 @@
 }
 
 /*
- *                                  TEMP Methods
- *
- *****************************************************************************************/
+ * TEMP Methods
+ ****************************************/
+#pragma mark Temp
+
+- (void)registerHandlerLinks{
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+                                                       andSelector:@selector(getUrl:withReplyEvent:)
+                                                     forEventClass:kInternetEventClass
+                                                        andEventID:kAEGetURL];
+}
+
+- (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
+    NSString * str=[[event paramDescriptorForKeyword:keyDirectObject] stringValue];
+    NSString * prefix=@"com.ttitt.b-music://";
+    if (![str hasPrefix:prefix]) return;
+    
+    NSString * tokenString=[str substringFromIndex:prefix.length];
+    
+    if ([tokenString characterAtIndex:0]==63) {
+        //LASTFM
+        [self.lastfmAPI parseTokenUsernameFormString:tokenString];
+    }else{
+        //VK
+        [self.api parseAccessTokenAndUserIdFormString:tokenString];
+    }
+}
 
 -(NSEvent*) localMonitorKeydownEvents:(NSEvent*)event{
 //    NSLog(@"%hu %@",event.keyCode, [[[NSApp keyWindow] firstResponder] className]);
@@ -266,20 +301,6 @@
     [self.tableview performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
                                   waitUntilDone:NO];
-}
-
-/*
- *                                  Lastfm Methods
- *
- *****************************************************************************************/
-#pragma mark Lastfm Delegate
-
--(void) finishGetSesion:(NSString*)session
-               username:(NSString*)username{
-    
-    self.S.settings.sessionLastfm=session;
-    self.S.settings.nameLastfm=username;
-    [self.S saveSettings];
 }
 
 /*

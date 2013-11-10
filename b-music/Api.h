@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol ApiDelegate <NSObject>
--(void) finishAuth:(NSString*)token user_id:(NSInteger)user_id;
+-(void) finishAuth:(NSString *)token
+           user_id:(NSInteger)user_id;
 @end
 
 
@@ -18,25 +19,22 @@
 @property (weak) id <ApiDelegate> delegate;
 @property (weak) NSAlert * alert;
 
--(id) requestAPI:(NSString*)method
-parametesForMethod:(NSString*)param
-           token:(NSString*)token;
-
+//Start auth
 -(void) auth;
 
--(NSMutableDictionary *) parseAccessTokenAndUserIdFormString:(NSString*)stringURL;
+-(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr;
 
 -(BOOL) checkForErrorResponse:(id)response;
 
--(BOOL) requestAPIVkRemoveTrack:(NSString*)token
-                       owner_id:(NSString*)owner_id
-                        idTrack:(NSString*)idTrack;//Remove Track
+-(BOOL) requestAPIVkRemoveTrack:(NSString *)token
+                       owner_id:(NSString *)owner_id
+                        idTrack:(NSString *)idTrack;//Remove Track
 
--(BOOL) requestAPIVkAddTrack:(NSString*)token
+-(BOOL) requestAPIVkAddTrack:(NSString *)token
                     owner_id:(NSString *)owner_id
-                     idTrack:(NSString *) idTrack;//Add track
+                     idTrack:(NSString *)idTrack;//Add track
 
--(id) requestAPIVkSearch:(NSString*)token
+-(id) requestAPIVkSearch:(NSString *)token
              searchQuery:(NSString *)searchQuery; //Search
 
 -(id) requestAPIVkLoadMainplaylist:(NSString*)token; // Main playlist

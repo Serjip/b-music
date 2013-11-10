@@ -9,17 +9,23 @@
 #import <Foundation/Foundation.h>
 
 @protocol LastfmAPIDelegate <NSObject>
--(void) finishGetSesion:(NSString*)session username:(NSString*)username;
+
+-(void) finishAuthorizeWithSession:(NSString *)session
+                          username:(NSString*)username;
+
 @end
+
 
 @interface LastfmAPI : NSObject
 
 @property (weak) id <LastfmAPIDelegate> delegate;
 
--( NSImage * )getImageWithArtist:(NSString *)artist
-                           track:(NSString *)track
-                            size:(NSInteger)size;
+-(NSImage * )getImageWithArtist:(NSString *)artist
+                          track:(NSString *)track
+                           size:(NSInteger )size;
 -(void) authorize;
+
+-(void)parseTokenUsernameFormString:(NSString *)tokenStr;
 
 #pragma mark Last.fm Methods
 
@@ -35,6 +41,6 @@
 
 -(id) track_scrobble:(NSString *)session
               artist:(NSString *)artist
-               track:(NSString*)track;
+               track:(NSString *)track;
 
 @end

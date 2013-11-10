@@ -32,24 +32,26 @@
     [self alertSheet];
 }
 
--(NSMutableDictionary *) parseAccessTokenAndUserIdFormString:(NSString*)stringURL{
+-(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr{
     
-    NSInteger index = [@"com.ttitt.b-music://" length];
-    NSString * tokenString=[stringURL substringFromIndex:index];
-    NSMutableDictionary *tokenDict=[self parseStringURL:tokenString];
+    NSMutableDictionary *tokenDic=[self parseStringURL:tokenStr];
     
+    if (![tokenDic objectForKey:@"access_token"])
+        return;
     
-    if (![tokenDict objectForKey:@"access_token"]) {
-        
-        return nil;
-    }
+    if (![tokenDic objectForKey:@"user_id"])
+        return;
     
-    if (![tokenDict objectForKey:@"user_id"]) {
-        
-        return nil;
-    }
-    
-    return tokenDict;
+    [[[NSApp delegate] window] makeKeyWindow];
+    [[[NSApp delegate] window] makeMainWindow];
+
+    [NSApp endSheet:[self.alert window]];
+    [[self.alert window]close];
+    self.alert=nil;
+
+    [self.delegate finishAuth:[tokenDic objectForKey:@"access_token"]
+                      user_id:[[tokenDic objectForKey:@"user_id"] integerValue]];
+
 }
 
 -(NSMutableDictionary *) parseStringURL:(NSString*)str{
@@ -83,7 +85,9 @@
 }
 
 
--(BOOL) requestAPIVkRemoveTrack:(NSString*)token owner_id:(NSString*)owner_id  idTrack:(NSString*)idTrack{
+-(BOOL) requestAPIVkRemoveTrack:(NSString *)token
+                       owner_id:(NSString *)owner_id
+                        idTrack:(NSString *)idTrack{
     
     NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&", owner_id ,idTrack];
     
@@ -93,7 +97,9 @@
 }
 
 
--(BOOL) requestAPIVkAddTrack:(NSString*)token owner_id:(NSString *)owner_id idTrack:(NSString *) idTrack {
+-(BOOL) requestAPIVkAddTrack:(NSString *)token
+                    owner_id:(NSString *)owner_id
+                     idTrack:(NSString *)idTrack {
     
     NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&", owner_id , idTrack];
     
@@ -103,7 +109,8 @@
 }
 
 
--(id) requestAPIVkSearch:(NSString*)token searchQuery:(NSString *)searchQuery {
+-(id) requestAPIVkSearch:(NSString*)token
+             searchQuery:(NSString *)searchQuery {
     
     NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=150&v=5.2&",searchQuery];
     
@@ -138,16 +145,14 @@
     
     
     
-    [[[self.alert buttons] objectAtIndex:0] setTarget:self];
-    [[[self.alert buttons] objectAtIndex:0] setAction:@selector(login)];
+        [[[self.alert buttons] objectAtIndex:0] setTarget:self];
+        [[[self.alert buttons] objectAtIndex:0] setAction:@selector(login)];
     
-    [[[self.alert buttons] objectAtIndex:1] setTarget:self];
-    [[[self.alert buttons] objectAtIndex:1] setAction:@selector(signup)];
+        [[[self.alert buttons] objectAtIndex:1] setTarget:self];
+        [[[self.alert buttons] objectAtIndex:1] setAction:@selector(signup)];
     
-    [[[self.alert buttons] objectAtIndex:2] setTarget:self];
-    [[[self.alert buttons] objectAtIndex:2] setAction:@selector(cancel)];
-    
-    [self registerMyApp];
+        [[[self.alert buttons] objectAtIndex:2] setTarget:self];
+        [[[self.alert buttons] objectAtIndex:2] setAction:@selector(cancel)];
         
     }
     
@@ -158,7 +163,9 @@
                              contextInfo:nil];
 }
 
-- (void) alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo{
+- (void) alertDidEnd:(NSAlert *)alert
+          returnCode:(NSInteger)returnCode
+         contextInfo:(void *)contextInfo{
     NSLog(@"The return code was %li ",returnCode);
 }
 
@@ -176,28 +183,4 @@
     [[self.alert window]close];
     self.alert=nil;
 }
-
-- (void)registerMyApp {
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
-}
-
-- (void)getUrl:( NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-    
-    NSMutableDictionary *tokenDic = [self parseAccessTokenAndUserIdFormString:[[event paramDescriptorForKeyword:keyDirectObject] stringValue]];
-    NSLog(@"%@",tokenDic);
-    
-    [[[NSApp delegate] window] makeKeyWindow];
-    [[[NSApp delegate] window] makeMainWindow];
-    
-    [NSApp endSheet:[self.alert window]];
-    [[self.alert window]close];
-    self.alert=nil;
-    
-    [self.delegate finishAuth:[tokenDic objectForKey:@"access_token"]
-                      user_id:[[tokenDic objectForKey:@"user_id"] integerValue]];
-    
-    [[NSAppleEventManager sharedAppleEventManager] setEventHandler:nil andSelector:nil forEventClass:kInternetEventClass andEventID:kAEGetURL];
-}
-
-
 @end
