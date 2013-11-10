@@ -22,14 +22,16 @@
 -(void) authorize;
 
 #pragma mark Last.fm Methods
+
 -(id)auth_getSession:(NSString *)token;
 
--(id)track_getInfo:(NSString *) artist track:(NSString *)track;
+-(id)track_getInfo:(NSString *)artist
+             track:(NSString *)track;
 
 -(id) track_updateNowPlaying:(NSString *)session
                       artist:(NSString *)artist
-                       track:(NSString*)track
-                    duration:(NSString*)duration;
+                       track:(NSString *)track
+                    duration:(NSString *)duration;
 
 -(id) track_scrobble:(NSString *)session
               artist:(NSString *)artist

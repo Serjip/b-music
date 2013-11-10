@@ -34,6 +34,7 @@
         [_api setDelegate:self];
         
         _lastfmAPI=[[LastfmAPI alloc] init];
+        [_lastfmAPI setDelegate:self];
         
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
@@ -154,6 +155,7 @@
         }
     }
 }
+
 /*
  *                                  TEMP Methods
  *
@@ -264,6 +266,20 @@
     [self.tableview performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
                                   waitUntilDone:NO];
+}
+
+/*
+ *                                  Lastfm Methods
+ *
+ *****************************************************************************************/
+#pragma mark Lastfm Delegate
+
+-(void) finishGetSesion:(NSString*)session
+               username:(NSString*)username{
+    
+    self.S.settings.sessionLastfm=session;
+    self.S.settings.nameLastfm=username;
+    [self.S saveSettings];
 }
 
 /*

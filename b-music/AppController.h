@@ -32,7 +32,13 @@
 
 #import "Preferences.h"
 
-@interface AppController : NSObject<NSWindowDelegate,NSTableViewDataSource,NSTableViewDelegate,PlayerDelegate,ControlsViewDelegate,ApiDelegate>{
+@interface AppController : NSObject<NSWindowDelegate,
+                                    NSTableViewDataSource,
+                                    NSTableViewDelegate,
+                                    PlayerDelegate,
+                                    ControlsViewDelegate,
+                                    ApiDelegate,
+                                    LastfmAPIDelegate>{
     NSStatusItem *statusItem;
     Preferences * preferences;
 }
