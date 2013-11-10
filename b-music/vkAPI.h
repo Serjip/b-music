@@ -39,4 +39,7 @@
 
 -(id) requestAPIVkLoadMainplaylist:(NSString*)token; // Main playlist
 
+//Set accaunt offline
+-(BOOL) account_setOffline:(NSString *)token ;
+
 @end

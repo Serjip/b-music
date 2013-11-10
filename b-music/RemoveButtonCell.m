@@ -13,6 +13,13 @@
 #define kBlue 67
 #define kAlpha 1.0
 
+
+#define kRedH 190
+#define kGreenH 54
+#define kBlueH 47
+#define kAlphaH 1.0
+
+
 @implementation RemoveButtonCell{
     BOOL mouseInside;
     NSTrackingArea *trackingArea;
@@ -21,17 +28,22 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
-    CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
+    if ([self.cell isHighlighted]) {
+        CGContextSetRGBFillColor(ctx, kRedH/255.0, kGreenH/255.0, kBlueH/255.0, kAlphaH);
+    }else{
+        CGContextSetRGBFillColor(ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, kAlpha);
+    }
     CGContextFillRect(ctx, self.bounds);
     
-    CGFloat h=NSHeight(self.bounds);
-    CGFloat w=NSWidth(self.bounds);
-    CGFloat s=7;
-    CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
-    CGContextSetLineWidth(ctx, 2);
-    CGContextMoveToPoint(ctx, w/2-s,h/2);
-    CGContextAddLineToPoint(ctx, w/2+s, h/2);
-    CGContextStrokePath(ctx);
+    [super drawRect:dirtyRect];
+//    CGFloat h=NSHeight(self.bounds);
+//    CGFloat w=NSWidth(self.bounds);
+//    CGFloat s=7;
+//    CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
+//    CGContextSetLineWidth(ctx, 2);
+//    CGContextMoveToPoint(ctx, w/2-s,h/2);
+//    CGContextAddLineToPoint(ctx, w/2+s, h/2);
+//    CGContextStrokePath(ctx);
 }
 
 - (void)setMouseInside:(BOOL)value {

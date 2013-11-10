@@ -10,6 +10,8 @@
 
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=http://ttitt.ru/auth/&v=5.2&response_type=token"
 
+#define API_URL @""
+
 @implementation vkAPI
 
 
@@ -82,6 +84,14 @@
     }
     
     return YES;//Success
+}
+
+
+-(BOOL) account_setOffline:(NSString *)token {
+    NSString * method=@"account.setOffline";
+    NSString * params = @"&v=5.3&";
+    id response=[self requestAPI:method parametesForMethod:params token:token];
+    return [self checkForErrorResponse:response];
 }
 
 

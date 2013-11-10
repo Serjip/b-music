@@ -60,7 +60,6 @@
 		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
-		D2F011CC181EC5E900B067CD /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F011CB181EC5E900B067CD /* ScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,8 +169,6 @@
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
-		D2F011CA181EC5E800B067CD /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollView.h; path = "b-music/ScrollView.h"; sourceTree = "<group>"; };
-		D2F011CB181EC5E900B067CD /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollView.m; path = "b-music/ScrollView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,7 +286,6 @@
 				D20A47FF1826AF62002B7B18 /* Preferences */,
 				D21CEA0617FAFA0900F5AF42 /* MainMenu.xib */,
 				D2163A67182C1CF00036FFCE /* Graphics */,
-				D2F011CD181EC5EF00B067CD /* ScrollView */,
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
 				D21CEA2617FAFAFE00F5AF42 /* AppController.m */,
@@ -502,16 +498,6 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
-		D2F011CD181EC5EF00B067CD /* ScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				D2F011CA181EC5E800B067CD /* ScrollView.h */,
-				D2F011CB181EC5E900B067CD /* ScrollView.m */,
-			);
-			name = ScrollView;
-			path = ..;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -640,7 +626,6 @@
 				D2825B4117FC4E5000F725BD /* RuntimeSlider.m in Sources */,
 				D283B724181D1C6A000AB6DE /* MoreButtonCell.m in Sources */,
 				D2825B7017FD8D7400F725BD /* ShowSearchButton.m in Sources */,
-				D2F011CC181EC5E900B067CD /* ScrollView.m in Sources */,
 				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
 				D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */,
 				D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */,

@@ -275,7 +275,7 @@ CA
                             <constraint firstAttribute="height" constant="50" id="tSp-pq-X5k"/>
                         </constraints>
                     </customView>
-                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg" customClass="ScrollView">
+                    <scrollView misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4F-an-rVg">
                         <rect key="frame" x="0.0" y="39" width="470" height="357"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" misplaced="YES" drawsBackground="NO" copiesOnScroll="NO" id="xlY-Ir-Lny">
@@ -362,19 +362,19 @@ CA
                                                         <constraint firstAttribute="bottom" secondItem="7bj-Ix-3UF" secondAttribute="bottom" id="neX-YG-VtB"/>
                                                     </constraints>
                                                 </customView>
-                                                <customView identifier="MainRow" id="S9k-1h-j2d" customClass="TableRowView">
+                                                <customView identifier="MainRow" id="S9k-1h-j2d" customClass="TableCellView">
                                                     <rect key="frame" x="0.0" y="61" width="470" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="ANB-ap-Ylt" customClass="RemoveButtonCell">
-                                                            <rect key="frame" x="395" y="1" width="75" height="50"/>
+                                                            <rect key="frame" x="395" y="0.0" width="75" height="52"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="75" id="Tsw-FX-VO7"/>
                                                                 <constraint firstAttribute="height" constant="50" id="ykS-Zh-SEa"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="o6F-56-8YD">
-                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="o6F-56-8YD">
+                                                                <behavior key="behavior" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
                                                             <connections>
@@ -398,7 +398,7 @@ CA
                                                                 <constraint firstAttribute="width" constant="75" id="1Oi-w2-Sfh"/>
                                                                 <constraint firstAttribute="height" constant="50" id="gRp-G9-zl3"/>
                                                             </constraints>
-                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ctd-dc-PuF">
+                                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSApplicationIcon" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ctd-dc-PuF">
                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
@@ -818,7 +818,7 @@ CA
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="8" height="8"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSEnterFullScreenTemplate" width="16" height="15"/>
         <image name="NSListViewTemplate" width="11" height="10"/>
         <image name="NSQuickLookTemplate" width="21" height="16"/>
