@@ -95,7 +95,7 @@
         statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
         [statusItem setMenu:self.statusMenu];
         [statusItem setHighlightMode:YES];
-        [statusItem setImage:[NSImage imageNamed:@"NSGoRightTemplate"]];
+        [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
         
         NSLog(@"%@",self.S);
         
@@ -329,7 +329,7 @@
         [statusItem setImage:[NSImage imageNamed:@"pauseTemplate"]];
     }else{
         state=@"Play";
-        [statusItem setImage:[NSImage imageNamed:@"NSGoRightTemplate"]];
+        [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
     }
     
     [[self.controlsMenu itemWithTag:1] setTitle:state];
