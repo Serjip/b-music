@@ -16,7 +16,6 @@
                 <outlet property="scrobbleTracksLastfmBtn" destination="12q-aA-aEy" id="fMg-2S-gth"/>
                 <outlet property="searchArtworkGeneralBtn" destination="Mh9-bS-s2c" id="ULa-7I-qsM"/>
                 <outlet property="showDockIconArtworkGeneralBtn" destination="6pj-mH-baH" id="c5l-Az-baf"/>
-                <outlet property="showDockIconGeneralBtn" destination="CSU-MT-hpl" id="hmu-cQ-Skc"/>
                 <outlet property="showMenubarIconGeneralBtn" destination="5Ji-X6-YHs" id="1q0-mC-LzL"/>
                 <outlet property="showNotaficationGeneralBtn" destination="Vb5-ym-TC9" id="lVy-lT-jgQ"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
@@ -28,8 +27,7 @@
         <customObject id="-3" userLabel="Application"/>
         <window title="General" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="689" y="352" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" autoresizesSubviews="NO" focusRingType="none" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
@@ -99,17 +97,6 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSU-MT-hpl">
-                    <rect key="frame" x="167" y="155" width="121" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show dock icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6EQ-bt-qyK">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="showDockIconGeneral:" target="-2" id="lop-jR-JNI"/>
-                    </connections>
-                </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pj-mH-baH">
                     <rect key="frame" x="167" y="132" width="190" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

@@ -38,7 +38,8 @@
                                     NSUserNotificationCenterDelegate,
                                     PlayerDelegate,
                                     ControlsViewDelegate,
-                                    vkAPIDelegate>{
+                                    vkAPIDelegate,
+                                    PreferencesDelegate>{
     NSStatusItem *statusItem;
     Preferences * preferences;
 }

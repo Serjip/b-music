@@ -44,6 +44,26 @@
 }
 
 /*
+ *  Preferences Delegate
+ *****************************/
+#pragma mark Preferences
+-(void)updateMenuBarIcon{
+    if (Settings.sharedInstance.settings.showIconMenubar) { //Add status bar
+        [self addStatusBarItem];
+    }else{
+        [self removeStatusBarItem];
+    }
+}
+
+-(void)updateDockIcon{
+    if(Settings.sharedInstance.settings.showArtworkDock){
+        NSImage * image = [_imageList objectForKey:_currentTrack];
+        [NSApp setApplicationIconImage: image];
+    }else{
+        [NSApp setApplicationIconImage: nil];
+    }
+}
+/*
  *  Api VK Delegate
  *****************************/
 #pragma mark APIvk
@@ -84,14 +104,13 @@
         
         [self registerHandlerLinks];//Handler tokens /lastfm/vk
         
-        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        [statusItem setMenu:self.statusMenu];
-        [statusItem setHighlightMode:YES];
-        [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
-        
         //Print settings
         NSLog(@"%@",[Settings sharedInstance]);
         
+        //add status bar item
+        if (Settings.sharedInstance.settings.showIconMenubar) { //Add status bar
+            [self addStatusBarItem];
+        }
         
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
@@ -174,6 +193,16 @@
  ****************************************/
 #pragma mark Temp
 
+-(void) addStatusBarItem{
+    statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    [statusItem setMenu:self.statusMenu];
+    [statusItem setHighlightMode:YES];
+    [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
+}
+
+-(void) removeStatusBarItem{
+    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+}
 
 - (void)registerHandlerLinks{
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
@@ -350,15 +379,23 @@
         if (num>-1){
             NSButton * btnPlayTableCell=[[_tableview viewAtColumn:0 row:num makeIfNecessary:NO] viewWithTag:1];
             
-            NSImage * image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
+           
             
             //Set updateNowPlayng lastfm
             [self.lastfmAPI track_updateNowPlaying:artist
                                              track:title
                                           duration:durationString];
             
+            NSImage * image;
+            //Search artwork
+            if (Settings.sharedInstance.settings.searchArtwork) {
+                 image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
+            }
+            
             //set dock icon
-            [NSApp setApplicationIconImage: image];
+            if (Settings.sharedInstance.settings.showArtworkDock){
+                [NSApp setApplicationIconImage: image];
+            }
             
             if (!_imageList) {
                 _imageList = [[NSMutableDictionary alloc]init];
@@ -456,6 +493,7 @@
 -(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
     if (!preferences) {
         preferences=[[Preferences alloc] initWithWindowNibName:@"Preferences"];
+        [preferences setDelegate:self];
     }
     [preferences showWindow:self];
 }

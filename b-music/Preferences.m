@@ -33,11 +33,23 @@
      *  Generl Preferences
      *************************/
     //Set checkbox
+    if (Settings.sharedInstance.settings.showArtworkDock){
+        [self.showDockIconArtworkGeneralBtn setState:1];
+    }
+    
+    //Set checkbox
+    if (Settings.sharedInstance.settings.showIconMenubar){
+        [self.showMenubarIconGeneralBtn setState:1];
+    }
+    //Set checkbox
+    if (Settings.sharedInstance.settings.searchArtwork) {
+        [self.searchArtworkGeneralBtn setState:1];
+    }
+    
+    //Set checkbox
     if (Settings.sharedInstance.settings.showNotafications){
         [self.showNotaficationGeneralBtn setState:1];
     }
-    
-    
     
     /*
      * Lastfm
@@ -115,16 +127,36 @@
 #pragma mark Genetal Preferences
 
 - (IBAction)showMenubarIconGeneral:(id)sender{ NSLog(@"showMenubarIconGeneral");
+    if ([sender state]) {
+        Settings.sharedInstance.settings.showIconMenubar=YES;
+    }else{
+        Settings.sharedInstance.settings.showIconMenubar=NO;
+    }
+    [Settings.sharedInstance saveSettings];
     
+    [self.delegate updateMenuBarIcon];
 }
-- (IBAction)showDockIconGeneral:(id)sender{ NSLog(@"showDockIconGeneral");
-    
-}
+
+
 - (IBAction)showDockIconArtworkGeneral:(id)sender{ NSLog(@"showDockIconArtworkGeneral");
+    if ([sender state]) {
+        Settings.sharedInstance.settings.showArtworkDock=YES;
+    }else{
+        Settings.sharedInstance.settings.showArtworkDock=NO;
+    }
+    [Settings.sharedInstance saveSettings];
     
+    [self.delegate updateDockIcon];
 }
+
+
 - (IBAction)searchArtworkGeneral:(id)sender{ NSLog(@"searchArtworkGeneral");
-    
+    if ([sender state]) {
+        Settings.sharedInstance.settings.searchArtwork=YES;
+    }else{
+        Settings.sharedInstance.settings.searchArtwork=NO;
+    }
+    [Settings.sharedInstance saveSettings];
 }
 - (IBAction)showNotaficationGeneral:(id)sender{ NSLog(@"showNotaficationGeneral");
     if ([sender state]) {
