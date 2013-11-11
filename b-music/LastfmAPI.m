@@ -101,6 +101,12 @@
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:stringURL]];
 }
 
+-(void) unAuthorize{
+    Settings.sharedInstance.settings.sessionLastfm=nil;
+    Settings.sharedInstance.settings.nameLastfm=nil;
+    [Settings.sharedInstance saveSettings];
+}
+
 
 -(id)auth_getSession:(NSString *)token {
     
@@ -187,8 +193,7 @@
     Settings.sharedInstance.settings.sessionLastfm=key;
     [Settings.sharedInstance saveSettings];
     
-    NSLog(@"Finish authorize lastfm");
-    [self.delegate finishAuthorize];
+    [self.delegate finishAuthorizeLastfm];
 }
 
 #pragma mark Private methods

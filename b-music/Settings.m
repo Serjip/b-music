@@ -110,7 +110,18 @@
         } else {
             NSLog(@"First Launching");
             _settings = [[SettingsC alloc] init];
+            /*
+             * Preferences player
+             */
             _settings.volume=1.0;
+            
+            /*
+             * Preferences general
+             */
+            _settings.showIconMenubar=YES;
+            _settings.showArtworkDock=YES;
+            _settings.showNotafications=YES;
+            _settings.searchArtwork=YES;
             
             [self saveSettings];
         }

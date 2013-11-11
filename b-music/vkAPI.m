@@ -85,6 +85,8 @@
     NSString * method=@"account.setOffline";
     NSString * params = @"&v=5.3&";
     id response=[self requestAPI:method parametesForMethod:params token:token];
+    
+    NSLog(@"%@",response);
     return [self checkForErrorResponse:response];
 }
 
@@ -133,6 +135,8 @@
     NSString * token = Settings.sharedInstance.settings.token;
     
     if (token==nil) {
+        
+//        TODO
 //        [self auth];//Check tokeb if doesn't exist auth
         return nil;
     }

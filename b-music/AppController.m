@@ -33,6 +33,7 @@
         [_vkAPI setDelegate:self];
         
         _lastfmAPI=[[LastfmAPI alloc] init];
+        [_lastfmAPI setDelegate:self];
         
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
@@ -63,6 +64,18 @@
         [NSApp setApplicationIconImage: nil];
     }
 }
+
+/*
+ *  Lastfm API Delegate
+ *****************************/
+#pragma mark LastfmAPI Delegate
+
+-(void)finishAuthorizeLastfm{
+    NSLog(@"FinishAuthorise lastfm");
+    if (!preferences) return;
+    [preferences updateProfileLastfm];
+}
+
 /*
  *  Api VK Delegate
  *****************************/

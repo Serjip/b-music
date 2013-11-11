@@ -39,6 +39,7 @@
                                     PlayerDelegate,
                                     ControlsViewDelegate,
                                     vkAPIDelegate,
+                                    LastfmAPIDelegate,
                                     PreferencesDelegate>{
     NSStatusItem *statusItem;
     Preferences * preferences;

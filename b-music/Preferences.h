@@ -23,7 +23,7 @@
 
 
 @property LastfmAPI * lastfmAPI;
-@property LastfmAPI * vkAPI;
+@property vkAPI * vkAPI;
 
 @property (weak) IBOutlet NSToolbar *toolbar;
 
@@ -51,10 +51,8 @@
  *  VK Preferences
  *************************/
 @property (weak) IBOutlet NSButton *authorizationVkBtn;
-@property (weak) IBOutlet NSButton *offlineVkBtn;
 
 - (IBAction)authorizationVk:(id)sender;
-- (IBAction)offlineVk:(id)sender;
 
 /*
  *  Lastfm Preferences
@@ -62,10 +60,14 @@
 @property (weak) IBOutlet NSButton *authorizeLastfmBtn;
 @property (weak) IBOutlet NSButton *nowPlayingLastfmBtn;
 @property (weak) IBOutlet NSButton *scrobbleTracksLastfmBtn;
+@property (weak) IBOutlet NSButton *visitProfileLastfmBtn;
 
 - (IBAction)authorizeLastfm:(id)sender;
 - (IBAction)nowPlayingLastfm:(id)sender;
 - (IBAction)scrobbleTracksLastfm:(id)sender;
+- (IBAction)visitProfileLastfm:(id)sender;
+
+-(void) updateProfileLastfm;
 
 
 @end

@@ -10,7 +10,7 @@
 
 @protocol LastfmAPIDelegate <NSObject>
 
--(void) finishAuthorize;
+-(void) finishAuthorizeLastfm;
 
 @end
 
@@ -23,6 +23,8 @@
                           track:(NSString *)track
                            size:(NSInteger )size;
 -(void) authorize;
+
+-(void) unAuthorize;
 
 -(void)parseTokenUsernameFormString:(NSString *)tokenStr;
 

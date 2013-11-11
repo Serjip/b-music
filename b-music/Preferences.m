@@ -53,7 +53,7 @@
     
     /*
      * Lastfm
-     */
+     ************************/
     
     //Set checkbox
     if (Settings.sharedInstance.settings.scrobbleTrackLastfm){
@@ -65,11 +65,12 @@
         [self.nowPlayingLastfmBtn setState:1];
     }
     
-    //Set checkbox
-    if (Settings.sharedInstance.settings.sessionLastfm){
-        [self.authorizeLastfmBtn setTitle:@"Unauthorize"];
-    }
+    //Set username
+    [self updateProfileLastfm];
     
+    /*
+     * Toolbar
+     *************************/
     
     [self.toolbar setSelectedItemIdentifier:@"GeneralPreferences"];
     [self.window setContentSize:self.generalPreferencesView.frame.size];
@@ -158,6 +159,8 @@
     }
     [Settings.sharedInstance saveSettings];
 }
+
+
 - (IBAction)showNotaficationGeneral:(id)sender{ NSLog(@"showNotaficationGeneral");
     if ([sender state]) {
         Settings.sharedInstance.settings.showNotafications=YES;
@@ -175,20 +178,38 @@
 - (IBAction)authorizationVk:(id)sender{ NSLog(@"authorizationVk");
     
 }
-
-- (IBAction)offlineVk:(id)sender{ NSLog(@"offlineVK");
-    
-}
+// NOT USED BECAUSE PERMISSION DININED
+//- (IBAction)offlineVk:(id)sender{ NSLog(@"offlineVK");
+//    
+//    if (!_vkAPI) {
+//        _vkAPI= [[vkAPI alloc] init];
+//    }
+//    
+//    if ([sender state]) {
+//        [self.vkAPI account_setOffline];
+//        Settings.sharedInstance.settings.userOffline=YES;
+//    }else{
+//        Settings.sharedInstance.settings.userOffline=NO;
+//    }
+//    [Settings.sharedInstance saveSettings];
+//}
 
 /*
  *  Lastfm Preferences
  *************************/
 #pragma mark Lastfm Preferences
 - (IBAction)authorizeLastfm:(id)sender{ NSLog(@"AuthorizeLastfm");
+    
     if (!_lastfmAPI) {
         _lastfmAPI= [[LastfmAPI alloc] init];
     }
-    [self.lastfmAPI authorize];
+    
+    if (Settings.sharedInstance.settings.sessionLastfm) {
+        [self.lastfmAPI unAuthorize];
+        [self updateProfileLastfm];
+    }else{
+        [self.lastfmAPI authorize];
+    }
 }
 - (IBAction)nowPlayingLastfm:(id)sender{ NSLog(@"nowPlayngLastfm");
     if ([sender state]) {
@@ -205,6 +226,27 @@
         Settings.sharedInstance.settings.scrobbleTrackLastfm=NO;
     }
     [Settings.sharedInstance saveSettings];
+}
+
+- (IBAction)visitProfileLastfm:(id)sender { NSLog(@"VisitProfileLastfm");
+    NSString * strURL= [NSString stringWithFormat:@"http://last.fm/user/%@",[sender title]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:strURL]];
+}
+
+-(void) updateProfileLastfm{
+    //Set checkbox
+    if (Settings.sharedInstance.settings.sessionLastfm){
+        [self.authorizeLastfmBtn setTitle:@"Unauthorize"];
+    }else{
+        [self.authorizeLastfmBtn setTitle:@"Authorize"];
+    }
+    
+    if (Settings.sharedInstance.settings.nameLastfm){
+        [self.visitProfileLastfmBtn setTitle:Settings.sharedInstance.settings.nameLastfm];
+        [self.visitProfileLastfmBtn setHidden:NO];
+    }else{
+        [self.visitProfileLastfmBtn setHidden:YES];
+    }
 }
 
 @end
