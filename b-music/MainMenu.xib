@@ -818,11 +818,11 @@ CA
             </constraints>
         </customView>
         <customView id="6n9-l3-56q" customClass="PlayerOverlay">
-            <rect key="frame" x="0.0" y="0.0" width="368" height="344"/>
+            <rect key="frame" x="0.0" y="0.0" width="395" height="384"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fT5-tx-ujU">
-                    <rect key="frame" x="0.0" y="317" width="27" height="27"/>
+                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fT5-tx-ujU" userLabel="Close Button">
+                    <rect key="frame" x="0.0" y="357" width="27" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="27" id="PYI-aO-aTq"/>
@@ -836,46 +836,76 @@ CA
                         <action selector="close:" target="DoF-XC-WxK" id="ZTL-Qr-1Nl"/>
                     </connections>
                 </button>
-                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="WZe-PR-thc">
-                    <rect key="frame" x="176" y="164" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </progressIndicator>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-kr-Cjz">
-                    <rect key="frame" x="106" y="90" width="157" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <box autoresizesSubviews="NO" transparent="YES" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="i8f-t5-3AA">
+                    <rect key="frame" x="103" y="65" width="188" height="250"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="186" height="234"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-kr-Cjz">
+                                <rect key="frame" x="18" y="42" width="150" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="RmY-aV-q54"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" title="Login" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="vCX-u1-aJR">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loginAuthVk:" target="DoF-XC-WxK" id="jXx-N6-XBK"/>
+                                </connections>
+                            </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hjZ-PT-QQB">
+                                <rect key="frame" x="18" y="74" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="KUN-Qj-3sv"/>
+                                    <constraint firstAttribute="width" constant="150" id="uam-mr-9uF"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="icon" id="nvM-wS-VA6"/>
+                            </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXl-7R-m5e">
+                                <rect key="frame" x="18" y="12" width="150" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="w5Q-JX-i8b"/>
+                                </constraints>
+                                <buttonCell key="cell" type="roundTextured" title="Sign Up" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="DXA-3k-ueK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="signupAuthVk:" target="DoF-XC-WxK" id="xz6-cW-g61"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
                     <constraints>
-                        <constraint firstAttribute="width" constant="157" id="PsX-GN-a8P"/>
+                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="i8f-t5-3AA" secondAttribute="leading" constant="16" id="5eT-JG-ZOk"/>
+                        <constraint firstAttribute="height" constant="246" id="5yA-me-1B8"/>
+                        <constraint firstAttribute="bottom" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="41" id="Bfe-Vb-8uQ"/>
+                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="TOP-pv-4ny"/>
+                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="hjZ-PT-QQB" secondAttribute="leading" id="Trk-4G-onX"/>
+                        <constraint firstAttribute="width" constant="182" id="Xtm-af-rei"/>
+                        <constraint firstItem="CXl-7R-m5e" firstAttribute="top" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="8" symbolic="YES" id="a80-G9-ebf"/>
+                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="hjZ-PT-QQB" secondAttribute="bottom" constant="8" symbolic="YES" id="idO-ta-cHD"/>
+                        <constraint firstAttribute="trailing" secondItem="UvB-kr-Cjz" secondAttribute="trailing" constant="16" id="l55-5E-4nq"/>
                     </constraints>
-                    <buttonCell key="cell" type="roundTextured" title="Login" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="vCX-u1-aJR">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="loginAuthVk:" target="DoF-XC-WxK" id="jXx-N6-XBK"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXl-7R-m5e">
-                    <rect key="frame" x="106" y="60" width="156" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Sign Up" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="DXA-3k-ueK">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="signupAuthVk:" target="DoF-XC-WxK" id="xz6-cW-g61"/>
-                    </connections>
-                </button>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
             </subviews>
             <constraints>
-                <constraint firstItem="fT5-tx-ujU" firstAttribute="top" secondItem="6n9-l3-56q" secondAttribute="top" id="0oF-HF-hJm"/>
-                <constraint firstAttribute="centerX" secondItem="CXl-7R-m5e" secondAttribute="centerX" id="DJ1-UM-K1w"/>
-                <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="WZe-PR-thc" secondAttribute="bottom" constant="50" id="DRv-LG-LWV"/>
-                <constraint firstAttribute="centerX" secondItem="WZe-PR-thc" secondAttribute="centerX" id="EGb-Do-FYn"/>
-                <constraint firstItem="fT5-tx-ujU" firstAttribute="leading" secondItem="6n9-l3-56q" secondAttribute="leading" id="H1Z-bI-5xC"/>
-                <constraint firstAttribute="centerX" secondItem="UvB-kr-Cjz" secondAttribute="centerX" id="NJ3-WL-rQS"/>
-                <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="Ptx-bd-h1t"/>
-                <constraint firstItem="CXl-7R-m5e" firstAttribute="top" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="8" symbolic="YES" id="boe-4a-7KS"/>
-                <constraint firstAttribute="centerY" secondItem="WZe-PR-thc" secondAttribute="centerY" id="hY3-Ef-2Gc"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="i8f-t5-3AA" secondAttribute="bottom" constant="20" symbolic="YES" id="5GT-Ys-qGo"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i8f-t5-3AA" secondAttribute="trailing" constant="20" symbolic="YES" id="GFD-xr-Jd9"/>
+                <constraint firstAttribute="centerY" secondItem="i8f-t5-3AA" secondAttribute="centerY" id="HYL-cZ-dug"/>
+                <constraint firstItem="fT5-tx-ujU" firstAttribute="leading" secondItem="6n9-l3-56q" secondAttribute="leading" id="IM7-7Q-LDl"/>
+                <constraint firstItem="i8f-t5-3AA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6n9-l3-56q" secondAttribute="leading" constant="20" symbolic="YES" id="OEf-JN-lLE"/>
+                <constraint firstAttribute="centerX" secondItem="i8f-t5-3AA" secondAttribute="centerX" id="cBl-H7-syo"/>
+                <constraint firstItem="i8f-t5-3AA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6n9-l3-56q" secondAttribute="top" constant="20" symbolic="YES" id="gI8-QS-qOh"/>
+                <constraint firstItem="fT5-tx-ujU" firstAttribute="top" secondItem="6n9-l3-56q" secondAttribute="top" id="tyd-G4-UHo"/>
             </constraints>
         </customView>
     </objects>
@@ -886,5 +916,6 @@ CA
         <image name="NSRemoveTemplate" width="8" height="8"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSStopProgressTemplate" width="11" height="11"/>
+        <image name="icon" width="20" height="20"/>
     </resources>
 </document>

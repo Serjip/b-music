@@ -220,8 +220,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="116"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xn5-hX-qRi">
-                    <rect key="frame" x="183" y="45" width="115" height="25"/>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xn5-hX-qRi">
+                    <rect key="frame" x="211" y="45" width="58" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundTextured" title="Logout" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M3N-JK-Olt">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

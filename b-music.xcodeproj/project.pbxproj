@@ -61,6 +61,7 @@
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
 		D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AFF77E182FF55F00B6236C /* MainMenu.xib */; };
 		D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFF781183002E900B6236C /* PlayerOverlay.m */; };
+		D2BB89E418314F060062BA8E /* icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2BB89E318314F060062BA8E /* icon.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		D2AFF77E182FF55F00B6236C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2AFF780183002E900B6236C /* PlayerOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerOverlay.h; sourceTree = "<group>"; };
 		D2AFF781183002E900B6236C /* PlayerOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerOverlay.m; sourceTree = "<group>"; };
+		D2BB89E318314F060062BA8E /* icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = icon.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -230,6 +232,7 @@
 		D2163A67182C1CF00036FFCE /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				D2BB89E318314F060062BA8E /* icon.pdf */,
 				D21F1EFC182FD403002404A1 /* pauseTemplate.pdf */,
 				D21F1EFD182FD403002404A1 /* playTemplate.pdf */,
 				D21F1EE2182D7393002404A1 /* lastfmTemplate.pdf */,
@@ -602,6 +605,7 @@
 				D21F1EFF182FD403002404A1 /* playTemplate.pdf in Resources */,
 				D21F1EE5182D7393002404A1 /* vkTemplate.pdf in Resources */,
 				D21F1EE4182D7393002404A1 /* lastfmTemplate.pdf in Resources */,
+				D2BB89E418314F060062BA8E /* icon.pdf in Resources */,
 				D21CEA0217FAFA0900F5AF42 /* Credits.html in Resources */,
 				D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */,
 			);

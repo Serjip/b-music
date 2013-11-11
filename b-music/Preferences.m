@@ -176,8 +176,13 @@
 #pragma mark VK Preferences
 
 - (IBAction)authorizationVk:(id)sender{ NSLog(@"authorizationVk");
+    if (!_vkAPI) {
+        _vkAPI= [[vkAPI alloc] init];
+    }
     
+    [_vkAPI logout];
 }
+
 // NOT USED BECAUSE PERMISSION DININED
 //- (IBAction)offlineVk:(id)sender{ NSLog(@"offlineVK");
 //    

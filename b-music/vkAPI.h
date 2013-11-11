@@ -36,5 +36,6 @@
 -(BOOL) account_setOffline;
 
 -(void)login;
+-(void)logout;
 -(void)signup;
 @end

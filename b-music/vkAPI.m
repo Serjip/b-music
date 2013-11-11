@@ -146,7 +146,8 @@
     return response;
 }
 
-//
+-(void)logout{ NSLog(@"Logut");
+}
 -(void)login{ NSLog(@"Login");
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];
 }
