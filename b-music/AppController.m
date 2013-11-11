@@ -187,6 +187,11 @@
     return YES;
 }
 
+-(void)userNotificationCenter:(NSUserNotificationCenter *)center
+      didActivateNotification:(NSUserNotification *)notification{
+    [self gotoCurrentTrack:nil];
+}
+
 /*
  *  ControlsView Methods Delegate
  ***************************************/
@@ -427,6 +432,7 @@
         NSUserNotification *notification = [[NSUserNotification alloc] init];
         notification.title = title;
         notification.informativeText = artist;
+        
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     }
 }
@@ -755,9 +761,13 @@
         }
         
         if ([window frame].size.width==widthPlayer && [window frame].size.height==heightPlayer) {
+            
             rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
+        
         }else{
+            
             rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+        
         }
     }
     
