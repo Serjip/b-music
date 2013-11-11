@@ -22,9 +22,6 @@
 -(void) isPlayerPlaying:(BOOL)flag;
 -(void)nextTrack;
 
--(float) getVolume;
--(BOOL) getRuntime;
--(BOOL) getRepeat;
 @end
 
 @interface PlayerController : NSObject

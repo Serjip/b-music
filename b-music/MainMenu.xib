@@ -821,6 +821,21 @@ CA
             <rect key="frame" x="0.0" y="0.0" width="368" height="344"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fT5-tx-ujU">
+                    <rect key="frame" x="0.0" y="317" width="27" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="PYI-aO-aTq"/>
+                        <constraint firstAttribute="width" constant="27" id="qw3-1O-CXT"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="abG-3b-fFf">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="close:" target="DoF-XC-WxK" id="ZTL-Qr-1Nl"/>
+                    </connections>
+                </button>
                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="WZe-PR-thc">
                     <rect key="frame" x="176" y="164" width="16" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -850,27 +865,15 @@ CA
                         <action selector="signupAuthVk:" target="DoF-XC-WxK" id="xz6-cW-g61"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zrx-bk-7n5">
-                    <rect key="frame" x="106" y="30" width="156" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="Khi-sx-N7z">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="cancelAuthVk:" target="DoF-XC-WxK" id="FDY-Is-afE"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="zrx-bk-7n5" secondAttribute="leading" id="6TH-Nq-c72"/>
+                <constraint firstItem="fT5-tx-ujU" firstAttribute="top" secondItem="6n9-l3-56q" secondAttribute="top" id="0oF-HF-hJm"/>
                 <constraint firstAttribute="centerX" secondItem="CXl-7R-m5e" secondAttribute="centerX" id="DJ1-UM-K1w"/>
                 <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="WZe-PR-thc" secondAttribute="bottom" constant="50" id="DRv-LG-LWV"/>
                 <constraint firstAttribute="centerX" secondItem="WZe-PR-thc" secondAttribute="centerX" id="EGb-Do-FYn"/>
-                <constraint firstAttribute="centerX" secondItem="zrx-bk-7n5" secondAttribute="centerX" id="GwH-8J-QEd"/>
+                <constraint firstItem="fT5-tx-ujU" firstAttribute="leading" secondItem="6n9-l3-56q" secondAttribute="leading" id="H1Z-bI-5xC"/>
                 <constraint firstAttribute="centerX" secondItem="UvB-kr-Cjz" secondAttribute="centerX" id="NJ3-WL-rQS"/>
                 <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="Ptx-bd-h1t"/>
-                <constraint firstItem="zrx-bk-7n5" firstAttribute="top" secondItem="CXl-7R-m5e" secondAttribute="bottom" constant="8" symbolic="YES" id="Pvy-fw-DJN"/>
                 <constraint firstItem="CXl-7R-m5e" firstAttribute="top" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="8" symbolic="YES" id="boe-4a-7KS"/>
                 <constraint firstAttribute="centerY" secondItem="WZe-PR-thc" secondAttribute="centerY" id="hY3-Ef-2Gc"/>
             </constraints>

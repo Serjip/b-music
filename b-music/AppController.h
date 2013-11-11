@@ -38,13 +38,11 @@
                                     NSUserNotificationCenterDelegate,
                                     PlayerDelegate,
                                     ControlsViewDelegate,
-                                    vkAPIDelegate,
-                                    LastfmAPIDelegate>{
+                                    vkAPIDelegate>{
     NSStatusItem *statusItem;
     Preferences * preferences;
 }
 
-@property Settings * S;
 @property PlayerController * PC;
 @property vkAPI * vkAPI;
 @property LastfmAPI * lastfmAPI;
@@ -78,7 +76,6 @@
 
 -(IBAction)loginAuthVk:(id)sender;
 -(IBAction)signupAuthVk:(id)sender;
--(IBAction)cancelAuthVk:(id)sender;
 
 -(IBAction)preferences:(id)sender;
 

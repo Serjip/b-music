@@ -28,12 +28,11 @@
 {
     self = [super init];
     if (self) {
-        _S=[[Settings alloc] init];
+        
         _vkAPI=[[vkAPI alloc] init];
         [_vkAPI setDelegate:self];
         
         _lastfmAPI=[[LastfmAPI alloc] init];
-        [_lastfmAPI setDelegate:self];
         
         _PC=[[PlayerController alloc] init];
         [_PC setDelegate:self];
@@ -48,33 +47,15 @@
  *  Api VK Delegate
  *****************************/
 #pragma mark APIvk
--(void) finishAuth:(NSString*)token
-           user_id:(NSInteger)user_id{
+-(void) finishAuthVK{
     
-    NSLog(@"TOKEN vk");
-    self.S.settings.token=token;
-    self.S.settings.user_id=user_id;
-    [self.S saveSettings];
-    
+    NSLog(@"Finish auth vk");
     [self loadMainPlaylist];
-    
     
     for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
         [view setHidden:NO];
     }
     [self.test removeFromSuperview];
-}
-
-/*
- *  LastfmApi VK Delegate
- *****************************/
-#pragma mark Lastfm Delegate
--(void) finishAuthorizeWithSession:(NSString *)session
-                          username:(NSString*)username{
-    NSLog(@"TOKEN Lastfm");
-    self.S.settings.sessionLastfm=session;
-    self.S.settings.nameLastfm=username;
-    [self.S saveSettings];
 }
 /*
  *                                  Window Methods
@@ -82,7 +63,6 @@
  *****************************************************************************************/
 #pragma mark Window
 -(void)windowDidResize:(NSNotification *)notification{
-    
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     if ([event type]==6) {
          id window=[[NSApp delegate] window];
@@ -92,7 +72,7 @@
 
 
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
-    if (!self.S.settings.token){
+    if (!Settings.sharedInstance.settings.token){
         for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
             [view setHidden:YES];
         }
@@ -109,25 +89,27 @@
         [statusItem setHighlightMode:YES];
         [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
         
-        NSLog(@"%@",self.S);
+        //Print settings
+        NSLog(@"%@",[Settings sharedInstance]);
+        
         
         [_Controls0 setDelegate:self];//Set delegation method
         [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
         [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
         
-        [self.volume setProgress:self.S.settings.volume];//Set volume on view
+        [self.volume setProgress:Settings.sharedInstance.settings.volume];//Set volume on view
         
-        if (self.S.settings.alwaysOnTop) { //Set Always on top
+        if (Settings.sharedInstance.settings.alwaysOnTop) { //Set Always on top
             [[[NSApp delegate] window] setLevel:1000];
             [[self.windowMenu itemWithTag:4] setState:1];
             [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
         }
         
-        [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
-        [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on top in menu
+        [[self.Controls2 viewWithTag:8] setFlag:Settings.sharedInstance.settings.shuffle];//Set shuffle on view
+        [[self.controlsMenu itemWithTag:5] setState:Settings.sharedInstance.settings.shuffle];//Set shuffle on top in menu
         
-        [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repeat on view
-        [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on top in menu
+        [[self.Controls2 viewWithTag:7] setFlag:Settings.sharedInstance.settings.repeat];//Set repeat on view
+        [[self.controlsMenu itemWithTag:6] setState:Settings.sharedInstance.settings.repeat];//Set repeat on top in menu
         
         //Set search
         [[self.searchField cell]setFocusRingType:NSFocusRingTypeNone];
@@ -308,14 +290,14 @@
 
 -(void) loadMainPlaylist{
     
-    id response =[self.vkAPI requestAPIVkLoadMainplaylist:self.S.settings.token];
+    id response =[self.vkAPI requestAPIVkLoadMainplaylist];
     
     if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
     
     _viewPlaylist=[[NSMutableArray alloc] initWithArray:[[response objectForKey:@"response"] objectForKey:@"items"]];
     _soundPlaylist=[_viewPlaylist mutableCopy];
     
-    if (self.S.settings.shuffle) { _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist]; }
+    if (Settings.sharedInstance.settings.shuffle) { _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist]; }
     
     [self.tableview performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
@@ -326,15 +308,6 @@
  *  Player Methods
  *******************************/
 #pragma mark Player
--(float) getVolume{
-    return self.S.settings.volume;
-}
--(BOOL) getRuntime{
-    return self.S.settings.runTime;
-}
--(BOOL) getRepeat{
-    return self.S.settings.repeat;
-}
 
 -(void)nextTrack{
     [self next:self];
@@ -379,8 +352,7 @@
             NSImage * image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
             
             //Set updateNowPlayng lastfm
-            [self.lastfmAPI track_updateNowPlaying:self.S.settings.sessionLastfm
-                                            artist:artist
+            [self.lastfmAPI track_updateNowPlaying:artist
                                              track:title
                                           duration:durationString];
             
@@ -422,8 +394,7 @@
         NSString * artist=[_currentTrack objectForKey:@"artist"];
         
         //Scrobbing request
-        [self.lastfmAPI track_scrobble:self.S.settings.sessionLastfm
-                                artist:artist
+        [self.lastfmAPI track_scrobble:artist
                                  track:title];
         _scrobbleIndicator=YES;
     }
@@ -476,9 +447,6 @@
 -(IBAction)signupAuthVk:(id)sender{ NSLog(@"signupAuthVk");
     [self.vkAPI signup];
 }
--(IBAction)cancelAuthVk:(id)sender{ NSLog(@"cancelAuthVk");
-    [self.vkAPI cancel];
-}
 
 -(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
     if (!preferences) {
@@ -509,7 +477,7 @@
         }
     }else{
         if (_currentTrack==nil) {
-            _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:0]];
+            _currentTrack=[[NSDictionary alloc] initWithDictionary:[(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:0]];
             NSLog(@"%@",_currentTrack);
             [self.PC play:[_currentTrack objectForKey:@"url"]];
         }else{
@@ -521,59 +489,63 @@
 -(IBAction)next:(id)sender{ NSLog(@"Next");
     [self setPauseStateForButton:_currentTrack state:NO];
     
-    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack]+1;
-    if ([(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist count]-num < 1){
+    NSInteger num=(int)[(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack]+1;
+    if ([(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist count]-num < 1){
         num=0;
-        if(self.S.settings.shuffle){
+        if(Settings.sharedInstance.settings.shuffle){
             _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
         }
     }
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)previous:(id)sender{ NSLog(@"Previous");
     [self setPauseStateForButton:_currentTrack state:NO];
-    NSInteger num=(int)[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
+    NSInteger num=(int)[(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist indexOfObject:_currentTrack];
     if (num-1<0) num=0; else num-=1;
-    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(self.S.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
+    _currentTrack=[[NSDictionary alloc] initWithDictionary:[(Settings.sharedInstance.settings.shuffle)?_shufflePlaylist:_soundPlaylist objectAtIndex:num]];
     [self.PC play:[_currentTrack objectForKey:@"url"]];
 }
 -(IBAction)decreaseVolume:(id)sender{ NSLog(@"Decrease volume");
-    self.S.settings.volume-=0.1;
-    if (self.S.settings.volume<0){ self.S.settings.volume=0;}else if (self.S.settings.volume==0){return;}
-    [self.volume setProgress:self.S.settings.volume];
-    [self.PC.player setVolume:self.S.settings.volume];
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.volume-=0.1;
+    if (Settings.sharedInstance.settings.volume<0){ Settings.sharedInstance.settings.volume=0;}else if (Settings.sharedInstance.settings.volume==0){return;}
+    [self.volume setProgress:Settings.sharedInstance.settings.volume];
+    [self.PC.player setVolume:Settings.sharedInstance.settings.volume];
+    [Settings.sharedInstance saveSettings];
 }
 -(IBAction)increaseVolume:(id)sender{ NSLog(@"IncreaseVolume");
-    self.S.settings.volume+=0.1;
-    if (self.S.settings.volume>2){ self.S.settings.volume=2;}else if (self.S.settings.volume==2){return;}
-    [self.volume setProgress:self.S.settings.volume];
-    [self.PC.player setVolume:self.S.settings.volume];
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.volume+=0.1;
+    if (Settings.sharedInstance.settings.volume>2){
+        Settings.sharedInstance.settings.volume=2;
+    }else if (Settings.sharedInstance.settings.volume==2){
+        return;
+    }
+    [self.volume setProgress:Settings.sharedInstance.settings.volume];
+    [self.PC.player setVolume:Settings.sharedInstance.settings.volume];
+    [Settings.sharedInstance saveSettings];
 }
 -(IBAction)mute:(id)sender{NSLog(@"Mute");
-    self.S.settings.volume=0;
-    [self.volume setProgress:self.S.settings.volume];
-    [self.PC.player setVolume:self.S.settings.volume];
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.volume=0;
+    [self.volume setProgress:Settings.sharedInstance.settings.volume];
+    [self.PC.player setVolume:Settings.sharedInstance.settings.volume];
+    [Settings.sharedInstance saveSettings];
 }
 -(IBAction)shuffle:(id)sender{NSLog(@"Shuffle");
-    self.S.settings.shuffle=!self.S.settings.shuffle;
-    [[self.Controls2 viewWithTag:8] setFlag:self.S.settings.shuffle];//Set shuffle on view
-    [[self.controlsMenu itemWithTag:5] setState:self.S.settings.shuffle];//Set shuffle on menu
-    [self.S saveSettings];
-    if (self.S.settings.shuffle)
+    Settings.sharedInstance.settings.shuffle=!Settings.sharedInstance.settings.shuffle;
+    [[self.Controls2 viewWithTag:8] setFlag:Settings.sharedInstance.settings.shuffle];//Set shuffle on view
+    [[self.controlsMenu itemWithTag:5] setState:Settings.sharedInstance.settings.shuffle];//Set shuffle on menu
+    [Settings.sharedInstance saveSettings];
+    if (Settings.sharedInstance.settings.shuffle)
         _shufflePlaylist=[self.PC generateShufflePlaylist:_soundPlaylist];
 }
 -(IBAction)repeat:(id)sender{NSLog(@"Repeat");
-    self.S.settings.repeat=!self.S.settings.repeat;
-    [[self.Controls2 viewWithTag:7] setFlag:self.S.settings.repeat];//Set repear on view
-    [[self.controlsMenu itemWithTag:6] setState:self.S.settings.repeat];//Set repeat on menu
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.repeat=!Settings.sharedInstance.settings.repeat;
+    [[self.Controls2 viewWithTag:7] setFlag:Settings.sharedInstance.settings.repeat];//Set repear on view
+    [[self.controlsMenu itemWithTag:6] setState:Settings.sharedInstance.settings.repeat];//Set repeat on menu
+    [Settings.sharedInstance saveSettings];
 }
 -(IBAction)alwaysOnTop:(id)sender{NSLog(@"Always On top");
-    if (!self.S.settings.alwaysOnTop) {
+    if (!Settings.sharedInstance.settings.alwaysOnTop) {
         [[[NSApp delegate] window] setLevel:1000];
         [[self.windowMenu itemWithTag:4] setState:1];
         [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
@@ -582,8 +554,8 @@
         [[self.windowMenu itemWithTag:4] setState:0];
         [[[NSApp delegate] window] setCollectionBehavior: NSWindowCollectionBehaviorDefault];
     }
-    self.S.settings.alwaysOnTop=!self.S.settings.alwaysOnTop;
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.alwaysOnTop=!Settings.sharedInstance.settings.alwaysOnTop;
+    [Settings.sharedInstance saveSettings];
 }
 
 
@@ -603,9 +575,8 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.vkAPI requestAPIVkAddTrack:self.S.settings.token
-                                      owner_id:[obj objectForKey:@"owner_id"]
-                                       idTrack:[obj objectForKey:@"id"]];
+    BOOL result=[self.vkAPI requestAPIVkAddTrackWithOwner_id:[obj objectForKey:@"owner_id"]
+                                                     idTrack:[obj objectForKey:@"id"]];
     
     if (!result) return;// Some error happend
     
@@ -620,9 +591,8 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.vkAPI requestAPIVkRemoveTrack:self.S.settings.token
-                                         owner_id:[obj objectForKey:@"owner_id"]
-                                          idTrack:[obj objectForKey:@"id"]];
+    BOOL result=[self.vkAPI requestAPIVkRemoveTrackWithOwner_id:[obj objectForKey:@"owner_id"]
+                                                        idTrack:[obj objectForKey:@"id"]];
     
     if (!result) return;// Some error happend
     
@@ -644,9 +614,9 @@
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     BOOL endingDrag = event.type == NSLeftMouseUp;
     [sender setProgress:[sender floatValue]];
-    self.S.settings.volume=[sender floatValue];
+    Settings.sharedInstance.settings.volume=[sender floatValue];
     [self.PC.player setVolume:[sender floatValue]];
-    if(endingDrag) [self.S saveSettings];
+    if(endingDrag) [Settings.sharedInstance saveSettings];
 }
 
 
@@ -659,8 +629,8 @@
 
 
 -(IBAction)switchRuntime:(id)sender{ NSLog(@"Switch Runtime");
-    self.S.settings.runTime=!self.S.settings.runTime;
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.runTime=!Settings.sharedInstance.settings.runTime;
+    [Settings.sharedInstance saveSettings];
 }
 
 
@@ -682,8 +652,7 @@
     if ([sender stringValue].length!=0) {
         
         _currentTableRow=@"SearchRow";
-        id response =[self.vkAPI requestAPIVkSearch:self.S.settings.token
-                                      searchQuery:[sender stringValue]];
+        id response =[self.vkAPI requestAPIVkSearchWithSearchQ:[sender stringValue]];
         
         if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
         
@@ -760,8 +729,8 @@
     }
     [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
     
-    self.S.settings.token=nil;//Remove token
-    [self.S saveSettings];
+    Settings.sharedInstance.settings.token=nil;//Remove token
+    [Settings.sharedInstance saveSettings];
 }
 
 @end

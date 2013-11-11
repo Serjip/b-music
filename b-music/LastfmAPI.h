@@ -10,8 +10,7 @@
 
 @protocol LastfmAPIDelegate <NSObject>
 
--(void) finishAuthorizeWithSession:(NSString *)session
-                          username:(NSString*)username;
+-(void) finishAuthorize;
 
 @end
 
@@ -34,13 +33,11 @@
 -(id)track_getInfo:(NSString *)artist
              track:(NSString *)track;
 
--(void) track_updateNowPlaying:(NSString *)session
-                      artist:(NSString *)artist
-                       track:(NSString *)track
-                    duration:(NSString *)duration;
+-(void) track_updateNowPlaying:(NSString *)artist
+                         track:(NSString*)track
+                      duration:(NSString*)duration;
 
--(void) track_scrobble:(NSString *)session
-                artist:(NSString *)artist
+-(void) track_scrobble:(NSString *)artist
                  track:(NSString *)track;
 
 @end

@@ -90,6 +90,14 @@
 
 @implementation Settings
 
+
++ (Settings *)sharedInstance {
+    static dispatch_once_t pred;
+    static Settings *sharedInstance = nil;
+    dispatch_once(&pred, ^{ sharedInstance = [[self alloc] init]; });
+    return sharedInstance;
+}
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -116,16 +124,34 @@
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@"Player settings: user_id %ld, token %@, repeat %i, shuffle %i, runtime %i, alwaysOnTop %i, volume %f Lastfm settings: sessionlastfm %@,namelastfm %@"
-                                        ,self.settings.user_id
-                                        ,self.settings.token
-                                        ,self.settings.repeat
-                                        ,self.settings.shuffle
-                                        ,self.settings.runTime
-                                        ,self.settings.alwaysOnTop
-                                        ,self.settings.volume
-                                        ,self.settings.sessionLastfm
-                                        ,self.settings.nameLastfm];
+    NSMutableDictionary * list= [[NSMutableDictionary alloc]init];
+    
+    //VK
+    [list setObject:@(self.settings.user_id)    forKey:@"user_id"];
+    [list setObject:self.settings.token         forKey:@"token"];
+    [list setObject:@(self.settings.userOffline)  forKey:@"userOffline"];
+    
+    //Lastfm
+    [list setObject:@(self.settings.nowPlayingTrackLastfm)  forKey:@"nowPlayingTrackLastfm"];
+    [list setObject:@(self.settings.scrobbleTrackLastfm)    forKey:@"scrobbleTrackLastfm"];
+    [list setObject:self.settings.sessionLastfm             forKey:@"sessionLastfm"];
+    [list setObject:self.settings.nameLastfm                forKey:@"nameLastfm"];
+    
+    //general
+    [list setObject:@(self.settings.showIconMenubar)  forKey:@"showIconMenubar"];
+    [list setObject:@(self.settings.showArtworkDock)  forKey:@"showArtworkDock"];
+    [list setObject:@(self.settings.showNotafications)  forKey:@"showNotafications"];
+    [list setObject:@(self.settings.searchArtwork)  forKey:@"searchArtwork"];
+    
+    //player
+    
+    [list setObject:@(self.settings.repeat)  forKey:@"repeat"];
+    [list setObject:@(self.settings.shuffle)  forKey:@"shuffle"];
+    [list setObject:@(self.settings.runTime)  forKey:@"runtime"];
+    [list setObject:@(self.settings.alwaysOnTop)  forKey:@"alwaysOnTop"];
+    [list setObject:@(self.settings.volume)  forKey:@"volume"];
+    
+    return [NSString stringWithFormat:@"%@", list];
 }
 
 @end

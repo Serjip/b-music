@@ -51,6 +51,7 @@
 
 @interface Settings : NSObject
 @property SettingsC * settings;
++ (Settings *)sharedInstance;
 -(void) saveSettings;
 @end
 

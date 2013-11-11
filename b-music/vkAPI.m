@@ -10,8 +10,6 @@
 
 #define kAuthURL @"https://oauth.vk.com/authorize?client_id=3796579&scope=audio,offline&redirect_uri=http://ttitt.ru/auth/&v=5.2&response_type=token"
 
-#define API_URL @""
-
 @implementation vkAPI
 
 
@@ -42,14 +40,12 @@
     
     [[[NSApp delegate] window] makeKeyWindow];
     [[[NSApp delegate] window] makeMainWindow];
+    
+    Settings.sharedInstance.settings.token=[tokenDic objectForKey:@"access_token"];
+    Settings.sharedInstance.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
+    [Settings.sharedInstance saveSettings];
 
-    [NSApp endSheet:[self.alert window]];
-    [[self.alert window]close];
-    self.alert=nil;
-
-    [self.delegate finishAuth:[tokenDic objectForKey:@"access_token"]
-                      user_id:[[tokenDic objectForKey:@"user_id"] integerValue]];
-
+    [self.delegate finishAuthVK];
 }
 
 -(NSMutableDictionary *) parseStringURL:(NSString*)str{
@@ -83,7 +79,9 @@
 }
 
 
--(BOOL) account_setOffline:(NSString *)token {
+-(BOOL) account_setOffline {
+    
+    NSString * token = Settings.sharedInstance.settings.token;
     NSString * method=@"account.setOffline";
     NSString * params = @"&v=5.3&";
     id response=[self requestAPI:method parametesForMethod:params token:token];
@@ -91,11 +89,12 @@
 }
 
 
--(BOOL) requestAPIVkRemoveTrack:(NSString *)token
-                       owner_id:(NSString *)owner_id
-                        idTrack:(NSString *)idTrack{
+-(BOOL) requestAPIVkRemoveTrackWithOwner_id:(NSString *)owner_id
+                                    idTrack:(NSString *)idTrack {
     
     NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&", owner_id ,idTrack];
+    
+    NSString * token = Settings.sharedInstance.settings.token;
     
     id response=[self requestAPI:@"audio.delete" parametesForMethod:q token:token];
     
@@ -103,11 +102,12 @@
 }
 
 
--(BOOL) requestAPIVkAddTrack:(NSString *)token
-                    owner_id:(NSString *)owner_id
-                     idTrack:(NSString *)idTrack {
+-(BOOL) requestAPIVkAddTrackWithOwner_id:(NSString *)owner_id
+                                 idTrack:(NSString *)idTrack{
     
     NSString * q = [NSString stringWithFormat:@"&owner_id=%@&audio_id=%@&v=5.2&", owner_id , idTrack];
+    
+    NSString * token = Settings.sharedInstance.settings.token;
     
     id response=[self requestAPI:@"audio.add" parametesForMethod:q token:token];
     
@@ -115,10 +115,12 @@
 }
 
 
--(id) requestAPIVkSearch:(NSString*)token
-             searchQuery:(NSString *)searchQuery {
+-(id) requestAPIVkSearchWithSearchQ:(NSString *)searchQuery{
+    
     
     NSString * q = [NSString stringWithFormat:@"&q=%@&auto_complete=1&sort=2&count=150&v=5.2&",searchQuery];
+    
+    NSString * token = Settings.sharedInstance.settings.token;
     
     id response=[self requestAPI:@"audio.search" parametesForMethod:q token:token];
     
@@ -126,7 +128,9 @@
 }
 
 
--(id) requestAPIVkLoadMainplaylist:(NSString*)token {
+-(id) requestAPIVkLoadMainplaylist{
+    
+    NSString * token = Settings.sharedInstance.settings.token;
     
     if (token==nil) {
 //        [self auth];//Check tokeb if doesn't exist auth
@@ -145,9 +149,5 @@
 
 -(void)signup{ NSLog(@"Singup");
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:@"http://vk.com/"]];
-}
-
--(void)cancel{ NSLog(@"Cancel");
-    [[[NSApp delegate] window] close];
 }
 @end

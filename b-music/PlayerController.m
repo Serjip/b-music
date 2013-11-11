@@ -7,6 +7,7 @@
 //
 
 #import "PlayerController.h"
+#import "Settings.h"
 
 @implementation PlayerController{
     NSTimer * _timerObserverIndicator;
@@ -24,7 +25,7 @@
     
     self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:URLstring]];
     self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    [self.player setVolume:[_delegate getVolume]];
+    [self.player setVolume:Settings.sharedInstance.settings.volume];
     //Add observer to next song
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(nextTrack:)
@@ -78,7 +79,7 @@
 
 - (void)nextTrack:(NSNotification *)notification
 {
-    if([_delegate getRepeat]){
+    if(Settings.sharedInstance.settings.repeat){
         [self.player seekToTime:kCMTimeZero];
         [self.player play];
     }else{
@@ -88,7 +89,7 @@
 
 -(void)setRuntime:(double)currentTime{
     NSString *str;
-    if ([_delegate getRuntime]) {
+    if (Settings.sharedInstance.settings.runTime) {
         str=[NSString stringWithFormat:@"-%@",[self convertTime:self.duration-currentTime]];
     }else{
         str=[self convertTime:currentTime];
@@ -104,7 +105,7 @@
     double currentTime=CMTimeGetSeconds(self.player.currentTime);
     NSString *str;
     
-    if ([_delegate getRuntime]) {
+    if (Settings.sharedInstance.settings.runTime) {
         str=[NSString stringWithFormat:@"-%@",[self convertTime:self.duration-currentTime]];
     }else{
         str=[self convertTime:currentTime];

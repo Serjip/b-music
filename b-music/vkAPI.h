@@ -7,39 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Settings.h"
 
 @protocol vkAPIDelegate <NSObject>
--(void) finishAuth:(NSString *)token
-           user_id:(NSInteger)user_id;
+-(void) finishAuthVK;
 @end
 
 
 @interface vkAPI : NSObject
 
 @property (weak) id <vkAPIDelegate> delegate;
-@property (weak) NSAlert * alert;
 
 -(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr;
 
 -(BOOL) checkForErrorResponse:(id)response;
 
--(BOOL) requestAPIVkRemoveTrack:(NSString *)token
-                       owner_id:(NSString *)owner_id
+-(BOOL) requestAPIVkRemoveTrackWithOwner_id:(NSString *)owner_id
                         idTrack:(NSString *)idTrack;//Remove Track
 
--(BOOL) requestAPIVkAddTrack:(NSString *)token
-                    owner_id:(NSString *)owner_id
+-(BOOL) requestAPIVkAddTrackWithOwner_id:(NSString *)owner_id
                      idTrack:(NSString *)idTrack;//Add track
 
--(id) requestAPIVkSearch:(NSString *)token
-             searchQuery:(NSString *)searchQuery; //Search
+-(id) requestAPIVkSearchWithSearchQ:(NSString *)searchQuery; //Search
 
--(id) requestAPIVkLoadMainplaylist:(NSString*)token; // Main playlist
+-(id) requestAPIVkLoadMainplaylist; // Main playlist
 
 //Set accaunt offline
--(BOOL) account_setOffline:(NSString *)token ;
+-(BOOL) account_setOffline;
 
 -(void)login;
 -(void)signup;
--(void)cancel;
 @end

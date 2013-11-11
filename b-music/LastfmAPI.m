@@ -8,6 +8,7 @@
 
 #import "LastfmAPI.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "Settings.h"
 
 #define API_URL @"http://ws.audioscrobbler.com/2.0/"
 #define API_KEY @"2eae06b8e133096849f10006f4da696a"
@@ -115,10 +116,11 @@
     return obj;
 }
 
--(void) track_updateNowPlaying:(NSString *)session
-                      artist:(NSString *)artist
-                       track:(NSString*)track
-                    duration:(NSString*)duration {
+-(void) track_updateNowPlaying:(NSString *)artist
+                         track:(NSString*)track
+                      duration:(NSString*)duration {
+    
+    NSString * session = Settings.sharedInstance.settings.sessionLastfm;
     
     if (!session || session.length==0) return ;
     
@@ -138,9 +140,10 @@
     NSLog(@"Lastfm response %@",obj);
 }
 
--(void) track_scrobble:(NSString *)session
-              artist:(NSString *)artist
-               track:(NSString *)track{
+-(void) track_scrobble:(NSString *)artist
+                 track:(NSString *)track{
+    
+    NSString * session = Settings.sharedInstance.settings.sessionLastfm;
     
     if (!session || session.length==0) return ;
     
@@ -174,8 +177,12 @@
     
     if (!key || !name) return;
     
-    [self.delegate finishAuthorizeWithSession:key
-                                     username:name];
+    Settings.sharedInstance.settings.nameLastfm=name;
+    Settings.sharedInstance.settings.sessionLastfm=key;
+    [Settings.sharedInstance saveSettings];
+    
+    NSLog(@"Finish authorize lastfm");
+    [self.delegate finishAuthorize];
 }
 
 #pragma mark Private methods
