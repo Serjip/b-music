@@ -120,6 +120,9 @@
                          track:(NSString*)track
                       duration:(NSString*)duration {
     
+    BOOL nowPlaying = Settings.sharedInstance.settings.nowPlayingTrackLastfm;
+    if(!nowPlaying) return;//Check avalible
+    
     NSString * session = Settings.sharedInstance.settings.sessionLastfm;
     
     if (!session || session.length==0) return ;
@@ -142,6 +145,9 @@
 
 -(void) track_scrobble:(NSString *)artist
                  track:(NSString *)track{
+    
+    BOOL scrobble = Settings.sharedInstance.settings.scrobbleTrackLastfm;
+    if(!scrobble) return;//Check avalible
     
     NSString * session = Settings.sharedInstance.settings.sessionLastfm;
     

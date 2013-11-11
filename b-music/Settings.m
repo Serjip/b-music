@@ -72,8 +72,8 @@
     /*
      * Lastfm
      */
-    [aCoder encodeBool:_nowPlayingTrackLastfm   forKey:@"nowPlayingTrack"];
-    [aCoder encodeBool:_scrobbleTrackLastfm     forKey:@"scrobbleTrack"];
+    [aCoder encodeBool:_nowPlayingTrackLastfm   forKey:@"nowPlayingTrackLastfm"];
+    [aCoder encodeBool:_scrobbleTrackLastfm     forKey:@"scrobbleTrackLastfm"];
     [aCoder encodeObject:_sessionLastfm         forKey:@"sessionLastfm"];
     [aCoder encodeObject:_nameLastfm            forKey:@"nameLastfm"];
     

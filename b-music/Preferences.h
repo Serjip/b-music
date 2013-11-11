@@ -8,12 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "LastfmAPI.h"
+#import "vkAPI.h"
 #import "Settings.h"
 
 @interface Preferences : NSWindowController <NSToolbarDelegate>
 
 @property LastfmAPI * lastfmAPI;
-@property Settings * se;
+@property LastfmAPI * vkAPI;
 
 @property (weak) IBOutlet NSToolbar *toolbar;
 
@@ -22,6 +23,22 @@
 @property (strong) IBOutlet NSView *vkPreferencesView;
 
 - (IBAction)switchView:(id)sender;
+
+/*
+ *  Generl Preferences
+ *************************/
+
+@property (strong) IBOutlet NSButton * showMenubarIconGeneralBtn;
+@property (strong) IBOutlet NSButton * showDockIconGeneralBtn;
+@property (strong) IBOutlet NSButton * showDockIconArtworkGeneralBtn;
+@property (strong) IBOutlet NSButton * searchArtworkGeneralBtn;
+@property (strong) IBOutlet NSButton * showNotaficationGeneralBtn;
+
+- (IBAction)showMenubarIconGeneral:(id)sender;
+- (IBAction)showDockIconGeneral:(id)sender;
+- (IBAction)showDockIconArtworkGeneral:(id)sender;
+- (IBAction)searchArtworkGeneral:(id)sender;
+- (IBAction)showNotaficationGeneral:(id)sender;
 
 /*
  *  VK Preferences

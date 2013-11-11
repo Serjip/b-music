@@ -18,14 +18,46 @@
 {
     self = [super initWithWindowNibName:@"Preferences"];
     if (self) {
-        _se = [[Settings alloc] init];
+        
+        //INIT SOMTING
     }
     return self;
 }
 
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    
+    /*
+     *  Generl Preferences
+     *************************/
+    //Set checkbox
+    if (Settings.sharedInstance.settings.showNotafications){
+        [self.showNotaficationGeneralBtn setState:1];
+    }
+    
+    
+    
+    /*
+     * Lastfm
+     */
+    
+    //Set checkbox
+    if (Settings.sharedInstance.settings.scrobbleTrackLastfm){
+        [self.scrobbleTracksLastfmBtn setState:1];
+    }
+    
+    //Set checkbox
+    if (Settings.sharedInstance.settings.nowPlayingTrackLastfm){
+        [self.nowPlayingLastfmBtn setState:1];
+    }
+    
+    //Set checkbox
+    if (Settings.sharedInstance.settings.sessionLastfm){
+        [self.authorizeLastfmBtn setTitle:@"Unauthorize"];
+    }
+    
     
     [self.toolbar setSelectedItemIdentifier:@"GeneralPreferences"];
     [self.window setContentSize:self.generalPreferencesView.frame.size];
@@ -75,6 +107,34 @@
     frame.origin.y -= (newSize.height - oldSize.height);
     return frame;
 }
+
+/*
+ *  Generl Preferences
+ *************************/
+
+#pragma mark Genetal Preferences
+
+- (IBAction)showMenubarIconGeneral:(id)sender{ NSLog(@"showMenubarIconGeneral");
+    
+}
+- (IBAction)showDockIconGeneral:(id)sender{ NSLog(@"showDockIconGeneral");
+    
+}
+- (IBAction)showDockIconArtworkGeneral:(id)sender{ NSLog(@"showDockIconArtworkGeneral");
+    
+}
+- (IBAction)searchArtworkGeneral:(id)sender{ NSLog(@"searchArtworkGeneral");
+    
+}
+- (IBAction)showNotaficationGeneral:(id)sender{ NSLog(@"showNotaficationGeneral");
+    if ([sender state]) {
+        Settings.sharedInstance.settings.showNotafications=YES;
+    }else{
+        Settings.sharedInstance.settings.showNotafications=NO;
+    }
+    [Settings.sharedInstance saveSettings];
+}
+
 /*
  *  VK Preferences
  *************************/
@@ -84,7 +144,7 @@
     
 }
 
-- (IBAction)offlineVk:(id)sender{ NSLog(@"AuthorizeLastfm");
+- (IBAction)offlineVk:(id)sender{ NSLog(@"offlineVK");
     
 }
 
@@ -99,10 +159,20 @@
     [self.lastfmAPI authorize];
 }
 - (IBAction)nowPlayingLastfm:(id)sender{ NSLog(@"nowPlayngLastfm");
-    
+    if ([sender state]) {
+        Settings.sharedInstance.settings.nowPlayingTrackLastfm=YES;
+    }else{
+        Settings.sharedInstance.settings.nowPlayingTrackLastfm=NO;
+    }
+    [Settings.sharedInstance saveSettings];
 }
 - (IBAction)scrobbleTracksLastfm:(id)sender{ NSLog(@"scrobbleTracksLastfm");
-    
+    if ([sender state]) {
+        Settings.sharedInstance.settings.scrobbleTrackLastfm=YES;
+    }else{
+        Settings.sharedInstance.settings.scrobbleTrackLastfm=NO;
+    }
+    [Settings.sharedInstance saveSettings];
 }
 
 @end

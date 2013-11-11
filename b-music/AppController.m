@@ -174,6 +174,7 @@
  ****************************************/
 #pragma mark Temp
 
+
 - (void)registerHandlerLinks{
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
                                                        andSelector:@selector(getUrl:withReplyEvent:)
@@ -369,11 +370,15 @@
         }
     });
     
-    //Notafication
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = title;
-    notification.informativeText = artist;
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    //Show notafications
+    if (Settings.sharedInstance.settings.showNotafications){
+        
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        notification.title = title;
+        notification.informativeText = artist;
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    }
 }
 
 

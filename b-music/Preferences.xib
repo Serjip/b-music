@@ -14,6 +14,11 @@
                 <outlet property="nowPlayingLastfmBtn" destination="3BO-t8-bS7" id="jKE-u3-YaG"/>
                 <outlet property="offlineVkBtn" destination="743-w3-gIG" id="4pU-CX-tki"/>
                 <outlet property="scrobbleTracksLastfmBtn" destination="12q-aA-aEy" id="fMg-2S-gth"/>
+                <outlet property="searchArtworkGeneralBtn" destination="Mh9-bS-s2c" id="ULa-7I-qsM"/>
+                <outlet property="showDockIconArtworkGeneralBtn" destination="6pj-mH-baH" id="c5l-Az-baf"/>
+                <outlet property="showDockIconGeneralBtn" destination="CSU-MT-hpl" id="hmu-cQ-Skc"/>
+                <outlet property="showMenubarIconGeneralBtn" destination="5Ji-X6-YHs" id="1q0-mC-LzL"/>
+                <outlet property="showNotaficationGeneralBtn" destination="Vb5-ym-TC9" id="lVy-lT-jgQ"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
                 <outlet property="vkPreferencesView" destination="Lla-Kg-HsL" id="kep-XC-obl"/>
                 <outlet property="window" destination="1" id="3"/>
@@ -77,10 +82,13 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ji-X6-YHs">
                     <rect key="frame" x="167" y="177" width="146" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show menubar icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pQ0-qQ-p9i">
+                    <buttonCell key="cell" type="check" title="Show menubar icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pQ0-qQ-p9i">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showMenubarIconGeneral:" target="-2" id="tdc-Fm-t0g"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k29-6c-dRs">
                     <rect key="frame" x="92" y="154" width="40" height="17"/>
@@ -94,18 +102,24 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSU-MT-hpl">
                     <rect key="frame" x="167" y="155" width="121" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show dock icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6EQ-bt-qyK">
+                    <buttonCell key="cell" type="check" title="Show dock icon" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6EQ-bt-qyK">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showDockIconGeneral:" target="-2" id="lop-jR-JNI"/>
+                    </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pj-mH-baH">
                     <rect key="frame" x="167" y="132" width="190" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show dock icon as artwork" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BB3-MV-3yc">
+                    <buttonCell key="cell" type="check" title="Show dock icon as artwork" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BB3-MV-3yc">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showDockIconArtworkGeneral:" target="-2" id="pcc-JA-DCh"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KCM-Yy-lFF">
                     <rect key="frame" x="73" y="110" width="59" height="17"/>
@@ -119,10 +133,13 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mh9-bS-s2c">
                     <rect key="frame" x="167" y="109" width="116" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Search artwork" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Oe0-SP-gMR">
+                    <buttonCell key="cell" type="check" title="Search artwork" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Oe0-SP-gMR">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="searchArtworkGeneral:" target="-2" id="UOe-XS-g21"/>
+                    </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YBx-ZH-I3D">
                     <rect key="frame" x="41" y="85" width="91" height="17"/>
@@ -136,10 +153,13 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vb5-ym-TC9">
                     <rect key="frame" x="167" y="84" width="141" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show notafications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ryM-3L-7mN">
+                    <buttonCell key="cell" type="check" title="Show notafications" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ryM-3L-7mN">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="showNotaficationGeneral:" target="-2" id="irj-4p-WvI"/>
+                    </connections>
                 </button>
             </subviews>
         </customView>
@@ -161,7 +181,7 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3BO-t8-bS7">
                     <rect key="frame" x="159" y="46" width="188" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Send &quot;Now Playing&quot; tracks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U6g-GU-MNV">
+                    <buttonCell key="cell" type="check" title="Send &quot;Now Playing&quot; tracks" bezelStyle="regularSquare" imagePosition="left" inset="2" id="U6g-GU-MNV">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -172,7 +192,7 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12q-aA-aEy">
                     <rect key="frame" x="159" y="26" width="130" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Scroblle tracks" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rgy-NH-edD">
+                    <buttonCell key="cell" type="check" title="Scroblle tracks" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Rgy-NH-edD">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
