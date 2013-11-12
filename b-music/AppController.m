@@ -250,7 +250,10 @@
     statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:self.statusMenu];
     [statusItem setHighlightMode:YES];
-    [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
+    if(self.PC.player.rate==1.0)
+        [statusItem setImage:[NSImage imageNamed:@"pauseTemplate"]];
+    else
+        [statusItem setImage:[NSImage imageNamed:@"playTemplate"]];
 }
 
 -(void) removeStatusBarItem{
