@@ -28,13 +28,13 @@
         <customObject id="-3" userLabel="Application"/>
         <window title="General" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="689" y="352" width="480" height="270"/>
+            <rect key="contentRect" x="689" y="352" width="456" height="322"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" autoresizesSubviews="NO" focusRingType="none" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="456" height="322"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="small" id="HNF-pl-mcq">
+            <toolbar key="toolbar" implicitIdentifier="1DB6380D-7BE5-4A62-A9BC-795AD61281A3" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="small" id="HNF-pl-mcq">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="1FA44A09-9804-4BD5-9AFE-18758D8485DA" explicitItemIdentifier="GeneralPreferences" label="General" paletteLabel="Genaral" tag="1" image="NSActionTemplate" id="IgA-pu-i6j">
                         <connections>
