@@ -222,8 +222,7 @@
     for (NSMenuItem * item in  [self.viewMenu itemArray])
         [item setEnabled:flag];
     //Partly mainmenu
-    for (int i=1; i<=3; i++)
-        [[self.editMenu itemWithTag:i] setEnabled:flag];
+    [[self.editMenu itemWithTag:3] setEnabled:flag];
 }
 
 -(void) authorizationVK:(BOOL)flag{
@@ -529,7 +528,17 @@
     return cellview;
 }
 
-- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row{
+-(void)tableViewSelectionDidChange:(NSNotification *)notification{
+    if ([_currentTableRow isEqualToString:@"MainRow"]){
+        [[self.editMenu itemWithTag:1] setEnabled:NO];
+        [[self.editMenu itemWithTag:2] setEnabled:YES];
+    }else if([_currentTableRow isEqualToString:@"SearchRow"]){
+        [[self.editMenu itemWithTag:1] setEnabled:YES];
+        [[self.editMenu itemWithTag:2] setEnabled:NO];
+    }
+}
+- (NSTableRowView *)tableView:(NSTableView *)tableView
+                rowViewForRow:(NSInteger)row{
     return [tableView makeViewWithIdentifier:_currentTableRow owner:self];
 }
 
