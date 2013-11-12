@@ -13,9 +13,9 @@
 #define kBlue 126
 #define kAlpha 1.0
 
-#define kRedH 99
-#define kGreenH 165
-#define kBlueH 106
+#define kRedH 109
+#define kGreenH 175
+#define kBlueH 116
 #define kAlphaH 1.0
 
 @implementation AddButtonCell

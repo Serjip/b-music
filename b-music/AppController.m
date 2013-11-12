@@ -227,6 +227,11 @@
 }
 
 -(void) authorizationVK:(BOOL)flag{
+    id window=[[NSApp delegate] window];
+    if ([window frame].size.height < 314|| [window frame].size.width < 228){
+        CGRect rect = NSMakeRect( [window frame].origin.x, [window frame].origin.y, 228, 314);
+        [window setFrame:rect display:YES animate:YES];
+    }
     for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
         [view setHidden:flag];
     }
@@ -533,6 +538,11 @@
 /*
  *@ IBActions
  */
+
+-(IBAction)howToUse:(id)sender{ NSLog(@"How to use");
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/b-music/"]];
+}
+
 -(IBAction)loginAuthVk:(id)sender{ NSLog(@"loginAuthVk");
     [self.vkAPI login];
 }
@@ -775,13 +785,21 @@
     
     if ([sender isKindOfClass:[NSMenuItem class]]) {
         if ([sender tag]==2) {
-            if ([self.searchViewHeight constant]>0){
+            
+            if ([self.searchViewHeight constant]>0)
                 heightPlayer+=30;
-            }
-            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
+            
+            CGFloat xPos=[window frame].origin.x + [window frame].size.width - widthPlayer;
+            CGFloat yPos=[window frame].origin.y  + [window frame].size.height - heightPlayer;
+            
+            rect=NSMakeRect(xPos, yPos, widthPlayer, heightPlayer);
+            
         }else if ([sender tag]==1){
             
-            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
+            CGFloat xPos=[window frame].origin.x + [window frame].size.width - _windowSize.width;
+            CGFloat yPos=[window frame].origin.y  + [window frame].size.height - _windowSize.height;
+            
+            rect=NSMakeRect(xPos, yPos, _windowSize.width, _windowSize.height);
             
         }else if ([sender tag]==3){
             rect=[[NSScreen mainScreen] visibleFrame];
@@ -793,12 +811,16 @@
         
         if ([window frame].size.width==widthPlayer && [window frame].size.height==heightPlayer) {
             
-            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, _windowSize.width, _windowSize.height);
+            CGFloat xPos=[window frame].origin.x + [window frame].size.width - _windowSize.width;
+            CGFloat yPos=[window frame].origin.y  + [window frame].size.height - _windowSize.height;
+            
+            rect=NSMakeRect(xPos, yPos, _windowSize.width, _windowSize.height);
         
         }else{
+            CGFloat xPos=[window frame].origin.x + [window frame].size.width - widthPlayer;
+            CGFloat yPos=[window frame].origin.y  + [window frame].size.height - heightPlayer;
             
-            rect=NSMakeRect([window frame].origin.x, [window frame].origin.y, widthPlayer, heightPlayer);
-        
+            rect=NSMakeRect(xPos, yPos, widthPlayer, heightPlayer);
         }
     }
     

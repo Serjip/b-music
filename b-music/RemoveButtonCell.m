@@ -14,9 +14,9 @@
 #define kAlpha 1.0
 
 
-#define kRedH 190
-#define kGreenH 54
-#define kBlueH 47
+#define kRedH 200
+#define kGreenH 64
+#define kBlueH 57
 #define kAlphaH 1.0
 
 

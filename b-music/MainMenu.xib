@@ -837,14 +837,14 @@ CA
                     </connections>
                 </button>
                 <box autoresizesSubviews="NO" transparent="YES" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="i8f-t5-3AA">
-                    <rect key="frame" x="103" y="65" width="188" height="250"/>
+                    <rect key="frame" x="103" y="53" width="188" height="274"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="186" height="234"/>
+                        <rect key="frame" x="1" y="1" width="186" height="258"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-kr-Cjz">
-                                <rect key="frame" x="18" y="42" width="150" height="25"/>
+                                <rect key="frame" x="18" y="66" width="150" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="RmY-aV-q54"/>
@@ -858,7 +858,7 @@ CA
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hjZ-PT-QQB">
-                                <rect key="frame" x="18" y="74" width="150" height="150"/>
+                                <rect key="frame" x="18" y="98" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="KUN-Qj-3sv"/>
@@ -867,7 +867,7 @@ CA
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="icon" id="nvM-wS-VA6"/>
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CXl-7R-m5e">
-                                <rect key="frame" x="18" y="12" width="150" height="25"/>
+                                <rect key="frame" x="18" y="36" width="150" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="w5Q-JX-i8b"/>
@@ -880,18 +880,33 @@ CA
                                     <action selector="signupAuthVk:" target="DoF-XC-WxK" id="xz6-cW-g61"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="acg-M6-fRd">
+                                <rect key="frame" x="99" y="14" width="69" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="xoR-mO-jsY"/>
+                                </constraints>
+                                <buttonCell key="cell" type="bevel" title="How to use?" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="pft-jF-K1H">
+                                    <behavior key="behavior" lightByContents="YES"/>
+                                    <font key="font" size="11" name="LucidaGrande"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="howToUse:" target="DoF-XC-WxK" id="694-6q-3Dp"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <constraints>
-                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="i8f-t5-3AA" secondAttribute="leading" constant="16" id="5eT-JG-ZOk"/>
-                        <constraint firstAttribute="height" constant="246" id="5yA-me-1B8"/>
-                        <constraint firstAttribute="bottom" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="41" id="Bfe-Vb-8uQ"/>
-                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="TOP-pv-4ny"/>
-                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="leading" secondItem="hjZ-PT-QQB" secondAttribute="leading" id="Trk-4G-onX"/>
-                        <constraint firstAttribute="width" constant="182" id="Xtm-af-rei"/>
-                        <constraint firstItem="CXl-7R-m5e" firstAttribute="top" secondItem="UvB-kr-Cjz" secondAttribute="bottom" constant="8" symbolic="YES" id="a80-G9-ebf"/>
-                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="hjZ-PT-QQB" secondAttribute="bottom" constant="8" symbolic="YES" id="idO-ta-cHD"/>
-                        <constraint firstAttribute="trailing" secondItem="UvB-kr-Cjz" secondAttribute="trailing" constant="16" id="l55-5E-4nq"/>
+                        <constraint firstItem="UvB-kr-Cjz" firstAttribute="top" secondItem="hjZ-PT-QQB" secondAttribute="bottom" constant="8" symbolic="YES" id="1Hl-vq-n7J"/>
+                        <constraint firstAttribute="trailing" secondItem="hjZ-PT-QQB" secondAttribute="trailing" constant="16" id="5Ta-0j-qGF"/>
+                        <constraint firstAttribute="bottom" secondItem="acg-M6-fRd" secondAttribute="bottom" constant="11" id="8LW-BT-YZG"/>
+                        <constraint firstItem="hjZ-PT-QQB" firstAttribute="leading" secondItem="i8f-t5-3AA" secondAttribute="leading" constant="16" id="Hv3-2c-ca3"/>
+                        <constraint firstItem="hjZ-PT-QQB" firstAttribute="leading" secondItem="UvB-kr-Cjz" secondAttribute="leading" id="J23-Qm-8l9"/>
+                        <constraint firstAttribute="bottom" secondItem="hjZ-PT-QQB" secondAttribute="bottom" constant="95" id="PdW-9g-rJ5"/>
+                        <constraint firstItem="acg-M6-fRd" firstAttribute="top" secondItem="CXl-7R-m5e" secondAttribute="bottom" constant="10" id="jcb-LU-p4x"/>
+                        <constraint firstItem="hjZ-PT-QQB" firstAttribute="top" secondItem="i8f-t5-3AA" secondAttribute="top" constant="25" id="rnM-TO-3XW"/>
+                        <constraint firstItem="hjZ-PT-QQB" firstAttribute="trailing" secondItem="acg-M6-fRd" secondAttribute="trailing" id="tfz-k7-acV"/>
+                        <constraint firstItem="hjZ-PT-QQB" firstAttribute="leading" secondItem="CXl-7R-m5e" secondAttribute="leading" id="vsH-iW-5q4"/>
                     </constraints>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

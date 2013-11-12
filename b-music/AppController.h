@@ -75,7 +75,7 @@
 
 #pragma mark -
 #pragma mark IBAcrions
-
+-(IBAction)howToUse:(id)sender;
 -(IBAction)loginAuthVk:(id)sender;
 -(IBAction)signupAuthVk:(id)sender;
 
