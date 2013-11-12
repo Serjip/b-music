@@ -36,6 +36,8 @@
 @property (strong) AVPlayerItem *playerItem;
 
 -(void)play:(NSString*) URLstring;
+-(void) play;
+-(void) pause;
 -(void)setRuntime:(double)time;
 -(NSString*)convertTime:(double)seconds;
 - (NSMutableArray*)generateShufflePlaylist:(NSMutableArray*)playlist;

@@ -19,6 +19,7 @@
                 <outlet property="showNotaficationGeneralBtn" destination="Vb5-ym-TC9" id="lVy-lT-jgQ"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
                 <outlet property="visitProfileLastfmBtn" destination="qpX-Ci-Ken" id="yTt-a2-ADK"/>
+                <outlet property="visitProfileVkBtn" destination="rZJ-az-bXr" id="igE-Ag-AaB"/>
                 <outlet property="vkPreferencesView" destination="Lla-Kg-HsL" id="kep-XC-obl"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -217,12 +218,15 @@
             </constraints>
         </customView>
         <customView id="Lla-Kg-HsL" userLabel="vkView">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="116"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="142"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xn5-hX-qRi">
-                    <rect key="frame" x="211" y="45" width="58" height="25"/>
+                    <rect key="frame" x="205" y="18" width="70" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="ywA-OB-Da3"/>
+                    </constraints>
                     <buttonCell key="cell" type="roundTextured" title="Logout" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M3N-JK-Olt">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -231,10 +235,28 @@
                         <action selector="authorizationVk:" target="-2" id="X4h-zS-uMg"/>
                     </connections>
                 </button>
+                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZJ-az-bXr">
+                    <rect key="frame" x="194" y="72" width="92" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="v09-UJ-Onb"/>
+                    </constraints>
+                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="regularSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="pet-o9-GGT">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="systemBold" size="15"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="visitProfileVk:" target="-2" id="Iot-lv-QSI"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="2rl-tf-t4L"/>
-                <constraint firstAttribute="centerY" secondItem="Xn5-hX-qRi" secondAttribute="centerY" id="daL-iA-idd"/>
+                <constraint firstAttribute="centerX" secondItem="rZJ-az-bXr" secondAttribute="centerX" id="ACh-1h-ThU"/>
+                <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="UUm-rq-ROV"/>
+                <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="VCm-La-hDy"/>
+                <constraint firstAttribute="bottom" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" symbolic="YES" id="bZ8-8m-UY6"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" id="hjn-eP-05c"/>
+                <constraint firstItem="rZJ-az-bXr" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" symbolic="YES" id="tUQ-GK-362"/>
             </constraints>
         </customView>
     </objects>

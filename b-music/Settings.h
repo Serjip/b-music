@@ -44,6 +44,9 @@
 
 @property NSInteger user_id;
 @property NSString *token;
+@property NSString *first_name;
+@property NSString *last_name;
+@property NSImage *avatar;
 
 @end
 

@@ -54,6 +54,22 @@
     [_delegate durationTrack:self.duration];
 }
 
+
+-(void) play{
+    
+    [self.player play];
+}
+
+-(void) pause{
+    if (self.player.volume > 0.1) {
+        self.player.volume -= 0.1;
+        [self performSelector:@selector(pause) withObject:nil afterDelay:0.03];
+    } else {
+        [self.player pause];
+        [self.player setVolume:Settings.sharedInstance.settings.volume];
+    }
+}
+
 -(void)observeValueForKeyPath:(NSString *)keyPath
                      ofObject:(id)object
                        change:(NSDictionary *)change

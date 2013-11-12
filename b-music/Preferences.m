@@ -69,6 +69,12 @@
     [self updateProfileLastfm];
     
     /*
+     * VK
+     **********/
+    //Set username
+    [self updateProfileVk];
+    
+    /*
      * Toolbar
      *************************/
     
@@ -180,24 +186,36 @@
         _vkAPI= [[vkAPI alloc] init];
     }
     
-    [_vkAPI logout];
+    if (Settings.sharedInstance.settings.token) {
+        [self.delegate logoutVkFromPreferences];
+        [self updateProfileVk];
+    }else{
+        [self.vkAPI login];
+    }
 }
 
-// NOT USED BECAUSE PERMISSION DININED
-//- (IBAction)offlineVk:(id)sender{ NSLog(@"offlineVK");
-//    
-//    if (!_vkAPI) {
-//        _vkAPI= [[vkAPI alloc] init];
-//    }
-//    
-//    if ([sender state]) {
-//        [self.vkAPI account_setOffline];
-//        Settings.sharedInstance.settings.userOffline=YES;
-//    }else{
-//        Settings.sharedInstance.settings.userOffline=NO;
-//    }
-//    [Settings.sharedInstance saveSettings];
-//}
+- (IBAction)visitProfileVk:(id)sender{ NSLog(@"VisitVk");
+    NSString * strURL= [NSString stringWithFormat:@"https://vk.com/id%li",Settings.sharedInstance.settings.user_id];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:strURL]];
+}
+
+-(void) updateProfileVk{
+    //Title for button
+    if (Settings.sharedInstance.settings.token){
+        [self.authorizationVkBtn setTitle:@"Logout"];
+    }else{
+        [self.authorizationVkBtn setTitle:@"Login"];
+    }
+    
+    if (Settings.sharedInstance.settings.first_name){
+        NSString * name =[NSString stringWithFormat:@"%@ %@",Settings.sharedInstance.settings.first_name , Settings.sharedInstance.settings.last_name];
+        [self.visitProfileVkBtn setTitle:name];
+        [self.visitProfileVkBtn setImage:Settings.sharedInstance.settings.avatar];
+        [self.visitProfileVkBtn setHidden:NO];
+    }else{
+        [self.visitProfileVkBtn setHidden:YES];
+    }
+}
 
 /*
  *  Lastfm Preferences
@@ -253,5 +271,7 @@
         [self.visitProfileLastfmBtn setHidden:YES];
     }
 }
+
+
 
 @end

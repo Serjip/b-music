@@ -15,6 +15,7 @@
 @protocol PreferencesDelegate <NSObject>
 -(void) updateMenuBarIcon;
 -(void) updateDockIcon;
+-(void) logoutVkFromPreferences;
 @end
 
 @interface Preferences : NSWindowController <NSToolbarDelegate>
@@ -51,8 +52,11 @@
  *  VK Preferences
  *************************/
 @property (weak) IBOutlet NSButton *authorizationVkBtn;
+@property (weak) IBOutlet NSButton *visitProfileVkBtn;
 
 - (IBAction)authorizationVk:(id)sender;
+- (IBAction)visitProfileVk:(id)sender;
+-(void) updateProfileVk;
 
 /*
  *  Lastfm Preferences

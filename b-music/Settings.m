@@ -20,6 +20,9 @@
          */
         _user_id=[coder decodeIntegerForKey:@"user_id"];
         _token=[coder decodeObjectForKey:@"token"];
+        _first_name=[coder decodeObjectForKey:@"first_name"];
+        _last_name=[coder decodeObjectForKey:@"last_name"];
+        _avatar=[coder decodeObjectForKey:@"avatar"];
         
         /*
          * Player
@@ -55,8 +58,11 @@
     /*
      * VK
      */
-    [aCoder encodeInteger:_user_id  forKey:@"user_id"];
-    [aCoder encodeObject:_token     forKey:@"token"];
+    [aCoder encodeInteger:_user_id      forKey:@"user_id"];
+    [aCoder encodeObject:_token         forKey:@"token"];
+    [aCoder encodeObject:_first_name    forKey:@"first_name"];
+    [aCoder encodeObject:_last_name     forKey:@"last_name"];
+    [aCoder encodeObject:_avatar        forKey:@"avatar"];
     
     /*
      * Player
@@ -138,6 +144,8 @@
     //VK
     [list setValue:@(self.settings.user_id)    forKey:@"user_id"];
     [list setValue:self.settings.token         forKey:@"token"];
+    [list setValue:self.settings.first_name    forKey:@"first_name"];
+    [list setValue:self.settings.last_name     forKey:@"last_name"];
     
     //Lastfm
     [list setValue:@(self.settings.nowPlayingTrackLastfm)  forKey:@"nowPlayingTrackLastfm"];

@@ -11,6 +11,7 @@
 
 @protocol vkAPIDelegate <NSObject>
 -(void) finishAuthVK;
+-(void) beginAuthVK;
 @end
 
 
@@ -18,22 +19,25 @@
 
 @property (weak) id <vkAPIDelegate> delegate;
 
--(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr;
 
 -(BOOL) checkForErrorResponse:(id)response;
 
--(BOOL) requestAPIVkRemoveTrackWithOwner_id:(NSString *)owner_id
-                        idTrack:(NSString *)idTrack;//Remove Track
+/*
+ *  API METHODS
+ ******************/
+-(id) audio_get;
+-(BOOL) audio_deleteWithOwner_id:(NSString *)owner_id
+                       idTrack:(NSString *)idTrack;
 
--(BOOL) requestAPIVkAddTrackWithOwner_id:(NSString *)owner_id
-                     idTrack:(NSString *)idTrack;//Add track
+-(BOOL) audio_addWithOwner_id:(NSString *)owner_id
+                    idTrack:(NSString *)idTrack;
 
--(id) requestAPIVkSearchWithSearchQ:(NSString *)searchQuery; //Search
-
--(id) requestAPIVkLoadMainplaylist; // Main playlist
-
-//Set accaunt offline
--(BOOL) account_setOffline;
+-(id) audio_searchWithSearchQuery:(NSString *)searchQuery;
+-(id) users_get;
+/*
+ *  Auth Methods
+ ******************/
+-(void) parseAccessTokenAndUserIdFormString:(NSString *)tokenStr;
 
 -(void)login;
 -(void)logout;

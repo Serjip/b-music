@@ -64,6 +64,9 @@
         [NSApp setApplicationIconImage: nil];
     }
 }
+-(void)logoutVkFromPreferences{
+    [self.vkAPI logout];
+}
 
 /*
  *  Lastfm API Delegate
@@ -83,9 +86,18 @@
 -(void) finishAuthVK{
     NSLog(@"Finish auth vk");
     [self loadMainPlaylist];
-    
+    [[[NSApp delegate] window] makeKeyWindow];
+    [[[NSApp delegate] window] makeMainWindow];
     [self authorizationVK:NO];
+    
+    if (!preferences) return;
+    [preferences updateProfileVk];
 }
+
+-(void) beginAuthVK{
+    [self authorizationVK:YES];
+}
+
 /*
  *                                  Window Methods
  *
@@ -158,7 +170,7 @@
     }
     
     if (!Settings.sharedInstance.settings.token){
-        [self authorizationVK:YES];
+        [self.vkAPI logout];
     }
 }
 
@@ -173,6 +185,8 @@
 -(void)userNotificationCenter:(NSUserNotificationCenter *)center
       didActivateNotification:(NSUserNotification *)notification{
     [self gotoCurrentTrack:nil];
+    [[[NSApp delegate] window] makeKeyWindow];
+    [[[NSApp delegate] window] makeMainWindow];
 }
 
 /*
@@ -219,7 +233,7 @@
     if (flag) {
         [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
         [self.test setHidden:!flag];
-        [self.PC.player pause];
+        [self.PC pause];
     }else{
         [self.test removeFromSuperview];
     }
@@ -355,7 +369,7 @@
 
 -(void) loadMainPlaylist{
     
-    id response =[self.vkAPI requestAPIVkLoadMainplaylist];
+    id response =[self.vkAPI audio_get];
     
     if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
     
@@ -548,8 +562,8 @@
         id obj=[_soundPlaylist objectAtIndex:row];
         
         if ([obj isEqualTo:_currentTrack]) {
-            if(self.PC.player.rate==1.0) [self.PC.player pause];
-            else [self.PC.player play];
+            if(self.PC.player.rate==1.0)  [self.PC pause];
+            else [self.PC play];
         }else{
             _currentTrack=[[NSDictionary alloc] initWithDictionary:obj];
             [self.PC play:[_currentTrack objectForKey:@"url"]];
@@ -560,8 +574,8 @@
             NSLog(@"%@",_currentTrack);
             [self.PC play:[_currentTrack objectForKey:@"url"]];
         }else{
-            if(self.PC.player.rate==1.0) [self.PC.player pause];
-            else [self.PC.player play];
+            if(self.PC.player.rate==1.0) [self.PC pause];
+            else [self.PC play];
         }
     }
 }
@@ -654,8 +668,8 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.vkAPI requestAPIVkAddTrackWithOwner_id:[obj objectForKey:@"owner_id"]
-                                                     idTrack:[obj objectForKey:@"id"]];
+    BOOL result=[self.vkAPI audio_addWithOwner_id:[obj objectForKey:@"owner_id"]
+                                          idTrack:[obj objectForKey:@"id"]];
     
     if (!result) return;// Some error happend
     
@@ -670,8 +684,8 @@
     
     id obj=[_viewPlaylist objectAtIndex:row];
     
-    BOOL result=[self.vkAPI requestAPIVkRemoveTrackWithOwner_id:[obj objectForKey:@"owner_id"]
-                                                        idTrack:[obj objectForKey:@"id"]];
+    BOOL result=[self.vkAPI audio_deleteWithOwner_id:[obj objectForKey:@"owner_id"]
+                                             idTrack:[obj objectForKey:@"id"]];
     
     if (!result) return;// Some error happend
     
@@ -731,7 +745,7 @@
     if ([sender stringValue].length!=0) {
         
         _currentTableRow=@"SearchRow";
-        id response =[self.vkAPI requestAPIVkSearchWithSearchQ:[sender stringValue]];
+        id response =[self.vkAPI audio_searchWithSearchQuery:[sender stringValue]];
         
         if (![self.vkAPI checkForErrorResponse:response]) return;//Some error happend
         
@@ -806,7 +820,6 @@
 }
 
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
-    [self authorizationVK:YES];
     [self.vkAPI logout];
 }
 
