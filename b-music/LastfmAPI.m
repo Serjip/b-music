@@ -21,7 +21,7 @@
 
 -(id)requestAPILastfmWithParams:(NSMutableDictionary*)params{
     
-    [params setObject:@"json" forKey:@"format"];
+    [params setValue:@"json" forKey:@"format"];
     
     NSString * stringParam=@"";
     for (NSString * key in params) {
@@ -75,11 +75,11 @@
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     
-    [params setObject:@"track.getInfo"  forKey:@"method"];
-    [params setObject:@"1"              forKey:@"autocorrect"];
-    [params setObject:artist            forKey:@"artist"];
-    [params setObject:track             forKey:@"track"];
-    [params setObject:API_KEY           forKey:@"api_key"];
+    [params setValue:@"track.getInfo"  forKey:@"method"];
+    [params setValue:@"1"              forKey:@"autocorrect"];
+    [params setValue:artist            forKey:@"artist"];
+    [params setValue:track             forKey:@"track"];
+    [params setValue:API_KEY           forKey:@"api_key"];
     
     id obj = [self requestAPILastfmWithParams:params];
     return obj;
@@ -111,12 +111,12 @@
 -(id)auth_getSession:(NSString *)token {
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
-    [params setObject:@"auth.getSession"  forKey:@"method"];
-    [params setObject:API_KEY           forKey:@"api_key"];
-    [params setObject:token           forKey:@"token"];
+    [params setValue:@"auth.getSession"  forKey:@"method"];
+    [params setValue:API_KEY           forKey:@"api_key"];
+    [params setValue:token           forKey:@"token"];
 
     NSString * api_sig=[self api_sigWithParams:params];
-    [params setObject:api_sig forKey:@"api_sig"];
+    [params setValue:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
     return obj;
@@ -134,15 +134,15 @@
     if (!session || session.length==0) return ;
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
-    [params setObject:@"track.updateNowPlaying" forKey:@"method"];
-    [params setObject:artist                    forKey:@"artist"];
-    [params setObject:track                     forKey:@"track"];
-    [params setObject:duration                  forKey:@"duration"];
-    [params setObject:API_KEY                   forKey:@"api_key"];
-    [params setObject:session                   forKey:@"sk"];
+    [params setValue:@"track.updateNowPlaying" forKey:@"method"];
+    [params setValue:artist                    forKey:@"artist"];
+    [params setValue:track                     forKey:@"track"];
+    [params setValue:duration                  forKey:@"duration"];
+    [params setValue:API_KEY                   forKey:@"api_key"];
+    [params setValue:session                   forKey:@"sk"];
     
     NSString * api_sig=[self api_sigWithParams:params];
-    [params setObject:api_sig forKey:@"api_sig"];
+    [params setValue:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
     
@@ -160,15 +160,15 @@
     if (!session || session.length==0) return ;
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
-    [params setObject:@"track.scrobble"                             forKey:@"method"];
-    [params setObject:artist                                        forKey:@"artist"];
-    [params setObject:track                                         forKey:@"track"];
-    [params setObject:@((int)[[NSDate date] timeIntervalSince1970]) forKey:@"timestamp"];
-    [params setObject:API_KEY                                       forKey:@"api_key"];
-    [params setObject:session                                       forKey:@"sk"];
+    [params setValue:@"track.scrobble"                             forKey:@"method"];
+    [params setValue:artist                                        forKey:@"artist"];
+    [params setValue:track                                         forKey:@"track"];
+    [params setValue:@((int)[[NSDate date] timeIntervalSince1970]) forKey:@"timestamp"];
+    [params setValue:API_KEY                                       forKey:@"api_key"];
+    [params setValue:session                                       forKey:@"sk"];
     
     NSString * api_sig=[self api_sigWithParams:params];
-    [params setObject:api_sig forKey:@"api_sig"];
+    [params setValue:api_sig forKey:@"api_sig"];
     
     id obj = [self requestAPILastfmWithParams:params];
     NSLog(@"Lastfm response %@",obj);

@@ -81,14 +81,10 @@
  *****************************/
 #pragma mark APIvk
 -(void) finishAuthVK{
-    
     NSLog(@"Finish auth vk");
     [self loadMainPlaylist];
     
-    for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
-        [view setHidden:NO];
-    }
-    [self.test removeFromSuperview];
+    [self authorizationVK:NO];
 }
 /*
  *                                  Window Methods
@@ -105,13 +101,6 @@
 
 
 -(void)windowDidBecomeMain:(NSNotification *)notification{ NSLog(@"DidBecomeMain");
-    if (!Settings.sharedInstance.settings.token){
-        for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
-            [view setHidden:YES];
-        }
-        [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
-        [self.test setHidden:NO];
-    }
     
     if (!_isInitialLoadingFinish) {
         
@@ -126,8 +115,12 @@
         }
         
         [_Controls0 setDelegate:self];//Set delegation method
-        [self addSubviewHelper:self.Controls0 slerve:self.Controls1];//Add view to superview (Controls1)
-        [self addSubviewHelper:self.BottomControls0 slerve:self.BottomControls1];//Add view to superview (Bottom)
+        
+        [self addSubviewHelper:self.Controls0
+                        slerve:self.Controls1];//Add view to superview (Controls1)
+        
+        [self addSubviewHelper:self.BottomControls0
+                        slerve:self.BottomControls1];//Add view to superview (Bottom)
         
         [self.volume setProgress:Settings.sharedInstance.settings.volume];//Set volume on view
         
@@ -149,22 +142,8 @@
         //Setting size window
         _windowSize=[[NSApp delegate] window].frame.size;
         
-        
-        for (NSMenuItem * item in  [self.controlsMenu itemArray]) {
-            [item setEnabled:YES];
-        }
-        
-        for (NSMenuItem * item in  [self.viewMenu itemArray]) {
-            [item setEnabled:YES];
-        }
-        
-        for (NSMenuItem * item in [self.editMenu itemArray]) {
-            [item setEnabled:YES];
-        }
-        
-        for (NSMenuItem * item in [self.dockMenu itemArray]) {
-            [item setEnabled:YES];
-        }
+        //TURN ON MENU
+        [self switchMainMenuItems:YES];
         
         //Local Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
@@ -176,6 +155,10 @@
         _isInitialLoadingFinish=YES;
         
         [self loadMainPlaylist];
+    }
+    
+    if (!Settings.sharedInstance.settings.token){
+        [self authorizationVK:YES];
     }
 }
 
@@ -210,6 +193,40 @@
  * TEMP Methods
  ****************************************/
 #pragma mark Temp
+
+-(void)switchMainMenuItems:(BOOL)flag{
+    //whole menu controls
+    for (NSMenuItem * item in  [self.controlsMenu itemArray])
+        [item setEnabled:flag];
+    //Whole dock menu
+    for (NSMenuItem * item in [self.dockMenu itemArray])
+        [item setEnabled:flag];
+    //Whole status menu
+    for (NSMenuItem * item in [self.statusMenu itemArray])
+        [item setEnabled:flag];
+    //Whole viewmenu
+    for (NSMenuItem * item in  [self.viewMenu itemArray])
+        [item setEnabled:flag];
+    //Partly mainmenu
+    for (int i=1; i<=3; i++)
+        [[self.editMenu itemWithTag:i] setEnabled:flag];
+}
+
+-(void) authorizationVK:(BOOL)flag{
+    for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
+        [view setHidden:flag];
+    }
+    if (flag) {
+        [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
+        [self.test setHidden:!flag];
+        [self.PC.player pause];
+    }else{
+        [self.test removeFromSuperview];
+    }
+    [self switchMainMenuItems:!flag];
+}
+
+
 
 -(void) addStatusBarItem{
     statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -789,14 +806,8 @@
 }
 
 -(IBAction)logout:(id)sender{ NSLog(@"Logout");
-    
-    for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
-        [view setHidden:YES];
-    }
-    [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
-    
-    Settings.sharedInstance.settings.token=nil;//Remove token
-    [Settings.sharedInstance saveSettings];
+    [self authorizationVK:YES];
+    [self.vkAPI logout];
 }
 
 @end

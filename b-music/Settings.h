@@ -44,7 +44,6 @@
 
 @property NSInteger user_id;
 @property NSString *token;
-@property BOOL userOffline;;
 
 @end
 

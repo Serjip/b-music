@@ -20,7 +20,6 @@
          */
         _user_id=[coder decodeIntegerForKey:@"user_id"];
         _token=[coder decodeObjectForKey:@"token"];
-        _userOffline=[coder decodeBoolForKey:@"userOffline"];
         
         /*
          * Player
@@ -58,7 +57,6 @@
      */
     [aCoder encodeInteger:_user_id  forKey:@"user_id"];
     [aCoder encodeObject:_token     forKey:@"token"];
-    [aCoder encodeBool:_userOffline forKey:@"userOffline"];
     
     /*
      * Player
@@ -138,29 +136,28 @@
     NSMutableDictionary * list= [[NSMutableDictionary alloc]init];
     
     //VK
-    [list setObject:@(self.settings.user_id)    forKey:@"user_id"];
-    [list setObject:self.settings.token         forKey:@"token"];
-    [list setObject:@(self.settings.userOffline)  forKey:@"userOffline"];
+    [list setValue:@(self.settings.user_id)    forKey:@"user_id"];
+    [list setValue:self.settings.token         forKey:@"token"];
     
     //Lastfm
-    [list setObject:@(self.settings.nowPlayingTrackLastfm)  forKey:@"nowPlayingTrackLastfm"];
-    [list setObject:@(self.settings.scrobbleTrackLastfm)    forKey:@"scrobbleTrackLastfm"];
-    [list setObject:self.settings.sessionLastfm             forKey:@"sessionLastfm"];
-    [list setObject:self.settings.nameLastfm                forKey:@"nameLastfm"];
+    [list setValue:@(self.settings.nowPlayingTrackLastfm)  forKey:@"nowPlayingTrackLastfm"];
+    [list setValue:@(self.settings.scrobbleTrackLastfm)    forKey:@"scrobbleTrackLastfm"];
+    [list setValue:self.settings.sessionLastfm             forKey:@"sessionLastfm"];
+    [list setValue:self.settings.nameLastfm                forKey:@"nameLastfm"];
     
     //general
-    [list setObject:@(self.settings.showIconMenubar)  forKey:@"showIconMenubar"];
-    [list setObject:@(self.settings.showArtworkDock)  forKey:@"showArtworkDock"];
-    [list setObject:@(self.settings.showNotafications)  forKey:@"showNotafications"];
-    [list setObject:@(self.settings.searchArtwork)  forKey:@"searchArtwork"];
+    [list setValue:@(self.settings.showIconMenubar)  forKey:@"showIconMenubar"];
+    [list setValue:@(self.settings.showArtworkDock)  forKey:@"showArtworkDock"];
+    [list setValue:@(self.settings.showNotafications)  forKey:@"showNotafications"];
+    [list setValue:@(self.settings.searchArtwork)  forKey:@"searchArtwork"];
     
     //player
     
-    [list setObject:@(self.settings.repeat)  forKey:@"repeat"];
-    [list setObject:@(self.settings.shuffle)  forKey:@"shuffle"];
-    [list setObject:@(self.settings.runTime)  forKey:@"runtime"];
-    [list setObject:@(self.settings.alwaysOnTop)  forKey:@"alwaysOnTop"];
-    [list setObject:@(self.settings.volume)  forKey:@"volume"];
+    [list setValue:@(self.settings.repeat)  forKey:@"repeat"];
+    [list setValue:@(self.settings.shuffle)  forKey:@"shuffle"];
+    [list setValue:@(self.settings.runTime)  forKey:@"runtime"];
+    [list setValue:@(self.settings.alwaysOnTop)  forKey:@"alwaysOnTop"];
+    [list setValue:@(self.settings.volume)  forKey:@"volume"];
     
     return [NSString stringWithFormat:@"%@", list];
 }

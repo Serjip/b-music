@@ -147,6 +147,9 @@
 }
 
 -(void)logout{ NSLog(@"Logut");
+    Settings.sharedInstance.settings.token=nil;//Remove token
+    Settings.sharedInstance.settings.user_id=0;//Remove userid
+    [Settings.sharedInstance saveSettings];
 }
 -(void)login{ NSLog(@"Login");
     [NSWorkspace.sharedWorkspace openURL:[NSURL URLWithString:kAuthURL]];

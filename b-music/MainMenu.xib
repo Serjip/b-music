@@ -113,12 +113,12 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="d4Y-GC-YDs"/>
-                            <menuItem title="Add" enabled="NO" keyEquivalent="d" id="202">
+                            <menuItem title="Add" tag="1" enabled="NO" keyEquivalent="d" id="202">
                                 <connections>
                                     <action selector="addTrack:" target="DoF-XC-WxK" id="Xnd-aJ-cVD"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Delete" enabled="NO" id="rri-t1-TQu">
+                            <menuItem title="Delete" tag="2" enabled="NO" id="rri-t1-TQu">
                                 <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>
@@ -127,7 +127,7 @@ CA
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="B5j-UU-ygZ"/>
-                            <menuItem title="Show Search" enabled="NO" keyEquivalent="f" id="Vtj-PG-GC8">
+                            <menuItem title="Show Search" tag="3" enabled="NO" keyEquivalent="f" id="Vtj-PG-GC8">
                                 <connections>
                                     <action selector="showSearch:" target="DoF-XC-WxK" id="MfN-T5-xwZ"/>
                                 </connections>
