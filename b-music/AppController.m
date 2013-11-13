@@ -39,9 +39,31 @@
         [_PC setDelegate:self];
         _currentTableRow=@"MainRow";
         
+        //Delegate notafications
         [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     }
     return self;
+}
+/*
+ *  Purchase
+ *****************************/
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
+    NSLog(@"Payment query");
+}
+-(void)productsRequest:(SKProductsRequest *)request
+    didReceiveResponse:(SKProductsResponse *)response{
+
+    if (response.products.count) {
+        SKProduct *product = [response.products objectAtIndex:0];
+        NSLocale *priceLocale = product.priceLocale;
+        NSDecimalNumber *price = product.price;
+        NSString *description = product.localizedDescription;
+        
+        NSLog(@"%@ %@",[price stringValue],[priceLocale objectForKey:NSLocaleCurrencySymbol]);
+        
+    }
+    
+    
 }
 
 /*
@@ -68,6 +90,12 @@
     [self.vkAPI logout];
 }
 
+-(void)purchase{
+    SKProductsRequest * req=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.ttitt.bmusic.unlim"]];
+    req.delegate = self;
+    [req start];
+    NSLog(@"Hello purchase");
+}
 /*
  *  Lastfm API Delegate
  *****************************/

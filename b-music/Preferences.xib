@@ -12,6 +12,7 @@
                 <outlet property="generalPreferencesView" destination="qrY-qb-kSb" id="CYE-KB-M0W"/>
                 <outlet property="lastfmPreferencesView" destination="ZEV-Z5-5tv" id="FZo-dX-ql4"/>
                 <outlet property="nowPlayingLastfmBtn" destination="3BO-t8-bS7" id="jKE-u3-YaG"/>
+                <outlet property="purchasePreferencesView" destination="0x9-Fh-kcL" id="DX1-7z-dNr"/>
                 <outlet property="scrobbleTracksLastfmBtn" destination="12q-aA-aEy" id="fMg-2S-gth"/>
                 <outlet property="searchArtworkGeneralBtn" destination="Mh9-bS-s2c" id="ULa-7I-qsM"/>
                 <outlet property="showDockIconArtworkGeneralBtn" destination="6pj-mH-baH" id="c5l-Az-baf"/>
@@ -51,11 +52,17 @@
                             <action selector="switchView:" target="-2" id="3es-uw-DnX"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="D299D417-1892-43FC-B931-9A3717E2DBFC" explicitItemIdentifier="PurchasePreferences" label="Purchase" paletteLabel="Purchase" tag="4" id="uJp-XC-t9A">
+                        <connections>
+                            <action selector="switchView:" target="-2" id="Vkc-QJ-Gsv"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="IgA-pu-i6j"/>
                     <toolbarItem reference="roN-nc-dpZ"/>
                     <toolbarItem reference="o6L-Nb-6w5"/>
+                    <toolbarItem reference="uJp-XC-t9A"/>
                 </defaultToolbarItems>
                 <connections>
                     <outlet property="delegate" destination="-2" id="he3-7B-Rug"/>
@@ -258,6 +265,23 @@
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" id="hjn-eP-05c"/>
                 <constraint firstItem="rZJ-az-bXr" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" symbolic="YES" id="tUQ-GK-362"/>
             </constraints>
+        </customView>
+        <customView id="0x9-Fh-kcL">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="137"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-MR-Qkr">
+                    <rect key="frame" x="164" y="55" width="153" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundTextured" title="Purchase $0.99 / year" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zyj-DA-ftX">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="purchase:" target="-2" id="AVD-ao-dH1"/>
+                    </connections>
+                </button>
+            </subviews>
         </customView>
     </objects>
     <resources>

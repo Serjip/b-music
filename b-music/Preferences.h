@@ -16,6 +16,8 @@
 -(void) updateMenuBarIcon;
 -(void) updateDockIcon;
 -(void) logoutVkFromPreferences;
+
+-(void) purchase;
 @end
 
 @interface Preferences : NSWindowController <NSToolbarDelegate>
@@ -31,6 +33,7 @@
 @property (strong) IBOutlet NSView *generalPreferencesView;
 @property (strong) IBOutlet NSView *lastfmPreferencesView;
 @property (strong) IBOutlet NSView *vkPreferencesView;
+@property (strong) IBOutlet NSView *purchasePreferencesView;
 
 - (IBAction)switchView:(id)sender;
 
@@ -73,5 +76,9 @@
 
 -(void) updateProfileLastfm;
 
+/*
+ *  Purchase Preferences
+ *************************/
 
+- (IBAction)purchase:(id)sender;
 @end

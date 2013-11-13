@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
 
 #import "RuntimeSlider.h"
 #import "Volume.h"
@@ -36,6 +37,11 @@
                                     NSTableViewDataSource,
                                     NSTableViewDelegate,
                                     NSUserNotificationCenterDelegate,
+
+                                    SKPaymentTransactionObserver,
+                                    SKProductsRequestDelegate,
+                                    SKRequestDelegate,
+
                                     PlayerDelegate,
                                     ControlsViewDelegate,
                                     vkAPIDelegate,

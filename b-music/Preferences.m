@@ -84,7 +84,7 @@
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar{
-    return [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",nil];
+    return [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"PurchasePreferences",nil];
 }
 
 - (IBAction)switchView:(id)sender { NSLog(@"switchView");
@@ -101,6 +101,9 @@
     }else if (tag==3) {
         view=self.lastfmPreferencesView;
         [self.window setTitle:@"Last.fm"];
+    }else if (tag==4) {
+        view=self.purchasePreferencesView;
+        [self.window setTitle:@"Purchase"];
     }
     
     [NSAnimationContext beginGrouping];
@@ -272,6 +275,12 @@
     }
 }
 
+/*
+ * Toolbar
+ *************************/
 
+- (IBAction)purchase:(id)sender{
+    [self.delegate purchase];
+}
 
 @end
