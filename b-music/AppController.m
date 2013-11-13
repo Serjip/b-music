@@ -52,7 +52,12 @@
 }
 -(void)productsRequest:(SKProductsRequest *)request
     didReceiveResponse:(SKProductsResponse *)response{
-
+    
+    for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
+        // Handle any invalid product identifiers.
+        NSLog(@"%@",invalidIdentifier);
+    }
+    
     if (response.products.count) {
         SKProduct *product = [response.products objectAtIndex:0];
         NSLocale *priceLocale = product.priceLocale;
@@ -61,8 +66,13 @@
         
         NSLog(@"%@ %@",[price stringValue],[priceLocale objectForKey:NSLocaleCurrencySymbol]);
         
+        
+        SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
+        payment.quantity = 1;
+        
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+        
     }
-    
     
 }
 
@@ -91,10 +101,19 @@
 }
 
 -(void)purchase{
-    SKProductsRequest * req=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.ttitt.bmusic.unlim"]];
-    req.delegate = self;
-    [req start];
-    NSLog(@"Hello purchase");
+    
+    
+    if([SKPaymentQueue canMakePayments]){
+        
+        SKProductsRequest * req=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.ttitt.bmusic.unlim"]];
+        req.delegate = self;
+        [req start];
+        
+        NSLog(@"Can make payments");
+        
+    }else{
+        NSLog(@"Can't make SHIT");
+    }
 }
 /*
  *  Lastfm API Delegate

@@ -12,22 +12,16 @@
 
 @end
 
-@implementation Preferences
-
-- (id)initWithFrame:(NSRect)frame
-{
-    self = [super initWithWindowNibName:@"Preferences"];
-    if (self) {
-        
-        //INIT SOMTING
-    }
-    return self;
+@implementation Preferences{
+    NSArray * _toolbarSelectedIdentifiers;
 }
-
 
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    
+    //setting toolbar icons object
+    _toolbarSelectedIdentifiers = [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"PurchasePreferences",nil];
     
     /*
      *  Generl Preferences
@@ -78,33 +72,50 @@
      * Toolbar
      *************************/
     
-    [self.toolbar setSelectedItemIdentifier:@"GeneralPreferences"];
-    [self.window setContentSize:self.generalPreferencesView.frame.size];
-    [self.window.contentView addSubview:self.generalPreferencesView];
+    [self.toolbar setSelectedItemIdentifier:[_toolbarSelectedIdentifiers objectAtIndex:0]];
+    NSView * view = [self viewWithTag:1];
+    [self.window setContentSize:view.frame.size];
+    [self.window.contentView addSubview:view];
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar{
-    return [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"PurchasePreferences",nil];
+    return _toolbarSelectedIdentifiers;
+}
+
+-(NSString *) titleWithTag:(NSInteger)tag {
+    NSString * title;
+    if (tag==1) {
+        title = @"General";
+    }else if (tag==2) {
+        title = @"vk.com";
+    }else if (tag==3) {
+        title = @"Last.fm";
+    }else if (tag==4) {
+        title = @"Purchase";
+    }
+    return title;
+}
+
+-(NSView *) viewWithTag:(NSInteger)tag{
+    NSView * view;
+    if (tag==1) {
+        view=self.generalPreferencesView;
+    }else if (tag==2) {
+        view=self.vkPreferencesView;
+    }else if (tag==3) {
+        view=self.lastfmPreferencesView;
+    }else if (tag==4) {
+        view=self.purchasePreferencesView;
+    }
+    return view;
 }
 
 - (IBAction)switchView:(id)sender { NSLog(@"switchView");
-    NSInteger tag= [sender tag];
-    NSView * view;
     NSView *previousView=[[self.window.contentView subviews] objectAtIndex:0];
     
-    if (tag==1) {
-        view=self.generalPreferencesView;
-        [self.window setTitle:@"General"];
-    }else if (tag==2) {
-        view=self.vkPreferencesView;
-        [self.window setTitle:@"vk.com"];
-    }else if (tag==3) {
-        view=self.lastfmPreferencesView;
-        [self.window setTitle:@"Last.fm"];
-    }else if (tag==4) {
-        view=self.purchasePreferencesView;
-        [self.window setTitle:@"Purchase"];
-    }
+    NSInteger tag = [sender tag];
+    NSView * view=[self viewWithTag:tag];
+    [self.window setTitle:[self titleWithTag:tag]];
     
     [NSAnimationContext beginGrouping];
     if ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask){
