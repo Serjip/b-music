@@ -37,7 +37,7 @@
     CGFloat w=NSWidth(self.bounds);
     CGFloat s=5;
     
-    CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:1 green:1 blue:1 alpha:1].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithSRGBRed:1 green:1 blue:1 alpha:1].CGColor);
     CGContextSetRGBFillColor(ctx, 1, 1, 1, kAlpha);
 
     if ([self.cell isHighlighted]) {

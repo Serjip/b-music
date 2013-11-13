@@ -19,7 +19,7 @@
 {
 	[super drawRect:dirtyRect];
     // Drawing code here.
-    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
+    [[NSColor colorWithSRGBRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
     
     NSRectFill(self.bounds);
     

@@ -42,18 +42,18 @@
     
     if (_flag) {
         if ([self.cell isHighlighted]) {
-            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRedH1/255.0 green:kGreenH1/255.0 blue:kBlueH1/255.0 alpha:1].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithSRGBRed:kRedH1/255.0 green:kGreenH1/255.0 blue:kBlueH1/255.0 alpha:1].CGColor);
             CGContextSetRGBFillColor (ctx, kRedH1/255.0, kGreenH1/255.0, kBlueH1/255.0, 1);
         }else{
-            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRedH/255.0 green:kGreenH/255.0 blue:kBlueH/255.0 alpha:1].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithSRGBRed:kRedH/255.0 green:kGreenH/255.0 blue:kBlueH/255.0 alpha:1].CGColor);
             CGContextSetRGBFillColor (ctx, kRedH/255.0, kGreenH/255.0, kBlueH/255.0, 1);
         }
     }else{
         if ([self.cell isHighlighted]) {
-            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:1].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithSRGBRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:1].CGColor);
             CGContextSetRGBFillColor (ctx, kRed/255.0, kGreen/255.0, kBlue/255.0, 1);
         }else{
-            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithRed:kRed1/255.0 green:kGreen1/255.0 blue:kBlue1/255.0 alpha:1].CGColor);
+            CGContextSetStrokeColorWithColor(ctx, [NSColor colorWithSRGBRed:kRed1/255.0 green:kGreen1/255.0 blue:kBlue1/255.0 alpha:1].CGColor);
             CGContextSetRGBFillColor (ctx, kRed1/255.0, kGreen1/255.0, kBlue1/255.0, 1);
         }
     }

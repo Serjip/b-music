@@ -36,7 +36,7 @@
         _isEnd=NO;
     }
     
-    [[NSColor colorWithRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
+    [[NSColor colorWithSRGBRed:kRed/255.0 green:kGreen/255.0 blue:kBlue/255.0 alpha:kAlpha] setFill];
     NSRectFill(self.bounds);
     
     if (self.select) {
