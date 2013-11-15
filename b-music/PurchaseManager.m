@@ -106,6 +106,8 @@ updatedTransactions:(NSArray *)transactions{
 #pragma mark Public
 -(void) getProductInfo{
     
+    NSLog(@"Get product info");
+    
     if([SKPaymentQueue canMakePayments]){
         SKProductsRequest * req=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productID]];
         req.delegate = self;
@@ -160,12 +162,14 @@ updatedTransactions:(NSArray *)transactions{
     NSLog(@"Faled Transaction %@",transaction.error);
     
     [self getProductInfo];
-    
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
         [self.delegate stateString:transaction.error.localizedDescription
                              color:[NSColor grayColor]];
+        
+        
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+        
     }
     else
     {
