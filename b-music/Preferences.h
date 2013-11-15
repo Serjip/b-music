@@ -28,7 +28,7 @@
 
 @property LastfmAPI * lastfmAPI;
 @property vkAPI * vkAPI;
-@property NSInteger showViewWithTag;
+@property int showViewWithTag;
 
 @property (weak) IBOutlet NSToolbar *toolbar;
 

@@ -66,6 +66,11 @@
     if (timerNonPurchase > currentTime || currentTime-timerNonPurchase < timeIntervalPurchase ){
         NSLog(@"NORMAL");
     }else{
+        //show store
+        NSButton * btnSupportLock = [self.lockView viewWithTag:5];
+        [btnSupportLock setTitle:@"Unlock"];
+        [btnSupportLock setAction:@selector(supportLockScreenShowStore:)];
+        [[self.lockView viewWithTag:6] setHidden:NO];
         [self.vkAPI logout];
     }
     
@@ -264,19 +269,19 @@
 
 -(void) authorizationVK:(BOOL)flag{
     id window=[[NSApp delegate] window];
-    if ([window frame].size.height < 314|| [window frame].size.width < 228){
-        CGRect rect = NSMakeRect( [window frame].origin.x, [window frame].origin.y, 228, 314);
+    if ([window frame].size.height < 343|| [window frame].size.width < 223){
+        CGRect rect = NSMakeRect( [window frame].origin.x, [window frame].origin.y, 223, 343);
         [window setFrame:rect display:YES animate:YES];
     }
     for (NSView * view in  [[[[NSApp delegate] window] contentView] subviews]) {
         [view setHidden:flag];
     }
     if (flag) {
-        [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.test];
-        [self.test setHidden:!flag];
+        [self addSubviewHelper:[[[NSApp delegate] window] contentView] slerve:self.lockView];
+        [self.lockView setHidden:!flag];
         [self.PC pause];
     }else{
-        [self.test removeFromSuperview];
+        [self.lockView removeFromSuperview];
     }
     [self switchMainMenuItems:!flag];
 }
@@ -425,6 +430,18 @@
     [self.tableview performSelectorOnMainThread:@selector(reloadData)
                                      withObject:nil
                                   waitUntilDone:NO];
+}
+
+//Show preferences window
+-(void) showPreferencesWichTag:(int)tag{
+    
+    if (!preferences) {
+        preferences=[[Preferences alloc] initWithWindowNibName:@"Preferences"];
+        [preferences setDelegate:self];
+    }
+    
+    preferences.showViewWithTag = tag;
+    [preferences showWindow:self];
 }
 
 /*
@@ -588,7 +605,10 @@
  *@ IBActions
  */
 
--(IBAction)howToUse:(id)sender{ NSLog(@"How to use");
+-(IBAction)supportLockScreenShowStore:(id)sender{
+    [self showPreferencesWichTag:4];
+}
+-(IBAction)supportLockScreen:(id)sender{ NSLog(@"SupportLock Screen");
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://ttitt.ru/b-music/"]];
 }
 
@@ -600,11 +620,7 @@
 }
 
 -(IBAction)preferences:(id)sender{ NSLog(@"Preferences");
-    if (!preferences) {
-        preferences=[[Preferences alloc] initWithWindowNibName:@"Preferences"];
-        [preferences setDelegate:self];
-    }
-    [preferences showWindow:self];
+    [self showPreferencesWichTag:0];
 }
 
 -(IBAction)play:(id)sender{ NSLog(@"Play");

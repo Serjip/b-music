@@ -83,13 +83,28 @@
     }
     
     /*
-     * Toolbar
-     *************************/
+     * Load window
+     ****/
+    [self loadViewWithTag:1];
+}
+
+-(void) loadViewWithTag:(int)tag{
     
-    [self.toolbar setSelectedItemIdentifier:[_toolbarSelectedIdentifiers objectAtIndex:0]];
-    NSView * view = [self viewWithTag:1];
+    [self.toolbar setSelectedItemIdentifier:[_toolbarSelectedIdentifiers objectAtIndex:tag-1]];
+    NSView * view = [self viewWithTag:tag];
     [self.window setContentSize:view.frame.size];
     [self.window.contentView addSubview:view];
+}
+
+-(void)showWindow:(id)sender{
+    [super showWindow:sender];
+    if (_showViewWithTag >0 ) {
+        for(NSView * view in [self.window.contentView subviews]){
+            [view removeFromSuperview];
+        }
+        [self loadViewWithTag:_showViewWithTag];
+    }
+    _showViewWithTag=0;
 }
 
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar{

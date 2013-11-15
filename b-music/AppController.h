@@ -55,7 +55,7 @@
 @property (weak) IBOutlet ControlsView *Controls0;
 @property (weak) IBOutlet NSView *Controls1;
 @property (weak) IBOutlet NSView *Controls2;
-@property (weak) IBOutlet NSView *test;
+@property (weak) IBOutlet NSView *lockView;
 
 @property (weak) IBOutlet Volume *volume;
 
@@ -75,7 +75,8 @@
 
 #pragma mark -
 #pragma mark IBAcrions
--(IBAction)howToUse:(id)sender;
+-(IBAction)supportLockScreen:(id)sender;
+
 -(IBAction)loginAuthVk:(id)sender;
 -(IBAction)signupAuthVk:(id)sender;
 
