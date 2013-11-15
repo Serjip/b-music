@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="authorizationVkBtn" destination="Xn5-hX-qRi" id="ba8-8s-f49"/>
                 <outlet property="authorizeLastfmBtn" destination="w5y-sM-Nth" id="qAW-fa-Km3"/>
+                <outlet property="avatarBtn" destination="vjA-Nh-nEL" id="dq0-NJ-d0f"/>
                 <outlet property="descriptionStore" destination="xtG-ay-O3T" id="bgT-9f-WQb"/>
                 <outlet property="generalPreferencesView" destination="qrY-qb-kSb" id="CYE-KB-M0W"/>
                 <outlet property="iconLockStore" destination="dTm-Te-YgH" id="BrL-C4-qP1"/>
@@ -205,13 +206,13 @@
                         <action selector="scrobbleTracksLastfm:" target="-2" id="Dif-0v-6z8"/>
                     </connections>
                 </button>
-                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qpX-Ci-Ken">
-                    <rect key="frame" x="194" y="119" width="92" height="32"/>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="qpX-Ci-Ken">
+                    <rect key="frame" x="199" y="119" width="82" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="AX9-g3-pJD"/>
                     </constraints>
-                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="regularSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="right" alignment="center" imageScaling="proportionallyDown" inset="2" id="BZ1-t5-eTG">
+                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="BZ1-t5-eTG">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="systemBold" size="15"/>
                     </buttonCell>
@@ -219,6 +220,16 @@
                         <action selector="visitProfileLastfm:" target="-2" id="xHI-ew-82x"/>
                     </connections>
                 </button>
+                <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nDd-8t-EW4">
+                    <rect key="frame" x="-13" y="-10" width="507" height="85"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="505" height="83"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
             </subviews>
             <constraints>
                 <constraint firstItem="12q-aA-aEy" firstAttribute="leading" secondItem="3BO-t8-bS7" secondAttribute="leading" id="3Q0-O2-wXs"/>
@@ -232,45 +243,70 @@
             </constraints>
         </customView>
         <customView id="Lla-Kg-HsL" userLabel="vkView">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="142"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="156"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xn5-hX-qRi">
-                    <rect key="frame" x="205" y="18" width="70" height="25"/>
+                <box autoresizesSubviews="NO" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="c8D-LD-P6x">
+                    <rect key="frame" x="-19" y="-4" width="518" height="66"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="516" height="64"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xn5-hX-qRi">
+                                <rect key="frame" x="229" y="21" width="58" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundTextured" title="Logout" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M3N-JK-Olt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="authorizationVk:" target="-2" id="X4h-zS-uMg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="Rbl-SV-tQj"/>
+                        <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="YeH-gg-Rb5"/>
+                        <constraint firstAttribute="bottom" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" id="eAq-Wd-9Oq"/>
+                    </constraints>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="rZJ-az-bXr">
+                    <rect key="frame" x="202" y="86" width="77" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="70" id="ywA-OB-Da3"/>
+                        <constraint firstAttribute="height" constant="50" id="3pV-Sm-lmP"/>
                     </constraints>
-                    <buttonCell key="cell" type="roundTextured" title="Logout" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M3N-JK-Olt">
+                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="regularSquare" imagePosition="overlaps" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyUpOrDown" inset="2" id="pet-o9-GGT">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="authorizationVk:" target="-2" id="X4h-zS-uMg"/>
-                    </connections>
-                </button>
-                <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZJ-az-bXr">
-                    <rect key="frame" x="194" y="72" width="92" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="v09-UJ-Onb"/>
-                    </constraints>
-                    <buttonCell key="cell" type="bevel" title="Username" bezelStyle="regularSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="pet-o9-GGT">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="systemBold" size="15"/>
+                        <font key="font" size="15" name="LucidaGrande"/>
                     </buttonCell>
                     <connections>
                         <action selector="visitProfileVk:" target="-2" id="Iot-lv-QSI"/>
                     </connections>
                 </button>
+                <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vjA-Nh-nEL">
+                    <rect key="frame" x="141" y="83" width="56" height="56"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="eGI-U1-TSb"/>
+                        <constraint firstAttribute="height" constant="50" id="q56-Sf-sM8"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="Ahs-NQ-2l1"/>
+                </imageView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="rZJ-az-bXr" secondAttribute="centerX" id="ACh-1h-ThU"/>
-                <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="UUm-rq-ROV"/>
-                <constraint firstAttribute="centerX" secondItem="Xn5-hX-qRi" secondAttribute="centerX" id="VCm-La-hDy"/>
-                <constraint firstAttribute="bottom" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" symbolic="YES" id="bZ8-8m-UY6"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Xn5-hX-qRi" secondAttribute="bottom" constant="20" id="hjn-eP-05c"/>
-                <constraint firstItem="rZJ-az-bXr" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" symbolic="YES" id="tUQ-GK-362"/>
+                <constraint firstItem="c8D-LD-P6x" firstAttribute="leading" secondItem="Lla-Kg-HsL" secondAttribute="leading" constant="-16" id="8Et-Ri-Mbe"/>
+                <constraint firstItem="rZJ-az-bXr" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" id="CSL-kx-2gX"/>
+                <constraint firstItem="c8D-LD-P6x" firstAttribute="centerX" secondItem="Lla-Kg-HsL" secondAttribute="centerX" id="I4W-F6-3LD"/>
+                <constraint firstItem="rZJ-az-bXr" firstAttribute="leading" secondItem="vjA-Nh-nEL" secondAttribute="trailing" constant="8" id="LIb-G7-jPa"/>
+                <constraint firstItem="c8D-LD-P6x" firstAttribute="top" secondItem="vjA-Nh-nEL" secondAttribute="bottom" constant="26" id="Nqy-14-NHk"/>
+                <constraint firstAttribute="centerX" secondItem="rZJ-az-bXr" secondAttribute="centerX" id="OHR-pD-hnb"/>
+                <constraint firstAttribute="bottom" secondItem="c8D-LD-P6x" secondAttribute="bottom" id="Xta-uz-9gm"/>
+                <constraint firstItem="vjA-Nh-nEL" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" id="bcT-cS-LGy"/>
             </constraints>
         </customView>
         <customView id="0x9-Fh-kcL" userLabel="StoreView">
@@ -352,7 +388,6 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
         <image name="NSLockLockedTemplate" width="9" height="12"/>
         <image name="lastfmTemplate" width="20" height="20"/>
         <image name="storeTemplate" width="20" height="20"/>

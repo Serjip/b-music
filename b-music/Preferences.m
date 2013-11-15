@@ -223,7 +223,12 @@
 }
 
 - (IBAction)visitProfileVk:(id)sender{ NSLog(@"VisitVk");
-    NSString * strURL= [NSString stringWithFormat:@"https://vk.com/id%li",Settings.sharedInstance.settings.user_id];
+    NSString * strURL;
+    if (Settings.sharedInstance.settings.user_id) {
+        strURL= [NSString stringWithFormat:@"https://vk.com/id%li",Settings.sharedInstance.settings.user_id];
+    }else{
+        strURL= @"https://vk.com/";
+    }
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:strURL]];
 }
 
@@ -238,10 +243,13 @@
     if (Settings.sharedInstance.settings.first_name){
         NSString * name =[NSString stringWithFormat:@"%@ %@",Settings.sharedInstance.settings.first_name , Settings.sharedInstance.settings.last_name];
         [self.visitProfileVkBtn setTitle:name];
-        [self.visitProfileVkBtn setImage:Settings.sharedInstance.settings.avatar];
-        [self.visitProfileVkBtn setHidden:NO];
+        [self.avatarBtn setImage:Settings.sharedInstance.settings.avatar];
+        [self.avatarBtn setHidden:NO];
+        [self.visitProfileVkBtn setImage:nil];
     }else{
-        [self.visitProfileVkBtn setHidden:YES];
+        [self.visitProfileVkBtn setImage:[NSImage imageNamed:@"vkTemplate"]];
+        [self.visitProfileVkBtn setTitle:@""];
+        [self.avatarBtn setHidden:YES];
     }
 }
 
@@ -280,7 +288,12 @@
 }
 
 - (IBAction)visitProfileLastfm:(id)sender { NSLog(@"VisitProfileLastfm");
-    NSString * strURL= [NSString stringWithFormat:@"http://last.fm/user/%@",[sender title]];
+    NSString * strURL;
+    if ([[sender title] isEqualToString:@""]){
+         strURL=@"http://last.fm/";
+    }else{
+        strURL= [NSString stringWithFormat:@"http://last.fm/user/%@",[sender title]];
+    }
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:strURL]];
 }
 
@@ -294,16 +307,17 @@
     
     if (Settings.sharedInstance.settings.nameLastfm){
         [self.visitProfileLastfmBtn setTitle:Settings.sharedInstance.settings.nameLastfm];
-        [self.visitProfileLastfmBtn setHidden:NO];
+        [self.visitProfileLastfmBtn setImage:nil];
     }else{
-        [self.visitProfileLastfmBtn setHidden:YES];
+        [self.visitProfileLastfmBtn setTitle:@""];
+        [self.visitProfileLastfmBtn setImage:[NSImage imageNamed:@"lastfmLogoTemplate"]];
     }
 }
 
 /*
  * Store
  *************************/
-
+#pragma mark Store Preferences
 - (IBAction)restorePurchase:(id)sender {
     [[PurchaseManager sharedInstance] restoreProduct];
     [self loading:YES];

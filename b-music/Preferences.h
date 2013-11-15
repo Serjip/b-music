@@ -58,6 +58,7 @@
  *************************/
 @property (weak) IBOutlet NSButton *authorizationVkBtn;
 @property (weak) IBOutlet NSButton *visitProfileVkBtn;
+@property (weak) IBOutlet NSImageView *avatarBtn;
 
 - (IBAction)authorizationVk:(id)sender;
 - (IBAction)visitProfileVk:(id)sender;
