@@ -82,7 +82,7 @@
 /*
  *  Store Preferences
  *************************/
-
+@property (weak) IBOutlet NSImageView *iconLockStore;
 @property (weak) IBOutlet NSTextField *stateStore;
 @property (weak) IBOutlet NSTextField *titleStore;
 @property (weak) IBOutlet NSTextField *descriptionStore;

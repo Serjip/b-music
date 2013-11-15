@@ -73,7 +73,14 @@
     /*
      * Store
      *********/
-    [self loadStore];
+    if ([Settings sharedInstance].settings.purchased){
+        [self productInformation:@"b-music is unclocked"
+                     description:@""
+                           price:@""
+                      isUnlocked:YES];
+    }else{
+        [self loadStore];
+    }
     
     /*
      * Toolbar
@@ -333,13 +340,28 @@
 
 -(void)productInformation:(NSString *)title
               description:(NSString*)description
-                    price:(NSString*)price{
+                    price:(NSString*)price
+                isUnlocked:(BOOL)isUnlocked{
     
-    [self.purchaseBtnStore  setTitle:price];
+    
     [self.titleStore        setStringValue:title];
     [self.descriptionStore  setStringValue:description];
     [self loading:NO];
+    
+    if ([price isEqualTo:@""]){
+        [self.purchaseBtnStore setHidden:YES];
+        [self.purchaseBtnStore setEnabled:NO];
+    }else{
+        [self.purchaseBtnStore  setTitle:price];
+        [self.purchaseBtnStore setHidden:NO];
+        [self.purchaseBtnStore setEnabled:YES];
+    }
+    
+    if (isUnlocked) {
+        [self.iconLockStore setImage:[NSImage imageNamed:@"NSLockUnlockedTemplate"]];
+    }else{
+        [self.iconLockStore setImage:[NSImage imageNamed:@"NSLockLockedTemplate"]];
+    }
 }
-
 
 @end

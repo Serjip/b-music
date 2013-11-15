@@ -12,7 +12,8 @@
 
 -(void)productInformation:(NSString *)title
               description:(NSString*)description
-                    price:(NSString*)price;
+                    price:(NSString*)price
+                 isUnlocked:(BOOL)isUnlocked;
 
 -(void)stateString:(NSString *)text
              color:(NSColor *)color;
@@ -23,7 +24,7 @@
 @property (weak) id <PurchaseManagerDelegate> delegate;
 
 + (PurchaseManager *)sharedInstance;
-@property SKProduct *product;
+
 -(void) getProductInfo;
 -(void) buyProduct;
 - (void) restoreProduct;

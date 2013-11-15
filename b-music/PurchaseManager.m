@@ -7,10 +7,13 @@
 //
 
 #import "PurchaseManager.h"
+#import "Settings.h"
 
 #define productID @"com.ttitt.bmusic.unlock"
 
-@implementation PurchaseManager
+@implementation PurchaseManager{
+    SKProduct *_product;
+}
 
 + (PurchaseManager *)sharedInstance {
     static dispatch_once_t pred;
@@ -37,15 +40,12 @@ updatedTransactions:(NSArray *)transactions{
                 // Call the appropriate custom method.
             case SKPaymentTransactionStatePurchased:
                 [self completeTransaction:transaction];
-                NSLog(@"SKPaymentTransactionStatePurchased %li",transaction.transactionState);
                 break;
             case SKPaymentTransactionStateFailed:
                 [self failedTransaction:transaction];
-                NSLog(@"SKPaymentTransactionStateFailed %li",transaction.transactionState);
                 break;
             case SKPaymentTransactionStateRestored:
                 [self restoreTransaction:transaction];
-                NSLog(@"SKPaymentTransactionStateRestored: %li",transaction.transactionState);
             default:
                 //NSLog(@"HZ paymentQueue default %ld",(long)transaction.transactionState);
                 break;
@@ -54,7 +54,11 @@ updatedTransactions:(NSArray *)transactions{
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
-    NSLog(@"ERROR %@",error);
+    NSLog(@"Faled restoreTrans %@",error);
+    
+    [self recordFailedUnlock];
+    [self.delegate stateString:error.localizedDescription
+                         color:[NSColor redColor]];
 }
 
 -(void)productsRequest:(SKProductsRequest *)request
@@ -76,9 +80,13 @@ updatedTransactions:(NSArray *)transactions{
     
     if (![productID isEqualToString:product.productIdentifier]) {
         NSLog(@"FALED");
+        [self.delegate stateString:@"Error"
+                             color:[NSColor redColor]];
+        _product=nil;
+        return;
     }
     
-    self.product=product;
+    _product=product;
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
@@ -88,7 +96,8 @@ updatedTransactions:(NSArray *)transactions{
     
     [self.delegate productInformation:product.localizedTitle
                           description:product.localizedDescription
-                                price:formattedPrice];
+                                price:formattedPrice
+                            isUnlocked:NO];
 }
 
 /*
@@ -103,13 +112,16 @@ updatedTransactions:(NSArray *)transactions{
         [req start];
         NSLog(@"Can make payments");
     }else{
-        NSLog(@"Can't make SHIT");
-        
+       //Can't make purchase
+        [self.delegate productInformation:@"Sorry"
+                              description:@"The store not available at the moment."
+                                price:@""
+                            isUnlocked:NO];
     }
 }
 
 -(void) buyProduct{
-    SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:self.product];
+    SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:_product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
@@ -147,6 +159,7 @@ updatedTransactions:(NSArray *)transactions{
 {
     NSLog(@"Faled Transaction %@",transaction.error);
     
+    [self getProductInfo];
     
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
@@ -161,8 +174,26 @@ updatedTransactions:(NSArray *)transactions{
     }
 }
 
+
+-(void) recordFailedUnlock{
+    NSLog(@"LOCK FEATURES");
+    [Settings sharedInstance].settings.purchased=NO;
+    [[Settings sharedInstance] saveSettings];
+    
+    [self getProductInfo];
+}
 -(void) recordCompletedUnlock:(SKPaymentTransaction *)transaction{
-    NSLog(@"HERE WE SHOUD UNLOCK FEATURES");
+    NSLog(@"UNLOCK FEATURES");
+    [Settings sharedInstance].settings.purchased=YES;
+    [[Settings sharedInstance] saveSettings];
+    
+    [self.delegate stateString:@""
+                         color:[NSColor grayColor]];
+    
+    [self.delegate productInformation:@"b-music is unlocked!"
+                          description:@"Thank you! Enjoy."
+                                price:@""
+                           isUnlocked:YES];
 }
 
 
