@@ -183,6 +183,7 @@
     
     Settings.sharedInstance.settings.token=[tokenDic objectForKey:@"access_token"];
     Settings.sharedInstance.settings.user_id=[[tokenDic objectForKey:@"user_id"] integerValue];
+    Settings.sharedInstance.settings.timerNonPurchase=[[NSDate date] timeIntervalSince1970];
     [Settings.sharedInstance saveSettings];
     
     id rsp = [[self users_get] objectForKey:@"response"];
@@ -207,6 +208,7 @@
     Settings.sharedInstance.settings.first_name=nil;
     Settings.sharedInstance.settings.last_name=nil;
     Settings.sharedInstance.settings.avatar=nil;
+    Settings.sharedInstance.settings.timerNonPurchase=[[NSDate date] timeIntervalSince1970];//For non update logout
     
     [Settings.sharedInstance saveSettings];
     

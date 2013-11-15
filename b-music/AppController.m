@@ -7,6 +7,8 @@
 //
 
 #import "AppController.h"
+#define delayCheckPurchase 10.0
+#define timeIntervalPurchase 3*60*60
 
 @implementation AppController{
     
@@ -44,42 +46,32 @@
     }
     return self;
 }
+
+
 /*
  *  Purchase
  *****************************/
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
-    NSLog(@"Payment query");
+
+
+#pragma mark Purchase
+-(void) checkTimerNonPurchase:(NSTimer *)timer{
+//    double currentTime = [[NSDate date] timeIntervalSince1970];
+//    double timerNonPurchase = Settings.sharedInstance.settings.timerNonPurchase;
+//    
+//    if (timerNonPurchase > currentTime || currentTime-timerNonPurchase < timeIntervalPurchase ){
+//        NSLog(@"NORMAL");
+//    }else{
+//        [self.vkAPI logout];
+//    }
+//    
+//    NSLog(@"CheckTimer %f %f time to logout %f",currentTime,timerNonPurchase,currentTime - timerNonPurchase - timeIntervalPurchase );
 }
--(void)productsRequest:(SKProductsRequest *)request
-    didReceiveResponse:(SKProductsResponse *)response{
-    
-    for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
-        // Handle any invalid product identifiers.
-        NSLog(@"%@",invalidIdentifier);
-    }
-    
-    if (response.products.count) {
-        SKProduct *product = [response.products objectAtIndex:0];
-        NSLocale *priceLocale = product.priceLocale;
-        NSDecimalNumber *price = product.price;
-        NSString *description = product.localizedDescription;
-        
-        NSLog(@"%@ %@",[price stringValue],[priceLocale objectForKey:NSLocaleCurrencySymbol]);
-        
-        
-        SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
-        payment.quantity = 1;
-        
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-        
-    }
-    
-}
+
 
 /*
  *  Preferences Delegate
  *****************************/
-#pragma mark Preferences
+#pragma mark Preferences Delegate
 -(void)updateMenuBarIcon{
     if (Settings.sharedInstance.settings.showIconMenubar) { //Add status bar
         [self addStatusBarItem];
@@ -101,19 +93,7 @@
 }
 
 -(void)purchase{
-    
-    
-    if([SKPaymentQueue canMakePayments]){
-        
-        SKProductsRequest * req=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"com.ttitt.bmusic.unlim"]];
-        req.delegate = self;
-        [req start];
-        
-        NSLog(@"Can make payments");
-        
-    }else{
-        NSLog(@"Can't make SHIT");
-    }
+
 }
 /*
  *  Lastfm API Delegate
@@ -129,7 +109,7 @@
 /*
  *  Api VK Delegate
  *****************************/
-#pragma mark APIvk
+#pragma mark vkAPI Delegate
 -(void) finishAuthVK{
     NSLog(@"Finish auth vk");
     [self loadMainPlaylist];
@@ -149,7 +129,7 @@
  *                                  Window Methods
  *
  *****************************************************************************************/
-#pragma mark Window
+#pragma mark Window Delegate
 -(void)windowDidResize:(NSNotification *)notification{
     NSEvent *event = [[NSApplication sharedApplication] currentEvent];
     if ([event type]==6) {
@@ -211,6 +191,13 @@
         [NSEvent addGlobalMonitorForEventsMatchingMask: (NSKeyDownMask | NSSystemDefinedMask)
                                                handler: ^(NSEvent *event) {[self globalMonitorKeydownEvents:event];}];
         
+        //Timer for check purchaise
+        [NSTimer scheduledTimerWithTimeInterval:delayCheckPurchase
+                                         target:self
+                                       selector:@selector(checkTimerNonPurchase:)
+                                       userInfo:nil
+                                        repeats:YES];
+        
         _isInitialLoadingFinish=YES;
         
         [self loadMainPlaylist];
@@ -224,6 +211,7 @@
 /*
  * Notafication center delagate
  *******************************/
+#pragma mark Notafication Center
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
      shouldPresentNotification:(NSUserNotification *)notification{
     return YES;

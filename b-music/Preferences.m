@@ -20,8 +20,10 @@
 {
     [super windowDidLoad];
     
+    [[PurchaseManager sharedInstance] setDelegate:self];
+    
     //setting toolbar icons object
-    _toolbarSelectedIdentifiers = [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"PurchasePreferences",nil];
+    _toolbarSelectedIdentifiers = [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"StorePreferences",nil];
     
     /*
      *  Generl Preferences
@@ -69,6 +71,11 @@
     [self updateProfileVk];
     
     /*
+     * Store
+     *********/
+    [self loadStore];
+    
+    /*
      * Toolbar
      *************************/
     
@@ -91,7 +98,7 @@
     }else if (tag==3) {
         title = @"Last.fm";
     }else if (tag==4) {
-        title = @"Purchase";
+        title = @"Store";
     }
     return title;
 }
@@ -105,7 +112,7 @@
     }else if (tag==3) {
         view=self.lastfmPreferencesView;
     }else if (tag==4) {
-        view=self.purchasePreferencesView;
+        view=self.storePreferencesView;
     }
     return view;
 }
@@ -287,11 +294,52 @@
 }
 
 /*
- * Toolbar
+ * Store
  *************************/
 
-- (IBAction)purchase:(id)sender{
-    [self.delegate purchase];
+- (IBAction)restorePurchase:(id)sender {
+    [[PurchaseManager sharedInstance] restoreProduct];
+    [self loading:YES];
 }
+
+- (IBAction)purchaseStore:(id)sender{
+    [[PurchaseManager sharedInstance] buyProduct];
+    [self loading:YES];
+}
+
+-(void) loadStore{
+    //
+    [[PurchaseManager sharedInstance] getProductInfo];
+    //Show spinner
+    [self loading:YES];
+}
+
+-(void) loading:(BOOL)flag{
+    if (flag) {
+        [self.progressIndicatorStore startAnimation:self];
+    }else{
+        [self.progressIndicatorStore stopAnimation:self];
+    }
+    [self.progressIndicatorStore setHidden:!flag];
+    [self.purchaseBtnStore setEnabled:!flag];
+    [self.restorePurchaseBtn setEnabled:!flag];
+}
+
+-(void)stateString:(NSString *)text
+             color:(NSColor *)color{
+    [self.stateStore setStringValue:text];
+    [self.stateStore setTextColor:color];
+}
+
+-(void)productInformation:(NSString *)title
+              description:(NSString*)description
+                    price:(NSString*)price{
+    
+    [self.purchaseBtnStore  setTitle:price];
+    [self.titleStore        setStringValue:title];
+    [self.descriptionStore  setStringValue:description];
+    [self loading:NO];
+}
+
 
 @end

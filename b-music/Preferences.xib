@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4511" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4511"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Preferences">
             <connections>
                 <outlet property="authorizationVkBtn" destination="Xn5-hX-qRi" id="ba8-8s-f49"/>
                 <outlet property="authorizeLastfmBtn" destination="w5y-sM-Nth" id="qAW-fa-Km3"/>
+                <outlet property="descriptionStore" destination="xtG-ay-O3T" id="bgT-9f-WQb"/>
                 <outlet property="generalPreferencesView" destination="qrY-qb-kSb" id="CYE-KB-M0W"/>
                 <outlet property="lastfmPreferencesView" destination="ZEV-Z5-5tv" id="FZo-dX-ql4"/>
                 <outlet property="nowPlayingLastfmBtn" destination="3BO-t8-bS7" id="jKE-u3-YaG"/>
-                <outlet property="purchasePreferencesView" destination="0x9-Fh-kcL" id="DX1-7z-dNr"/>
+                <outlet property="progressIndicatorStore" destination="xfr-pc-jCn" id="L04-lY-yfc"/>
+                <outlet property="purchaseBtnStore" destination="cdk-MR-Qkr" id="rNW-rH-RAg"/>
+                <outlet property="restorePurchaseBtn" destination="SLC-IT-pIn" id="ddW-9U-iQ5"/>
                 <outlet property="scrobbleTracksLastfmBtn" destination="12q-aA-aEy" id="fMg-2S-gth"/>
                 <outlet property="searchArtworkGeneralBtn" destination="Mh9-bS-s2c" id="ULa-7I-qsM"/>
                 <outlet property="showDockIconArtworkGeneralBtn" destination="6pj-mH-baH" id="c5l-Az-baf"/>
                 <outlet property="showMenubarIconGeneralBtn" destination="5Ji-X6-YHs" id="1q0-mC-LzL"/>
                 <outlet property="showNotaficationGeneralBtn" destination="Vb5-ym-TC9" id="lVy-lT-jgQ"/>
+                <outlet property="stateStore" destination="K1g-1y-j0p" id="5BQ-Zf-Zc1"/>
+                <outlet property="storePreferencesView" destination="0x9-Fh-kcL" id="pAG-fR-EUD"/>
+                <outlet property="titleStore" destination="yuO-ds-Hcw" id="qit-CV-yPp"/>
                 <outlet property="toolbar" destination="HNF-pl-mcq" id="0xH-Iu-UqW"/>
                 <outlet property="visitProfileLastfmBtn" destination="qpX-Ci-Ken" id="yTt-a2-ADK"/>
                 <outlet property="visitProfileVkBtn" destination="rZJ-az-bXr" id="igE-Ag-AaB"/>
@@ -52,7 +58,7 @@
                             <action selector="switchView:" target="-2" id="3es-uw-DnX"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="D299D417-1892-43FC-B931-9A3717E2DBFC" explicitItemIdentifier="PurchasePreferences" label="Purchase" paletteLabel="Purchase" tag="4" id="uJp-XC-t9A">
+                    <toolbarItem implicitItemIdentifier="D299D417-1892-43FC-B931-9A3717E2DBFC" explicitItemIdentifier="StorePreferences" label="Store" paletteLabel="Store" tag="4" image="storeTemplate" id="uJp-XC-t9A">
                         <connections>
                             <action selector="switchView:" target="-2" id="Vkc-QJ-Gsv"/>
                         </connections>
@@ -266,12 +272,12 @@
                 <constraint firstItem="rZJ-az-bXr" firstAttribute="top" secondItem="Lla-Kg-HsL" secondAttribute="top" constant="20" symbolic="YES" id="tUQ-GK-362"/>
             </constraints>
         </customView>
-        <customView id="0x9-Fh-kcL">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="190"/>
+        <customView id="0x9-Fh-kcL" userLabel="StoreView">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="199"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="foh-Hf-FeJ">
-                    <rect key="frame" x="-41" y="-7" width="562" height="74"/>
+                    <rect key="frame" x="-41" y="-5" width="562" height="74"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="560" height="72"/>
@@ -280,10 +286,13 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SLC-IT-pIn">
                                 <rect key="frame" x="220" y="24" width="121" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="roundTextured" title="Restore Purchase" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QNa-Id-Pse">
+                                <buttonCell key="cell" type="roundTextured" title="Restore Purchase" bezelStyle="texturedRounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QNa-Id-Pse">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="restorePurchase:" target="-2" id="CGd-LO-J7o"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -291,20 +300,42 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-MR-Qkr">
-                    <rect key="frame" x="164" y="96" width="153" height="25"/>
+                    <rect key="frame" x="279" y="88" width="100" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundTextured" title="Purchase $0.99 / year" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zyj-DA-ftX">
+                    <buttonCell key="cell" type="roundTextured" title="Buy" bezelStyle="texturedRounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zyj-DA-ftX">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="purchase:" target="-2" id="AVD-ao-dH1"/>
+                        <action selector="purchaseStore:" target="-2" id="qXP-yz-vBU"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-ds-Hcw">
-                    <rect key="frame" x="133" y="153" width="156" height="17"/>
+                    <rect key="frame" x="113" y="162" width="268" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unlimited Authorization" id="h9z-6n-hnZ">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Unlimited Authorization" id="h9z-6n-hnZ">
+                        <font key="font" metaFont="systemBold" size="12"/>
+                        <color key="textColor" name="controlDarkShadowColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-ay-O3T">
+                    <rect key="frame" x="113" y="115" width="268" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Sorry but store not available now" id="6kp-u7-mEO">
+                        <font key="font" size="10" name="LucidaGrande"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="xfr-pc-jCn">
+                    <rect key="frame" x="232" y="91" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </progressIndicator>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1g-1y-j0p">
+                    <rect key="frame" x="18" y="68" width="444" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" id="TOT-17-Y2X">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -317,6 +348,7 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSFollowLinkFreestandingTemplate" width="10" height="10"/>
         <image name="lastfmTemplate" width="20" height="20"/>
+        <image name="storeTemplate" width="20" height="20"/>
         <image name="vkTemplate" width="20" height="20"/>
     </resources>
 </document>

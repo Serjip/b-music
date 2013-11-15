@@ -60,6 +60,8 @@
 		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
+		D2A92B9C1835102300EF642B /* PurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A92B9B1835102300EF642B /* PurchaseManager.m */; };
+		D2A92B9F1836269200EF642B /* storeTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2A92B9E1836269200EF642B /* storeTemplate.pdf */; };
 		D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AFF77E182FF55F00B6236C /* MainMenu.xib */; };
 		D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFF781183002E900B6236C /* PlayerOverlay.m */; };
 		D2BB89E418314F060062BA8E /* icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2BB89E318314F060062BA8E /* icon.pdf */; };
@@ -171,6 +173,9 @@
 		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D2A92B9A1835102300EF642B /* PurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseManager.h; sourceTree = "<group>"; };
+		D2A92B9B1835102300EF642B /* PurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseManager.m; sourceTree = "<group>"; };
+		D2A92B9E1836269200EF642B /* storeTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = storeTemplate.pdf; sourceTree = "<group>"; };
 		D2AFF77E182FF55F00B6236C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2AFF780183002E900B6236C /* PlayerOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerOverlay.h; sourceTree = "<group>"; };
 		D2AFF781183002E900B6236C /* PlayerOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerOverlay.m; sourceTree = "<group>"; };
@@ -183,8 +188,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D294A8011832C32800302736 /* StoreKit.framework in Frameworks */,
 				D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */,
+				D294A8011832C32800302736 /* StoreKit.framework in Frameworks */,
 				D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */,
 				D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */,
 				D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */,
@@ -214,13 +219,13 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		D212C53A18157A2500C4E21D /* Search */ = {
+		D212C53A18157A2500C4E21D /* Search View */ = {
 			isa = PBXGroup;
 			children = (
 				D212C534181577BC00C4E21D /* SearchView.h */,
 				D212C535181577BC00C4E21D /* SearchView.m */,
 			);
-			name = Search;
+			name = "Search View";
 			sourceTree = "<group>";
 		};
 		D213286F180065D600AFF98C /* Controls */ = {
@@ -235,6 +240,7 @@
 		D2163A67182C1CF00036FFCE /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				D2A92B9E1836269200EF642B /* storeTemplate.pdf */,
 				D2BB89E318314F060062BA8E /* icon.pdf */,
 				D21F1EFC182FD403002404A1 /* pauseTemplate.pdf */,
 				D21F1EFD182FD403002404A1 /* playTemplate.pdf */,
@@ -295,11 +301,12 @@
 			children = (
 				D2AFF77E182FF55F00B6236C /* MainMenu.xib */,
 				D2AFF783183002EE00B6236C /* Overlay */,
-				D20A47FF1826AF62002B7B18 /* Preferences */,
 				D2163A67182C1CF00036FFCE /* Graphics */,
 				D213286F180065D600AFF98C /* Controls */,
 				D21CEA2517FAFAFE00F5AF42 /* AppController.h */,
 				D21CEA2617FAFAFE00F5AF42 /* AppController.m */,
+				D20A47FF1826AF62002B7B18 /* Preferences */,
+				D2A92B9D1835102900EF642B /* PurchaseManager */,
 				D2825B4917FC90F300F725BD /* Api */,
 				D2825B3A17FC2D7800F725BD /* Player */,
 				D2825B3317FC24EE00F725BD /* PlayerWindow */,
@@ -307,7 +314,7 @@
 				D21CEA2B17FB017300F5AF42 /* Settings */,
 				D21CEA0317FAFA0900F5AF42 /* AppDelegate.h */,
 				D21CEA0417FAFA0900F5AF42 /* AppDelegate.m */,
-				D212C53A18157A2500C4E21D /* Search */,
+				D212C53A18157A2500C4E21D /* Search View */,
 				D21CEA0917FAFA0900F5AF42 /* Images.xcassets */,
 				D2825B5017FC9B1E00F725BD /* Table */,
 				D21CE9F817FAFA0900F5AF42 /* Supporting Files */,
@@ -509,6 +516,15 @@
 			name = Buttons;
 			sourceTree = "<group>";
 		};
+		D2A92B9D1835102900EF642B /* PurchaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2A92B9A1835102300EF642B /* PurchaseManager.h */,
+				D2A92B9B1835102300EF642B /* PurchaseManager.m */,
+			);
+			name = PurchaseManager;
+			sourceTree = "<group>";
+		};
 		D2AFF783183002EE00B6236C /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +587,9 @@
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 					D21CEA0E17FAFA0A00F5AF42 = {
@@ -604,6 +623,7 @@
 			files = (
 				D21CE9FC17FAFA0900F5AF42 /* InfoPlist.strings in Resources */,
 				D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */,
+				D2A92B9F1836269200EF642B /* storeTemplate.pdf in Resources */,
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
 				D21F1EFE182FD403002404A1 /* pauseTemplate.pdf in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
@@ -657,6 +677,7 @@
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* vkAPI.m in Sources */,
 				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,
+				D2A92B9C1835102300EF642B /* PurchaseManager.m in Sources */,
 				D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */,
 				D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
@@ -791,6 +812,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/serji/Developer/mac/b-music2.0",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "b-music/b-music-Prefix.pch";
 				INFOPLIST_FILE = "b-music/b-music-Info.plist";
@@ -809,6 +834,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/serji/Developer/mac/b-music2.0",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "b-music/b-music-Prefix.pch";
 				INFOPLIST_FILE = "b-music/b-music-Info.plist";

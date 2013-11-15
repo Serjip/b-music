@@ -11,6 +11,12 @@
 @interface SettingsC : NSObject <NSCoding>
 
 /*
+ * Purchase
+ */
+@property double timerNonPurchase;
+@property BOOL isPurchased;
+
+/*
  *  Palyer
  */
 

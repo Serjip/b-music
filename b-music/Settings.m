@@ -8,12 +8,18 @@
 
 #import "Settings.h"
 @implementation SettingsC
-#define userDefaults @"com.ttitt.settings"//String where is the data located
+
+#define userDefaults @"com.ttitt.b-music.settings"//String where is the data located
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
     if (self) {
+        /*
+         * Purchase
+         */
+        _timerNonPurchase= [coder decodeDoubleForKey:@"timerNonPurchase"];
+        _isPurchased=[coder decodeBoolForKey:@"isPurchased"];
         
         /*
          * VK
@@ -54,6 +60,12 @@
     return self;
 }
 -(void)encodeWithCoder:(NSCoder *)aCoder{
+    
+    /*
+     * Purchase
+     */
+    [aCoder encodeDouble:_timerNonPurchase forKey:@"timerNonPurchase"];
+    [aCoder encodeDouble:_isPurchased forKey:@"isPurchased"];
     
     /*
      * VK
@@ -141,6 +153,11 @@
 -(NSString *)description{
     NSMutableDictionary * list= [[NSMutableDictionary alloc]init];
     
+    //Purchase
+    [list setValue:@(self.settings.timerNonPurchase)    forKey:@"TimerPurchase"];
+    [list setValue:@(self.settings.isPurchased)         forKey:@"IsPurchased"];
+    
+    
     //VK
     [list setValue:@(self.settings.user_id)    forKey:@"user_id"];
     [list setValue:self.settings.token         forKey:@"token"];
@@ -154,18 +171,17 @@
     [list setValue:self.settings.nameLastfm                forKey:@"nameLastfm"];
     
     //general
-    [list setValue:@(self.settings.showIconMenubar)  forKey:@"showIconMenubar"];
-    [list setValue:@(self.settings.showArtworkDock)  forKey:@"showArtworkDock"];
-    [list setValue:@(self.settings.showNotafications)  forKey:@"showNotafications"];
-    [list setValue:@(self.settings.searchArtwork)  forKey:@"searchArtwork"];
+    [list setValue:@(self.settings.showIconMenubar)     forKey:@"showIconMenubar"];
+    [list setValue:@(self.settings.showArtworkDock)     forKey:@"showArtworkDock"];
+    [list setValue:@(self.settings.showNotafications)   forKey:@"showNotafications"];
+    [list setValue:@(self.settings.searchArtwork)       forKey:@"searchArtwork"];
     
     //player
-    
-    [list setValue:@(self.settings.repeat)  forKey:@"repeat"];
-    [list setValue:@(self.settings.shuffle)  forKey:@"shuffle"];
-    [list setValue:@(self.settings.runTime)  forKey:@"runtime"];
-    [list setValue:@(self.settings.alwaysOnTop)  forKey:@"alwaysOnTop"];
-    [list setValue:@(self.settings.volume)  forKey:@"volume"];
+    [list setValue:@(self.settings.repeat)      forKey:@"repeat"];
+    [list setValue:@(self.settings.shuffle)     forKey:@"shuffle"];
+    [list setValue:@(self.settings.runTime)     forKey:@"runtime"];
+    [list setValue:@(self.settings.alwaysOnTop) forKey:@"alwaysOnTop"];
+    [list setValue:@(self.settings.volume)      forKey:@"volume"];
     
     return [NSString stringWithFormat:@"%@", list];
 }

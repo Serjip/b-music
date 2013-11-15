@@ -13,6 +13,13 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    
+//    NSUbiquitousKeyValueStore *storage = [NSUbiquitousKeyValueStore defaultStore];
+    
+//    [storage setString:@"HELLO" forKey:@"test"];
+//    NSLog(@"iclod %@",[storage objectForKey:@"test"]);
+    
+    
 }
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag{
     [self.window orderFront:nil];
