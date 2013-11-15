@@ -14,7 +14,7 @@
  * Purchase
  */
 @property double timerNonPurchase;
-@property BOOL isPurchased;
+@property BOOL purchased;
 
 /*
  *  Palyer

@@ -19,7 +19,7 @@
          * Purchase
          */
         _timerNonPurchase= [coder decodeDoubleForKey:@"timerNonPurchase"];
-        _isPurchased=[coder decodeBoolForKey:@"isPurchased"];
+        _purchased = [coder decodeBoolForKey:@"purchased"];
         
         /*
          * VK
@@ -65,7 +65,7 @@
      * Purchase
      */
     [aCoder encodeDouble:_timerNonPurchase forKey:@"timerNonPurchase"];
-    [aCoder encodeDouble:_isPurchased forKey:@"isPurchased"];
+    [aCoder encodeBool:_purchased forKey:@"purchased"];
     
     /*
      * VK
@@ -155,7 +155,7 @@
     
     //Purchase
     [list setValue:@(self.settings.timerNonPurchase)    forKey:@"TimerPurchase"];
-    [list setValue:@(self.settings.isPurchased)         forKey:@"IsPurchased"];
+    [list setValue:@(self.settings.purchased)         forKey:@"IsPurchased"];
     
     
     //VK

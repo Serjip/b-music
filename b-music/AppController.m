@@ -7,7 +7,7 @@
 //
 
 #import "AppController.h"
-#define delayCheckPurchase 10.0
+#define delayCheckPurchase 30.0
 #define timeIntervalPurchase 3*60*60
 
 @implementation AppController{
@@ -55,16 +55,21 @@
 
 #pragma mark Purchase
 -(void) checkTimerNonPurchase:(NSTimer *)timer{
-//    double currentTime = [[NSDate date] timeIntervalSince1970];
-//    double timerNonPurchase = Settings.sharedInstance.settings.timerNonPurchase;
-//    
-//    if (timerNonPurchase > currentTime || currentTime-timerNonPurchase < timeIntervalPurchase ){
-//        NSLog(@"NORMAL");
-//    }else{
-//        [self.vkAPI logout];
-//    }
-//    
-//    NSLog(@"CheckTimer %f %f time to logout %f",currentTime,timerNonPurchase,currentTime - timerNonPurchase - timeIntervalPurchase );
+    
+    if ([Settings sharedInstance].settings.purchased) {
+        return;
+    }
+    
+    double currentTime = [[NSDate date] timeIntervalSince1970];
+    double timerNonPurchase = Settings.sharedInstance.settings.timerNonPurchase;
+    
+    if (timerNonPurchase > currentTime || currentTime-timerNonPurchase < timeIntervalPurchase ){
+        NSLog(@"NORMAL");
+    }else{
+        [self.vkAPI logout];
+    }
+    
+    NSLog(@"CheckTimer %f %f time to logout %f",currentTime,timerNonPurchase,currentTime - timerNonPurchase - timeIntervalPurchase );
 }
 
 
@@ -92,9 +97,6 @@
     [self.vkAPI logout];
 }
 
--(void)purchase{
-
-}
 /*
  *  Lastfm API Delegate
  *****************************/
