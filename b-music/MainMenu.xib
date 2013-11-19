@@ -551,7 +551,7 @@ CA
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="nPK-OF-Yv0" userLabel="Previous Button" customClass="RewindButton">
-                    <rect key="frame" x="23" y="10" width="30" height="30"/>
+                    <rect key="frame" x="25" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="Wao-mv-Mxf"/>
@@ -566,7 +566,7 @@ CA
                     </connections>
                 </button>
                 <button tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="rTt-bS-Gpj" userLabel="Play Button" customClass="PlayButton">
-                    <rect key="frame" x="53" y="10" width="30" height="30"/>
+                    <rect key="frame" x="55" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="L5e-ik-GKV"/>
@@ -581,7 +581,7 @@ CA
                     </connections>
                 </button>
                 <button tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-5t-NVl" userLabel="Next Button" customClass="FfwdButton">
-                    <rect key="frame" x="83" y="10" width="30" height="30"/>
+                    <rect key="frame" x="85" y="10" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="6mX-nV-8vT"/>
@@ -626,11 +626,11 @@ CA
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="jz2-d1-dqI" customClass="CloseButton">
-                    <rect key="frame" x="6" y="35" width="9" height="9"/>
+                    <rect key="frame" x="6" y="33" width="11" height="11"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="9" id="Sdt-cm-1wu"/>
-                        <constraint firstAttribute="height" constant="9" id="ccQ-vX-D8q"/>
+                        <constraint firstAttribute="width" constant="11" id="Sdt-cm-1wu"/>
+                        <constraint firstAttribute="height" constant="11" id="ccQ-vX-D8q"/>
                     </constraints>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="elv-lG-YyI">
                         <behavior key="behavior" lightByContents="YES"/>

@@ -14,16 +14,17 @@
 {
     // Insert code here to initialize your application
     
-//    NSUbiquitousKeyValueStore *storage = [NSUbiquitousKeyValueStore defaultStore];
-    
-//    [storage setString:@"HELLO" forKey:@"test"];
-//    NSLog(@"iclod %@",[storage objectForKey:@"test"]);
-    
 }
-- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag{
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
+                    hasVisibleWindows:(BOOL)flag{
     [self.window orderFront:nil];
     [self.window makeMainWindow];
-    return NO;
+    return YES;
 }
+
+//- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+//{
+//    return YES;
+//}
 
 @end

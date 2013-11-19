@@ -604,7 +604,7 @@
 								enabled = 1;
 							};
 							com.apple.iCloud = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -831,8 +831,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -852,8 +853,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
+				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
