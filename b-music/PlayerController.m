@@ -61,12 +61,15 @@
 }
 
 -(void) pause{
+    
+    double volume=Settings.sharedInstance.settings.volume;
+    
     if (self.player.volume > 0.1) {
-        self.player.volume -= 0.1;
+        self.player.volume -= 0.1*volume;
         [self performSelector:@selector(pause) withObject:nil afterDelay:0.03];
     } else {
         [self.player pause];
-        [self.player setVolume:Settings.sharedInstance.settings.volume];
+        [self.player setVolume:volume];
     }
 }
 
