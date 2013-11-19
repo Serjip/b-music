@@ -11,6 +11,8 @@
 
 #define userDefaults @"com.ttitt.b-music.settings"//String where is the data located
 
+#define secret @"dba24bcca55ca43fa5704c679f98b991"
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -18,42 +20,42 @@
         /*
          * Purchase
          */
-        _timerNonPurchase= [coder decodeDoubleForKey:@"timerNonPurchase"];
-        _purchased = [coder decodeBoolForKey:@"purchased"];
+        _timerNonPurchase= [coder decodeDoubleForKey:[@"timerNonPurchase" stringByAppendingString:secret]];
+        _purchased = [coder decodeBoolForKey:[@"purchased" stringByAppendingString:secret]];
         
         /*
          * VK
          */
-        _user_id=[coder decodeIntegerForKey:@"user_id"];
-        _token=[coder decodeObjectForKey:@"token"];
-        _first_name=[coder decodeObjectForKey:@"first_name"];
-        _last_name=[coder decodeObjectForKey:@"last_name"];
-        _avatar=[coder decodeObjectForKey:@"avatar"];
+        _user_id=[coder decodeIntegerForKey:[@"user_id" stringByAppendingString:secret]];
+        _token=[coder decodeObjectForKey:[@"token" stringByAppendingString:secret]];
+        _first_name=[coder decodeObjectForKey:[@"first_name" stringByAppendingString:secret]];
+        _last_name=[coder decodeObjectForKey:[@"last_name" stringByAppendingString:secret]];
+        _avatar=[coder decodeObjectForKey:[@"avatar" stringByAppendingString:secret]];
         
         /*
          * Player
          */
-        _repeat = [coder decodeBoolForKey:@"repeat"];
-        _shuffle = [coder decodeBoolForKey:@"shuffle"];
-        _runTime = [coder decodeBoolForKey:@"runtime"];
-        _alwaysOnTop = [coder decodeBoolForKey:@"alwaysOnTop"];
-        _volume = [coder decodeFloatForKey:@"volume"];
+        _repeat = [coder decodeBoolForKey:[@"repeat" stringByAppendingString:secret]];
+        _shuffle = [coder decodeBoolForKey:[@"shuffle" stringByAppendingString:secret]];
+        _runTime = [coder decodeBoolForKey:[@"runtime" stringByAppendingString:secret]];
+        _alwaysOnTop = [coder decodeBoolForKey:[@"alwaysOnTop" stringByAppendingString:secret]];
+        _volume = [coder decodeFloatForKey:[@"volume" stringByAppendingString:secret]];
         
         /*
          * Lastfm
          */
-        _nowPlayingTrackLastfm=[coder decodeBoolForKey:@"nowPlayingTrackLastfm"];
-        _scrobbleTrackLastfm=[coder decodeBoolForKey:@"scrobbleTrackLastfm"];
-        _sessionLastfm=[coder decodeObjectForKey:@"sessionLastfm"];
-        _nameLastfm=[coder decodeObjectForKey:@"nameLastfm"];
+        _nowPlayingTrackLastfm=[coder decodeBoolForKey:[@"nowPlayingTrackLastfm" stringByAppendingString:secret]];
+        _scrobbleTrackLastfm=[coder decodeBoolForKey:[@"scrobbleTrackLastfm" stringByAppendingString:secret]];
+        _sessionLastfm=[coder decodeObjectForKey:[@"sessionLastfm" stringByAppendingString:secret]];
+        _nameLastfm=[coder decodeObjectForKey:[@"nameLastfm" stringByAppendingString:secret]];
         
         /*
          *Preferences general
          */
-        _showIconMenubar=[coder decodeBoolForKey:@"showIconMenubar"];
-        _showArtworkDock=[coder decodeBoolForKey:@"showArtworkDock"];
-        _showNotafications=[coder decodeBoolForKey:@"showNotafications"];
-        _searchArtwork=[coder decodeBoolForKey:@"searchArtwork"];
+        _showIconMenubar=[coder decodeBoolForKey:[@"showIconMenubar" stringByAppendingString:secret]];
+        _showArtworkDock=[coder decodeBoolForKey:[@"showArtworkDock" stringByAppendingString:secret]];
+        _showNotafications=[coder decodeBoolForKey:[@"showNotafications" stringByAppendingString:secret]];
+        _searchArtwork=[coder decodeBoolForKey:[@"searchArtwork" stringByAppendingString:secret]];
         
         
     }
@@ -64,42 +66,42 @@
     /*
      * Purchase
      */
-    [aCoder encodeDouble:_timerNonPurchase forKey:@"timerNonPurchase"];
-    [aCoder encodeBool:_purchased forKey:@"purchased"];
+    [aCoder encodeDouble:_timerNonPurchase forKey:[@"timerNonPurchase"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_purchased forKey:[@"purchased"  stringByAppendingString:secret]];
     
     /*
      * VK
      */
-    [aCoder encodeInteger:_user_id      forKey:@"user_id"];
-    [aCoder encodeObject:_token         forKey:@"token"];
-    [aCoder encodeObject:_first_name    forKey:@"first_name"];
-    [aCoder encodeObject:_last_name     forKey:@"last_name"];
-    [aCoder encodeObject:_avatar        forKey:@"avatar"];
+    [aCoder encodeInteger:_user_id      forKey:[@"user_id"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_token         forKey:[@"token"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_first_name    forKey:[@"first_name"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_last_name     forKey:[@"last_name"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_avatar        forKey:[@"avatar"  stringByAppendingString:secret]];
     
     /*
      * Player
      */
-    [aCoder encodeBool:_repeat      forKey:@"repeat"];
-    [aCoder encodeBool:_shuffle     forKey:@"shuffle"];
-    [aCoder encodeBool:_runTime     forKey:@"runtime"];
-    [aCoder encodeBool:_alwaysOnTop forKey:@"alwaysOnTop"];
-    [aCoder encodeFloat:_volume     forKey:@"volume"];
+    [aCoder encodeBool:_repeat      forKey:[@"repeat"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_shuffle     forKey:[@"shuffle"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_runTime     forKey:[@"runtime"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_alwaysOnTop forKey:[@"alwaysOnTop"  stringByAppendingString:secret]];
+    [aCoder encodeFloat:_volume     forKey:[@"volume"  stringByAppendingString:secret]];
     
     /*
      * Lastfm
      */
-    [aCoder encodeBool:_nowPlayingTrackLastfm   forKey:@"nowPlayingTrackLastfm"];
-    [aCoder encodeBool:_scrobbleTrackLastfm     forKey:@"scrobbleTrackLastfm"];
-    [aCoder encodeObject:_sessionLastfm         forKey:@"sessionLastfm"];
-    [aCoder encodeObject:_nameLastfm            forKey:@"nameLastfm"];
+    [aCoder encodeBool:_nowPlayingTrackLastfm   forKey:[@"nowPlayingTrackLastfm"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_scrobbleTrackLastfm     forKey:[@"scrobbleTrackLastfm"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_sessionLastfm         forKey:[@"sessionLastfm"  stringByAppendingString:secret]];
+    [aCoder encodeObject:_nameLastfm            forKey:[@"nameLastfm"  stringByAppendingString:secret]];
     
     /*
      *Preferences general
      */
-    [aCoder encodeBool:_showIconMenubar     forKey:@"showIconMenubar"];
-    [aCoder encodeBool:_showArtworkDock     forKey:@"showArtworkDock"];
-    [aCoder encodeBool:_showNotafications   forKey:@"showNotafications"];
-    [aCoder encodeBool:_searchArtwork       forKey:@"searchArtwork"];
+    [aCoder encodeBool:_showIconMenubar     forKey:[@"showIconMenubar"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_showArtworkDock     forKey:[@"showArtworkDock"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_showNotafications   forKey:[@"showNotafications"  stringByAppendingString:secret]];
+    [aCoder encodeBool:_searchArtwork       forKey:[@"searchArtwork"  stringByAppendingString:secret]];
 }
 
 @end

@@ -152,6 +152,9 @@
         
         [self registerHandlerLinks];//Handler tokens /lastfm/vk
         
+        //add b-music to menu window
+        [[NSApplication sharedApplication]addWindowsItem:[[NSApp delegate] window] title:@"b-music" filename:NO];
+        
         //Print settings
         NSLog(@"%@",[Settings sharedInstance]);
         
