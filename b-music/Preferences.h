@@ -11,20 +11,15 @@
 #import "vkAPI.h"
 #import "Settings.h"
 
-#import "PurchaseManager.h"
-#import <StoreKit/StoreKit.h>
-
-
 @protocol PreferencesDelegate <NSObject>
 -(void) updateMenuBarIcon;
 -(void) updateDockIcon;
 -(void) logoutVkFromPreferences;
 @end
 
-@interface Preferences : NSWindowController <NSToolbarDelegate,PurchaseManagerDelegate>
+@interface Preferences : NSWindowController <NSToolbarDelegate>
 
 @property (weak) id <PreferencesDelegate> delegate;
-
 
 @property LastfmAPI * lastfmAPI;
 @property vkAPI * vkAPI;
@@ -35,7 +30,6 @@
 @property (strong) IBOutlet NSView *generalPreferencesView;
 @property (strong) IBOutlet NSView *lastfmPreferencesView;
 @property (strong) IBOutlet NSView *vkPreferencesView;
-@property (strong) IBOutlet NSView *storePreferencesView;
 
 - (IBAction)switchView:(id)sender;
 

@@ -20,10 +20,8 @@
 {
     [super windowDidLoad];
     
-    [[PurchaseManager sharedInstance] setDelegate:self];
-    
     //setting toolbar icons object
-    _toolbarSelectedIdentifiers = [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",@"StorePreferences",nil];
+    _toolbarSelectedIdentifiers = [NSArray arrayWithObjects:@"GeneralPreferences",@"VkPreferences",@"LastfmPreferences",nil];
     
     /*
      *  Generl Preferences
@@ -70,17 +68,6 @@
     //Set username
     [self updateProfileVk];
     
-    /*
-     * Store
-     *********/
-    if ([Settings sharedInstance].settings.purchased){
-        [self productInformation:@"b-music is unclocked"
-                     description:@""
-                           price:@""
-                      isUnlocked:YES];
-    }else{
-        [self loadStore];
-    }
     
     /*
      * Load window
@@ -133,8 +120,6 @@
         view=self.vkPreferencesView;
     }else if (tag==3) {
         view=self.lastfmPreferencesView;
-    }else if (tag==4) {
-        view=self.storePreferencesView;
     }
     return view;
 }
@@ -334,19 +319,10 @@
  *************************/
 #pragma mark Store Preferences
 - (IBAction)restorePurchase:(id)sender {
-    [[PurchaseManager sharedInstance] restoreProduct];
     [self loading:YES];
 }
 
 - (IBAction)purchaseStore:(id)sender{
-    [[PurchaseManager sharedInstance] buyProduct];
-    [self loading:YES];
-}
-
--(void) loadStore{
-    //
-    [[PurchaseManager sharedInstance] getProductInfo];
-    //Show spinner
     [self loading:YES];
 }
 

@@ -7,8 +7,6 @@
 //
 
 #import "AppController.h"
-#define delayCheckPurchase 30.0
-#define timeIntervalPurchase 3*60*60
 
 @implementation AppController{
     
@@ -45,36 +43,6 @@
         [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     }
     return self;
-}
-
-
-/*
- *  Purchase
- *****************************/
-
-
-#pragma mark Purchase
--(void) checkTimerNonPurchase:(NSTimer *)timer{
-    
-    if ([Settings sharedInstance].settings.purchased) {
-        return;
-    }
-    
-    double currentTime = [[NSDate date] timeIntervalSince1970];
-    double timerNonPurchase = Settings.sharedInstance.settings.timerNonPurchase;
-    
-    if (timerNonPurchase > currentTime || currentTime-timerNonPurchase < timeIntervalPurchase ){
-        NSLog(@"NORMAL");
-    }else{
-        //show store
-        NSButton * btnSupportLock = [self.lockView viewWithTag:5];
-        [btnSupportLock setTitle:@"Unlock"];
-        [btnSupportLock setAction:@selector(supportLockScreenShowStore:)];
-        [[self.lockView viewWithTag:6] setHidden:NO];
-        [self.vkAPI logout];
-    }
-    
-    NSLog(@"CheckTimer %f %f time to logout %f",currentTime,timerNonPurchase,currentTime - timerNonPurchase - timeIntervalPurchase );
 }
 
 
@@ -200,13 +168,6 @@
         //GLobal Monitor hotkeys
         [NSEvent addGlobalMonitorForEventsMatchingMask: (NSKeyDownMask | NSSystemDefinedMask)
                                                handler: ^(NSEvent *event) {[self globalMonitorKeydownEvents:event];}];
-        
-        //Timer for check purchaise
-        [NSTimer scheduledTimerWithTimeInterval:delayCheckPurchase
-                                         target:self
-                                       selector:@selector(checkTimerNonPurchase:)
-                                       userInfo:nil
-                                        repeats:YES];
         
         _isInitialLoadingFinish=YES;
         
