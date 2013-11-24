@@ -95,6 +95,7 @@
 -(IBAction)visitWebsite:(id)sender;
 
 -(IBAction)more:(id)sender;
+-(IBAction)buyInItunec:(id)sender;
 -(IBAction)addTrack:(id)sender;
 -(IBAction)removeTrack:(id)sender;
 

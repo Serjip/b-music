@@ -381,10 +381,27 @@ CA
                                                                 <action selector="removeTrack:" target="DoF-XC-WxK" id="dSc-Bv-bCd"/>
                                                             </connections>
                                                         </button>
+                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-VL-GpC">
+                                                            <rect key="frame" x="312" y="1" width="75" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="75" id="aCS-jP-yIO"/>
+                                                                <constraint firstAttribute="height" constant="50" id="zBY-eE-4FC"/>
+                                                            </constraints>
+                                                            <buttonCell key="cell" type="smallSquare" title="Buy" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="9zA-HZ-qOD">
+                                                                <behavior key="behavior" lightByContents="YES"/>
+                                                                <font key="font" size="11" name="LucidaGrande"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="buyInItunec:" target="DoF-XC-WxK" id="kCL-b7-SiF"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="ANB-ap-Ylt" secondAttribute="trailing" id="GI0-YN-rLl"/>
                                                         <constraint firstAttribute="bottom" secondItem="ANB-ap-Ylt" secondAttribute="bottom" constant="1" id="L5M-4t-ex3"/>
+                                                        <constraint firstItem="ANB-ap-Ylt" firstAttribute="leading" secondItem="Kp4-VL-GpC" secondAttribute="trailing" id="i8G-jZ-big"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Kp4-VL-GpC" secondAttribute="bottom" constant="1" id="wEn-72-oB0"/>
                                                     </constraints>
                                                 </customView>
                                                 <customView identifier="SearchRow" id="ugR-S4-OCu" customClass="TableRowView">
@@ -406,8 +423,25 @@ CA
                                                                 <action selector="addTrack:" target="DoF-XC-WxK" id="nzL-Ex-S6b"/>
                                                             </connections>
                                                         </button>
+                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Z1-2qA">
+                                                            <rect key="frame" x="302" y="1" width="75" height="50"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="H8o-QP-gmi"/>
+                                                                <constraint firstAttribute="width" constant="75" id="Z1O-xC-rff"/>
+                                                            </constraints>
+                                                            <buttonCell key="cell" type="smallSquare" title="Buy" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="MJ2-TF-cjP">
+                                                                <behavior key="behavior" lightByContents="YES"/>
+                                                                <font key="font" size="11" name="LucidaGrande"/>
+                                                            </buttonCell>
+                                                            <connections>
+                                                                <action selector="buyInItunec:" target="DoF-XC-WxK" id="mni-ug-8jm"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="laA-6K-N9K" firstAttribute="leading" secondItem="K6i-Z1-2qA" secondAttribute="trailing" id="7o8-6P-5Tv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="K6i-Z1-2qA" secondAttribute="bottom" constant="1" id="LUc-8L-c89"/>
                                                         <constraint firstAttribute="trailing" secondItem="laA-6K-N9K" secondAttribute="trailing" id="bdj-QJ-Gj1"/>
                                                         <constraint firstAttribute="bottom" secondItem="laA-6K-N9K" secondAttribute="bottom" constant="1" id="qTN-1e-ZM0"/>
                                                     </constraints>

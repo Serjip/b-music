@@ -58,11 +58,9 @@
 		D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7717FDB8FE00F725BD /* PlayButtonCell.m */; };
 		D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B7917FDB8FE00F725BD /* RemoveButtonCell.m */; };
 		D283B724181D1C6A000AB6DE /* MoreButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D283B723181D1C6A000AB6DE /* MoreButtonCell.m */; };
-		D2912B9E183B80700036B914 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2912B9D183B80700036B914 /* StoreKit.framework */; };
 		D2971470181C4F57003E704D /* TableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D297146F181C4F57003E704D /* TableCellView.m */; };
 		D29E5F611819441300406490 /* LastfmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = D29E5F601819441300406490 /* LastfmAPI.m */; };
 		D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E5F621819869800406490 /* QuartzCore.framework */; };
-		D2A92B9F1836269200EF642B /* storeTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2A92B9E1836269200EF642B /* storeTemplate.pdf */; };
 		D2A92BA118365C5C00EF642B /* lastfmLogoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2A92BA018365C5C00EF642B /* lastfmLogoTemplate.pdf */; };
 		D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AFF77E182FF55F00B6236C /* MainMenu.xib */; };
 		D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFF781183002E900B6236C /* PlayerOverlay.m */; };
@@ -179,7 +177,6 @@
 		D29E5F5F1819441300406490 /* LastfmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastfmAPI.h; sourceTree = "<group>"; };
 		D29E5F601819441300406490 /* LastfmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastfmAPI.m; sourceTree = "<group>"; };
 		D29E5F621819869800406490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D2A92B9E1836269200EF642B /* storeTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = storeTemplate.pdf; sourceTree = "<group>"; };
 		D2A92BA018365C5C00EF642B /* lastfmLogoTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = lastfmLogoTemplate.pdf; sourceTree = "<group>"; };
 		D2AFF77E182FF55F00B6236C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2AFF780183002E900B6236C /* PlayerOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerOverlay.h; sourceTree = "<group>"; };
@@ -196,7 +193,6 @@
 				D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */,
 				D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */,
 				D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */,
-				D2912B9E183B80700036B914 /* StoreKit.framework in Frameworks */,
 				D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */,
 				D21CE9F217FAFA0900F5AF42 /* Cocoa.framework in Frameworks */,
 			);
@@ -246,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				D2A92BA018365C5C00EF642B /* lastfmLogoTemplate.pdf */,
-				D2A92B9E1836269200EF642B /* storeTemplate.pdf */,
 				D2BB89E318314F060062BA8E /* icon.pdf */,
 				D21F1EFC182FD403002404A1 /* pauseTemplate.pdf */,
 				D21F1EFD182FD403002404A1 /* playTemplate.pdf */,
@@ -585,7 +580,7 @@
 						DevelopmentTeam = GVHZGUG393;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -626,7 +621,6 @@
 			files = (
 				D21CE9FC17FAFA0900F5AF42 /* InfoPlist.strings in Resources */,
 				D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */,
-				D2A92B9F1836269200EF642B /* storeTemplate.pdf in Resources */,
 				D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */,
 				D21F1EFE182FD403002404A1 /* pauseTemplate.pdf in Resources */,
 				D21CEA0A17FAFA0900F5AF42 /* Images.xcassets in Resources */,
@@ -818,8 +812,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -840,8 +834,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer: Sergey Popov (LSR96Q2V4L)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

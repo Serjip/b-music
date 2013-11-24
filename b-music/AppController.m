@@ -250,7 +250,25 @@
     [self switchMainMenuItems:!flag];
 }
 
-
+- (NSString *) URLEncodedString:(NSString*)str {
+    NSMutableString * output = [NSMutableString string];
+    const char * source = [str UTF8String];
+    unsigned long sourceLen = strlen(source);
+    for (int i = 0; i < sourceLen; ++i) {
+        const unsigned char thisChar = (const unsigned char)source[i];
+        if (false && thisChar == ' '){
+            [output appendString:@"+"];
+        } else if (thisChar == '.' || thisChar == '-' || thisChar == '_' || thisChar == '~' ||
+                   (thisChar >= 'a' && thisChar <= 'z') ||
+                   (thisChar >= 'A' && thisChar <= 'Z') ||
+                   (thisChar >= '0' && thisChar <= '9')) {
+            [output appendFormat:@"%c", thisChar];
+        } else {
+            [output appendFormat:@"%%%02X", thisChar];
+        }
+    }
+    return output;
+}
 
 -(void) addStatusBarItem{
     statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
@@ -697,10 +715,19 @@
 
 
 -(IBAction)more:(id)sender{ NSLog(@"More");
-    [[_tableview viewAtColumn:0 row:[_tableview rowForView:sender] makeIfNecessary:NO] slideCell:75];
+    [[_tableview viewAtColumn:0 row:[_tableview rowForView:sender] makeIfNecessary:NO] slideCell:150];
     [sender mouseExited:nil];
 }
 
+-(IBAction)buyInItunec:(id)sender{ NSLog(@"Buy In Itunes");
+    
+    NSInteger row=[_tableview rowForView:sender];
+    id obj=[_viewPlaylist objectAtIndex:row];
+    NSString * artist=[obj objectForKey:@"artist"];
+    NSString * track=[obj objectForKey:@"title"];
+    NSString *strURL = [NSString stringWithFormat:@"http://ttitt.ru/track?artist=%@&title=%@",[self URLEncodedString:artist], [self URLEncodedString:track]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:strURL]];
+}
 
 -(IBAction)addTrack:(id)sender{NSLog(@"AddtTrack");
     NSInteger row=([sender isKindOfClass:[NSMenuItem class]])?[_tableview selectedRow]:[_tableview rowForView:sender];
