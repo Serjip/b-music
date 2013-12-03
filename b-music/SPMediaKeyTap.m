@@ -121,35 +121,36 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 + (NSArray*)defaultMediaKeyUserBundleIdentifiers;
 {
 	return [NSArray arrayWithObjects:
-		[[NSBundle mainBundle] bundleIdentifier], // your app
-        @"com.yourcompany.SPMediaKeyTapExample",
-		@"com.spotify.client",
-		@"com.apple.iTunes",
-		@"com.apple.QuickTimePlayerX",
-		@"com.apple.quicktimeplayer",
-		@"com.apple.iWork.Keynote",
-		@"com.apple.iPhoto",
-		@"org.videolan.vlc",
-		@"com.apple.Aperture",
-		@"com.plexsquared.Plex",
-		@"com.soundcloud.desktop",
-		@"org.niltsh.MPlayerX",
-		@"com.ilabs.PandorasHelper",
-		@"com.mahasoftware.pandabar",
-		@"com.bitcartel.pandorajam",
-		@"org.clementine-player.clementine",
-		@"fm.last.Last.fm",
-		@"fm.last.Scrobbler",
-		@"com.beatport.BeatportPro",
-		@"com.Timenut.SongKey",
-		@"com.macromedia.fireworks", // the tap messes up their mouse input
-		@"at.justp.Theremin",
-		@"ru.ya.themblsha.YandexMusic",
-		@"com.jriver.MediaCenter18",
-		@"com.jriver.MediaCenter19",
-		@"com.jriver.MediaCenter20",
-		nil
-	];
+            [[NSBundle mainBundle] bundleIdentifier], // your app
+            @"com.ttitt.b-music",
+            @"com.spotify.client",
+            @"com.apple.iTunes",
+            @"com.apple.QuickTimePlayerX",
+            @"com.apple.quicktimeplayer",
+            @"com.apple.iWork.Keynote",
+            @"com.apple.iPhoto",
+            @"org.videolan.vlc",
+            @"com.apple.Aperture",
+            @"com.plexsquared.Plex",
+            @"com.soundcloud.desktop",
+            @"org.niltsh.MPlayerX",
+            @"com.ilabs.PandorasHelper",
+            @"com.mahasoftware.pandabar",
+            @"com.bitcartel.pandorajam",
+            @"org.clementine-player.clementine",
+            @"fm.last.Last.fm",
+            @"fm.last.Scrobbler",
+            @"com.beatport.BeatportPro",
+            @"com.Timenut.SongKey",
+            @"com.macromedia.fireworks", // the tap messes up their mouse input
+            @"at.justp.Theremin",
+            @"ru.ya.themblsha.YandexMusic",
+            @"com.jriver.MediaCenter18",
+            @"com.jriver.MediaCenter19",
+            @"com.jriver.MediaCenter20",
+            @"co.rackit.mate",
+            nil
+            ];
 }
 
 
