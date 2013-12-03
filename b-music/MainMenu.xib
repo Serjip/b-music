@@ -27,6 +27,12 @@
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Check for Updates..." id="T6B-Sb-2Gj">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="v5s-z6-bH4" id="X6H-et-iYc"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" hidden="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -381,8 +387,8 @@ CA
                                                                 <action selector="removeTrack:" target="DoF-XC-WxK" id="dSc-Bv-bCd"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-VL-GpC" customClass="BuyButtonCell">
-                                                            <rect key="frame" x="312" y="1" width="75" height="50"/>
+                                                        <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-VL-GpC" customClass="BuyButtonCell">
+                                                            <rect key="frame" x="320" y="1" width="75" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="75" id="aCS-jP-yIO"/>
@@ -423,8 +429,8 @@ CA
                                                                 <action selector="addTrack:" target="DoF-XC-WxK" id="nzL-Ex-S6b"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Z1-2qA" customClass="BuyButtonCell">
-                                                            <rect key="frame" x="302" y="1" width="75" height="50"/>
+                                                        <button verticalHuggingPriority="750" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Z1-2qA" customClass="BuyButtonCell">
+                                                            <rect key="frame" x="320" y="1" width="75" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="H8o-QP-gmi"/>
@@ -831,6 +837,7 @@ CA
                 <outlet property="contentViewController" destination="GXc-gS-P1T" id="9v8-QQ-Jvt"/>
             </connections>
         </popover>
+        <customObject id="v5s-z6-bH4" customClass="SUUpdater"/>
         <customView id="8Sq-g7-od9" userLabel="VolumePopover">
             <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

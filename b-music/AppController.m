@@ -19,7 +19,7 @@
     
     NSString * _currentTableRow;//For table whitch one cell is shown
     BOOL _isInitialLoadingFinish;//Indicator starting app
-    BOOL _userHoldKey;//global key event holding indicator
+//    BOOL _userHoldKey;//global key event holding indicator
     
     CGSize _windowSize;//size player
     BOOL _scrobbleIndicator;//Shows send track has been sent or not
@@ -165,9 +165,16 @@
         //Local Monitor hotkeys
         [NSEvent addLocalMonitorForEventsMatchingMask: NSKeyDownMask
                                               handler:^(NSEvent *event) { return [self localMonitorKeydownEvents:event];}];
-        //GLobal Monitor hotkeys
-        [NSEvent addGlobalMonitorForEventsMatchingMask: (NSKeyDownMask | NSSystemDefinedMask)
-                                               handler: ^(NSEvent *event) {[self globalMonitorKeydownEvents:event];}];
+        
+        
+        //------MediaKey
+        if (!self.keyTap)
+            self.keyTap= [[SPMediaKeyTap alloc] initWithDelegate:self];
+        if([SPMediaKeyTap usesGlobalMediaKeyTap])
+            [self.keyTap startWatchingMediaKeys];
+        else
+            NSLog(@"Media key monitoring disabled");
+        //---EndMediakey
         
         _isInitialLoadingFinish=YES;
         
@@ -335,50 +342,95 @@
     return nil;
 }
 
-
--(void) globalMonitorKeydownEvents:(NSEvent*)event{
-    if (!(event.modifierFlags&NSCommandKeyMask)) return;
-//    NSLog(@"%li",event.data1);
-    switch (event.data1) {
-        case 1051136://Play
-            [self play:nil];
-            break;
-        case 1247745://ffwd
-            _userHoldKey=YES;
-            double change1=[[self.BottomControls1 viewWithTag:2] doubleValue]+[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
-            if (change1>[[self.BottomControls1 viewWithTag:2] maxValue]){
-                [self next:nil];
-                [[self.BottomControls1 viewWithTag:2] setProgress:0];
-                [self.PC setRuntime:0];
-            }else{
-                [[self.BottomControls1 viewWithTag:2] setProgress:change1];
-                [self.PC setRuntime:change1];
-            }
-            
-            break;
-        case 1248000://End ffwd
-            if (!_userHoldKey) [self next:nil];
-            _userHoldKey=NO;
-            break;
-        case 1313281://Rewind
-            _userHoldKey=YES;
-            double change=[[self.BottomControls1 viewWithTag:2] doubleValue]-[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
-            if (change<0){
-                [self previous:nil];
-                
-                [[self.BottomControls1 viewWithTag:2] setProgress:[[self.BottomControls1 viewWithTag:2] maxValue]];
-                [self.PC setRuntime:[[self.BottomControls1 viewWithTag:2] maxValue]];
-            }else{
-                [[self.BottomControls1 viewWithTag:2] setProgress:change];
-                [self.PC setRuntime:change];
-            }
-            break;
-        case 1313536://End Rewind
-            if (!_userHoldKey) [self previous:nil];
-            _userHoldKey=NO;
-            break;
-    }
+//----------------------------------------------------------------//
++(void)initialize;
+{
+	if([self class] != [AppController class]) return;
+	
+	// Register defaults for the whitelist of apps that want to use media keys
+	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                             [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,
+                                                             nil]];
 }
+-(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
+{
+	NSAssert([event type] == NSSystemDefined && [event subtype] == SPSystemDefinedEventMediaKeys, @"Unexpected NSEvent in mediaKeyTap:receivedMediaKeyEvent:");
+	// here be dragons...
+	int keyCode = (([event data1] & 0xFFFF0000) >> 16);
+	int keyFlags = ([event data1] & 0x0000FFFF);
+	BOOL keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA;
+	int keyRepeat = (keyFlags & 0x1);
+	
+	if (keyIsPressed) {
+		NSString *debugString = [NSString stringWithFormat:@"%@", keyRepeat?@", repeated.":@"."];
+		switch (keyCode) {
+			case NX_KEYTYPE_PLAY:
+                [self play:nil];
+				debugString = [@"Play/pause pressed" stringByAppendingString:debugString];
+				break;
+            	
+			case NX_KEYTYPE_FAST:
+                if (!keyRepeat) [self next:nil];
+				debugString = [@"Ffwd pressed" stringByAppendingString:debugString];
+				break;
+				
+			case NX_KEYTYPE_REWIND:
+                if (!keyRepeat) [self previous:nil];
+				debugString = [@"Rewind pressed" stringByAppendingString:debugString];
+				break;
+			default:
+				debugString = [NSString stringWithFormat:@"Key %d pressed%@", keyCode, debugString];
+				break;
+                // More cases defined in hidsystem/ev_keymap.h
+		}
+		NSLog(@"%@",debugString);
+	}
+}
+//----------------------------------------------------------------//
+
+//-(void) globalMonitorKeydownEvents:(NSEvent*)event{
+//    if (!(event.modifierFlags&NSCommandKeyMask)) return;
+////    NSLog(@"%li",event.data1);
+//    switch (event.data1) {
+//        case 1051136://Play
+//            [self play:nil];
+//            break;
+//        case 1247745://ffwd
+//            _userHoldKey=YES;
+//            double change1=[[self.BottomControls1 viewWithTag:2] doubleValue]+[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
+//            if (change1>[[self.BottomControls1 viewWithTag:2] maxValue]){
+//                [self next:nil];
+//                [[self.BottomControls1 viewWithTag:2] setProgress:0];
+//                [self.PC setRuntime:0];
+//            }else{
+//                [[self.BottomControls1 viewWithTag:2] setProgress:change1];
+//                [self.PC setRuntime:change1];
+//            }
+//            
+//            break;
+//        case 1248000://End ffwd
+//            if (!_userHoldKey) [self next:nil];
+//            _userHoldKey=NO;
+//            break;
+//        case 1313281://Rewind
+//            _userHoldKey=YES;
+//            double change=[[self.BottomControls1 viewWithTag:2] doubleValue]-[[self.BottomControls1 viewWithTag:2] maxValue]*2/100;
+//            if (change<0){
+//                [self previous:nil];
+//                
+//                [[self.BottomControls1 viewWithTag:2] setProgress:[[self.BottomControls1 viewWithTag:2] maxValue]];
+//                [self.PC setRuntime:[[self.BottomControls1 viewWithTag:2] maxValue]];
+//            }else{
+//                [[self.BottomControls1 viewWithTag:2] setProgress:change];
+//                [self.PC setRuntime:change];
+//            }
+//            break;
+//        case 1313536://End Rewind
+//            if (!_userHoldKey) [self previous:nil];
+//            _userHoldKey=NO;
+//            break;
+//    }
+//}
 
 -(void) removeSubviews{
     [self.Controls1 removeFromSuperview];

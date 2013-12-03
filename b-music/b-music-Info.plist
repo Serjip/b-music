@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1933</string>
+	<string>2.1.1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
@@ -45,5 +45,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://ttitt.ru/b-music/update/</string>
 </dict>
 </plist>

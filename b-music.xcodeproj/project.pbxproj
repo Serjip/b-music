@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2027991184DEA3100D1F509 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2027990184DEA3100D1F509 /* Sparkle.framework */; };
+		D2027993184DEA6900D1F509 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2027990184DEA3100D1F509 /* Sparkle.framework */; };
+		D2027998184DECC600D1F509 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2027995184DECC600D1F509 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2027999184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = D2027997184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D202799C184DED1200D1F509 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D202799B184DED1200D1F509 /* Carbon.framework */; };
 		D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */; };
 		D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = D20A47FB1826AF5D002B7B18 /* Preferences.m */; };
 		D20A47FE1826AF5D002B7B18 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20A47FC1826AF5D002B7B18 /* Preferences.xib */; };
@@ -78,7 +83,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D2027992184DEA6000D1F509 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2027993184DEA6900D1F509 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D2027990184DEA3100D1F509 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		D2027994184DECC600D1F509 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		D2027995184DECC600D1F509 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
+		D2027996184DECC600D1F509 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		D2027997184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		D202799B184DED1200D1F509 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		D20A47F518267C8E002B7B18 /* SwitchRuntimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRuntimeButton.h; sourceTree = "<group>"; };
 		D20A47F618267C8E002B7B18 /* SwitchRuntimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRuntimeButton.m; sourceTree = "<group>"; };
 		D20A47FA1826AF5D002B7B18 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -121,7 +145,6 @@
 		D21F538417FEF0E800703A88 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D26FC395184DE85E00D2D918 /* BuyButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyButtonCell.h; sourceTree = "<group>"; };
 		D26FC396184DE85E00D2D918 /* BuyButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyButtonCell.m; sourceTree = "<group>"; };
-		D271B5D3180208A500D92282 /* b-music.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "b-music.entitlements"; sourceTree = "<group>"; };
 		D27207761820031D0067D2CB /* ShowVolumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowVolumeButton.h; sourceTree = "<group>"; };
 		D27207771820031D0067D2CB /* ShowVolumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowVolumeButton.m; sourceTree = "<group>"; };
 		D2825B2817FC20CE00F725BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -193,7 +216,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D202799C184DED1200D1F509 /* Carbon.framework in Frameworks */,
 				D29E5F631819869800406490 /* QuartzCore.framework in Frameworks */,
+				D2027991184DEA3100D1F509 /* Sparkle.framework in Frameworks */,
 				D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */,
 				D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */,
 				D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */,
@@ -213,6 +238,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D202799A184DECCD00D1F509 /* SPmediaTAP */ = {
+			isa = PBXGroup;
+			children = (
+				D2027994184DECC600D1F509 /* SPMediaKeyTap.h */,
+				D2027995184DECC600D1F509 /* SPMediaKeyTap.m */,
+				D2027996184DECC600D1F509 /* NSObject+SPInvocationGrabbing.h */,
+				D2027997184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m */,
+			);
+			name = SPmediaTAP;
+			sourceTree = "<group>";
+		};
 		D20A47FF1826AF62002B7B18 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +312,8 @@
 		D21CE9F017FAFA0900F5AF42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D202799B184DED1200D1F509 /* Carbon.framework */,
+				D2027990184DEA3100D1F509 /* Sparkle.framework */,
 				D2912B9D183B80700036B914 /* StoreKit.framework */,
 				D29E5F621819869800406490 /* QuartzCore.framework */,
 				D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */,
@@ -303,6 +341,7 @@
 		D21CE9F717FAFA0900F5AF42 /* b-music */ = {
 			isa = PBXGroup;
 			children = (
+				D202799A184DECCD00D1F509 /* SPmediaTAP */,
 				D2AFF77E182FF55F00B6236C /* MainMenu.xib */,
 				D2AFF783183002EE00B6236C /* Overlay */,
 				D2163A67182C1CF00036FFCE /* Graphics */,
@@ -331,7 +370,6 @@
 		D21CE9F817FAFA0900F5AF42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D271B5D3180208A500D92282 /* b-music.entitlements */,
 				D21CE9F917FAFA0900F5AF42 /* b-music-Info.plist */,
 				D21CE9FA17FAFA0900F5AF42 /* InfoPlist.strings */,
 				D21CE9FD17FAFA0900F5AF42 /* main.m */,
@@ -544,6 +582,7 @@
 				D21CE9EA17FAFA0900F5AF42 /* Sources */,
 				D21CE9EB17FAFA0900F5AF42 /* Frameworks */,
 				D21CE9EC17FAFA0900F5AF42 /* Resources */,
+				D2027992184DEA6000D1F509 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -588,7 +627,7 @@
 								enabled = 0;
 							};
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.iCloud = {
 								enabled = 0;
@@ -676,6 +715,8 @@
 				D2825B6317FD8C1000F725BD /* RepeatButton.m in Sources */,
 				D2825B7A17FDB8FE00F725BD /* AddButtonCell.m in Sources */,
 				D2825B7B17FDB8FE00F725BD /* PlayButtonCell.m in Sources */,
+				D2027999184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m in Sources */,
+				D2027998184DECC600D1F509 /* SPMediaKeyTap.m in Sources */,
 				D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
@@ -817,8 +858,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -839,8 +879,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "b-music/b-music.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

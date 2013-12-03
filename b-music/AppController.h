@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPMediaKeyTap.h"
 
 #import "RuntimeSlider.h"
 #import "Volume.h"
@@ -48,6 +49,7 @@
 @property PlayerController * PC;
 @property vkAPI * vkAPI;
 @property LastfmAPI * lastfmAPI;
+@property SPMediaKeyTap * keyTap;
 
 @property (weak) IBOutlet NSPopover *popoverVolume;
 @property (weak) IBOutlet NSScrollView *scrollview;
