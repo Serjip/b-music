@@ -31,6 +31,7 @@
 		D21F1EFE182FD403002404A1 /* pauseTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D21F1EFC182FD403002404A1 /* pauseTemplate.pdf */; };
 		D21F1EFF182FD403002404A1 /* playTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D21F1EFD182FD403002404A1 /* playTemplate.pdf */; };
 		D21F538517FEF0E800703A88 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D21F538417FEF0E800703A88 /* SystemConfiguration.framework */; };
+		D26FC397184DE85E00D2D918 /* BuyButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D26FC396184DE85E00D2D918 /* BuyButtonCell.m */; };
 		D27207781820031D0067D2CB /* ShowVolumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D27207771820031D0067D2CB /* ShowVolumeButton.m */; };
 		D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2825B2B17FC20F200F725BD /* SheetWindowController.m */; };
 		D2825B2E17FC20F200F725BD /* SheetWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2825B2C17FC20F200F725BD /* SheetWindowController.xib */; };
@@ -118,6 +119,8 @@
 		D21F1EFC182FD403002404A1 /* pauseTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pauseTemplate.pdf; sourceTree = "<group>"; };
 		D21F1EFD182FD403002404A1 /* playTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = playTemplate.pdf; sourceTree = "<group>"; };
 		D21F538417FEF0E800703A88 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D26FC395184DE85E00D2D918 /* BuyButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyButtonCell.h; sourceTree = "<group>"; };
+		D26FC396184DE85E00D2D918 /* BuyButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyButtonCell.m; sourceTree = "<group>"; };
 		D271B5D3180208A500D92282 /* b-music.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "b-music.entitlements"; sourceTree = "<group>"; };
 		D27207761820031D0067D2CB /* ShowVolumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowVolumeButton.h; sourceTree = "<group>"; };
 		D27207771820031D0067D2CB /* ShowVolumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowVolumeButton.m; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 		D283B725181D1CFD000AB6DE /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				D26FC395184DE85E00D2D918 /* BuyButtonCell.h */,
+				D26FC396184DE85E00D2D918 /* BuyButtonCell.m */,
 				D283B722181D1C6A000AB6DE /* MoreButtonCell.h */,
 				D283B723181D1C6A000AB6DE /* MoreButtonCell.m */,
 				D2825B7417FDB8FE00F725BD /* AddButtonCell.h */,
@@ -681,6 +686,7 @@
 				D219EFAE1839491400284A5F /* cipher.m in Sources */,
 				D2825B3917FC2D7200F725BD /* PlayerController.m in Sources */,
 				D212C536181577BC00C4E21D /* SearchView.m in Sources */,
+				D26FC397184DE85E00D2D918 /* BuyButtonCell.m in Sources */,
 				D2825B7317FD8E1E00F725BD /* ShowPlaylistButton.m in Sources */,
 				D2971470181C4F57003E704D /* TableCellView.m in Sources */,
 				D27207781820031D0067D2CB /* ShowVolumeButton.m in Sources */,

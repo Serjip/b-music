@@ -52,11 +52,6 @@
                             <action selector="switchView:" target="-2" id="3es-uw-DnX"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="D299D417-1892-43FC-B931-9A3717E2DBFC" explicitItemIdentifier="StorePreferences" label="Store" paletteLabel="Store" tag="4" image="storeTemplate" id="uJp-XC-t9A">
-                        <connections>
-                            <action selector="switchView:" target="-2" id="Vkc-QJ-Gsv"/>
-                        </connections>
-                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="IgA-pu-i6j"/>
@@ -304,7 +299,6 @@
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="lastfmTemplate" width="20" height="20"/>
-        <image name="storeTemplate" width="20" height="20"/>
         <image name="vkTemplate" width="20" height="20"/>
     </resources>
 </document>

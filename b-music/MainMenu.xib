@@ -381,7 +381,7 @@ CA
                                                                 <action selector="removeTrack:" target="DoF-XC-WxK" id="dSc-Bv-bCd"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-VL-GpC">
+                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="Kp4-VL-GpC" customClass="BuyButtonCell">
                                                             <rect key="frame" x="312" y="1" width="75" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
@@ -423,7 +423,7 @@ CA
                                                                 <action selector="addTrack:" target="DoF-XC-WxK" id="nzL-Ex-S6b"/>
                                                             </connections>
                                                         </button>
-                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Z1-2qA">
+                                                        <button verticalHuggingPriority="750" misplaced="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="K6i-Z1-2qA" customClass="BuyButtonCell">
                                                             <rect key="frame" x="302" y="1" width="75" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <constraints>
