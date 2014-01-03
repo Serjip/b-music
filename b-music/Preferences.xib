@@ -142,7 +142,7 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vb5-ym-TC9">
                     <rect key="frame" x="167" y="19" width="141" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show notafications" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ryM-3L-7mN">
+                    <buttonCell key="cell" type="check" title="Show notifications" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ryM-3L-7mN">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

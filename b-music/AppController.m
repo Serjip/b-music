@@ -88,8 +88,7 @@
 -(void) finishAuthVK{
     NSLog(@"Finish auth vk");
     [self loadMainPlaylist];
-    [[[NSApp delegate] window] makeKeyWindow];
-    [[[NSApp delegate] window] makeMainWindow];
+    [[[NSApp delegate] window] makeKeyAndOrderFront:self];
     [self authorizationVK:NO];
     
     if (!preferences) return;
