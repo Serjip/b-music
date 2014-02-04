@@ -535,18 +535,21 @@
                  image =[self.lastfmAPI getImageWithArtist:artist track:title size:3];
             }
             
-            //set dock icon
-            if (Settings.sharedInstance.settings.showArtworkDock){
-                [NSApp setApplicationIconImage: image];
-            }
             
-            if (!_imageList) {
-                _imageList = [[NSMutableDictionary alloc]init];
-            }
-            if (image) {
-                [_imageList setObject:image forKey:_currentTrack];
-                [btnPlayTableCell setImage:image];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //set dock icon
+                if (Settings.sharedInstance.settings.showArtworkDock)
+                    [NSApp setApplicationIconImage: image];
+                
+                if (!_imageList)
+                    _imageList = [[NSMutableDictionary alloc]init];
+                
+                if (image){
+                    [_imageList setObject:image forKey:_currentTrack];
+                    [btnPlayTableCell setImage:image];
+                }
+            });
+            
         }
     });
     
@@ -564,7 +567,6 @@
 
 
 -(void) bufferingTrack:(double)seconds{
-//    NSLog(@"BUffering %f",seconds);
     [[self.BottomControls1 viewWithTag:2] setBuffering:seconds];
 }
 -(void) runtimeTrack:(double)seconds

@@ -817,7 +817,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "2091A320-BD98-46E2-A0F4-2DC9EE7F2264";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -850,7 +850,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PROVISIONING_PROFILE = "2091A320-BD98-46E2-A0F4-2DC9EE7F2264";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
@@ -863,7 +863,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/serji/Developer/mac/b-music2.0",
+					"/Users/serji/Developer/OSX/b-music",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "b-music/b-music-Prefix.pch";
@@ -884,7 +884,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/serji/Developer/mac/b-music2.0",
+					"/Users/serji/Developer/OSX/b-music",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "b-music/b-music-Prefix.pch";
