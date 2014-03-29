@@ -617,7 +617,7 @@
 		D21CE9E617FAFA0900F5AF42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Sergey P";
 				TargetAttributes = {
 					D21CE9ED17FAFA0900F5AF42 = {
@@ -817,7 +817,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "2091A320-BD98-46E2-A0F4-2DC9EE7F2264";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -850,7 +850,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PROVISIONING_PROFILE = "2091A320-BD98-46E2-A0F4-2DC9EE7F2264";
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
