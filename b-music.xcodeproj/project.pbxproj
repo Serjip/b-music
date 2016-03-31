@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16F26478EDF2016F67215F0E /* libPods-b-music.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505F954C88B59FA62A8EA34B /* libPods-b-music.a */; };
+		5526D776A3C3B62AE105AC35 /* libPods-b-musicTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A697B66763C095AC9D29E4 /* libPods-b-musicTests.a */; };
 		D2027991184DEA3100D1F509 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2027990184DEA3100D1F509 /* Sparkle.framework */; };
 		D2027993184DEA6900D1F509 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2027990184DEA3100D1F509 /* Sparkle.framework */; };
 		D2027998184DECC600D1F509 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2027995184DECC600D1F509 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -97,6 +99,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1DE5F7EAB70D0BD3FA29879C /* Pods-b-musicTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-musicTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-b-musicTests/Pods-b-musicTests.debug.xcconfig"; sourceTree = "<group>"; };
+		27D99033C379A44851D16DC4 /* Pods-b-musicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-musicTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-b-musicTests/Pods-b-musicTests.release.xcconfig"; sourceTree = "<group>"; };
+		505F954C88B59FA62A8EA34B /* libPods-b-music.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-b-music.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2A697B66763C095AC9D29E4 /* libPods-b-musicTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-b-musicTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3231DA47376B7FC59DF7FA1 /* Pods-b-music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-music.release.xcconfig"; path = "Pods/Target Support Files/Pods-b-music/Pods-b-music.release.xcconfig"; sourceTree = "<group>"; };
 		D2027990184DEA3100D1F509 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D2027994184DECC600D1F509 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		D2027995184DECC600D1F509 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
@@ -209,6 +216,7 @@
 		D2AFF781183002E900B6236C /* PlayerOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerOverlay.m; sourceTree = "<group>"; };
 		D2BB89E318314F060062BA8E /* icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = icon.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		E77194D26E6F578A35ABD74E /* Pods-b-music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-b-music/Pods-b-music.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +231,7 @@
 				D2825B3E17FC408700F725BD /* CoreMedia.framework in Frameworks */,
 				D2825B3C17FC2E2F00F725BD /* AVFoundation.framework in Frameworks */,
 				D21CE9F217FAFA0900F5AF42 /* Cocoa.framework in Frameworks */,
+				16F26478EDF2016F67215F0E /* libPods-b-music.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +241,7 @@
 			files = (
 				D21CEA1217FAFA0A00F5AF42 /* Cocoa.framework in Frameworks */,
 				D21CEA1117FAFA0A00F5AF42 /* XCTest.framework in Frameworks */,
+				5526D776A3C3B62AE105AC35 /* libPods-b-musicTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +307,7 @@
 				D21CEA1517FAFA0A00F5AF42 /* b-musicTests */,
 				D21CE9F017FAFA0900F5AF42 /* Frameworks */,
 				D21CE9EF17FAFA0900F5AF42 /* Products */,
+				E1DDEF0304896694F4FBD5EA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -324,6 +335,8 @@
 				D21CE9F117FAFA0900F5AF42 /* Cocoa.framework */,
 				D21CEA1017FAFA0A00F5AF42 /* XCTest.framework */,
 				D21CE9F317FAFA0900F5AF42 /* Other Frameworks */,
+				505F954C88B59FA62A8EA34B /* libPods-b-music.a */,
+				A2A697B66763C095AC9D29E4 /* libPods-b-musicTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -572,6 +585,17 @@
 			name = Overlay;
 			sourceTree = "<group>";
 		};
+		E1DDEF0304896694F4FBD5EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E77194D26E6F578A35ABD74E /* Pods-b-music.debug.xcconfig */,
+				A3231DA47376B7FC59DF7FA1 /* Pods-b-music.release.xcconfig */,
+				1DE5F7EAB70D0BD3FA29879C /* Pods-b-musicTests.debug.xcconfig */,
+				27D99033C379A44851D16DC4 /* Pods-b-musicTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -579,10 +603,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D21CEA1F17FAFA0A00F5AF42 /* Build configuration list for PBXNativeTarget "b-music" */;
 			buildPhases = (
+				1DFEF86087A67BCABE37F815 /* Check Pods Manifest.lock */,
 				D21CE9EA17FAFA0900F5AF42 /* Sources */,
 				D21CE9EB17FAFA0900F5AF42 /* Frameworks */,
 				D21CE9EC17FAFA0900F5AF42 /* Resources */,
 				D2027992184DEA6000D1F509 /* CopyFiles */,
+				7F486628B51295D9B737C49B /* Embed Pods Frameworks */,
+				8F915C093FB75F5DDFF1E625 /* Copy Pods Resources */,
+				D2B48A591CADB11B00CA13DB /* Update build version */,
 			);
 			buildRules = (
 			);
@@ -597,9 +625,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D21CEA2217FAFA0A00F5AF42 /* Build configuration list for PBXNativeTarget "b-musicTests" */;
 			buildPhases = (
+				BCC3BDE8537C3E78F9E8914C /* Check Pods Manifest.lock */,
 				D21CEA0B17FAFA0A00F5AF42 /* Sources */,
 				D21CEA0C17FAFA0A00F5AF42 /* Frameworks */,
 				D21CEA0D17FAFA0A00F5AF42 /* Resources */,
+				E12B84B7CFA3B51076FF6354 /* Embed Pods Frameworks */,
+				3B1C5D0A2CDB1F5899E968D4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -687,6 +718,113 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DFEF86087A67BCABE37F815 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3B1C5D0A2CDB1F5899E968D4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-b-musicTests/Pods-b-musicTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F486628B51295D9B737C49B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-b-music/Pods-b-music-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F915C093FB75F5DDFF1E625 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-b-music/Pods-b-music-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCC3BDE8537C3E78F9E8914C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2B48A591CADB11B00CA13DB /* Update build version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update build version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#Update build number with number of git commits if in release mode\nif [ ${CONFIGURATION} == \"Release\" ]; then\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\ngit tag -fa \"$buildNumber\" -m \"Release version $buildNumber\"\nfi;";
+		};
+		E12B84B7CFA3B51076FF6354 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-b-musicTests/Pods-b-musicTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D21CE9EA17FAFA0900F5AF42 /* Sources */ = {
@@ -856,9 +994,10 @@
 		};
 		D21CEA2017FAFA0A00F5AF42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E77194D26E6F578A35ABD74E /* Pods-b-music.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -877,9 +1016,10 @@
 		};
 		D21CEA2117FAFA0A00F5AF42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3231DA47376B7FC59DF7FA1 /* Pods-b-music.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -898,6 +1038,7 @@
 		};
 		D21CEA2317FAFA0A00F5AF42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DE5F7EAB70D0BD3FA29879C /* Pods-b-musicTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/b-music.app/Contents/MacOS/b-music";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -920,6 +1061,7 @@
 		};
 		D21CEA2417FAFA0A00F5AF42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27D99033C379A44851D16DC4 /* Pods-b-musicTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/b-music.app/Contents/MacOS/b-music";
 				COMBINE_HIDPI_IMAGES = YES;
