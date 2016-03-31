@@ -72,6 +72,8 @@
 		D2A92BA118365C5C00EF642B /* lastfmLogoTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2A92BA018365C5C00EF642B /* lastfmLogoTemplate.pdf */; };
 		D2AFF77F182FF55F00B6236C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2AFF77E182FF55F00B6236C /* MainMenu.xib */; };
 		D2AFF782183002E900B6236C /* PlayerOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AFF781183002E900B6236C /* PlayerOverlay.m */; };
+		D2B48A5E1CADB36800CA13DB /* BMTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B48A5D1CADB36800CA13DB /* BMTrack.m */; };
+		D2B48A611CADB3E300CA13DB /* BMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B48A601CADB3E300CA13DB /* BMRequestManager.m */; };
 		D2BB89E418314F060062BA8E /* icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2BB89E318314F060062BA8E /* icon.pdf */; };
 /* End PBXBuildFile section */
 
@@ -214,6 +216,10 @@
 		D2AFF77E182FF55F00B6236C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2AFF780183002E900B6236C /* PlayerOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerOverlay.h; sourceTree = "<group>"; };
 		D2AFF781183002E900B6236C /* PlayerOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerOverlay.m; sourceTree = "<group>"; };
+		D2B48A5C1CADB36800CA13DB /* BMTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTrack.h; sourceTree = "<group>"; };
+		D2B48A5D1CADB36800CA13DB /* BMTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTrack.m; sourceTree = "<group>"; };
+		D2B48A5F1CADB3E300CA13DB /* BMRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMRequestManager.h; sourceTree = "<group>"; };
+		D2B48A601CADB3E300CA13DB /* BMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRequestManager.m; sourceTree = "<group>"; };
 		D2BB89E318314F060062BA8E /* icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = icon.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		E77194D26E6F578A35ABD74E /* Pods-b-music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-b-music/Pods-b-music.debug.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +360,7 @@
 		D21CE9F717FAFA0900F5AF42 /* b-music */ = {
 			isa = PBXGroup;
 			children = (
+				D2B48A5B1CADB33200CA13DB /* Model */,
 				D202799A184DECCD00D1F509 /* SPmediaTAP */,
 				D2AFF77E182FF55F00B6236C /* MainMenu.xib */,
 				D2AFF783183002EE00B6236C /* Overlay */,
@@ -585,6 +592,17 @@
 			name = Overlay;
 			sourceTree = "<group>";
 		};
+		D2B48A5B1CADB33200CA13DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2B48A5C1CADB36800CA13DB /* BMTrack.h */,
+				D2B48A5D1CADB36800CA13DB /* BMTrack.m */,
+				D2B48A5F1CADB3E300CA13DB /* BMRequestManager.h */,
+				D2B48A601CADB3E300CA13DB /* BMRequestManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E1DDEF0304896694F4FBD5EA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,8 +666,9 @@
 		D21CE9E617FAFA0900F5AF42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = BM;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "Sergey P";
+				ORGANIZATIONNAME = "Sergey Popov";
 				TargetAttributes = {
 					D21CE9ED17FAFA0900F5AF42 = {
 						DevelopmentTeam = GVHZGUG393;
@@ -832,10 +851,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2825B5A17FC9E4600F725BD /* VolumeCell.m in Sources */,
+				D2B48A5E1CADB36800CA13DB /* BMTrack.m in Sources */,
 				D2825B2D17FC20F200F725BD /* SheetWindowController.m in Sources */,
 				D219EFAB1839485300284A5F /* NSData+AES.m in Sources */,
 				D21CEA0517FAFA0900F5AF42 /* AppDelegate.m in Sources */,
 				D21CEA2717FAFAFE00F5AF42 /* AppController.m in Sources */,
+				D2B48A611CADB3E300CA13DB /* BMRequestManager.m in Sources */,
 				D29E5F611819441300406490 /* LastfmAPI.m in Sources */,
 				D2825B5617FC9E2C00F725BD /* Volume.m in Sources */,
 				D21CEA2A17FB016D00F5AF42 /* Settings.m in Sources */,
