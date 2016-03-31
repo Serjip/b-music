@@ -1,7 +1,7 @@
 platform :osx, '10.7'
 
 def shared_pods
-	pod 'AFNetworking', '~> 3.0'
+	pod 'AFNetworking'
 	pod 'Sparkle'
 end
 
