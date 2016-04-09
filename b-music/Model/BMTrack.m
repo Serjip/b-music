@@ -10,4 +10,14 @@
 
 @implementation BMTrack
 
+- (instancetype)initWithServerResponse:(NSDictionary *)response
+{
+    self = [super init];
+    if (self)
+    {
+        
+    }
+    return self;
+}
+
 @end

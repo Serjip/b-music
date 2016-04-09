@@ -16,4 +16,6 @@
 @property (assign, nonatomic, readonly) NSUInteger duration;
 @property (strong, nonatomic, readonly) NSURL *URL;
 
+- (instancetype)initWithServerResponse:(NSDictionary *)response;
+
 @end

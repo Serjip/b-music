@@ -10,4 +10,6 @@
 
 @interface BMRequestManager : NSObject
 
+- (void)audioWithCompletion:(void (^) (NSArray *tracks, NSError *error))callback;
+
 @end

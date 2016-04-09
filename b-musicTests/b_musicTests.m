@@ -7,8 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "BMRequestManager.h"
 
 @interface b_musicTests : XCTestCase
+
+@property (nonatomic, strong) BMRequestManager *manager;
 
 @end
 
@@ -17,18 +20,32 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _manager = [BMRequestManager new];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testGetAudioTracks
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTestExpectation *ex = [self expectationWithDescription:@"High Expectations"];
+    
+    [self.manager audioWithCompletion:^(NSArray *tracks, NSError *error) {
+        
+        NSLog(@"%@", tracks);
+        XCTAssert(! error);
+        [ex fulfill];
+        
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:^(NSError *error) {
+        if (error)
+        {
+            NSLog(@"Timeout Error: %@", error);
+        }
+    }];
 }
 
 @end
