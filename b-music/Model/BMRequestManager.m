@@ -44,6 +44,7 @@
     [self GET:@"audio.get" params:params completion:^(NSDictionary *rsp, NSError *error) {
         
         NSMutableArray *tracks = nil;
+        BOOL responseHasInvalidFormat = NO;
         
         if (! error)
         {
@@ -62,16 +63,22 @@
                     }
                     else
                     {
-                        
+                        responseHasInvalidFormat = YES;
                         break;
                     }
                 }
             }
             else
             {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : NSLocalizedString(@"Invalid response format", nil)};
-                error = [NSError errorWithDomain:BMRequestManagerErrorDomain code:500 userInfo:userInfo];
+                responseHasInvalidFormat = YES;
             }
+        }
+        
+        if (responseHasInvalidFormat)
+        {
+            tracks = nil;
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey : NSLocalizedString(@"Invalid response format", nil)};
+            error = [NSError errorWithDomain:BMRequestManagerErrorDomain code:500 userInfo:userInfo];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

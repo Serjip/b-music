@@ -15,7 +15,23 @@
     self = [super init];
     if (self)
     {
+        NSNumber *identfier = nil;
+        if ((identfier = [response objectForKey:@"id"]) && [identfier isKindOfClass:[NSNumber class]])
+        {
+            _identifier = identfier.unsignedIntegerValue;
+        }
         
+        NSString *artist = nil;
+        if ((artist = [response objectForKey:@"artist"]) && [artist isKindOfClass:[NSString class]])
+        {
+            _artist = artist;
+        }
+        
+        NSString *title = nil;
+        if ((title = [response objectForKey:@"title"]) && [title isKindOfClass:[NSString class]])
+        {
+            _title = title;
+        }
     }
     return self;
 }
