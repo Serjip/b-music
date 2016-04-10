@@ -32,8 +32,30 @@
         {
             _title = title;
         }
+        
+        NSNumber *duration = nil;
+        if ((duration = [response objectForKey:@"duration"]) && [duration isKindOfClass:[NSNumber class]])
+        {
+            _duration = duration.unsignedIntegerValue;
+        }
+        
+        NSString *URLString = nil;
+        if ((URLString = [response objectForKey:@"url"]) && [URLString isKindOfClass:[NSString class]])
+        {
+            _URL = [NSURL URLWithString:URLString];
+        }
     }
-    return self;
+    
+    if (_identifier && _artist && _title && _duration && _URL)
+    {
+        return self;
+    }
+    return nil;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%p %@ %@", self, self.artist, self.title];
 }
 
 @end
