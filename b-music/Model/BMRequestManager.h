@@ -10,6 +10,8 @@
 
 @interface BMRequestManager : NSObject
 
-- (void)audioWithCompletion:(void (^) (NSArray *tracks, NSError *error))callback;
+- (void)tracksWithCount:(NSUInteger)count offset:(NSUInteger)offset completion:(void (^) (NSArray *tracks, NSError *error))callback;
 
 @end
+
+extern NSString * const BMRequestManagerErrorDomain;

@@ -607,7 +607,6 @@
 				D21CE9EA17FAFA0900F5AF42 /* Sources */,
 				D21CE9EB17FAFA0900F5AF42 /* Frameworks */,
 				D21CE9EC17FAFA0900F5AF42 /* Resources */,
-				D2027992184DEA6000D1F509 /* CopyFiles */,
 				7F486628B51295D9B737C49B /* Embed Pods Frameworks */,
 				8F915C093FB75F5DDFF1E625 /* Copy Pods Resources */,
 				D2B48A591CADB11B00CA13DB /* Update build version */,
@@ -653,7 +652,7 @@
 				ORGANIZATIONNAME = "Sergey Popov";
 				TargetAttributes = {
 					D21CE9ED17FAFA0900F5AF42 = {
-						DevelopmentTeam = TMWZ977439;
+						DevelopmentTeam = GVHZGUG393;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -667,6 +666,7 @@
 						};
 					};
 					D21CEA0E17FAFA0A00F5AF42 = {
+						DevelopmentTeam = GVHZGUG393;
 						TestTargetID = D21CE9ED17FAFA0900F5AF42;
 					};
 				};
@@ -1044,6 +1044,8 @@
 			baseConfigurationReference = 1DE5F7EAB70D0BD3FA29879C /* Pods-b-musicTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/b-music.app/Contents/MacOS/b-music";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1057,6 +1059,7 @@
 				);
 				INFOPLIST_FILE = "b-musicTests/b-musicTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1067,6 +1070,8 @@
 			baseConfigurationReference = 27D99033C379A44851D16DC4 /* Pods-b-musicTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/b-music.app/Contents/MacOS/b-music";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1076,6 +1081,7 @@
 				GCC_PREFIX_HEADER = "b-music/b-music-Prefix.pch";
 				INFOPLIST_FILE = "b-musicTests/b-musicTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

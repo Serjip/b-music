@@ -32,7 +32,7 @@
 {
     XCTestExpectation *ex = [self expectationWithDescription:@"High Expectations"];
     
-    [self.manager audioWithCompletion:^(NSArray *tracks, NSError *error) {
+    [self.manager tracksWithCount:10 offset:0 completion:^(NSArray *tracks, NSError *error) {
         
         NSLog(@"%@", tracks);
         XCTAssert(! error);
