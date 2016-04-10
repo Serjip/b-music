@@ -73,6 +73,7 @@
 		D2B48A5E1CADB36800CA13DB /* BMTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B48A5D1CADB36800CA13DB /* BMTrack.m */; };
 		D2B48A611CADB3E300CA13DB /* BMRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B48A601CADB3E300CA13DB /* BMRequestManager.m */; };
 		D2BB89E418314F060062BA8E /* icon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D2BB89E318314F060062BA8E /* icon.pdf */; };
+		D2ECC6081CBABC94000CAFDA /* BMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ECC6071CBABC94000CAFDA /* BMUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +207,9 @@
 		D2B48A601CADB3E300CA13DB /* BMRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMRequestManager.m; sourceTree = "<group>"; };
 		D2BB89E318314F060062BA8E /* icon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = icon.pdf; sourceTree = "<group>"; };
 		D2D9B694180EBFB200D9C6B7 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		D2ECC6061CBABC94000CAFDA /* BMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUser.h; sourceTree = "<group>"; };
+		D2ECC6071CBABC94000CAFDA /* BMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMUser.m; sourceTree = "<group>"; };
+		D2ECC6091CBABD00000CAFDA /* BMUser_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMUser_Private.h; sourceTree = "<group>"; };
 		E77194D26E6F578A35ABD74E /* Pods-b-music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-b-music/Pods-b-music.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -577,6 +581,9 @@
 		D2B48A5B1CADB33200CA13DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D2ECC6091CBABD00000CAFDA /* BMUser_Private.h */,
+				D2ECC6061CBABC94000CAFDA /* BMUser.h */,
+				D2ECC6071CBABC94000CAFDA /* BMUser.m */,
 				D2B48A5C1CADB36800CA13DB /* BMTrack.h */,
 				D2B48A5D1CADB36800CA13DB /* BMTrack.m */,
 				D2B48A5F1CADB3E300CA13DB /* BMRequestManager.h */,
@@ -863,6 +870,7 @@
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* vkAPI.m in Sources */,
 				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,
+				D2ECC6081CBABC94000CAFDA /* BMUser.m in Sources */,
 				D20A47FD1826AF5D002B7B18 /* Preferences.m in Sources */,
 				D20A47F718267C8E002B7B18 /* SwitchRuntimeButton.m in Sources */,
 				D219EFAE1839491400284A5F /* cipher.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "BMRequestManager.h"
+#import "BMTrack.h"
 
 #import <SSKeychain/SSKeychain.h>
 #import <AFNetworking/AFNetworking.h>
@@ -42,18 +43,40 @@
     
     [self GET:@"audio.get" params:params completion:^(NSDictionary *rsp, NSError *error) {
         
-        NSArray *rawTracks = [rsp valueForKeyPath:@"response.items"];
+        NSMutableArray *tracks = nil;
         
-//        if ()
-//        {
-//            for (NSDictionary *rawTrack in rawTracks)
-//            {
-//                
-//            }
-//        }
+        if (! error)
+        {
+            NSArray *rawTracks = [rsp valueForKeyPath:@"response.items"];
+            
+            if ([rawTracks isKindOfClass:[NSArray class]])
+            {
+                tracks = [[NSMutableArray alloc] init];
+                
+                for (NSDictionary *rawTrack in rawTracks)
+                {
+                    BMTrack *track = [[BMTrack alloc] initWithServerResponse:rawTrack];
+                    if (track)
+                    {
+                        [tracks addObject:track];
+                    }
+                    else
+                    {
+                        
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : NSLocalizedString(@"Invalid response format", nil)};
+                error = [NSError errorWithDomain:BMRequestManagerErrorDomain code:500 userInfo:userInfo];
+            }
+        }
         
-        callback(rsp, error);
-    
+        dispatch_async(dispatch_get_main_queue(), ^{
+            callback(tracks, error);
+        });
     }];
 }
 
