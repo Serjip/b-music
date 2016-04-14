@@ -15,6 +15,7 @@
 @implementation BMRequestManager {
 @private
     AFHTTPRequestOperationManager *_vkManager;
+    AFHTTPRequestOperationManager *_iTunesManager;
     dispatch_queue_t _processing_queue;
     NSString *_accessToken;
 }
@@ -26,9 +27,18 @@
     {
         _accessToken = @"533bacf01e11f55b536a565b57531ac114461ae8736d6506a3";
         _processing_queue = dispatch_queue_create("com.ttitt.b-music.queue", DISPATCH_QUEUE_SERIAL);
-        NSURL *URL = [NSURL URLWithString:@"https://api.vk.com/method/"];
-        _vkManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:URL];
-        _vkManager.completionQueue = _processing_queue;
+        
+        {
+            NSURL *URL = [NSURL URLWithString:@"https://api.vk.com/method/"];
+            _vkManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:URL];
+            _vkManager.completionQueue = _processing_queue;
+        }
+        
+        {
+            NSURL *URL = [NSURL URLWithString:@"https://itunes.apple.com/"];
+            _iTunesManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:URL];
+            _iTunesManager.completionQueue = _processing_queue;
+        }
     }
     return self;
 }
@@ -85,6 +95,21 @@
             callback(tracks, error);
         });
     }];
+}
+
+- (void)trackInfoWithTrack:(BMTrack *)track completion:(void (^)(BMTrackInfo *, NSError *))callback
+{
+    NSLocale *locale = [NSLocale currentLocale];
+    
+    NSString *language = [locale objectForKey:NSLocaleLanguageCode];
+    NSString *country = [locale objectForKey:NSLocaleCountryCode];
+    
+    NSDictionary *params = @{
+                             @"version" : @2,
+                             @"country" : country,
+                             @"lang" : language,
+                             @"media" : @"music",
+                             };
 }
 
 - (void)GET:(NSString *)URLString params:(NSDictionary *)params completion:(void(^)(NSDictionary *rsp, NSError *error))callback

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16F26478EDF2016F67215F0E /* libPods-b-music.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505F954C88B59FA62A8EA34B /* libPods-b-music.a */; };
 		5526D776A3C3B62AE105AC35 /* libPods-b-musicTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2A697B66763C095AC9D29E4 /* libPods-b-musicTests.a */; };
+		D20163821CC0275E009BC626 /* BMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D20163811CC0275E009BC626 /* BMTrackInfo.m */; };
 		D2027998184DECC600D1F509 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = D2027995184DECC600D1F509 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2027999184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = D2027997184DECC600D1F509 /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D202799C184DED1200D1F509 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D202799B184DED1200D1F509 /* Carbon.framework */; };
@@ -92,6 +93,8 @@
 		505F954C88B59FA62A8EA34B /* libPods-b-music.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-b-music.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2A697B66763C095AC9D29E4 /* libPods-b-musicTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-b-musicTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3231DA47376B7FC59DF7FA1 /* Pods-b-music.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-b-music.release.xcconfig"; path = "Pods/Target Support Files/Pods-b-music/Pods-b-music.release.xcconfig"; sourceTree = "<group>"; };
+		D20163801CC0275E009BC626 /* BMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTrackInfo.h; sourceTree = "<group>"; };
+		D20163811CC0275E009BC626 /* BMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTrackInfo.m; sourceTree = "<group>"; };
 		D2027994184DECC600D1F509 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		D2027995184DECC600D1F509 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		D2027996184DECC600D1F509 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -586,6 +589,8 @@
 				D2ECC6071CBABC94000CAFDA /* BMUser.m */,
 				D2B48A5C1CADB36800CA13DB /* BMTrack.h */,
 				D2B48A5D1CADB36800CA13DB /* BMTrack.m */,
+				D20163801CC0275E009BC626 /* BMTrackInfo.h */,
+				D20163811CC0275E009BC626 /* BMTrackInfo.m */,
 				D2B48A5F1CADB3E300CA13DB /* BMRequestManager.h */,
 				D2B48A601CADB3E300CA13DB /* BMRequestManager.m */,
 			);
@@ -867,6 +872,7 @@
 				D2027998184DECC600D1F509 /* SPMediaKeyTap.m in Sources */,
 				D2825B7C17FDB8FE00F725BD /* RemoveButtonCell.m in Sources */,
 				D21CE9FE17FAFA0900F5AF42 /* main.m in Sources */,
+				D20163821CC0275E009BC626 /* BMTrackInfo.m in Sources */,
 				D2825B6B17FD8C2900F725BD /* CloseButton.m in Sources */,
 				D2825B4817FC90F000F725BD /* vkAPI.m in Sources */,
 				D2825B4C17FC990C00F725BD /* RuntimeSliderCell.m in Sources */,

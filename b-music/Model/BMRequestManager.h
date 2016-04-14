@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class BMTrack, BMTrackInfo;
+
 @interface BMRequestManager : NSObject
 
 - (void)tracksWithCount:(NSUInteger)count offset:(NSUInteger)offset completion:(void (^) (NSArray *tracks, NSError *error))callback;
+- (void)trackInfoWithTrack:(BMTrack *)track completion:(void (^)(BMTrackInfo *info, NSError *error))callback;
 
 @end
 
