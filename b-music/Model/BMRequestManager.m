@@ -99,6 +99,9 @@
 
 - (void)trackInfoWithTrack:(BMTrack *)track completion:(void (^)(BMTrackInfo *, NSError *))callback
 {
+    NSParameterAssert(track);
+    NSParameterAssert(callback);
+    
     NSLocale *locale = [NSLocale currentLocale];
     
     NSString *language = [locale objectForKey:NSLocaleLanguageCode];
@@ -109,7 +112,19 @@
                              @"country" : country,
                              @"lang" : language,
                              @"media" : @"music",
+                             @"entity" : @"song",
+                             @"limit" : @10,
+                             @"term" : [NSString stringWithFormat:@"%@ %@", track.artist, track.title]
                              };
+    
+    [_iTunesManager GET:@"search" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        callback(responseObject, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
+        callback(nil, error);
+    }];
 }
 
 - (void)GET:(NSString *)URLString params:(NSDictionary *)params completion:(void(^)(NSDictionary *rsp, NSError *error))callback
