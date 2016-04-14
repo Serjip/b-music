@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic, readonly) NSURL *trackURL;
 @property (strong, nonatomic, readonly) NSString *trackName;
+@property (strong, nonatomic, readonly) NSString *artist;
+@property (strong, nonatomic, readonly) NSString *artworkURLString;
 
 - (instancetype)initWithServerResponse:(NSDictionary *)response;
 

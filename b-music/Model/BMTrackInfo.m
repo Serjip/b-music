@@ -28,6 +28,17 @@
             _trackName = trackName;
         }
         
+        NSString *artist = [response objectForKey:@"artistName"];
+        if ([artist isKindOfClass:[NSString class]])
+        {
+            _artist = artist;
+        }
+        
+        NSString *artwork = [response objectForKey:@"artworkUrl100"];
+        if ([artwork isKindOfClass:[NSString class]])
+        {
+            _artworkURLString = artwork;
+        }
     }
     return self;
 }
